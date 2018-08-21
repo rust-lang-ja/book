@@ -1,0 +1,117 @@
+version: 2
+
+# TODO: Cache the external Git repositories (TRPL2 and TRPL1)
+
+jobs:
+  build_trpl2:
+    docker:
+      - image: quay.io/rust-lang-ja/circleci:trpl2
+    parallelism: 1
+    steps:
+      - run: rustc --version --verbose
+      - run: cargo --version --verbose
+      - run: mdbook --version
+      - run:
+          name: Cloning TRPL2
+          command: |
+            mkdir ~/.ssh
+            chmod 700 ~/.ssh
+            ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+            git clone git@github.com:hazama-yuinyan/book.git
+            cd book
+            git checkout master
+          working_directory: ~/trpl2
+      - run:
+          name: Removing blank lines and HTML comments from SUMMARY.md
+          command: sed -i '/^$/d; /<!--.*-->/d' src/SUMMARY.md
+          working_directory: ~/trpl2/book/second-edition
+      - run:
+          name: Building 2nd Edition
+          command: |
+            mdbook clean || true
+            mdbook build
+            mkdir -p /tmp/trpl2
+            cp -rp book /tmp/trpl2/second-edition
+          working_directory: ~/trpl2/book/second-edition
+      - persist_to_workspace:
+          root: /tmp
+          paths:
+            - trpl2/second-edition
+
+  build_trpl1:
+    docker:
+      - image: quay.io/rust-lang-ja/circleci:trpl1
+    parallelism: 1
+    steps:
+      - run: rustc --version --verbose
+      - run: cargo --version --verbose
+      - run:
+          name: Cloning TRPL1
+          command: |
+            mkdir ~/.ssh
+            chmod 700 ~/.ssh
+            ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+            git clone git@github.com:rust-lang-ja/the-rust-programming-language-ja.git book
+            cd book
+            git checkout master
+          working_directory: ~/trpl1
+      - run:
+          name: Building 1st Edition (1.9)
+          command: make clean all VERSION=1.9
+          working_directory: ~/trpl1/book
+      - run:
+          name: Building 1st Edition (1.6)
+          command: make clean all VERSION=1.6
+          working_directory: ~/trpl1/book
+      - run:
+          name: Copying books
+          command: |
+            mkdir -p /tmp/trpl1
+            cp -rp docs /tmp/trpl1/first-edition
+          working_directory: ~/trpl1/book
+      - persist_to_workspace:
+          root: /tmp
+          paths:
+            - trpl1/first-edition
+
+  # This job will only run on the master branch. (See the workflows section)
+  publish:
+    docker:
+      # We actually do not use Python but this maybe one of the smallest
+      # images that Circle CI provides.
+      - image: circleci/python:3.7
+    parallelism: 1
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Copying books
+          command: |
+            mkdir -p docs
+            cp -rp /tmp/workspace/trpl2/second-edition docs/
+            cp -rp /tmp/workspace/trpl1/first-edition docs/
+      - deploy:
+          name: Publish to GitHub Page
+          command: |
+            git config user.name "bn-e (CircleCI)"
+            git config user.email "bn-e@hibaridb.org"
+            ./tools/circleci/push-to-master.sh
+
+# NOTE: Circle CI CLI command does not seem to support workflows yet,
+# so we cannot run test locally.
+# https://discuss.circleci.com/t/command-line-support-for-workflows/14510/8
+
+workflows:
+  version: 2
+  build_and_publish:
+    jobs:
+      - build_trpl2
+      - build_trpl1
+      - publish:
+          requires:
+            - build_trpl2
+            - build_trpl1
+          filters:
+            branches:
+              only: master
