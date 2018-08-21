@@ -1,0 +1,549 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>pubで公開するか制御する - The Rust Programming Language</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+
+    </head>
+    <body class="light">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li class="affix"><a href="foreword.html">まえがき</a></li><li class="affix"><a href="ch00-00-introduction.html">導入</a></li><li><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 事始め</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> インストール</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> 数当てゲームをプログラムする</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> 普遍的なプログラミング概念</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> 変数と可変性</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> データ型</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> 関数の動作法</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> コメント</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> 制御フロー</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> 所有権を理解する</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> 所有権とは？</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> 参照と借用</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> スライス</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> 構造体を使用して関連のあるデータを構造化する</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> 構造体を定義し、インスタンス化する</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> 構造体を使用したプログラム例</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> メソッド記法</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enumとパターンマッチング</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Enumを定義する</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> match制御フロー演算子</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> if letで簡潔な制御フロー</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> モジュール</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> modとファイルシステム</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html" class="active"><strong aria-hidden="true">7.2.</strong> pubで公開するか制御する</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> 異なるモジュールの名前を参照する</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> 一般的なコレクション</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> ベクタ型</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> 文字列型</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> ハッシュマップ</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> エラー処理</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> panic!で回復不能なエラー</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Resultで回復可能なエラー</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> panic!すべきかするまいか</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> ジェネリック型、トレイト、ライフタイム</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> ジェネリックなデータ型</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> トレイト: 共通の振る舞いを定義する</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> ライフタイムで参照を有効化する</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> テスト</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> テストを書く</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> テストを走らせる</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> テストの体系化</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> 入出力プロジェクト: コマンドラインプログラムを構築する</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> コマンドライン引数を受け付ける</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> ファイルを読み込む</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> リファクタリングしてモジュール性の向上とエラー処理</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> テスト駆動開発でライブラリの機能を開発する</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> 環境変数を取り扱う</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> 標準出力ではなく標準エラーにエラーメッセージを書き込む</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> 関数型言語の機能: イテレータとクロージャ</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> クロージャ: 環境をキャプチャできる匿名関数</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> 一連の要素をイテレータで処理する</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> 入出力プロジェクトを改善する</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> パフォーマンス比較: ループVSイテレータ</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> CargoとCrates.ioについてより詳しく</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> リリースプロファイルでビルドをカスタマイズする</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Crates.ioにクレートを公開する</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargoのワークスペース</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> cargo installでCrates.ioからバイナリをインストールする</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> 独自のコマンドでCargoで拡張する</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> スマートポインタ</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T>はヒープのデータを指し、既知のサイズである</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Derefトレイトにより、参照を通してデータにアクセスできる</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> Dropトレイトにより、片付けの時にコードを実行する</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>は、参照カウント方式のスマートポインタ</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T>と内部可変性パターン</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> 循環参照し、メモリをリークするのは安全である</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> 恐れるな！並行性</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> スレッド</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> メッセージ受け渡し</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> 状態共有</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> 拡張可能な並行性: SyncとSend</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Rustのオブジェクト指向プログラミング機能</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> オブジェクト指向言語の特徴</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> 異なる型の値を許容するトレイトオブジェクトを使用する</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> オブジェクト指向デザインパターンを実装する</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> パターンは値の構造に合致する</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> パターンが使用されるかもしれない箇所全部</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> 論駁可能性: パターンが合致しないか</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> パターン記法全部</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> 高度な機能</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> 高度なライフタイム</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> 高度なトレイト</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> 高度な型</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> 高度な関数とクロージャ</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> 最後のプロジェクト: マルチスレッドのWebサーバを構築する</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> シングルスレッドのWebサーバ</a></li><li><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> シングルスレッドのサーバをマルチスレッド化する</a></li><li><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> 優美なシャットダウンとお片付け</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> 付録</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - キーワード</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - 演算子とシンボル</a></li><li><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - 継承可能なトレイト</a></li><li><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - マクロ</a></li><li><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - 翻訳</a></li><li><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - 最新の機能</a></li><li><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - Rustが“Nightly Rust”になる方法</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">The Rust Programming Language</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- ## Controlling Visibility with `pub` -->
+<a class="header" href="ch07-02-controlling-visibility-with-pub.html#pubで公開するか制御する" id="pubで公開するか制御する"><h2><code>pub</code>で公開するか制御する</h2></a>
+<!-- We resolved the error messages shown in Listing 7-5 by moving the `network` and -->
+<!-- `network::server` code into the *src/network/mod.rs* and -->
+<!-- *src/network/server.rs* files, respectively. At that point, `cargo build` was -->
+<!-- able to build our project, but we still get warning messages saying that the -->
+<!-- `client::connect`, `network::connect`, and `network::server::connect` functions -->
+<!-- are not being used: -->
+<p>リスト7-5に示したエラーメッセージを<code>network</code>と<code>network::server</code>のコードを、
+<em>src/network/mod.rs</em>と<em>src/network/server.rs</em>ファイルにそれぞれ移動することで解決しました。
+その時点で<code>cargo build</code>はプロジェクトをビルドできましたが、
+<code>client::connect</code>と<code>network::connect</code>と<code>network::server::connect</code>関数が、
+使用されていないという警告メッセージが出ていました:</p>
+<pre><code class="language-text">warning: function is never used: `connect`
+ --&gt; src/client.rs:1:1
+  |
+1 | / fn connect() {
+2 | | }
+  | |_^
+  |
+  = note: #[warn(dead_code)] on by default
+
+warning: function is never used: `connect`
+ --&gt; src/network/mod.rs:1:1
+  |
+1 | / fn connect() {
+2 | | }
+  | |_^
+
+warning: function is never used: `connect`
+ --&gt; src/network/server.rs:1:1
+  |
+1 | / fn connect() {
+2 | | }
+  | |_^
+</code></pre>
+<!-- So why are we receiving these warnings? After all, we’re building a library -->
+<!-- with functions that are intended to be used by our *users*, not necessarily by -->
+<!-- us within our own project, so it shouldn’t matter that these `connect` -->
+<!-- functions go unused. The point of creating them is that they will be used by -->
+<!-- another project, not our own. -->
+<p>では、何故このような警告を受けているのでしょうか？結局のところ、必ずしも自分のプロジェクト内ではなく、
+<em>利用者</em>に利用されることを想定した関数を含むライブラリを構成しているので、
+これらの<code>connect</code>関数が使用されていかないということは、問題になるはずはありません。
+これらの関数を生成することの要点は、自分ではなく、他のプロジェクトで使用することにあるのです。</p>
+<!-- To understand why this program invokes these warnings, let’s try using the -->
+<!-- `communicator` library from another project, calling it externally. To do that, -->
+<!-- we’ll create a binary crate in the same directory as our library crate by -->
+<!-- making a *src/main.rs* file containing this code: -->
+<p>このプログラムがこのような警告を引き起こす理由を理解するために、外部から<code>communicator</code>ライブラリを呼び出して、
+他のプロジェクトからこれを使用してみましょう。そうするには、以下のようなコードを含む<em>src/main.rs</em>を作成して、
+ライブラリクレートと同じディレクトリにバイナリクレートを作成します。</p>
+<!-- <span class="filename">Filename: src/main.rs</span> -->
+<p><span class="filename">ファイル名: src/main.rs</span></p>
+<pre><code class="language-rust ignore">extern crate communicator;
+
+fn main() {
+    communicator::client::connect();
+}
+</code></pre>
+<!-- We use the `extern crate` command to bring the `communicator` library crate -->
+<!-- into scope. Our package now contains *two* crates. Cargo treats *src/main.rs* -->
+<!-- as the root file of a binary crate, which is separate from the existing library -->
+<!-- crate whose root file is *src/lib.rs*. This pattern is quite common for -->
+<!-- executable projects: most functionality is in a library crate, and the binary -->
+<!-- crate uses that library crate. As a result, other programs can also use the -->
+<!-- library crate, and it’s a nice separation of concerns. -->
+<p><code>extern crate</code>コマンドを使用して、<code>communicator</code>ライブラリクレートをスコープに導入しています。
+パッケージには<em>2つ</em>のクレートが含まれるようになりました。Cargoは、<em>src/main.rs</em>をバイナリクレートのルートファイルとして扱い、
+これはルートファイルが<em>src/lib.rs</em>になる既存のライブラリクレートとは区別されます。このパターンは、
+実行形式プロジェクトで非常に一般的です: ほとんどの機能はライブラリクレートにあり、バイナリクレートはそれを使用するわけです。
+結果として、他のプログラムもまたこのライブラリクレートを使用でき、良い責任の分離になるわけです。</p>
+<!-- From the point of view of a crate outside the `communicator` library looking -->
+<!-- in, all the modules we’ve been creating are within a module that has the same -->
+<!-- name as the crate, `communicator`. We call the top-level module of a crate the -->
+<!-- *root module*. -->
+<p><code>communicator</code>ライブラリの外部のクレートが検索するという観点から言えば、これまでに作ってきたモジュールは全て、
+<code>communicator</code>というクレートと同じ名前を持つモジュール内にあります。クレートのトップ階層のモジュールを、
+<em>ルートモジュール</em>と呼びます。</p>
+<!-- Also note that even if we’re using an external crate within a submodule of our -->
+<!-- project, the `extern crate` should go in our root module (so in *src/main.rs* -->
+<!-- or *src/lib.rs*). Then, in our submodules, we can refer to items from external -->
+<!-- crates as if the items are top-level modules. -->
+<p>プロジェクトのサブモジュール内で外部クレートを使用しているとしても、<code>extern crate</code>はルートモジュール(つまり、<em>src/main.rs</em>、
+または<em>src/lib.rs</em>)に書くべきということにも、注目してください。それから、
+サブモジュールで外部クレートの要素をトップ階層のモジュールかのように参照できるわけです。</p>
+<!-- Right now, our binary crate just calls our library’s `connect` function from -->
+<!-- the `client` module. However, invoking `cargo build` will now give us an error -->
+<!-- after the warnings: -->
+<p>現状、バイナリクレートは、<code>client</code>モジュールからライブラリの<code>connect</code>関数を呼び出しているだけです。
+ところが、<code>cargo build</code>を呼び出すと、警告の後にエラーが発生します:</p>
+<pre><code class="language-text">error[E0603]: module `client` is private
+(エラー: `client`モジュールは非公開です)
+ --&gt; src/main.rs:4:5
+  |
+4 |     communicator::client::connect();
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</code></pre>
+<!-- Ah ha! This error tells us that the `client` module is private, which is the -->
+<!-- crux of the warnings. It’s also the first time we’ve run into the concepts of -->
+<!-- *public* and *private* in the context of Rust. The default state of all code in -->
+<!-- Rust is private: no one else is allowed to use the code. If you don’t use a -->
+<!-- private function within your program, because your program is the only code -->
+<!-- allowed to use that function, Rust will warn you that the function has gone -->
+<!-- unused. -->
+<p>ああ！このエラーは、<code>client</code>モジュールが非公開であることを教えてくれ、それが警告の肝だったわけです。
+Rustの文脈において、<em>公開</em>とか<em>非公開</em>という概念にぶち当たったのは、これが初めてでもあります。
+全コードの初期状態は、非公開です: 誰も他の人はコードを使用できないわけです。プログラム内で非公開の関数を使用していなければ、
+自分のプログラムだけがその関数を使用することを許可された唯一のコードなので、コンパイラは関数が未使用と警告してくるのです。</p>
+<!-- After you specify that a function like `client::connect` is public, not only -->
+<!-- will your call to that function from our binary crate be allowed, but the -->
+<!-- warning that the function is unused will go away. Marking a function as public -->
+<!-- lets Rust know that the function will be used by code outside of our program. -->
+<!-- Rust considers the theoretical external usage that’s now possible as the -->
+<!-- function “being used.” Thus, when a function is marked public, Rust will not -->
+<!-- require that it be used in our program and will stop warning that the function -->
+<!-- is unused. -->
+<p><code>client::connect</code>のような関数を公開にすると指定した後は、バイナリクレートからその関数への呼び出しが許可されるだけでなく、
+関数が未使用であるという警告も消え去るわけです。関数を公開にすれば、コンパイラは、
+関数が自分のプログラム外のコードからも使用されることがあると知ります。コンパイラは、
+関数が「使用されている」という架空の外部使用の可能性を考慮してくれます。それ故に、関数が公開とマークされれば、
+コンパイラはそれが自分のプログラムで使用されるべきという要求をなくし、その関数が未使用という警告も止めるのです。</p>
+<!-- ### Making a Function Public -->
+<a class="header" href="ch07-02-controlling-visibility-with-pub.html#a関数を公開にする" id="a関数を公開にする"><h3>関数を公開にする</h3></a>
+<!-- To tell Rust to make a function public, we add the `pub` keyword to the start -->
+<!-- of the declaration. We’ll focus on fixing the warning that indicates -->
+<!-- `client::connect` has gone unused for now, as well as the `` module `client` is -->
+<!-- private `` error from our binary crate. Modify *src/lib.rs* to make the -->
+<!-- `client` module public, like so: -->
+<p>コンパイラに何かを公開すると指示するには、定義の先頭に<code>pub</code>キーワードを追記します。
+今は、<code>client::connect</code>が未使用であるとする警告とバイナリークレートの<code>モジュール`client`が非公開である</code>エラーの解消に努めます。
+<em>src/lib.rs</em>を弄って、<code>client</code>モジュールを公開にしてください。そう、こんな感じに:</p>
+<!-- <span class="filename">Filename: src/lib.rs</span> -->
+<p><span class="filename">ファイル名: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">pub mod client;
+
+mod network;
+</code></pre>
+<!-- The `pub` keyword is placed right before `mod`. Let’s try building again: -->
+<p><code>pub</code>キーワードは、<code>mod</code>の直前に配置されています。再度ビルドしてみましょう:</p>
+<pre><code class="language-text">error[E0603]: function `connect` is private
+ --&gt; src/main.rs:4:5
+  |
+4 |     communicator::client::connect();
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</code></pre>
+<!-- Hooray! We have a different error! Yes, different error messages are a cause -->
+<!-- for celebration. The new error shows `` function `connect` is private ``, so -->
+<!-- let’s edit *src/client.rs* to make `client::connect` public too: -->
+<p>やった！違うエラーになりました！そうです、別のエラーメッセージは、祝杯を上げる理由になるのです。
+新エラーは、<code>関数`connect`は非公開です</code>と示しているので、<em>src/client.rs</em>を編集して、
+<code>client::connect</code>も公開にしましょう:</p>
+<!-- <span class="filename">Filename: src/client.rs</span> -->
+<p><span class="filename">ファイル名: src/client.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+pub fn connect() {
+}
+#}</code></pre></pre>
+<!-- Now run `cargo build` again: -->
+<p>さて、再び、<code>cargo build</code>を走らせてください:</p>
+<pre><code class="language-text">warning: function is never used: `connect`
+ --&gt; src/network/mod.rs:1:1
+  |
+1 | / fn connect() {
+2 | | }
+  | |_^
+  |
+  = note: #[warn(dead_code)] on by default
+
+warning: function is never used: `connect`
+ --&gt; src/network/server.rs:1:1
+  |
+1 | / fn connect() {
+2 | | }
+  | |_^
+</code></pre>
+<!-- The code compiled, and the warning that `client::connect` is not being used is -->
+<!-- gone! -->
+<p>コードのコンパイルが通り、<code>client:connect</code>が使用されていないという警告はなくなりました！</p>
+<!-- 3行目、could be alerting you to code you...のところがちょっと不安 -->
+<!-- Unused code warnings don’t always indicate that an item in your code needs to -->
+<!-- be made public: if you *didn’t* want these functions to be part of your public -->
+<!-- API, unused code warnings could be alerting you to code you no longer need that -->
+<!-- you can safely delete. They could also be alerting you to a bug if you had just -->
+<!-- accidentally removed all places within your library where this function is -->
+<!-- called. -->
+<p>コード未使用警告が必ずしも、コード内の要素を公開にしなければならないことを示唆しているわけではありません:
+これらの関数を公開APIの一部にしたく<em>なかった</em>ら、未使用コード警告がもう必要なく、安全に削除できるコードに注意を向けてくれている可能性もあります。
+また未使用コード警告は、ライブラリ内でこの関数を呼び出している箇所全てを誤って削除した場合に、
+バグに目を向けさせてくれている可能性もあります。</p>
+<!-- But in this case, we *do* want the other two functions to be part of our -->
+<!-- crate’s public API, so let’s mark them as `pub` as well to get rid of the -->
+<!-- remaining warnings. Modify *src/network/mod.rs* to look like the following: -->
+<p>しかし今回は、本当に他の2つの関数もクレートの公開APIにしたいので、これも<code>pub</code>とマークして残りの警告を除去しましょう。
+<em>src/network/mod.rs</em>を変更して以下のようにしてください:</p>
+<!-- <span class="filename">Filename: src/network/mod.rs</span> -->
+<p><span class="filename">ファイル名: src/network/mod.rs</span></p>
+<pre><code class="language-rust ignore">pub fn connect() {
+}
+
+mod server;
+</code></pre>
+<!-- Then compile the code: -->
+<p>そして、コードをコンパイルします:</p>
+<pre><code class="language-text">warning: function is never used: `connect`
+ --&gt; src/network/mod.rs:1:1
+  |
+1 | / pub fn connect() {
+2 | | }
+  | |_^
+  |
+  = note: #[warn(dead_code)] on by default
+
+warning: function is never used: `connect`
+ --&gt; src/network/server.rs:1:1
+  |
+1 | / fn connect() {
+2 | | }
+  | |_^
+</code></pre>
+<!-- Hmmm, we’re still getting an unused function warning, even though -->
+<!-- `network::connect` is set to `pub`. The reason is that the function is public -->
+<!-- within the module, but the `network` module that the function resides in is not -->
+<!-- public. We’re working from the interior of the library out this time, whereas -->
+<!-- with `client::connect` we worked from the outside in. We need to change -->
+<!-- *src/lib.rs* to make `network` public too, like so: -->
+<p>んんー、<code>nework::connect</code>は<code>pub</code>に設定されたにもかかわらず、まだ未使用関数警告が出ます。
+その理由は、関数はモジュール内で公開になったものの、関数が存在する<code>network</code>モジュールは公開ではないからです。
+今回は、ライブラリの内部から外に向けて作業をした一方、<code>client::connect</code>では、外から内へ作業をしていました。
+<em>src/lib.rs</em>を変えて<code>network</code>も公開にする必要があります。以下のように:</p>
+<!-- <span class="filename">Filename: src/lib.rs</span> -->
+<p><span class="filename">ファイル名: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">pub mod client;
+
+pub mod network;
+</code></pre>
+<!-- Now when we compile, that warning is gone: -->
+<p>これでコンパイルすれば、あの警告はなくなります:</p>
+<pre><code class="language-text">warning: function is never used: `connect`
+ --&gt; src/network/server.rs:1:1
+  |
+1 | / fn connect() {
+2 | | }
+  | |_^
+  |
+  = note: #[warn(dead_code)] on by default
+</code></pre>
+<!-- Only one warning is left-try to fix this one on your own! -->
+<p>残る警告は1つなので、自分で解消してみてください！</p>
+<!-- ### Privacy Rules -->
+<a class="header" href="ch07-02-controlling-visibility-with-pub.html#aプライバシー規則" id="aプライバシー規則"><h3>プライバシー規則</h3></a>
+<!-- Overall, these are the rules for item visibility: -->
+<p>まとめると、要素の公開性は以下のようなルールになります:</p>
+<!-- - If an item is public, it can be accessed through any of its parent modules. -->
+<!-- - If an item is private, it can be accessed only by its immediate parent -->
+<!--   module and any of the parent’s child modules. -->
+<ul>
+<li>要素が公開なら、どの親モジュールを通してもアクセス可能です。</li>
+<li>要素が非公開なら、直接の親モジュールとその親の子モジュールのみアクセスできます。</li>
+</ul>
+<!-- ### Privacy Examples -->
+<a class="header" href="ch07-02-controlling-visibility-with-pub.html#aプライバシー例" id="aプライバシー例"><h3>プライバシー例</h3></a>
+<!-- Let’s look at a few more privacy examples to get some practice. Create a new -->
+<!-- library project and enter the code in Listing 7-6 into your new project’s -->
+<!-- *src/lib.rs*. -->
+<p>もうちょっと鍛錬を得るために、もういくつかプライバシー例を見てみましょう。新しいライブラリプロジェクトを作成し、
+リスト7-5のコードを新規プロジェクトの<em>src/lib.rs</em>に入力してください。</p>
+<!-- <span class="filename">Filename: src/lib.rs</span> -->
+<p><span class="filename">ファイル名: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">mod outermost {
+    pub fn middle_function() {}
+
+    fn middle_secret_function() {}
+
+    mod inside {
+        pub fn inner_function() {}
+
+        fn secret_function() {}
+    }
+}
+
+fn try_me() {
+    outermost::middle_function();
+    outermost::middle_secret_function();
+    outermost::inside::inner_function();
+    outermost::inside::secret_function();
+}
+</code></pre>
+<!-- <span class="caption">Listing 7-6: Examples of private and public functions, -->
+<!-- some of which are incorrect</span> -->
+<p><span class="caption">リスト7-6: 公開と非公開関数の例。不正なものもあります</span></p>
+<!-- Before you try to compile this code, make a guess about which lines in the -->
+<!-- `try_me` function will have errors. Then, try compiling the code to see whether -->
+<!-- you were right-and read on for the discussion of the errors! -->
+<p>このコードをコンパイルする前に、<code>try_me</code>関数のどの行がエラーになるか当ててみてください。
+それからコンパイルを試して、合ってたかどうか確かめ、エラーの議論を求めて読み進めてください！</p>
+<!-- #### Looking at the Errors -->
+<a class="header" href="ch07-02-controlling-visibility-with-pub.html#aエラーを確かめる" id="aエラーを確かめる"><h4>エラーを確かめる</h4></a>
+<!-- The `try_me` function is in the root module of our project. The module named -->
+<!-- `outermost` is private, but the second privacy rule states that the `try_me` -->
+<!-- function is allowed to access the `outermost` module because `outermost` is in -->
+<!-- the current (root) module, as is `try_me`. -->
+<p><code>try_me</code>関数は、プロジェクトのルートモジュールに存在しています。<code>outermost</code>という名前のモジュールは非公開ですが、
+プライバシー規則の2番目にある通り、<code>try_me</code>そのままに、<code>outermost</code>は現在(ルート)のモジュールなので、
+<code>try_me</code>関数は、<code>outermost</code>モジュールにアクセスすることを許可されるのです。</p>
+<!-- The call to `outermost::middle_function` will work because `middle_function` is -->
+<!-- public and `try_me` is accessing `middle_function` through its parent module -->
+<!-- `outermost`. We already determined that this module is accessible. -->
+<p><code>middle_function</code>は公開なので、<code>outermost::middle_function</code>という呼び出しも動作し、
+<code>try_me</code>は<code>middle_function</code>にその親モジュールの<code>outermost</code>を通してアクセスしています。
+このモジュールは、アクセス可能と既に決定しました。</p>
+<!-- The call to `outermost::middle_secret_function` will cause a compilation error. -->
+<!-- Because `middle_secret_function` is private, the second rule applies. The root -->
+<!-- module is neither the current module of `middle_secret_function` (`outermost` -->
+<!-- is), nor is it a child module of the current module of `middle_secret_function`. -->
+<p><code>outermost::middle_secret_function</code>の呼び出しは、コンパイルエラーになるでしょう。
+<code>middle_secret_function</code>は非公開なので、2番目の規則が適用されます。ルートモジュールは、
+<code>middle_secret_function</code>の現在のモジュール(<code>outermost</code>がそうです)でも、
+<code>middle_secret_function</code>の現在のモジュールの子供でもないのです。</p>
+<!-- The module named `inside` is private and has no child modules, so it can be -->
+<!-- accessed only by its current module `outermost`. That means the `try_me` -->
+<!-- function is not allowed to call `outermost::inside::inner_function` or -->
+<!-- `outermost::inside::secret_function`. -->
+<p><code>inside</code>という名前のモジュールは非公開で子モジュールを持たないので、現在のモジュールである<code>outermost</code>からのみアクセスできます。
+つまり、<code>try_me</code>関数は、<code>outermost::inside::inner_function</code>も<code>outermost::inside::secret_function</code>も呼び出すことを許されないのです。</p>
+<!-- #### Fixing the Errors -->
+<a class="header" href="ch07-02-controlling-visibility-with-pub.html#aエラーを修正する" id="aエラーを修正する"><h4>エラーを修正する</h4></a>
+<!-- Here are some suggestions for changing the code in an attempt to fix the -->
+<!-- errors. Make a guess as to whether it will fix the errors before you try each -->
+<!-- one. Then compile the code to see whether or not you’re right, using the -->
+<!-- privacy rules to understand why. Feel free to design more experiments and try -->
+<!-- them out! -->
+<p>エラーを修正しようとする過程でできるコード変更案は、以下の通りです。各々試してみる前に、
+エラーを解消できるか当ててみてください。それからコンパイルして正しかったか間違っていたか確かめ、
+プライバシー規則を使用して理由を理解してください。もっと実験を企てて試してみるのもご自由に！</p>
+<!-- * What if the `inside` module were public? -->
+<!-- * What if `outermost` were public and `inside` were private? -->
+<!-- * What if, in the body of `inner_function`, you called -->
+<!--   `::outermost::middle_secret_function()`? (The two colons at the beginning mean -->
+<!--   that we want to refer to the modules starting from the root module.) -->
+<ul>
+<li><code>inside</code>モジュールが公開だったらどうだろうか？</li>
+<li><code>outermost</code>が公開で、<code>inside</code>が非公開ならどうだろうか？</li>
+<li><code>inner_function</code>の本体で<code>::outermost::middle_secret_function()</code>を呼び出したらどうだろうか？
+(頭の二つのコロンは、ルートモジュールから初めてモジュールを参照したいということを意味します)</li>
+</ul>
+<!-- Next, let’s talk about bringing items into scope with the `use` keyword. -->
+<p>今度は、<code>use</code>キーワードで要素をスコープに導入する話をしましょう。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch07-01-mod-and-the-filesystem.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch07-03-importing-names-with-use.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="ch07-01-mod-and-the-filesystem.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ch07-03-importing-names-with-use.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
+        
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

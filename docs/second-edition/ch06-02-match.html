@@ -1,0 +1,557 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>match制御フロー演算子 - The Rust Programming Language</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+
+    </head>
+    <body class="light">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li class="affix"><a href="foreword.html">まえがき</a></li><li class="affix"><a href="ch00-00-introduction.html">導入</a></li><li><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 事始め</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> インストール</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> 数当てゲームをプログラムする</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> 普遍的なプログラミング概念</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> 変数と可変性</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> データ型</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> 関数の動作法</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> コメント</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> 制御フロー</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> 所有権を理解する</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> 所有権とは？</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> 参照と借用</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> スライス</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> 構造体を使用して関連のあるデータを構造化する</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> 構造体を定義し、インスタンス化する</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> 構造体を使用したプログラム例</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> メソッド記法</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enumとパターンマッチング</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Enumを定義する</a></li><li><a href="ch06-02-match.html" class="active"><strong aria-hidden="true">6.2.</strong> match制御フロー演算子</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> if letで簡潔な制御フロー</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> モジュール</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> modとファイルシステム</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> pubで公開するか制御する</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> 異なるモジュールの名前を参照する</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> 一般的なコレクション</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> ベクタ型</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> 文字列型</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> ハッシュマップ</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> エラー処理</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> panic!で回復不能なエラー</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Resultで回復可能なエラー</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> panic!すべきかするまいか</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> ジェネリック型、トレイト、ライフタイム</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> ジェネリックなデータ型</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> トレイト: 共通の振る舞いを定義する</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> ライフタイムで参照を有効化する</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> テスト</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> テストを書く</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> テストを走らせる</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> テストの体系化</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> 入出力プロジェクト: コマンドラインプログラムを構築する</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> コマンドライン引数を受け付ける</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> ファイルを読み込む</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> リファクタリングしてモジュール性の向上とエラー処理</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> テスト駆動開発でライブラリの機能を開発する</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> 環境変数を取り扱う</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> 標準出力ではなく標準エラーにエラーメッセージを書き込む</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> 関数型言語の機能: イテレータとクロージャ</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> クロージャ: 環境をキャプチャできる匿名関数</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> 一連の要素をイテレータで処理する</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> 入出力プロジェクトを改善する</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> パフォーマンス比較: ループVSイテレータ</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> CargoとCrates.ioについてより詳しく</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> リリースプロファイルでビルドをカスタマイズする</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Crates.ioにクレートを公開する</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargoのワークスペース</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> cargo installでCrates.ioからバイナリをインストールする</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> 独自のコマンドでCargoで拡張する</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> スマートポインタ</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T>はヒープのデータを指し、既知のサイズである</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Derefトレイトにより、参照を通してデータにアクセスできる</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> Dropトレイトにより、片付けの時にコードを実行する</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>は、参照カウント方式のスマートポインタ</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T>と内部可変性パターン</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> 循環参照し、メモリをリークするのは安全である</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> 恐れるな！並行性</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> スレッド</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> メッセージ受け渡し</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> 状態共有</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> 拡張可能な並行性: SyncとSend</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Rustのオブジェクト指向プログラミング機能</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> オブジェクト指向言語の特徴</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> 異なる型の値を許容するトレイトオブジェクトを使用する</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> オブジェクト指向デザインパターンを実装する</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> パターンは値の構造に合致する</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> パターンが使用されるかもしれない箇所全部</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> 論駁可能性: パターンが合致しないか</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> パターン記法全部</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> 高度な機能</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> 高度なライフタイム</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> 高度なトレイト</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> 高度な型</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> 高度な関数とクロージャ</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> 最後のプロジェクト: マルチスレッドのWebサーバを構築する</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> シングルスレッドのWebサーバ</a></li><li><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> シングルスレッドのサーバをマルチスレッド化する</a></li><li><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> 優美なシャットダウンとお片付け</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> 付録</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - キーワード</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - 演算子とシンボル</a></li><li><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - 継承可能なトレイト</a></li><li><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - マクロ</a></li><li><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - 翻訳</a></li><li><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - 最新の機能</a></li><li><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - Rustが“Nightly Rust”になる方法</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">The Rust Programming Language</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- ## The `match` Control Flow Operator -->
+<a class="header" href="ch06-02-match.html#matchフロー制御演算子" id="matchフロー制御演算子"><h2><code>match</code>フロー制御演算子</h2></a>
+<!-- Rust has an extremely powerful control flow operator called `match` that allows -->
+<!-- us to compare a value against a series of patterns and then execute code based -->
+<!-- on which pattern matches. Patterns can be made up of literal values, variable -->
+<!-- names, wildcards, and many other things; Chapter 18 covers all the different -->
+<!-- kinds of patterns and what they do. The power of `match` comes from the -->
+<!-- expressiveness of the patterns and the fact that the compiler confirms that all -->
+<!-- possible cases are handled. -->
+<p>Rustには、一連のパターンに対して値を比較し、マッチしたパターンに応じてコードを実行させてくれる<code>match</code>と呼ばれる、
+非常に強力なフロー制御演算子があります。パターンは、リテラル値、変数名、ワイルドカードやその他多数のもので構成することができます;
+第18章で、全ての種類のパターンと、その目的については解説します。<code>match</code>のパワーは、
+パターンの表現力とコンパイラが全てのありうるパターンを処理しているかを確認してくれるという事実に由来します。</p>
+<!-- Think of a `match` expression kind of like a coin sorting machine: coins slide -->
+<!-- down a track with variously sized holes along it, and each coin falls through -->
+<!-- the first hole it encounters that it fits into. In the same way, values go -->
+<!-- through each pattern in a `match`, and at the first pattern the value “fits,” -->
+<!-- the value falls into the associated code block to be used during execution. -->
+<p><code>match</code>式をコイン並べ替え装置のようなものと考えてください: コインは、様々なサイズの穴が空いた通路を流れ落ち、
+各コインは、サイズのあった最初の穴に落ちます。同様に、値は<code>match</code>の各パターンを通り抜け、値が「適合する」最初のパターンで、
+値は紐付けられたコードブロックに落ち、実行中に使用されるわけです。</p>
+<!-- Because we just mentioned coins, let’s use them as an example using `match`! We -->
+<!-- can write a function that can take an unknown United States coin and, in a -->
+<!-- similar way as the counting machine, determine which coin it is and return its -->
+<!-- value in cents, as shown here in Listing 6-3. -->
+<p>コインについて話したので、それを<code>match</code>を使用する例にとってみましょう！数え上げ装置と同じ要領で未知のアメリカコインを一枚取り、
+どの種類のコインなのか決定し、その価値をセントで返す関数をリスト6-3で示したように記述することができます。</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
+
+fn value_in_cents(coin: Coin) -&gt; u32 {
+    match coin {
+        Coin::Penny =&gt; 1,
+        Coin::Nickel =&gt; 5,
+        Coin::Dime =&gt; 10,
+        Coin::Quarter =&gt; 25,
+    }
+}
+#}</code></pre></pre>
+<!-- <span class="caption">Listing 6-3: An enum and a `match` expression that has -->
+<!-- the variants of the enum as its patterns.</span> -->
+<p><span class="caption">リスト6-3: enumとそのenumの列挙子をパターンにした<code>match</code>式</span></p>
+<!-- Let’s break down the `match` in the `value_in_cents` function. First, we list -->
+<!-- the `match` keyword followed by an expression, which in this case is the value -->
+<!-- `coin`. This seems very similar to an expression used with `if`, but there’s a -->
+<!-- big difference: with `if`, the expression needs to return a Boolean value, but -->
+<!-- here, it can be any type. The type of `coin` in this example is the `Coin` enum -->
+<!-- that we defined on 1. -->
+<p><code>value_in_cents</code>関数内の<code>match</code>を噛み砕きましょう。まず、<code>match</code>キーワードに続けて式を並べています。
+この式は今回の場合、値<code>coin</code>です。<code>if</code>で使用した式と非常に酷似しているみたいですね。しかし、大きな違いがあります:
+<code>if</code>では、式は論理値を返す必要がありますが、ここでは、どんな型でも構いません。この例における<code>coin</code>の型は、
+1行目で定義した<code>Coin</code> enumです。</p>
+<!-- Next are the `match` arms. An arm has two parts: a pattern and some code. The -->
+<!-- first arm here has a pattern that is the value `Coin::Penny` and then the `=>` -->
+<!-- operator that separates the pattern and the code to run. The code in this case -->
+<!-- is just the value `1`. Each arm is separated from the next with a comma. -->
+<p>次は、<code>match</code>アームです。一本のアームには2つの部品があります: パターンと何らかのコードです。
+今回の最初のアームは<code>Coin::Penny</code>という値のパターンであり、パターンと動作するコードを区別する<code>=&gt;</code>演算子が続きます。
+この場合のコードは、ただの値<code>1</code>です。各アームは次のアームとカンマで区切られています。</p>
+<!-- When the `match` expression executes, it compares the resulting value against -->
+<!-- the pattern of each arm, in order. If a pattern matches the value, the code -->
+<!-- associated with that pattern is executed. If that pattern doesn’t match the -->
+<!-- value, execution continues to the next arm, much as in a coin-sorting machine. -->
+<!-- We can have as many arms as we need: in Listing 6-3, our `match` has four arms. -->
+<p>この<code>match</code>式が実行されると、結果の値を各アームのパターンと順番に比較します。パターンに値がマッチしたら、
+そのコードに紐付けられたコードが実行されます。パターンが値にマッチしなければ、コイン並べ替え装置と全く同じように、
+次のアームが継続して実行されます。必要なだけパターンは存在できます: リスト6-3では、<code>match</code>には4本のアームがあります。</p>
+<!-- The code associated with each arm is an expression, and the resulting value of -->
+<!-- the expression in the matching arm is the value that gets returned for the -->
+<!-- entire `match` expression. -->
+<p>各アームに紐付けられるコードは式であり、マッチしたアームの式の結果が<code>match</code>式全体の戻り値になります。</p>
+<!-- Curly brackets typically aren’t used if the match arm code is short, as it is -->
+<!-- in Listing 6-3 where each arm just returns a value. If you want to run multiple -->
+<!-- lines of code in a match arm, you can use curly brackets. For example, the -->
+<!-- following code would print out “Lucky penny!” every time the method was called with -->
+<!-- a `Coin::Penny` but would still return the last value of the block, `1`: -->
+<p>典型的に、アームのコードが短い場合、波かっこは使用されません。リスト6-3では、各アームが値を返すだけなので、
+これに倣っています。マッチのアームで複数行のコードを走らせたいのなら、波かっこを使用することができます。
+例えば、以下のコードは、メソッドが<code>Coin::Penny</code>とともに呼び出されるたびに「Lucky penny!」と表示しつつ、
+ブロックの最後の値、<code>1</code>を返すでしょう。</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+# enum Coin {
+#    Penny,
+#    Nickel,
+#    Dime,
+#    Quarter,
+# }
+#
+fn value_in_cents(coin: Coin) -&gt; u32 {
+    match coin {
+        Coin::Penny =&gt; {
+            println!(&quot;Lucky penny!&quot;);
+            1
+        },
+        Coin::Nickel =&gt; 5,
+        Coin::Dime =&gt; 10,
+        Coin::Quarter =&gt; 25,
+    }
+}
+#}</code></pre></pre>
+<!-- ### Patterns that Bind to Values -->
+<a class="header" href="ch06-02-match.html#a値に束縛されるパターン" id="a値に束縛されるパターン"><h3>値に束縛されるパターン</h3></a>
+<!-- Another useful feature of match arms is that they can bind to parts of the -->
+<!-- values that match the pattern. This is how we can extract values out of enum -->
+<!-- variants. -->
+<p>マッチのアームの別の有益な機能は、パターンにマッチした値の一部に束縛できる点です。こうして、
+enumの列挙子から値を取り出すことができます。</p>
+<!-- As an example, let’s change one of our enum variants to hold data inside it. -->
+<!-- From 1999 through 2008, the United States minted quarters with different -->
+<!-- designs for each of the 50 states on one side. No other coins got state -->
+<!-- designs, so only quarters have this extra value. We can add this information to -->
+<!-- our `enum` by changing the `Quarter` variant to include a `UsState` value stored -->
+<!-- inside it, which we've done here in Listing 6-4. -->
+<p>例として、enumの列挙子の一つを中にデータを保持するように変えましょう。1999年から2008年まで、
+アメリカは、片側に50の州それぞれで異なるデザインをしたクォーターコインを鋳造していました。
+他のコインは州のデザインがなされることはなかったので、クォーターだけがこのおまけの値を保持します。
+<code>Quarter</code>列挙子を変更して、<code>UsState</code>値が中に保持されるようにすることで<code>enum</code>にこの情報を追加でき、
+それをしたのがリスト6-4のコードになります。</p>
+<!-- ```rust -->
+<!-- #[derive(Debug)] // so we can inspect the state in a minute -->
+<!-- enum UsState { -->
+<!--     Alabama, -->
+<!--     Alaska, -->
+<!--     // ... etc -->
+<!-- } -->
+<!-- enum Coin { -->
+<!--     Penny, -->
+<!--     Nickel, -->
+<!--     Dime, -->
+<!--     Quarter(UsState), -->
+<!-- } -->
+<!-- ``` -->
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+#[derive(Debug)] // すぐに州を点検できるように
+enum UsState {
+    Alabama,
+    Alaska,
+    // ... などなど
+}
+
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState),
+}
+#}</code></pre></pre>
+<!-- <span class="caption">Listing 6-4: A `Coin` enum in which the `Quarter` variant -->
+<!-- also holds a `UsState` value</span> -->
+<p><span class="caption">リスト6-4: <code>Quarter</code>列挙子が<code>UsState</code>の値も保持する<code>Coin</code> enum</span></p>
+<!-- Let’s imagine that a friend of ours is trying to collect all 50 state quarters. -->
+<!-- While we sort our loose change by coin type, we’ll also call out the name of -->
+<!-- the state associated with each quarter so if it’s one our friend doesn’t have, -->
+<!-- they can add it to their collection. -->
+<!-- この段落は、言いたいことがよくわからない -->
+<p>友人の一人が50州全部のクォーターコインを収集しようとしているところを想像しましょう。コインの種類で並べ替えつつ、
+各クォーターに関連した州の名前を出力すると、友人が持っていない種類だったら、コレクションに追加することができます。</p>
+<!-- In the match expression for this code, we add a variable called `state` to the -->
+<!-- pattern that matches values of the variant `Coin::Quarter`. When a -->
+<!-- `Coin::Quarter` matches, the `state` variable will bind to the value of that -->
+<!-- quarter’s state. Then we can use `state` in the code for that arm, like so: -->
+<p>このコードのmatch式では、<code>Coin::Quarter</code>列挙子の値にマッチする<code>state</code>という名の変数をパターンに追加します。
+<code>Coin::Quarter</code>がマッチすると、<code>state</code>変数はそのクォーターのstateの値に束縛されます。それから、
+<code>state</code>をそのアームのコードで使用できます。以下のようにですね:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+# #[derive(Debug)]
+# enum UsState {
+#    Alabama,
+#    Alaska,
+# }
+#
+# enum Coin {
+#    Penny,
+#    Nickel,
+#    Dime,
+#    Quarter(UsState),
+# }
+#
+fn value_in_cents(coin: Coin) -&gt; u32 {
+    match coin {
+        Coin::Penny =&gt; 1,
+        Coin::Nickel =&gt; 5,
+        Coin::Dime =&gt; 10,
+        Coin::Quarter(state) =&gt; {
+            println!(&quot;State quarter from {:?}!&quot;, state);
+            25
+        },
+    }
+}
+#}</code></pre></pre>
+<!-- If we were to call `value_in_cents(Coin::Quarter(UsState::Alaska))`, `coin` -->
+<!-- would be `Coin::Quarter(UsState::Alaska)`. When we compare that value with each -->
+<!-- of the match arms, none of them match until we reach `Coin::Quarter(state)`. At -->
+<!-- that point, the binding for `state` will be the value `UsState::Alaska`. We can -->
+<!-- then use that binding in the `println!` expression, thus getting the inner -->
+<!-- state value out of the `Coin` enum variant for `Quarter`. -->
+<p><code>value_in_cents(Coin::Quarter(UsState::Alaska))</code>と呼び出すつもりだったなら、<code>coin</code>は
+<code>Coin::Quarter(UsState::Alaska)</code>になります。その値をmatchの各アームと比較すると、
+<code>Coin::Quater(state)</code>に到達するまで、どれにもマッチしません。その時に、<code>state</code>に束縛されるのは、
+<code>UsState::Alaska</code>という値です。そして、<code>println!</code>式でその束縛を使用することができ、
+そのため、<code>Coin</code> enumの列挙子から<code>Quarter</code>に対する中身のstateの値を取得できたわけです。</p>
+<!-- ### Matching with `Option<T>` -->
+<a class="header" href="ch06-02-match.html#optiontとのマッチ" id="optiontとのマッチ"><h3><code>Option&lt;T&gt;</code>とのマッチ</h3></a>
+<!-- In the previous section we wanted to get the inner `T` value out of the `Some` -->
+<!-- case when using `Option<T>`; we can also handle `Option<T>` using `match` as we -->
+<!-- did with the `Coin` enum! Instead of comparing coins, we’ll compare the -->
+<!-- variants of `Option<T>`, but the way that the `match` expression works remains -->
+<!-- the same. -->
+<p>前節では、<code>Option&lt;T&gt;</code>を使用する際に、<code>Some</code>ケースから中身の<code>T</code>の値を取得したくなりました。要するに、
+<code>Coin</code> enumに対して行ったように、<code>match</code>を使って<code>Option&lt;T&gt;</code>を扱うこともできるというわけです！
+コインを比較する代わりに、<code>Option&lt;T&gt;</code>の列挙子を比較するのですが、<code>match</code>式の動作の仕方は同じままです。</p>
+<!-- Let’s say we want to write a function that takes an `Option<i32>` and, if -->
+<!-- there’s a value inside, adds 1 to that value. If there isn’t a value inside, -->
+<!-- the function should return the `None` value and not attempt to perform any -->
+<!-- operations. -->
+<p><code>Option&lt;i32&gt;</code>を取る関数を書きたくなったとし、中に値があったら、その値に1を足すことにしましょう。
+中に値がなければ、関数は<code>None</code>値を返し、何も処理を試みるべきではありません。</p>
+<!-- This function is very easy to write, thanks to `match`, and will look like -->
+<!-- Listing 6-5. -->
+<p><code>match</code>のおかげで、この関数は大変書きやすく、リスト6-5のような見た目になります。</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+fn plus_one(x: Option&lt;i32&gt;) -&gt; Option&lt;i32&gt; {
+    match x {
+        None =&gt; None,
+        Some(i) =&gt; Some(i + 1),
+    }
+}
+
+let five = Some(5);
+let six = plus_one(five);
+let none = plus_one(None);
+#}</code></pre></pre>
+<!-- <span class="caption">Listing 6-5: A function that uses a `match` expression on -->
+<!-- an `Option<i32>`</span> -->
+<p><span class="caption">リスト6-5: <code>Option&lt;i32&gt;</code>に<code>match</code>式を使う関数</span></p>
+<!-- Let’s examine the first execution of `plus_one` in more detail. When we call -->
+<!-- `plus_one(five)`, the variable `x` in the body of `plus_one` will have the -->
+<!-- value `Some(5)`. We then compare that against each match arm. -->
+<p><code>plus_one</code>の最初の実行についてもっと詳しく検証しましょう。<code>plus_one(five)</code>と呼び出した時、
+<code>plus_one</code>の本体の変数<code>x</code>は<code>Some(5)</code>になります。そして、これをマッチの各アームと比較します。</p>
+<pre><code class="language-rust ignore">None =&gt; None,
+</code></pre>
+<!-- The `Some(5)` value doesn’t match the pattern `None`, so we continue to the -->
+<!-- next arm. -->
+<p><code>Some(5)</code>という値は、<code>None</code>というパターンにはマッチしませんので、次のアームに処理が移ります。</p>
+<pre><code class="language-rust ignore">Some(i) =&gt; Some(i + 1),
+</code></pre>
+<!-- Does `Some(5)` match `Some(i)`? Why yes it does! We have the same variant. The -->
+<!-- `i` binds to the value contained in `Some`, so `i` takes the value `5`. The -->
+<!-- code in the match arm is then executed, so we add one to the value of `i` and -->
+<!-- create a new `Some` value with our total `6` inside. -->
+<p><code>Some(5)</code>は<code>Some(i)</code>にマッチしますか？えっと、します！列挙子が同じです。<code>i</code>は<code>Some</code>に含まれる値に束縛されるので、
+<code>i</code>は値<code>5</code>になります。それから、このマッチのアームのコードが実行されるので、<code>i</code>の値に1を足し、
+合計の<code>6</code>を中身にした新しい<code>Some</code>値を生成します。</p>
+<!-- Now let’s consider the second call of `plus_one` in Listing 6-5, where `x` is -->
+<!-- `None`. We enter the `match` and compare to the first arm. -->
+<p>さて、<code>x</code>が<code>None</code>になるリスト6-5の2回目の<code>plus_one</code>の呼び出しを考えましょう。<code>match</code>に入り、
+最初のアームと比較します。</p>
+<pre><code class="language-rust ignore">None =&gt; None,
+</code></pre>
+<!-- It matches! There’s no value to add to, so the program stops and returns the -->
+<!-- `None` value on the right side of `=>`. Because the first arm matched, no other -->
+<!-- arms are compared. -->
+<p>マッチします！足し算する値がないので、プログラムは停止し、<code>=&gt;</code>の右辺にある<code>None</code>値が返ります。
+最初のアームがマッチしたため、他のアームは比較されません。</p>
+<!-- Combining `match` and enums is useful in many situations. You’ll see this -->
+<!-- pattern a lot in Rust code: `match` against an enum, bind a variable to the -->
+<!-- data inside, and then execute code based on it. It’s a bit tricky at first, but -->
+<!-- once you get used to it, you’ll wish you had it in all languages. It’s -->
+<!-- consistently a user favorite. -->
+<p><code>match</code>とenumの組み合わせは、多くの場面で有効です。Rustコードにおいて、このパターンはよく見かけるでしょう:
+enumに対し<code>match</code>し、内部のデータに変数を束縛させ、それに基づいたコードを実行します。最初はちょっと巧妙ですが、
+一旦慣れてしまえば、全ての言語にあってほしいと願うことになるでしょう。一貫してユーザのお気に入りなのです。</p>
+<!-- ### Matches Are Exhaustive -->
+<!-- いい単語を探したい(Exhaustive) -->
+<a class="header" href="ch06-02-match.html#aマッチは包括的" id="aマッチは包括的"><h3>マッチは包括的</h3></a>
+<!-- There’s one other aspect of `match` we need to discuss. Consider this version -->
+<!-- of our `plus_one` function that has a bug and won't compile: -->
+<p>もう一つ議論する必要のある<code>match</code>の観点があります。1点バグがありコンパイルできないこんなバージョンの<code>plus_one</code>関数を考えてください:</p>
+<pre><code class="language-rust ignore">fn plus_one(x: Option&lt;i32&gt;) -&gt; Option&lt;i32&gt; {
+    match x {
+        Some(i) =&gt; Some(i + 1),
+    }
+}
+</code></pre>
+<!-- We didn’t handle the `None` case, so this code will cause a bug. Luckily, it’s -->
+<!-- a bug Rust knows how to catch. If we try to compile this code, we’ll get this -->
+<!-- error: -->
+<p><code>None</code>の場合を扱っていないため、このコードはバグを生みます。幸い、コンパイラが捕捉できるバグです。
+このコードのコンパイルを試みると、こんなエラーが出ます:</p>
+<pre><code class="language-text">error[E0004]: non-exhaustive patterns: `None` not covered
+(エラー: 包括的でないパターン: `None`がカバーされてません)
+ --&gt;
+  |
+6 |         match x {
+  |               ^ pattern `None` not covered
+</code></pre>
+<!-- Rust knows that we didn’t cover every possible case and even knows which -->
+<!-- pattern we forgot! Matches in Rust are *exhaustive*: we must exhaust every last -->
+<!-- possibility in order for the code to be valid. Especially in the case of -->
+<!-- `Option<T>`, when Rust prevents us from forgetting to explicitly handle the -->
+<!-- `None` case, it protects us from assuming that we have a value when we might -->
+<!-- have null, thus making the billion dollar mistake discussed earlier. -->
+<p>全可能性を網羅していないことをコンパイラは検知しています。もっと言えば、どのパターンを忘れているかさえ知っているのです。
+Rustにおけるマッチは、<em>包括的</em>です: 全てのあらゆる可能性を網羅し尽くさなければ、コードは有効にならないのです。
+特に<code>Option&lt;T&gt;</code>の場合には、コンパイラが明示的に<code>None</code>の場合を扱うのを忘れないようにする時、
+nullになるかもしれない値があることを想定しないように、故に、前に議論した10億ドルの失敗を犯さないよう、
+保護してくれるわけです。</p>
+<!-- ### The `_` Placeholder -->
+<a class="header" href="ch06-02-match.html#a_というプレースホルダー" id="a_というプレースホルダー"><h3><code>_</code>というプレースホルダー</h3></a>
+<!-- Rust also has a pattern we can use when we don’t want to list all possible -->
+<!-- values. For example, a `u8` can have valid values of 0 through 255. If we only -->
+<!-- care about the values 1, 3, 5, and 7, we don’t want to have to list out 0, 2, -->
+<!-- 4, 6, 8, 9 all the way up to 255. Fortunately, we don’t have to: we can use the -->
+<!-- special pattern `_` instead: -->
+<p>Rustには、全ての可能性を列挙したくない時に使用できるパターンもあります。例えば、<code>u8</code>は、有効な値として、
+0から255までを取ります。1、3、5、7の値にだけ興味があったら、0、2、4、6、8、9と255までの数値を列挙する必要に迫られたくはないです。
+幸運なことに、する必要はありません: 代わりに特別なパターンの<code>_</code>を使用できます:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+let some_u8_value = 0u8;
+match some_u8_value {
+    1 =&gt; println!(&quot;one&quot;),
+    3 =&gt; println!(&quot;three&quot;),
+    5 =&gt; println!(&quot;five&quot;),
+    7 =&gt; println!(&quot;seven&quot;),
+    _ =&gt; (),
+}
+#}</code></pre></pre>
+<!-- The `_` pattern will match any value. By putting it after our other arms, the -->
+<!-- `_` will match all the possible cases that aren’t specified before it. The `()` -->
+<!-- is just the unit value, so nothing will happen in the `_` case. As a result, we -->
+<!-- can say that we want to do nothing for all the possible values that we don’t -->
+<!-- list before the `_` placeholder. -->
+<p><code>_</code>というパターンは、どんな値にもマッチします。他のアームの後に記述することで、<code>_</code>は、
+それまでに指定されていない全ての可能性にマッチします。<code>()</code>は、ただのユニット値なので、<code>_</code>の場合には、
+何も起こりません。結果として、<code>_</code>プレースホルダーの前に列挙していない可能性全てに対しては、
+何もしたくないと言えるわけです。</p>
+<!-- However, the `match` expression can be a bit wordy in a situation in which we -->
+<!-- care about only *one* of the cases. For this situation, Rust provides `if let`. -->
+<p>ですが、<em>一つ</em>のケースにしか興味がないような場面では、<code>match</code>式はちょっと長ったらしすぎます。
+このような場面用に、Rustには、<code>if let</code>が用意されています。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch06-01-defining-an-enum.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch06-03-if-let.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="ch06-01-defining-an-enum.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ch06-03-if-let.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
+        
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

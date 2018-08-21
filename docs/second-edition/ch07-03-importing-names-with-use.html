@@ -1,0 +1,482 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>異なるモジュールの名前を参照する - The Rust Programming Language</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+
+    </head>
+    <body class="light">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li class="affix"><a href="foreword.html">まえがき</a></li><li class="affix"><a href="ch00-00-introduction.html">導入</a></li><li><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 事始め</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> インストール</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> 数当てゲームをプログラムする</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> 普遍的なプログラミング概念</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> 変数と可変性</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> データ型</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> 関数の動作法</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> コメント</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> 制御フロー</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> 所有権を理解する</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> 所有権とは？</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> 参照と借用</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> スライス</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> 構造体を使用して関連のあるデータを構造化する</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> 構造体を定義し、インスタンス化する</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> 構造体を使用したプログラム例</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> メソッド記法</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enumとパターンマッチング</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Enumを定義する</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> match制御フロー演算子</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> if letで簡潔な制御フロー</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> モジュール</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> modとファイルシステム</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> pubで公開するか制御する</a></li><li><a href="ch07-03-importing-names-with-use.html" class="active"><strong aria-hidden="true">7.3.</strong> 異なるモジュールの名前を参照する</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> 一般的なコレクション</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> ベクタ型</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> 文字列型</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> ハッシュマップ</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> エラー処理</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> panic!で回復不能なエラー</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Resultで回復可能なエラー</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> panic!すべきかするまいか</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> ジェネリック型、トレイト、ライフタイム</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> ジェネリックなデータ型</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> トレイト: 共通の振る舞いを定義する</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> ライフタイムで参照を有効化する</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> テスト</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> テストを書く</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> テストを走らせる</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> テストの体系化</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> 入出力プロジェクト: コマンドラインプログラムを構築する</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> コマンドライン引数を受け付ける</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> ファイルを読み込む</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> リファクタリングしてモジュール性の向上とエラー処理</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> テスト駆動開発でライブラリの機能を開発する</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> 環境変数を取り扱う</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> 標準出力ではなく標準エラーにエラーメッセージを書き込む</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> 関数型言語の機能: イテレータとクロージャ</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> クロージャ: 環境をキャプチャできる匿名関数</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> 一連の要素をイテレータで処理する</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> 入出力プロジェクトを改善する</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> パフォーマンス比較: ループVSイテレータ</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> CargoとCrates.ioについてより詳しく</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> リリースプロファイルでビルドをカスタマイズする</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Crates.ioにクレートを公開する</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargoのワークスペース</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> cargo installでCrates.ioからバイナリをインストールする</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> 独自のコマンドでCargoで拡張する</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> スマートポインタ</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T>はヒープのデータを指し、既知のサイズである</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Derefトレイトにより、参照を通してデータにアクセスできる</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> Dropトレイトにより、片付けの時にコードを実行する</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>は、参照カウント方式のスマートポインタ</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T>と内部可変性パターン</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> 循環参照し、メモリをリークするのは安全である</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> 恐れるな！並行性</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> スレッド</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> メッセージ受け渡し</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> 状態共有</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> 拡張可能な並行性: SyncとSend</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Rustのオブジェクト指向プログラミング機能</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> オブジェクト指向言語の特徴</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> 異なる型の値を許容するトレイトオブジェクトを使用する</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> オブジェクト指向デザインパターンを実装する</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> パターンは値の構造に合致する</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> パターンが使用されるかもしれない箇所全部</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> 論駁可能性: パターンが合致しないか</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> パターン記法全部</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> 高度な機能</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> 高度なライフタイム</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> 高度なトレイト</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> 高度な型</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> 高度な関数とクロージャ</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> 最後のプロジェクト: マルチスレッドのWebサーバを構築する</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> シングルスレッドのWebサーバ</a></li><li><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> シングルスレッドのサーバをマルチスレッド化する</a></li><li><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> 優美なシャットダウンとお片付け</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> 付録</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - キーワード</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - 演算子とシンボル</a></li><li><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - 継承可能なトレイト</a></li><li><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - マクロ</a></li><li><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - 翻訳</a></li><li><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - 最新の機能</a></li><li><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - Rustが“Nightly Rust”になる方法</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">The Rust Programming Language</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- ## Referring to Names in Different Modules -->
+<a class="header" href="ch07-03-importing-names-with-use.html#a異なるモジュールの名前を参照する" id="a異なるモジュールの名前を参照する"><h2>異なるモジュールの名前を参照する</h2></a>
+<!-- We’ve covered how to call functions defined within a module using the module -->
+<!-- name as part of the call, as in the call to the `nested_modules` function shown -->
+<!-- here in Listing 7-7. -->
+<p>モジュール名を呼び出しの一部に使用して、モジュール内に定義された関数の呼び出し方法を解説しました。
+リスト7-7に示した<code>nested_modules</code>関数の呼び出しのような感じですね。</p>
+<!-- <span class="filename">Filename: src/main.rs</span> -->
+<p><span class="filename">ファイル名: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">pub mod a {
+    pub mod series {
+        pub mod of {
+            pub fn nested_modules() {}
+        }
+    }
+}
+
+fn main() {
+    a::series::of::nested_modules();
+}
+</code></pre></pre>
+<!-- <span class="caption">Listing 7-7: Calling a function by fully specifying its -->
+<!-- enclosing module’s path</span> -->
+<p><span class="caption">リスト7-7: 囲まれたモジュールをフルパス指定して関数を呼び出す</span></p>
+<!-- As you can see, referring to the fully qualified name can get quite lengthy. -->
+<!-- Fortunately, Rust has a keyword to make these calls more concise. -->
+<p>見てお分かりの通り、フルパス指定した名前を参照すると非常に長ったらしくなります。
+幸い、Rustには、これらの呼び出しをもっと簡潔にするキーワードが用意されています。</p>
+<!-- ### Bringing Names into Scope with the `use` keyword -->
+<a class="header" href="ch07-03-importing-names-with-use.html#useキーワードで名前をスコープに導入する" id="useキーワードで名前をスコープに導入する"><h3><code>use</code>キーワードで名前をスコープに導入する</h3></a>
+<!-- Rust’s `use` keyword shortens lengthy function calls by bringing the modules of -->
+<!-- the function you want to call into scope. Here’s an example of bringing the -->
+<!-- `a::series::of` module into a binary crate’s root scope: -->
+<p>Rustの<code>use</code>キーワードは、呼び出したい関数のモジュールをスコープに導入することで、
+長ったらしい関数呼び出しを短縮します。以下は、
+<code>a::series::of</code>モジュールをバイナリクレートのルートスコープに持ってくる例です:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">pub mod a {
+    pub mod series {
+        pub mod of {
+            pub fn nested_modules() {}
+        }
+    }
+}
+
+use a::series::of;
+
+fn main() {
+    of::nested_modules();
+}
+</code></pre></pre>
+<!-- The line `use a::series::of;` means that rather than using the full -->
+<!-- `a::series::of` path wherever we want to refer to the `of` module, we can use -->
+<!-- `of`. -->
+<p><code>use a::series::of;</code>の行は、<code>of</code>モジュールを参照したい箇所全部でフルパスの<code>a::series::of</code>を使用するのではなく、
+<code>of</code>を利用できることを意味しています。</p>
+<!-- The `use` keyword brings only what we’ve specified into scope: it does not -->
+<!-- bring children of modules into scope. That’s why we still have to use -->
+<!-- `of::nested_modules` when we want to call the `nested_modules` function. -->
+<p>この<code>use</code>キーワードは、指定したものだけをスコープに入れます: モジュールの子供はスコープに導入しないのです。
+そのため、<code>nested_modules</code>関数を呼び出したい際に、それでもまだ<code>of::nested_modules</code>を使わなければならないのです。</p>
+<!-- We could have chosen to bring the function into scope by instead specifying the -->
+<!-- function in the `use` as follows: -->
+<p>以下のように、代わりに<code>use</code>で関数を指定して、関数をスコープに入れることもできました:</p>
+<pre><pre class="playpen"><code class="language-rust">pub mod a {
+    pub mod series {
+        pub mod of {
+            pub fn nested_modules() {}
+        }
+    }
+}
+
+use a::series::of::nested_modules;
+
+fn main() {
+    nested_modules();
+}
+</code></pre></pre>
+<!-- Doing so allows us to exclude all the modules and reference the function -->
+<!-- directly. -->
+<p>そうすれば、モジュールをすべて取り除き、関数を直接参照することができます。</p>
+<!-- Because enums also form a sort of namespace like modules, we can bring an -->
+<!-- enum’s variants into scope with `use` as well. For any kind of `use` statement,  -->
+<!-- if you're bringing multiple items from one namespace into scope, you can list  -->
+<!-- them using curly brackets and commas in the last position, like so: -->
+<p>enumもモジュールのようにある種の名前空間をなすので、enumのバリアントを<code>use</code>でスコープに導入することもできます。
+どんな<code>use</code>文に関しても、一つの名前空間から複数の要素をスコープに導入する場合、波かっことお尻にカンマを使用することで列挙できます。
+こんな感じで:</p>
+<pre><pre class="playpen"><code class="language-rust">enum TrafficLight {
+    Red,
+    Yellow,
+    Green,
+}
+
+use TrafficLight::{Red, Yellow};
+
+fn main() {
+    let red = Red;
+    let yellow = Yellow;
+    let green = TrafficLight::Green;
+}
+</code></pre></pre>
+<!-- We’re still specifying the `TrafficLight` namespace for the `Green` variant -->
+<!-- because we didn’t include `Green` in the `use` statement. -->
+<p><code>Green</code>を<code>use</code>文に含んでいないので、まだ<code>Green</code>バリアント用に<code>TrafficLight</code>名前空間を指定しています。</p>
+<!-- ### Bringing All Names into Scope with a Glob -->
+<a class="header" href="ch07-03-importing-names-with-use.html#globで全ての名前をスコープに導入する" id="globで全ての名前をスコープに導入する"><h3>Globで全ての名前をスコープに導入する</h3></a>
+<!-- To bring all the items in a namespace into scope at once, we can use the `*` -->
+<!-- syntax, which is called the *glob operator*. This example brings all the -->
+<!-- variants of an enum into scope without having to list each specifically: -->
+<p>ある名前空間の要素を全て一度にスコープに導入するには、<code>*</code>表記が使用でき、これはglob(塊)演算子と呼ばれます。
+この例は、あるenumの列挙子を各々を列挙せずに全てスコープに導入しています:</p>
+<pre><pre class="playpen"><code class="language-rust">enum TrafficLight {
+    Red,
+    Yellow,
+    Green,
+}
+
+use TrafficLight::*;
+
+fn main() {
+    let red = Red;
+    let yellow = Yellow;
+    let green = Green;
+}
+</code></pre></pre>
+<!-- The `*` operator will bring into scope all the visible items in the -->
+<!-- `TrafficLight` namespace. You should use globs sparingly: they are convenient, -->
+<!-- but a glob might also pull in more items than you expected and cause naming -->
+<!-- conflicts. -->
+<p><code>*</code>演算子は<code>TrafficLight</code>名前空間に存在する全て公開要素をスコープに導入します。
+あまりglobは使用するべきではありません: 便利ではありますが、globは予想以上の要素を引き込んで、
+名前衝突を引き起こす可能性があるのです。</p>
+<!-- ### Using `super` to Access a Parent Module -->
+<a class="header" href="ch07-03-importing-names-with-use.html#superを使用して親モジュールにアクセスする" id="superを使用して親モジュールにアクセスする"><h3><code>super</code>を使用して親モジュールにアクセスする</h3></a>
+<!-- As you saw at the beginning of this chapter, when you create a library crate, -->
+<!-- Cargo makes a `tests` module for you. Let’s go into more detail about that now. -->
+<!-- In your `communicator` project, open *src/lib.rs*: -->
+<p>この章の頭で見かけたように、ライブラリクレートを作成する際、Cargoは<code>tests</code>モジュールを用意してくれました。
+今からそれについて詳しく掘り下げていくことにしましょう。<code>communicator</code>プロジェクトで<em>src/lib.rs</em>を開いてください:</p>
+<!-- <span class="filename">Filename: src/lib.rs</span> -->
+<p><span class="filename">ファイル名: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">pub mod client;
+
+pub mod network;
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn it_works() {
+        assert_eq!(2 + 2, 4);
+    }
+}
+</code></pre>
+<!-- Chapter 11 explains more about testing, but parts of this example should make -->
+<!-- sense now: we have a module named `tests` that lives next to our other modules -->
+<!-- and contains one function named `it_works`. Even though there are special -->
+<!-- annotations, the `tests` module is just another module! So our module hierarchy -->
+<!-- looks like this: -->
+<p>第11章でテストについて詳しく説明しますが、これでこの例の一部が持つ意味がわかったのではないでしょうか:
+他のモジュールに隣接する<code>tests</code>という名前のモジュールがあり、このモジュールは<code>it_works</code>という名前の関数を含んでいます。
+特別な注釈があるものの、<code>tests</code>モジュールもただのモジュールです！よって、モジュール階層は以下のような見た目になります:</p>
+<pre><code class="language-text">communicator
+ ├── client
+ ├── network
+ |   └── client
+ └── tests
+</code></pre>
+<!-- Tests are for exercising the code within our library, so let’s try to call our -->
+<!-- `client::connect` function from this `it_works` function, even though we won’t -->
+<!-- be checking any functionality right now. This won’t work yet: -->
+<p>テストは、ライブラリ内でコードの準備運動を行うためのものなので、この<code>it_works</code>関数から<code>client::connect</code>関数を呼び出してみましょう。
+まあ、尤も今のところ、機能の検査は何もしないんですけどね。これはまだ動きません:</p>
+<!-- <span class="filename">Filename: src/lib.rs</span> -->
+<p><span class="filename">ファイル名: src/lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn it_works() {
+        client::connect();
+    }
+}
+#}</code></pre></pre>
+<!-- Run the tests by invoking the `cargo test` command: -->
+<p><code>cargo test</code>コマンドを呼び出してテストを実行してください:</p>
+<pre><code class="language-text">$ cargo test
+   Compiling communicator v0.1.0 (file:///projects/communicator)
+error[E0433]: failed to resolve. Use of undeclared type or module `client`
+(エラー: 解決に失敗しました。未定義の型、またはモジュール`client`を使用しています)
+ --&gt; src/lib.rs:9:9
+  |
+9 |         client::connect();
+  |         ^^^^^^ Use of undeclared type or module `client`
+</code></pre>
+<!-- The compilation failed, but why? We don’t need to place `communicator::` in -->
+<!-- front of the function, as we did in *src/main.rs*, because we are definitely -->
+<!-- within the `communicator` library crate here. The reason is that paths are -->
+<!-- always relative to the current module, which here is `tests`. The only -->
+<!-- exception is in a `use` statement, where paths are relative to the crate root -->
+<!-- by default. Our `tests` module needs the `client` module in its scope! -->
+<p>コンパイルが失敗しましたが、なぜでしょうか？<em>src/main.rs</em>のように、関数の直前に<code>communicator::</code>を配置する必要はありません。
+なぜなら、間違いなくここでは、<code>communicator</code>ライブラリクレート内にいるからです。
+原因は、パスが常に現在のモジュールに対して相対的になり、ここでは<code>tests</code>になっているからです。
+唯一の例外は、<code>use</code>文内であり、パスは標準でクレートのルートに相対的になります。
+<code>tests</code>モジュールは、<code>client</code>モジュールがスコープに存在する必要があるのです！</p>
+<!-- So how do we get back up one module in the module hierarchy to call the -->
+<!-- `client::connect` function in the `tests` module? In the `tests` module, we can -->
+<!-- either use leading colons to let Rust know that we want to start from the root -->
+<!-- and list the whole path, like this: -->
+<p>では、どうやってモジュール階層を一つ上がり、<code>tests</code>モジュールの<code>client::connect</code>関数を呼び出すのでしょうか？
+<code>tests</code>モジュールにおいて、先頭にコロンを使用して、コンパイラにルートから始めて、フルパスを列挙したいと知らせることもできます。
+こんな感じで:</p>
+<pre><code class="language-rust ignore">::client::connect();
+</code></pre>
+<!-- Or, we can use `super` to move up one module in the hierarchy from our current -->
+<!-- module, like this: -->
+<p>あるいは、<code>super</code>を使用して現在のモジュールからモジュール階層を一つ上がることもできます。
+以下のように:</p>
+<pre><code class="language-rust ignore">super::client::connect();
+</code></pre>
+<!-- These two options don’t look that different in this example, but if you’re -->
+<!-- deeper in a module hierarchy, starting from the root every time would make your -->
+<!-- code lengthy. In those cases, using `super` to get from the current module to -->
+<!-- sibling modules is a good shortcut. Plus, if you’ve specified the path from the -->
+<!-- root in many places in your code and then you rearrange your modules by moving -->
+<!-- a subtree to another place, you’ll end up needing to update the path in several -->
+<!-- places, which would be tedious. -->
+<p>この例では、これら二つの選択はそれほど異なるようには見えませんが、モジュール階層がもっと深ければ、
+常にルートから書き始めるのは、コードを冗長にする原因になります。そのような場合、
+<code>super</code>を使用して現在のモジュールから兄弟のモジュールに辿り着くのは、いいショートカットになります。
+さらに、コードのいろんなところでルートからパスを指定し、モジュール構造を変化させた場合、
+複数箇所でパスを更新する必要が陥り、面倒なことになるでしょう。</p>
+<!-- It would also be annoying to have to type `super::` in each test, but you’ve -->
+<!-- already seen the tool for that solution: `use`! The `super::` functionality -->
+<!-- changes the path you give to `use` so it is relative to the parent module -->
+<!-- instead of to the root module. -->
+<p>各テストで<code>super::</code>と入力しなければならないのも不快なことですが、それを解決してくれる道具をもう見かけています:
+<code>use</code>です！<code>super::</code>の機能は、<code>use</code>に与えるパスを変更するので、ルートモジュールではなく、
+親モジュールに対して相対的になります。</p>
+<!-- For these reasons, in the `tests` module especially, `use super::something` is -->
+<!-- usually the best solution. So now our test looks like this: -->
+<p>このような理由から、ことに<code>tests</code>モジュールにおいて<code>use super::somthing</code>は通常、
+最善策になるわけです。故に、今ではテストはこんな見た目になりました:</p>
+<!-- <span class="filename">Filename: src/lib.rs</span> -->
+<p><span class="filename">ファイル名: src/lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+#[cfg(test)]
+mod tests {
+    use super::client;
+
+    #[test]
+    fn it_works() {
+        client::connect();
+    }
+}
+#}</code></pre></pre>
+<!-- When we run `cargo test` again, the test will pass, and the first part of the -->
+<!-- test result output will be the following: -->
+<p>再度<code>cargo test</code>を実行すると、テストは通り、テスト結果出力の最初の部分は以下のようになるでしょう:</p>
+<pre><code class="language-text">$ cargo test
+   Compiling communicator v0.1.0 (file:///projects/communicator)
+     Running target/debug/communicator-92007ddb5330fa5a
+
+running 1 test
+test tests::it_works ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<!-- ## Summary -->
+<a class="header" href="ch07-03-importing-names-with-use.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
+<!-- Now you know some new techniques for organizing your code! Use these techniques -->
+<!-- to group related functionality together, keep files from becoming too long, and -->
+<!-- present a tidy public API to your library users. -->
+<p>これでコードを体系化する新しいテクニックを知りましたね！これらのテクニックを使用して、
+関連のある機能をまとめ上げ、ファイルが長くなりすぎるのを防ぎ、ライブラリの使用者に整理整頓された公開APIを提供してください。</p>
+<!-- Next, we’ll look at some collection data structures in the standard library -->
+<!-- that you can use in your nice, neat code. -->
+<p>次は、自分の素晴らしく綺麗なコードで使用できる標準ライブラリのコレクションデータ構造について見ていきましょう。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch07-02-controlling-visibility-with-pub.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch08-00-common-collections.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="ch07-02-controlling-visibility-with-pub.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ch08-00-common-collections.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
+        
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

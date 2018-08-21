@@ -1,0 +1,752 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>modとファイルシステム - The Rust Programming Language</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+
+    </head>
+    <body class="light">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li class="affix"><a href="foreword.html">まえがき</a></li><li class="affix"><a href="ch00-00-introduction.html">導入</a></li><li><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 事始め</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> インストール</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> 数当てゲームをプログラムする</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> 普遍的なプログラミング概念</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> 変数と可変性</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> データ型</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> 関数の動作法</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> コメント</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> 制御フロー</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> 所有権を理解する</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> 所有権とは？</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> 参照と借用</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> スライス</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> 構造体を使用して関連のあるデータを構造化する</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> 構造体を定義し、インスタンス化する</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> 構造体を使用したプログラム例</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> メソッド記法</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enumとパターンマッチング</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Enumを定義する</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> match制御フロー演算子</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> if letで簡潔な制御フロー</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> モジュール</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html" class="active"><strong aria-hidden="true">7.1.</strong> modとファイルシステム</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> pubで公開するか制御する</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> 異なるモジュールの名前を参照する</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> 一般的なコレクション</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> ベクタ型</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> 文字列型</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> ハッシュマップ</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> エラー処理</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> panic!で回復不能なエラー</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Resultで回復可能なエラー</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> panic!すべきかするまいか</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> ジェネリック型、トレイト、ライフタイム</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> ジェネリックなデータ型</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> トレイト: 共通の振る舞いを定義する</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> ライフタイムで参照を有効化する</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> テスト</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> テストを書く</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> テストを走らせる</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> テストの体系化</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> 入出力プロジェクト: コマンドラインプログラムを構築する</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> コマンドライン引数を受け付ける</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> ファイルを読み込む</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> リファクタリングしてモジュール性の向上とエラー処理</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> テスト駆動開発でライブラリの機能を開発する</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> 環境変数を取り扱う</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> 標準出力ではなく標準エラーにエラーメッセージを書き込む</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> 関数型言語の機能: イテレータとクロージャ</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> クロージャ: 環境をキャプチャできる匿名関数</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> 一連の要素をイテレータで処理する</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> 入出力プロジェクトを改善する</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> パフォーマンス比較: ループVSイテレータ</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> CargoとCrates.ioについてより詳しく</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> リリースプロファイルでビルドをカスタマイズする</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Crates.ioにクレートを公開する</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargoのワークスペース</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> cargo installでCrates.ioからバイナリをインストールする</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> 独自のコマンドでCargoで拡張する</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> スマートポインタ</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T>はヒープのデータを指し、既知のサイズである</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Derefトレイトにより、参照を通してデータにアクセスできる</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> Dropトレイトにより、片付けの時にコードを実行する</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>は、参照カウント方式のスマートポインタ</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T>と内部可変性パターン</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> 循環参照し、メモリをリークするのは安全である</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> 恐れるな！並行性</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> スレッド</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> メッセージ受け渡し</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> 状態共有</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> 拡張可能な並行性: SyncとSend</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Rustのオブジェクト指向プログラミング機能</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> オブジェクト指向言語の特徴</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> 異なる型の値を許容するトレイトオブジェクトを使用する</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> オブジェクト指向デザインパターンを実装する</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> パターンは値の構造に合致する</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> パターンが使用されるかもしれない箇所全部</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> 論駁可能性: パターンが合致しないか</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> パターン記法全部</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> 高度な機能</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> 高度なライフタイム</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> 高度なトレイト</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> 高度な型</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> 高度な関数とクロージャ</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> 最後のプロジェクト: マルチスレッドのWebサーバを構築する</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> シングルスレッドのWebサーバ</a></li><li><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> シングルスレッドのサーバをマルチスレッド化する</a></li><li><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> 優美なシャットダウンとお片付け</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> 付録</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - キーワード</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - 演算子とシンボル</a></li><li><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - 継承可能なトレイト</a></li><li><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - マクロ</a></li><li><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - 翻訳</a></li><li><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - 最新の機能</a></li><li><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - Rustが“Nightly Rust”になる方法</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">The Rust Programming Language</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- ## `mod` and the Filesystem -->
+<a class="header" href="ch07-01-mod-and-the-filesystem.html#modとファイルシステム" id="modとファイルシステム"><h2><code>mod</code>とファイルシステム</h2></a>
+<!-- We’ll start our module example by making a new project with Cargo, but instead -->
+<!-- of creating a binary crate, we’ll make a library crate: a project that other -->
+<!-- people can pull into their projects as a dependency. For example, the `rand` -->
+<!-- crate discussed in Chapter 2 is a library crate that we used as a dependency in -->
+<!-- the guessing game project. -->
+<p>モジュールの例をCargoで新規プロジェクトを生成することから始めるが、バイナリクレートの代わりに、
+ライブラリクレートを作成します: 他人が依存として自分のプロジェクトに引き込めるプロジェクトです。
+例を挙げると、第2章で議論した<code>rand</code>クレートは、数当てゲームプロジェクトで依存に使用したライブラリクレートです。</p>
+<!-- We’ll create a skeleton of a library that provides some general networking -->
+<!-- functionality; we’ll concentrate on the organization of the modules and -->
+<!-- functions, but we won’t worry about what code goes in the function bodies. -->
+<!-- We'll call our library `communicator`. To create a library, pass the `--lib` -->
+<!-- option instead of `--bin`: -->
+<p>何らかの一般的なネットワーク機能を提供するライブラリの骨格を作成します; モジュールと関数の体系化に集中し、
+関数の本体にどんなコードが入るかについては気にかけません。このライブラリを<code>communicator</code>と呼びましょう。
+ライブラリを生成するために、<code>--bin</code>の代わりに<code>--lib</code>オプションを渡してください:</p>
+<pre><code class="language-text">$ cargo new communicator --lib
+$ cd communicator
+</code></pre>
+<!-- Notice that Cargo generated *src/lib.rs* instead of *src/main.rs*. Inside -->
+<!-- *src/lib.rs* we’ll find the following: -->
+<p>Cargoが<em>src/main.rs</em>の代わりに<em>src/lib.rs</em>を生成したことに注目してください。<em>src/lib.rs</em>には、
+以下のような記述があります:</p>
+<!-- <span class="filename">Filename: src/lib.rs</span> -->
+<p><span class="filename">ファイル名: src/lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn it_works() {
+        assert_eq!(2 + 2, 4);
+    }
+}
+#}</code></pre></pre>
+<!-- Cargo creates an empty test to help us get our library started, rather than the -->
+<!-- the “Hello, world!” binary that we get when we use the `--bin` option. We’ll -->
+<!-- look at the `#[]` and `mod tests` syntax in the “Using `super` to Access a -->
+<!-- Parent Module” section later in this chapter, but for now, leave this code at -->
+<!-- the bottom of *src/lib.rs*. -->
+<p>Cargoは、<code>--bin</code>オプションを使った時に得られる&quot;Hello, world!&quot;バイナリではなく、空のテストを生成して、
+ライブラリの事始めをしてくれました。<code>#[]</code>と<code>mod tests</code>という記法については、この章の後ほど、
+「<code>super</code>を使用して親モジュールにアクセスする」節で見ますが、今のところは、
+このコードを<em>src/lib.rs</em>の最後に残しておきましょう。</p>
+<!-- Because we don’t have a *src/main.rs* file, there’s nothing for Cargo to -->
+<!-- execute with the `cargo run` command. Therefore, we’ll use the `cargo build` -->
+<!-- command to compile our library crate’s code. -->
+<p><em>src/main.rs</em>ファイルがないので、<code>cargo run</code>コマンドでCargoが実行できるものは何もないわけです。
+従って、<code>cargo build</code>コマンドを使用してライブラリクレートのコードをコンパイルします。</p>
+<!-- We’ll look at different options for organizing your library’s code that will be -->
+<!-- suitable in a variety of situations, depending on the intent of the code. -->
+<p>コードの意図によって、いろんなシチュエーションで最適になるライブラリコードを体系化する別のオプションをお目にかけます。</p>
+<!-- ### Module Definitions -->
+<a class="header" href="ch07-01-mod-and-the-filesystem.html#aモジュール定義" id="aモジュール定義"><h3>モジュール定義</h3></a>
+<!-- For our `communicator` networking library, we’ll first define a module named -->
+<!-- `network` that contains the definition of a function called `connect`. Every -->
+<!-- module definition in Rust starts with the `mod` keyword. Add this code to the -->
+<!-- beginning of the *src/lib.rs* file, above the test code: -->
+<p><code>communicator</code>ネットワークライブラリについて、まずは<code>connect</code>という関数定義を含む<code>network</code>という名前のモジュールを定義します。
+Rustにおいて、モジュール定義は全て、<code>mod</code>キーワードから開始します。このコードを<em>src/lib.rs</em>ファイルの頭、
+テストコードの上に追記してください。</p>
+<!-- <span class="filename">Filename: src/lib.rs</span> -->
+<p><span class="filename">ファイル名: src/lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+mod network {
+    fn connect() {
+    }
+}
+#}</code></pre></pre>
+<!-- After the `mod` keyword, we put the name of the module, `network`, and then a -->
+<!-- block of code in curly brackets. Everything inside this block is inside the -->
+<!-- namespace `network`. In this case, we have a single function, `connect`. If we -->
+<!-- wanted to call this function from a script outside the `network` module, we -->
+<!-- would need to specify the module and use the namespace syntax `::`, like so: -->
+<!-- `network::connect()`. -->
+<p><code>mod</code>キーワードに続いて、モジュール名の<code>network</code>、さらに一連のコードを波かっこ内に記述します。
+このブロック内に存在するものは全て、<code>network</code>という名前空間に属します。今回の場合、
+<code>connect</code>という単独の関数があります。この関数を<code>network</code>モジュール外のスクリプトから呼び出したい場合、
+モジュールを指定し、以下のように名前空間記法の<code>::</code>を使用する必要があるでしょう:
+<code>network::connect()</code>。</p>
+<!-- We can also have multiple modules, side by side, in the same *src/lib.rs* file. -->
+<!-- For example, to also have a `client` module that has a function named -->
+<!-- `connect`, we can add it as shown in Listing 7-1. -->
+<p>同じ<em>src/lib.rs</em>ファイル内に複数のモジュールを並べることもできます。例として、
+<code>connect</code>という関数を含む<code>client</code>モジュールも用意するには、リスト7-1に示したように追記すればいいわけです。</p>
+<!-- <span class="filename">Filename: src/lib.rs</span> -->
+<p><span class="filename">ファイル名: src/lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+mod network {
+    fn connect() {
+    }
+}
+
+mod client {
+    fn connect() {
+    }
+}
+#}</code></pre></pre>
+<!-- <span class="caption">Listing 7-1: The `network` module and the `client` module -->
+<!-- defined side by side in *src/lib.rs*</span> -->
+<p><span class="caption">リスト7-1: <em>src/lib.rs</em>に並べて定義された<code>network</code>モジュールと<code>client</code>モジュール</span></p>
+<!-- Now we have a `network::connect` function and a `client::connect` function. -->
+<!-- These can have completely different functionality, and the function names do -->
+<!-- not conflict with each other because they’re in different modules. -->
+<p>これで、<code>network::connect</code>関数と<code>client::connect</code>関数が用意できました。これらは全く異なる機能を有する可能性があり、
+異なるモジュールに存在するので、関数名がお互いに衝突することはありません。</p>
+<!-- In this case, because we’re building a library, the file that serves as the -->
+<!-- entry point for building our library is *src/lib.rs*. However, in respect to -->
+<!-- creating modules, there’s nothing special about *src/lib.rs*. We could also -->
+<!-- create modules in *src/main.rs* for a binary crate in the same way as we’re -->
+<!-- creating modules in *src/lib.rs* for the library crate. In fact, we can put -->
+<!-- modules inside of modules, which can be useful as your modules grow to keep -->
+<!-- related functionality organized together and separate functionality apart. The -->
+<!-- way you choose to organize your code depends on how you think about the -->
+<!-- relationship between the parts of your code. For instance, the `client` code -->
+<!-- and its `connect` function might make more sense to users of our library if -->
+<!-- they were inside the `network` namespace instead, as in Listing 7-2. -->
+<p>今回の場合、ライブラリを構成しているので、ライブラリビルド時にエントリーポイントとなるファイルは、
+<em>src/lib.rs</em>になります。しかし、モジュールを作成するという点に関しては、<em>src/lib.rs</em>には何も特別なことはありません。
+ライブラリクレートに対して<em>src/lib.rs</em>にモジュールを生成するのと全く同様に、
+バイナリクレートに対して<em>src/main.rs</em>にモジュールを生成することもできます。実は、モジュール内にモジュールを書くこともでき、
+モジュールが肥大化するにつれて、関連のある機能を一緒くたにし、機能を切り離すのに有用なのです。
+コードを体系化すると選択する方法は、コードの部分部分の関連性に対する考え方によって選択することになります。
+例ですが、<code>client</code>コードとその<code>connect</code>関数は、リスト7-2のように、代わりに<code>network</code>名前空間内に存在したら、
+ライブラリの使用者にとって意味のあるものになるかもしれません。</p>
+<!-- <span class="filename">Filename: src/lib.rs</span> -->
+<p><span class="filename">ファイル名: src/lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+mod network {
+    fn connect() {
+    }
+
+    mod client {
+        fn connect() {
+        }
+    }
+}
+#}</code></pre></pre>
+<!-- <span class="caption">Listing 7-2: Moving the `client` module inside the -->
+<!-- `network` module</span> -->
+<p><span class="caption">リスト7-2: <code>client</code>モジュールを<code>network</code>モジュール内に移動させる</span></p>
+<!-- In your *src/lib.rs* file, replace the existing `mod network` and `mod client` -->
+<!-- definitions with the ones in Listing 7-2, which have the `client` module as an -->
+<!-- inner module of `network`. The functions `network::connect` and -->
+<!-- `network::client::connect` are both named `connect`, but they don’t conflict -->
+<!-- with each other because they’re in different namespaces. -->
+<p><em>src/lib.rs</em>ファイル内で、すでにある<code>mod network</code>と<code>mod client</code>の定義をリスト7-2のものと置き換えると、
+<code>client</code>モジュールは<code>network</code>の内部モジュールになるわけです。関数、
+<code>network::connect</code>と<code>network::client::connect</code>はどちらも<code>connect</code>という名前ですが、
+異なる名前空間にあるので、互いに干渉することはありません。</p>
+<!-- In this way, modules form a hierarchy. The contents of *src/lib.rs* are at the -->
+<!-- topmost level, and the submodules are at lower levels. Here’s what the -->
+<!-- organization of our example in Listing 7-1 looks like when thought of as a -->
+<!-- hierarchy: -->
+<p>このように、モジュールは階層構造を形成します。<em>src/lib.rs</em>の中身が頂点に立ち、サブモジュールが子供になるわけです。
+リスト7-1の例を階層構造という観点で見たときの構造は、以下のような感じになります:</p>
+<pre><code class="language-text">communicator
+ ├── network
+ └── client
+</code></pre>
+<!-- And here’s the hierarchy corresponding to the example in Listing 7-2: -->
+<p>さらに、リスト7-2の例に対応する階層構造は、以下の通りです:</p>
+<pre><code class="language-text">communicator
+ └── network
+     └── client
+</code></pre>
+<!-- The hierarchy shows that in Listing 7-2, `client` is a child of the `network` -->
+<!-- module rather than a sibling. More complicated projects can have many modules, -->
+<!-- and they’ll need to be organized logically in order fro you to keep track of -->
+<!-- them. What “logically” means in your project is up to you and depends on how -->
+<!-- you and your library’s users think about your project’s domain. Use the -->
+<!-- techniques shown here to create side-by-side modules and nested modules in -->
+<!-- whatever structure you would like. -->
+<p>この階層構造は、リスト7-2において、<code>client</code>モジュールは<code>network</code>モジュールの兄弟というよりも、子供になっていることを示しています。
+より複雑なプロジェクトなら、たくさんのモジュールが存在し、把握するのに論理的に体系化しておく必要があるでしょう。
+プロジェクト内で「論理的」とは、あなた次第であり、ライブラリ作成者と使用者がプロジェクトの領域についてどう考えるか次第でもあるわけです。
+こちらで示したテクニックを使用して、並列したモジュールや、ネストしたモジュールなど、どんな構造のモジュールでも、
+作成してください。</p>
+<!-- ### Moving Modules to Other Files -->
+<a class="header" href="ch07-01-mod-and-the-filesystem.html#aモジュールを別ファイルに移す" id="aモジュールを別ファイルに移す"><h3>モジュールを別ファイルに移す</h3></a>
+<!-- Modules form a hierarchical structure, much like another structure in computing -->
+<!-- that you’re used to: filesystems! We can use Rust’s module system along with -->
+<!-- multiple files to split up Rust projects so not everything lives in -->
+<!-- *src/lib.rs* or *src/main.rs*. For this example, let’s start with the code in -->
+<!-- Listing 7-3. -->
+<p>モジュールは階層構造をなす……コンピュータにおいて、もっと見慣れた構造に似ていませんか: そう、ファイルシステムです！
+Rustのモジュールシステムを複数のファイルで使用して、プロジェクトを分割するので、
+全部が<em>src/lib.rs</em>や<em>src/main.rs</em>に存在することにはならなくなります。これの例として、
+リスト7-3のようなコードから始めましょう。</p>
+<!-- <span class="filename">Filename: src/lib.rs</span> -->
+<p><span class="filename">ファイル名: src/lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+mod client {
+    fn connect() {
+    }
+}
+
+mod network {
+    fn connect() {
+    }
+
+    mod server {
+        fn connect() {
+        }
+    }
+}
+#}</code></pre></pre>
+<!-- <span class="caption">Listing 7-3: Three modules, `client`, `network`, and -->
+<!-- `network::server`, all defined in *src/lib.rs*</span> -->
+<p><span class="caption">リスト7-3: 全て<em>src/lib.rs</em>に定義された三つのモジュール、
+<code>client</code>、<code>network</code>、<code>network::server</code></span></p>
+<!-- The file *src/lib.rs* has this module hierarchy: -->
+<p><em>src/lib.rs</em>ファイルのモジュール階層は、こうなっています:</p>
+<pre><code class="language-text">communicator
+ ├── client
+ └── network
+     └── server
+</code></pre>
+<!-- If these modules had many functions, and those functions were becoming lengthy, -->
+<!-- it would be difficult to scroll through this file to find the code we wanted to -->
+<!-- work with. Because the functions are nested inside one or more mod blocks, -->
+<!-- the lines of code inside the functions will start getting lengthy as well. -->
+<!-- These would be good reasons to separate the `client`, `network`, and `server` -->
+<!-- modules from *src/lib.rs* and place them into their own files. -->
+<p>これらのモジュールが多数の関数を含み、その関数が長ったらしくなってきたら、このファイルをスクロールして、
+弄りたいコードを探すのが困難になるでしょう。関数が一つ以上のmodブロックにネストされているので、
+関数の中身となるコードも長ったらしくなってしまうのです。これだけで、<code>client</code>、<code>network</code>、<code>server</code>モジュールを<em>src/lib.rs</em>から分け、
+単独のファイルに配置するには十分でしょう。</p>
+<!-- First, let's replace the `client` module code with only the declaration of the -->
+<!-- `client` module so that your *src/lib.rs* looks like code shown in Listing 7-4. -->
+<p>最初に、<code>client</code>モジュールのコードを<code>client</code>モジュールの宣言だけに置き換えましょう。
+すると、<em>src/lib.rs</em>はリスト7-4のコードのようになります。</p>
+<!-- <span class="filename">Filename: src/lib.rs</span> -->
+<p><span class="filename">ファイル名: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">mod client;
+
+mod network {
+    fn connect() {
+    }
+
+    mod server {
+        fn connect() {
+        }
+    }
+}
+</code></pre>
+<!-- <span class="caption">Listing 7-4: Extracting the contents of the `client` module but leaving the declaration in *src/lib.rs*</span> -->
+<p><span class="caption">リスト7-4: <code>client</code>モジュールの中身を抽出するが、宣言は<em>src/lib.rs</em>に残したまま</span></p>
+<!-- We’re still *declaring* the `client` module here, but by replacing the block -->
+<!-- with a semicolon, we’re telling Rust to look in another location for the code -->
+<!-- defined within the scope of the `client` module. In other words, the line `mod -->
+<!-- client;` means this: -->
+<p>一応、<code>client</code>モジュールをここで<em>宣言</em>していますが、ブロックをセミコロンで置換したことで、
+<code>client</code>モジュールのスコープのコードは別の場所を探すようにコンパイラに指示しているわけです。
+言い換えると、<code>mod client;</code>の行は、以下のような意味になります:</p>
+<pre><code class="language-rust ignore">mod client {
+    // contents of client.rs
+}
+</code></pre>
+<!-- Now we need to create the external file with that module name. Create a -->
+<!-- *client.rs* file in your *src/* directory and open it. Then enter the -->
+<!-- following, which is the `connect` function in the `client` module that we -->
+<!-- removed in the previous step: -->
+<!-- 何故か「*src/*ディレクトリ内に*client.rs*」までが斜体になってしまう。mdbookのバグ？ -->
+<p>さて、このモジュール名の外部ファイルを作成する必要が出てきました。<em>src/<em>ディレクトリ内に</em>client.rs</em>ファイルを作成し、
+開いてください。それから以下のように入力してください。前段階で削除した<code>client</code>モジュールの<code>connect</code>関数です:</p>
+<!-- <span class="filename">Filename: src/client.rs</span> -->
+<p><span class="filename">ファイル名: src/client.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+fn connect() {
+}
+#}</code></pre></pre>
+<!-- Note that we don’t need a `mod` declaration in this file because we already -->
+<!-- declared the `client` module with `mod` in *src/lib.rs*. This file just -->
+<!-- provides the *contents* of the `client` module. If we put a `mod client` here, -->
+<!-- we’d be giving the `client` module its own submodule named `client`! -->
+<p>このファイルには、<code>mod</code>宣言が必要ないことに着目してください。なぜなら、<em>src/lib.rs</em>に<code>mod</code>を使って、
+もう<code>client</code>モジュールを宣言しているからです。このファイルは、<code>client</code>モジュールの<em>中身</em>を提供するだけなのです。
+ここにも<code>mod client</code>を記述したら、<code>client</code>に<code>client</code>という名前のサブモジュールを与えることになってしまいます！</p>
+<!-- Rust only knows to look in *src/lib.rs* by default. If we want to add more -->
+<!-- files to our project, we need to tell Rust in *src/lib.rs* to look in other -->
+<!-- files; this is why `mod client` needs to be defined in *src/lib.rs* and can’t -->
+<!-- be defined in *src/client.rs*. -->
+<p>コンパイラは、標準で<em>src/lib.rs</em>だけを検索します。プロジェクトにもっとファイルを追加したかったら、
+<em>src/lib.rs</em>で他のファイルも検索するよう、コンパイラに指示する必要があるのです; このため、<code>mod client</code>を<em>src/lib.rs</em>に定義し、
+<em>src/client.rs</em>には定義できなかったのです。</p>
+<!-- Now the project should compile successfully, although you’ll get a few -->
+<!-- warnings. Remember to use `cargo build` instead of `cargo run` because we have -->
+<!-- a library crate rather than a binary crate: -->
+<p>これでプロジェクトは問題なくコンパイルできるはずです。まあ、警告がいくつか出るんですが。
+<code>cargo run</code>ではなく、<code>cargo build</code>を使うことを忘れないでください。バイナリクレートではなく、
+ライブラリクレートだからですね:</p>
+<pre><code class="language-text">$ cargo build
+   Compiling communicator v0.1.0 (file:///projects/communicator)
+
+warning: function is never used: `connect`
+(警告: 関数は使用されていません: `connect`)
+ --&gt; src/client.rs:1:1
+  |
+1 | / fn connect() {
+2 | | }
+  | |_^
+  |
+  = note: #[warn(dead_code)] on by default
+
+warning: function is never used: `connect`
+ --&gt; src/lib.rs:4:5
+  |
+4 | /     fn connect() {
+5 | |     }
+  | |_____^
+
+warning: function is never used: `connect`
+ --&gt; src/lib.rs:8:9
+  |
+8 | /         fn connect() {
+9 | |         }
+  | |_________^
+</code></pre>
+<!-- These warnings tell us that we have functions that are never used. Don’t worry -->
+<!-- about these warnings for now; we’ll address them in this chapter in the  -->
+<!-- "Controlling Visibility with `pub`” section. The good news is that they’re just -->
+<!-- warnings; our project built successfully! -->
+<p>これらの警告は、全く使用されていない関数があると忠告してくれています。今は、警告を危惧する必要はありません;
+この章の後ほど、「<code>pub</code>で公開するか制御する」節で特定します。嬉しいことにただの警告です;
+プロジェクトはビルドに成功しました！</p>
+<!-- Next, let’s extract the `network` module into its own file using the same -->
+<!-- pattern. In *src/lib.rs*, delete the body of the `network` module and add a -->
+<!-- semicolon to the declaration, like so: -->
+<p>次に、同様のパターンを使用して<code>network</code>モジュールも単独のファイルに抽出しましょう。
+<em>src/lib.rs</em>で、<code>network</code>モジュールの本体を削除し、宣言にセミコロンを付加してください。こんな感じです:</p>
+<!-- <span class="filename">Filename: src/lib.rs</span> -->
+<p><span class="filename">ファイル名: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">mod client;
+
+mod network;
+</code></pre>
+<!-- Then create a new *src/network.rs* file and enter the following: -->
+<p>それから新しい<em>src/network.rs</em>ファイルを作成して、以下のように入力してください:</p>
+<!-- <span class="filename">Filename: src/network.rs</span> -->
+<p><span class="filename">ファイル名: src/network.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+fn connect() {
+}
+
+mod server {
+    fn connect() {
+    }
+}
+#}</code></pre></pre>
+<!-- Notice that we still have a `mod` declaration within this module file; this is -->
+<!-- because we still want `server` to be a submodule of `network`. -->
+<p>このモジュールファイル内にもまだ<code>mod</code>宣言があることに気付いてください;
+<code>server</code>はまだ<code>network</code>のサブモジュールにしたいからです。</p>
+<!-- Run `cargo build` again. Success! We have one more module to extract: `server`. -->
+<!-- Because it’s a submodule—that is, a module within a module—our current tactic -->
+<!-- of extracting a module into a file named after that module won’t work. We’ll -->
+<!-- try anyway so you can see the error. First, change *src/network.rs* to have -->
+<!-- `mod server;` instead of the `server` module’s contents: -->
+<p>再度<code>cargo build</code>してください。成功！抽出すべきモジュールがもう1個あります: <code>server</code>です。
+これはサブモジュール(つまり、モジュール内のモジュール)なので、
+モジュール名に倣ったファイルにモジュールを抽出するという今の手法は、通用しません。いずれにしても、
+エラーが確認できるように、試してみましょう。まず、<em>src/network.rs</em>ファイルを<code>server</code>モジュールの中身を含む代わりに、
+<code>mod server;</code>となるように変更してください。</p>
+<!-- <span class="filename">Filename: src/network.rs</span> -->
+<p><span class="filename">ファイル名: src/network.rs</span></p>
+<pre><code class="language-rust ignore">fn connect() {
+}
+
+mod server;
+</code></pre>
+<!-- Then create a *src/server.rs* file and enter the contents of the `server` -->
+<!-- module that we extracted: -->
+<p>そして、<em>src/server.rs</em>ファイルを作成し、抽出した<code>server</code>モジュールの中身を入力してください:</p>
+<!-- <span class="filename">Filename: src/server.rs</span> -->
+<p><span class="filename">ファイル名: src/server.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+fn connect() {
+}
+#}</code></pre></pre>
+<!-- When we try to run `cargo build`, we’ll get the error shown in Listing 7-5: -->
+<p><code>cargo build</code>を実行しようとすると、リスト7-4に示したようなエラーが出ます:</p>
+<pre><code class="language-text">$ cargo build
+   Compiling communicator v0.1.0 (file:///projects/communicator)
+error: cannot declare a new module at this location
+(エラー: この箇所では新規モジュールを宣言できません)
+ --&gt; src/network.rs:4:5
+  |
+4 | mod server;
+  |     ^^^^^^
+  |
+note: maybe move this module `src/network.rs` to its own directory via `src/network/mod.rs`
+(注釈: もしかして、`src/network.rs`というこのモジュールを`src/network/mod.rs`経由で独自のディレクトリに移すの)
+ --&gt; src/network.rs:4:5
+  |
+4 | mod server;
+  |     ^^^^^^
+note: ... or maybe `use` the module `server` instead of possibly redeclaring it
+(注釈: それとも、再度宣言する可能性はなく、`server`というモジュールを`use`したの)
+ --&gt; src/network.rs:4:5
+  |
+4 | mod server;
+  |     ^^^^^^
+</code></pre>
+<!-- <span class="caption">Listing 7-5: Error when trying to extract the `server` -->
+<!-- submodule into *src/server.rs*</span> -->
+<p><span class="caption">リスト7-5: <code>server</code>サブモジュールを<em>src/server.rs</em>に抽出しようとしたときのエラー</span></p>
+<!-- The error says we `cannot declare a new module at this location` and is -->
+<!-- pointing to the `mod server;` line in *src/network.rs*. So *src/network.rs* is -->
+<!-- different than *src/lib.rs* somehow: keep reading to understand why. -->
+<p>エラーは、<code>この箇所では新規モジュールを宣言できません</code>と忠告し、<em>src/network.rs</em>の<code>mod server;</code>行を指し示しています。
+故に、<em>src/network.rs</em>は、<em>src/lib.rs</em>と何かしら違うのです: 理由を知るために読み進めましょう。</p>
+<!-- The note in the middle of Listing 7-5 is actually very helpful because it -->
+<!-- points out something we haven’t yet talked about doing: -->
+<p>リスト7-5の真ん中の注釈は、非常に有用です。というのも、まだ話題にしていないことを指摘しているからです。</p>
+<pre><code class="language-text">note: maybe move this module `network` to its own directory via
+`network/mod.rs`
+</code></pre>
+<!-- Instead of continuing to follow the same file-naming pattern we used -->
+<!-- previously, we can do what the note suggests: -->
+<p>以前行ったファイル命名パターンに従い続けるのではなく、注釈が提言していることをすることができます:</p>
+<!-- 1. Make a new *directory* named *network*, the parent module’s name. -->
+<!-- 2. Move the *src/network.rs* file into the new *network* directory and -->
+<!--    rename it *src/network/mod.rs*. -->
+<!-- 3. Move the submodule file *src/server.rs* into the *network* directory. -->
+<ol>
+<li>親モジュール名である<em>network</em>という名前の新規<em>ディレクトリ</em>を作成する。</li>
+<li><em>src/network.rs</em>ファイルを<em>network</em>ディレクトリに移し、
+<em>src/network/mod.rs</em>と名前を変える。</li>
+<li>サブモジュールファイルの<em>src/server.rs</em>を<em>network</em>ディレクトリに移す。</li>
+</ol>
+<!-- Here are commands to carry out these steps: -->
+<p>以下が、これを実行するコマンドです:</p>
+<pre><code class="language-text">$ mkdir src/network
+$ mv src/network.rs src/network/mod.rs
+$ mv src/server.rs src/network
+</code></pre>
+<!-- Now when we try to run `cargo build`, compilation will work (we’ll still have -->
+<!-- warnings, though). Our module layout still looks exactly the same as it did when -->
+<!-- we had all the code in *src/lib.rs* in Listing 7-3: -->
+<p><code>cargo build</code>を走らせたら、ようやくコンパイルは通ります(まだ警告はありますけどね)。
+それでも、モジュールの配置は、リスト7-3で<em>src/lib.rs</em>に全てのコードを収めていたときと全く同じになります:</p>
+<pre><code class="language-text">communicator
+ ├── client
+ └── network
+     └── server
+</code></pre>
+<!-- The corresponding file layout now looks like this: -->
+<p>対応するファイルの配置は、以下のようになっています:</p>
+<pre><code class="language-text">└── src
+    ├── client.rs
+    ├── lib.rs
+    └── network
+        ├── mod.rs
+        └── server.rs
+</code></pre>
+<!-- So when we wanted to extract the `network::server` module, why did we have to -->
+<!-- also change the *src/network.rs* file to the *src/network/mod.rs* file and put -->
+<!-- the code for `network::server` in the *network* directory in -->
+<!-- *src/network/server.rs*? Why couldn't we just extract the `network::server` -->
+<!-- module into *src/server.rs*? The reason is that Rust wouldn’t be able to -->
+<!-- recognize that `server` was supposed to be a submodule of `network` if the -->
+<!-- *server.rs* file was in the *src* directory. To clarify Rust’s behavior here, -->
+<!-- let’s consider a different example with the following module hierarchy, where -->
+<!-- all the definitions are in *src/lib.rs*: -->
+<p>では、<code>network::server</code>モジュールを抽出したかったときに、
+なぜ、<em>src/network.rs</em>ファイルを<em>src/network/mod.rs</em>ファイルに変更し、
+<code>network::server</code>のコードを<em>network</em>ディレクトリ内の<em>src/network/server.rs</em>に置かなければならなかったのでしょうか？
+なぜ、単に<code>network::server</code>モジュールを<em>src/server.rs</em>に抽出できなかったのでしょうか？
+理由は、<em>server.rs</em>ファイルが<em>src</em>ディレクトリにあると、コンパイラが、
+<code>server</code>は<code>network</code>のサブモジュールと考えられることを検知できないからです。
+ここでのコンパイラの動作をはっきりさせるために、以下のようなモジュール階層をもつ別の例を考えましょう。
+こちらでは、定義は全て<em>src/lib.rs</em>に存在します。</p>
+<pre><code class="language-text">communicator
+ ├── client
+ └── network
+     └── client
+</code></pre>
+<!-- In this example, we have three modules again: `client`, `network`, and -->
+<!-- `network::client`. Following the same steps we did earlier for extracting -->
+<!-- modules into files, we would create *src/client.rs* for the `client` module. -->
+<!-- For the `network` module, we would create *src/network.rs*. But we wouldn’t be -->
+<!-- able to extract the `network::client` module into a *src/client.rs* file -->
+<!-- because that already exists for the top-level `client` module! If we could put -->
+<!-- the code for *both* the `client` and `network::client` modules in the -->
+<!-- *src/client.rs* file, Rust wouldn’t have any way to know whether the code was -->
+<!-- for `client` or for `network::client`. -->
+<p>この例でも、モジュールは3つあります: <code>client</code>、<code>network</code>、<code>network::client</code>です。
+以前と同じ段階を経てモジュールをファイルに抽出すると、<code>client</code>モジュール用に<em>src/client.rs</em>を作成することになるでしょう。
+<code>network</code>モジュールに関しては、<em>src/network.rs</em>を作成します。しかし、
+<code>network::client</code>モジュールを<em>src/client.rs</em>ファイルに抽出することはできません。
+もうトップ階層の<code>client</code>モジュールとして存在するからです！
+<code>client</code>と<code>network::client</code><em>双方</em>のコードを<em>src/client.rs</em>ファイルに書くことができたら、
+コンパイラは、コードが<code>client</code>用なのか、<code>network::client</code>用なのか知る術を失ってしまいます。</p>
+<!-- Therefore, in order to extract a file for the `network::client` submodule of -->
+<!-- the `network` module, we needed to create a directory for the `network` module -->
+<!-- instead of a *src/network.rs* file. The code that is in the `network` module -->
+<!-- then goes into the *src/network/mod.rs* file, and the submodule -->
+<!-- `network::client` can have its own *src/network/client.rs* file. Now the -->
+<!-- top-level *src/client.rs* is unambiguously the code that belongs to the -->
+<!-- `client` module. -->
+<p>従って、<code>network</code>モジュールの<code>network::client</code>サブモジュールをファイルに抽出するには、
+<em>src/network.rs</em>ファイルではなく、<code>network</code>モジュールのディレクトリを作成する必要があったわけです。
+そうすれば、<code>network</code>モジュールのコードは、<em>src/network/mod.rs</em>ファイルに移ることになり、
+<code>network::client</code>というサブモジュールは専用の<code>src/network/client.rs</code>ファイルを持てるわけです。
+これで、頂点にある<em>src/client.rs</em>は間違いなく、<code>client</code>モジュールに属するコードになるわけです。</p>
+<!-- ### Rules of Module Filesystems -->
+<a class="header" href="ch07-01-mod-and-the-filesystem.html#aモジュールファイルシステムの規則" id="aモジュールファイルシステムの規則"><h3>モジュールファイルシステムの規則</h3></a>
+<!-- Let’s summarize the rules of modules with regard to files: -->
+<p>ファイルに関するモジュール規則をまとめましょう:</p>
+<!-- * If a module named `foo` has no submodules, you should put the declarations -->
+<!--   for `foo` in a file named *foo.rs*. -->
+<!-- * If a module named `foo` does have submodules, you should put the declarations -->
+<!--   for `foo` in a file named *foo/mod.rs*. -->
+<ul>
+<li><code>foo</code>という名前のモジュールにサブモジュールがなければ、<code>foo</code>の定義は、
+<em>foo.rs</em>というファイルに書くべきです。</li>
+<li><code>foo</code>というモジュールに本当にサブモジュールがあったら、<code>foo</code>の定義は、
+<em>foo/mod.rs</em>というファイルに書くべきです。</li>
+</ul>
+<!-- These rules apply recursively, so if a module named `foo` has a submodule named -->
+<!-- `bar` and `bar` does not have submodules, you should have the following files -->
+<!-- in your *src* directory: -->
+<p>これらのルールは再帰的に適用されるので、<code>foo</code>というモジュールに<code>bar</code>というサブモジュールがあり、
+<code>bar</code>にはサブモジュールがなければ、<em>src</em>ディレクトリには以下のようなファイルが存在するはずです:</p>
+<pre><code class="language-text">├── foo
+│   ├── bar.rs (contains the declarations in `foo::bar`)
+│   │          (`foo::bar`内の定義を含む)
+│   └── mod.rs (contains the declarations in `foo`, including `mod bar`)
+               (`mod bar`を含む、`foo`内の定義を含む)
+</code></pre>
+<!-- The modules should be declared in their parent module’s file using the `mod` -->
+<!-- keyword. -->
+<p>モジュールは、親モジュールのファイル内で<code>mod</code>キーワードを使って宣言されるべきなのです。</p>
+<!-- Next, we’ll talk about the `pub` keyword and get rid of those warnings! -->
+<p>次は、<code>pub</code>キーワードについて話し、警告を取り除きます！</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch07-00-modules.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch07-02-controlling-visibility-with-pub.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="ch07-00-modules.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ch07-02-controlling-visibility-with-pub.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
+        
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
