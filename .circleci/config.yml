@@ -95,7 +95,8 @@ jobs:
       - run:
           name: Staging the books
           command: |
-            mkdir -p docs
+            rm -rf docs
+            mkdir docs
             cp -rp /tmp/workspace/trpl2/second-edition docs/
             # cp -rp /tmp/workspace/trpl1/first-edition docs/
       - deploy:
