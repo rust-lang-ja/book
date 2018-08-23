@@ -23,8 +23,16 @@ jobs:
           working_directory: ~/trpl2
       - run:
           name: Removing blank lines and HTML comments from SUMMARY.md
-          command: sed -i '/^$/d; /<!--.*-->/d' src/SUMMARY.md
-          working_directory: ~/trpl2/book/second-edition
+          command: sed -i '/^$/d; /<!--.*-->/d' SUMMARY.md
+          working_directory: ~/trpl2/book/second-edition/src
+      - run:
+          name: Fixing hyperlinks to std library reference pages
+          command: |
+            for file in $(grep -lR '../std' *); do
+              echo "Processing $file"
+              sed -i 's# .*/std/# https://doc.rust-lang.org/stable/std/#g' $file
+            done
+          working_directory: ~/trpl2/book/second-edition/src
       - run:
           name: Building 2nd Edition
           command: |
@@ -38,6 +46,7 @@ jobs:
           paths:
             - trpl2/second-edition
 
+  # This job is disabled. (See the workflows section)
   build_trpl1:
     docker:
       - image: quay.io/rust-lang-ja/circleci:trpl1
@@ -77,20 +86,18 @@ jobs:
   # This job will only run on the master branch. (See the workflows section)
   publish:
     docker:
-      # We actually do not use Python but this maybe one of the smallest
-      # images that Circle CI provides.
-      - image: circleci/python:3.7
+      - image: quay.io/rust-lang-ja/circleci:master
     parallelism: 1
     steps:
       - checkout
       - attach_workspace:
           at: /tmp/workspace
       - run:
-          name: Copying books
+          name: Staging the books
           command: |
             mkdir -p docs
             cp -rp /tmp/workspace/trpl2/second-edition docs/
-            cp -rp /tmp/workspace/trpl1/first-edition docs/
+            # cp -rp /tmp/workspace/trpl1/first-edition docs/
       - deploy:
           name: Publish to GitHub Page
           command: |
@@ -107,11 +114,11 @@ workflows:
   build_and_publish:
     jobs:
       - build_trpl2
-      - build_trpl1
+      # - build_trpl1
       - publish:
           requires:
             - build_trpl2
-            - build_trpl1
+            # - build_trpl1
           filters:
             branches:
               only: master
