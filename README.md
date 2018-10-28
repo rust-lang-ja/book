@@ -2,7 +2,10 @@
 
 # Book [![CircleCI](https://circleci.com/gh/rust-lang-ja/book.svg?style=svg)](https://circleci.com/gh/rust-lang-ja/book)
 
-[TRPL 2 日本語版](https://github.com/hazama-yuinyan/book)をCircleCIでビルドするためのリポジトリ。
+TRPL 2 日本語版のHTML BookをCircleCIでビルドするためのリポジトリ。
+
+- TRPL 2のソースリポジトリ： https://github.com/hazama-yuinyan/book
+- HTML Bookの公開先： https://doc.rust-jp.rs/book/second-edition/
 
 
 ## ビルドの手動起動
