@@ -221,7 +221,7 @@ Cargoの設定フォーマットです。</p>
 <!-- The first line, `[package]`, is a section heading that indicates that the -->
 <!-- following statements are configuring a package. As we add more information to -->
 <!-- this file, we’ll add other sections. -->
-<p>最初の行の<code>[package]</code>は、後の文がパッケージを設定していることを示すセクションヘッダーです。もっと情報を追加すれば、
+<p>最初の行の<code>[package]</code>は、後の文がパッケージを設定していることを示すセクションヘッダーです。もっと情報を追加するにつれて、
 別のセクションも追加するでしょう。</p>
 <!-- The next three lines set the configuration information Cargo needs to compile -->
 <!-- your program: the name, the version, and who wrote it. Cargo gets your name and -->
@@ -270,7 +270,7 @@ Cargoを使用すると、プロジェクトを体系化する手助けをして
 適切な<em>Cargo.toml</em>ファイルを作成してください。</p>
 <!-- ### Building and Running a Cargo Project -->
 <a class="header" href="ch01-03-hello-cargo.html#cargoプロジェクトをビルドし実行する" id="cargoプロジェクトをビルドし実行する"><h3>Cargoプロジェクトをビルドし、実行する</h3></a>
-<!-- Now let’s look what's different when we build and run the Hello, world! -->
+<!-- Now let’s look at what's different when we build and run the Hello, world! -->
 <!-- program with Cargo! From your *hello_cargo* directory, build your project by -->
 <!-- entering the following command: -->
 <p>さて、CargoでHello, world!プログラムをビルドし、実行する時の違いに目を向けましょう！<em>hello_cargo</em>ディレクトリから、
@@ -283,7 +283,7 @@ Cargoを使用すると、プロジェクトを体系化する手助けをして
 <!-- *target\debug\hello_cargo.exe* on Windows) rather than in your current -->
 <!-- directory. You can run the executable with this command: -->
 <p>このコマンドは、カレントディレクトリではなく、<em>target/debug/hello_cargo</em>(あるいはWindowsなら、
-<em>target/debug/hello_cargo.exe</em>)の実行可能ファイルを作成します。以下のコマンドで実行可能ファイルを実行できます:</p>
+<em>target/debug/hello_cargo.exe</em>)に実行可能ファイルを作成します。以下のコマンドで実行可能ファイルを実行できます:</p>
 <pre><code class="language-text">$ ./target/debug/hello_cargo # or .\target\debug\hello_cargo.exe on Windows
                              # あるいは、Windowsなら、.\target\debug\hello_cargo.exe
 Hello, world!
@@ -313,7 +313,7 @@ Hello, world!
 <!-- the binary. If you had modified your source code, Cargo would have rebuilt the -->
 <!-- project before running it, and you would have seen this output: -->
 <p>今回は、Cargoが<code>hello_cargo</code>をコンパイルしていることを示唆する出力がないことに気付いてください。
-Cargoはファイルが変更されていないことを推論したので、単純にバイナリを実行したのです。
+Cargoはファイルが変更されていないことを推察したので、単純にバイナリを実行したのです。
 ソースコードを変更していたら、Cargoは実行前にプロジェクトを再ビルドし、こんな出力を目の当たりにしたでしょう:</p>
 <pre><code class="language-text">$ cargo run
    Compiling hello_cargo v0.1.0 (file:///projects/hello_cargo)
@@ -348,7 +348,7 @@ Hello, world!
 <!--   Cargo stores it in the *target/debug* directory. -->
 <ul>
 <li><code>cargo build</code>か<code>cargo check</code>でプロジェクトをビルドできる。</li>
-<li>プロジェクトのビルドと実行を1ステップで<code>cargo run</code>でできる。</li>
+<li>プロジェクトのビルドと実行を1ステップ、<code>cargo run</code>でできる。</li>
 <li>ビルドの結果をコードと同じディレクトリに保存するのではなく、Cargoは<em>target/debug</em>ディレクトリに格納する。</li>
 </ul>
 <!-- An additional advantage of using Cargo is that the commands are the same no -->
@@ -372,7 +372,7 @@ Hello, world!
 最適化を行なってコンパイルすることができます。このコマンドは、<em>target/debug</em>ではなく、
 <em>target/release</em>に実行可能ファイルを作成します。最適化は、Rustコードの実行を速くしてくれますが、
 オンにするとプログラムをコンパイルする時間が延びます。このため、2つの異なるプロファイルがあるのです:
-頻繁に再ビルドをかけたい開発用と、繰り返し再ビルドすることはなく、できるだけ高速に動いてユーザにあげる最終的なプログラムをビルドする用のです。
+頻繁に再ビルドをかけたい開発用と、繰り返し再ビルドすることはなく、できるだけ高速に動いてユーザにあげる最終的なプログラムをビルドする用です。
 コードの実行時間をベンチマークするなら、<code>cargo build --release</code>を確実に実行し、<em>target/release</em>の実行可能ファイルでベンチマークしてください。</p>
 <!-- ### Cargo as Convention -->
 <a class="header" href="ch01-03-hello-cargo.html#a習慣としてのcargo" id="a習慣としてのcargo"><h3>習慣としてのCargo</h3></a>

@@ -168,7 +168,7 @@ Rustは、スピードとメモリ使用の観点で効率的な信頼性の高�
 <!-- you can tackle more aggressive optimizations in your code with the confidence -->
 <!-- that you won’t accidentally introduce crashes or exploits. -->
 <p>既に低レベルコードに取り組んでいるプログラマは、Rustを使用してさらなる高みを目指せます。例えば、
-Rustで並行性を導入することは、比較的低リスクです: コンパイラが伝統的なミスを捕捉してくれるのです。
+Rustで並列性を導入することは、比較的低リスクです: コンパイラが伝統的なミスを捕捉してくれるのです。
 そして、クラッシュやクラッキングの糸口を誤って導入しないという自信を持ってコードの大胆な最適化に取り組めるのです。</p>
 <!-- But Rust isn’t limited to low-level systems programming. It’s expressive and -->
 <!-- ergonomic enough to make CLI apps, web servers, and many other kinds of code -->
@@ -185,7 +185,7 @@ Rustを使うことで1つの領域から他の領域へと使い回せる技術
 <!-- knowledge of Rust, but also your reach and confidence as a programmer in -->
 <!-- general. So dive in, get ready to learn—and welcome to the Rust community! -->
 <p>この本は、ユーザに力を与え(empower)るRustのポテンシャルを全て含んでいます。あなたのRustの知識のみをレベルアップさせるだけでなく、
-プログラマとして全般的な能力や自信をもレベルアップさせる手助けを意図した親しみやすくわかりやすいテキストです。
+プログラマとしての全般的な能力や自信をもレベルアップさせる手助けを意図した親しみやすくわかりやすいテキストです。
 さあ、飛び込んで学ぶ準備をしてください。Rustコミュニティへようこそ！</p>
 <!-- — Nicholas Matsakis and Aaron Turon -->
 <ul>
@@ -197,8 +197,8 @@ Rustを使うことで1つの領域から他の領域へと使い回せる技術
 <!-- > Language][nsprust] available in print and ebook format from [No Starch -->
 <!-- > Press][nsp]. -->
 <blockquote>
-<p>注釈: この本のこの版は、本として利用可能な<a href="https://nostarch.com/rust">The Rust Programming Language</a>と、
-<a href="https://nostarch.com/">No Starch Press</a>のebook形式と同じです。</p>
+<p>注釈: この本のこの版は、本として利用可能な[The Rust Programming Language][nsprust]と、
+[No Starch Press][nsp]のebook形式と同じです。</p>
 </blockquote>
 <!-- Welcome to *The Rust Programming Language*, an introductory book about Rust. -->
 <p><em>The Rust Programming Language</em>へようこそ。Rustに関する入門書です。</p>
@@ -228,10 +228,10 @@ Rustは伝統的にそれらの制御と紐付いていた困難全てなしに�
 <!-- compile code with these elusive bugs, including concurrency bugs. By working -->
 <!-- alongside the compiler, the team can spend their time focusing on the program’s -->
 <!-- logic rather than chasing down bugs. -->
-<p>Rustは、いろんなレベルのシステムプログラミングの知識を持つ開発者の巨大なチームとコラボレートするのに生産的なツールであると証明してきています。
+<p>Rustは、いろんなレベルのシステムプログラミングの知識を持つ開発者の巨大なチームとコラボするのに生産的なツールであると証明してきています。
 低レベルコードは様々な種類の微細なバグを抱える傾向があり、そのようなバグは他の言語だと広範なテストと、
 経験豊富な開発者による注意深いコードレビューによってのみ捕捉されるものです。Rustにおいては、
-コンパイラが非同期のバグも含めたこのようなとらえどころのないバグのあるコードをコンパイルするのを拒むことで、
+コンパイラが並行性のバグも含めたこのようなとらえどころのないバグのあるコードをコンパイルするのを拒むことで、
 門番の役割を担います。コンパイラとともに取り組むことで、チームはバグを追いかけるよりもプログラムのロジックに集中することに、
 時間を費やせるのです。</p>
 <!-- Rust also brings contemporary developer tools to the systems programming world: -->
@@ -308,7 +308,6 @@ Rustは安全なコードを高速なコードにもしようと努力してい�
 つまり、安全性<em>と</em>生産性、スピード<em>と</em>エルゴノミクスです。Rustを試してみて、その選択が自分に合っているか確かめてください。</p>
 <!-- ## Who This Book Is For -->
 <a class="header" href="print.html#aこの本は誰のためのものなの" id="aこの本は誰のためのものなの"><h2>この本は誰のためのものなの</h2></a>
-<!-- 最後から2行目、better servedをもっと上手く訳したい-->
 <!-- This book assumes that you’ve written code in another programming language but -->
 <!-- doesn’t make any assumptions about which one. We’ve tried to make the material -->
 <!-- broadly accessible to those from a wide variety of programming backgrounds. We -->
@@ -316,9 +315,9 @@ Rustは安全なコードを高速なコードにもしようと努力してい�
 <!-- about it. If you’re entirely new to programming, you would be better served by -->
 <!-- reading a book that specifically provides an introduction to programming. -->
 <p>この本は、あなたが他のプログラミング言語でコードを書いたことがあることを想定していますが、
-具体的にどの言語かという想定はしません。幅広い分野のプログラミング背景からの人にとってこの資料を広くアクセスできるようにしようとしてきました。
+具体的にどの言語かという想定はしません。私たちは、幅広い分野のプログラミング背景からの人にとってこの資料を広くアクセスできるようにしようとしてきました。
 プログラミングとはなん<em>なのか</em>やそれについて考える方法について多くを語るつもりはありません。
-もし、完全なプログラミング初心者であれば、プログラミング入門を特に行う本を読むことでよりよく提供されるでしょう。</p>
+もし、完全なプログラミング初心者であれば、プログラミング入門を特に行う本を読むことでよりよく役に立つでしょう。</p>
 <!-- ## How to Use This Book -->
 <a class="header" href="print.html#aこの本の使い方" id="aこの本の使い方"><h2>この本の使い方</h2></a>
 <!-- In general, this book assumes that you’re reading it in sequence from front to -->
@@ -338,7 +337,7 @@ Rustの一面を学ぶでしょう。プロジェクトの章では、それま�
 <!-- and how to use Cargo, Rust’s package manager and build tool. Chapter 2 is a -->
 <!-- hands-on introduction to the Rust language. We’ll cover concepts at a high -->
 <!-- level, and later chapters will provide additional detail. If you want to get -->
-<!--  your hands dirty right away, Chapter 2 is the one for that. At first, you -->
+<!-- your hands dirty right away, Chapter 2 is the one for that. At first, you -->
 <!-- might even want to skip Chapter 3, which covers Rust features similar to those -->
 <!-- of other programming language, and head straight to Chapter 4 to learn about -->
 <!-- Rust’s ownership system. However, if you’re a particularly meticulous learner -->
@@ -372,7 +371,7 @@ Rustの一面を学ぶでしょう。プロジェクトの章では、それま�
 <!-- within files. For this, we’ll use many of the concepts we discussed in the -->
 <!-- previous chapters. -->
 <p>第10章ではジェネリクス、トレイト、ライフタイムについて深入りし、これらは複数の型に適用されるコードを定義する力をくれます。
-第11章は、完全にテストに関してで、Rustのプログラムのロジックが正しいことを保証する安全性保証があってさえ、
+第11章は、完全にテストに関してで、Rustの安全性保証があってさえ、プログラムのロジックが正しいことを保証するために、
 必要になります。第12章では、ファイル内のテキストを検索する<code>grep</code>コマンドラインツールの一部の機能を自身で構築します。
 このために、以前の章で議論した多くの概念を使用します。</p>
 <!-- Chapter 13 explores closures and iterators: features of Rust that come from -->
@@ -387,7 +386,7 @@ Rustの一面を学ぶでしょう。プロジェクトの章では、それま�
 <!-- and talk about how Rust helps you to program in multiple threads fearlessly. -->
 <!-- Chapter 17 looks at how Rust idioms compare to object-oriented programming -->
 <!-- principles you might be familiar with. -->
-<p>第16章では、非同期プログラミングの異なるモデルを見ていき、Rustが恐れなしに複数のスレッドでプログラムする手助けをする方法を語ります。
+<p>第16章では、並行プログラミングの異なるモデルを見ていき、Rustが恐れなしに複数のスレッドでプログラムする手助けをする方法を語ります。
 第17章では、馴染み深い可能性のあるオブジェクト指向プログラミングの原則とRustのイディオムがどう比較されるかに目を向けます。</p>
 <!-- Chapter 18 is a reference on patterns and pattern matching, which are powerful -->
 <!-- ways of expressing ideas throughout Rust programs. Chapter 19 contains a -->
@@ -403,7 +402,7 @@ Rustの一面を学ぶでしょう。プロジェクトの章では、それま�
 <!-- more reference-like format. Appendix A covers Rust’s keywords, Appendix B -->
 <!-- covers Rust’s operators and symbols, Appendix C covers derivable traits -->
 <!-- provided by the standard library, Appendix D covers macros. -->
-<p>最後に、言語についての有用な情報をよりリファレンスっぽい形式で含む付録があります。
+<p>最後に、言語についての有用な情報をよりリファレンスのような形式で含む付録があります。
 付録AはRustのキーワードを講義し、付録Bは、Rustの演算子とシンボル、付録Cは、
 標準ライブラリが提供する継承可能なトレイト、付録Dはマクロを講義します。</p>
 <!-- There is no wrong way to read this book: if you want to skip ahead, go for it! -->
@@ -429,9 +428,6 @@ Rustの一面を学ぶでしょう。プロジェクトの章では、それま�
 <!-- The source files from which this book is generated can be found on -->
 <!-- [GitHub][book]. -->
 <p>この本が生成されるソースファイルは、<a href="https://github.com/rust-lang/book/tree/master/second-edition/src">GitHub</a>で見つかります。</p>
-<p>この本はオープンソースです。間違いを見つけたら、<a href="https://github.com/rust-lang/book/tree/master/second-edition/src">GitHub</a>でissueを送ったり、
-プルリクエストを送ったりするのを<ruby>躊躇<rp>(</rp><rt>ためら</rt><rp>)</rp></ruby>わないでください。
-詳しくは、[CONTRIBUTING.md]をご参照ください</p>
 <!-- # Getting Started -->
 <a class="header" href="print.html#a事始め" id="a事始め"><h1>事始め</h1></a>
 <!-- Let’s start your Rust journey! There’s a lot to learn, but every journey starts -->
@@ -506,7 +502,7 @@ Rustの安定性保証により、現在この本の例でコンパイルでき�
 <!-- next login. If you want to start using Rust right away instead of restarting -->
 <!-- your terminal, run the following command in your shell to add Rust to your -->
 <!-- system PATH manually: -->
-<p>インストールスクリプトは、Rustを次回のログイン後にシステムのPATHに自動的に追加します。端末を再起動するのではなく、
+<p>インストールスクリプトは、次回のログイン後にRustをシステムのPATHに自動的に追加します。端末を再起動するのではなく、
 いますぐにRustを使用し始めたいのなら、シェルで以下のコマンドを実行してRustをシステムのPATHに手動で追加します:</p>
 <pre><code class="language-text">$ source $HOME/.cargo/env
 </code></pre>
@@ -521,10 +517,10 @@ Rustの安定性保証により、現在この本の例でコンパイルでき�
 <!-- the correct linker. Check your platform’s documentation for how to install a C -->
 <!-- compiler. Also, some common Rust packages depend on C code and will need a C -->
 <!-- compiler. Therefore, it might be worth installing one now. -->
-<p>さらに、なんらかの類のリンカーが必要になるでしょう。既にインストールされている可能性が高いものの、
-Rustプログラムのコンパイルを試みて、リンカーが実行できないというエラーが出たら、
-システムにリンカーがインストールされていないということなので、手動でインストールする必要があるでしょう。
-Cコンパイラは通常正しいリンカーとセットになっています。
+<p>さらに、なんらかの類のリンカが必要になるでしょう。既にインストールされている可能性が高いものの、
+Rustプログラムのコンパイルを試みて、リンカが実行できないというエラーが出たら、
+システムにリンカがインストールされていないということなので、手動でインストールする必要があるでしょう。
+Cコンパイラは通常正しいリンカとセットになっています。
 自分のプラットフォームのドキュメンテーションを見てCコンパイラのインストール方法を確認してください。
 一般的なRustパッケージの中には、Cコードに依存し、Cコンパイラが必要になるものもあります。
 故に今インストールする価値はあるかもしれません。</p>
@@ -615,7 +611,7 @@ Rustが<code>%PATH%</code>システム環境変数にあることを確認して
 <!-- > the Rust team has been focusing on enabling great IDE support, and progress -->
 <!-- > has been made rapidly on that front! -->
 <blockquote>
-<p>注釈: この本は、コマンドラインに基本的な馴染みがあることを前提にしています。Rustは、編集やツール、
+<p>注釈: この本は、コマンドラインに基礎的な馴染みがあることを前提にしています。Rustは、編集やツール、
 どこにコードがあるかについて特定の要求をしないので、コマンドラインではなくIDEを使用することを好むのなら、
 どうぞご自由にお気に入りのIDEを使用してください。今では、多くのIDEがなんらかの形でRustをサポートしています;
 詳しくは、IDEのドキュメンテーションをご覧ください。最近、Rustチームは優れたIDEサポートを有効にすることに注力し、
@@ -668,6 +664,7 @@ $ cd hello_world
 <!-- <span class="filename">Filename: main.rs</span> -->
 <p><span class="filename">ファイル名: main.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust">fn main() {
+    // 世界よ、こんにちは
     println!(&quot;Hello, world!&quot;);
 }
 </code></pre></pre>
@@ -710,14 +707,13 @@ Rustプログラマになったのです！ようこそ！</p>
 <!-- always the first code that runs in every executable Rust program. The first -->
 <!-- line declares a function named `main` that has no parameters and returns -->
 <!-- nothing. If there were parameters, they would go inside the parentheses, `()`. -->
-<!-- and `)`. -->
 <p>これらの行でRustで関数を定義しています。<code>main</code>関数は特別です: 常に全ての実行可能なRustプログラムで走る最初のコードになります。
 1行目は、引数がなく、何も返さない<code>main</code>という関数を宣言しています。引数があるなら、かっこ(<code>()</code>)の内部に入ります。</p>
 <!-- Also, note that the function body is wrapped in curly brackets, `{}`. Rust -->
 <!-- requires these around all function bodies. It’s good style to place the opening -->
 <!-- curly bracket on the same line as the function declaration, adding one space in -->
 <!-- between. -->
-<p>また、関数の本体が波括弧(<code>{</code>と<code>}</code>)に包まれていることにも注目してください。Rustでは、全ての関数本体の周りにこれらが必要になります。
+<p>また、関数の本体が波括弧(<code>{}</code>)に包まれていることにも注目してください。Rustでは、全ての関数本体の周りにこれらが必要になります。
 スペースを1つあけて、開き波括弧を関数宣言と同じ行に配置するのがいいスタイルです。</p>
 <!-- At the time of this writing, an automatic formatter tool called `rustfmt` is -->
 <!-- under development. If you want to stick to a standard style across Rust -->
@@ -811,7 +807,7 @@ main.rs
 <!-- compile and run your program. Everything is a trade-off in language design. -->
 <p>RubyやPython、JavaScriptなどの動的言語により造詣が深いなら、プログラムのコンパイルと実行を個別の手順で行うことに慣れていない可能性があります。
 Rustは<em>AOTコンパイル</em>(ahead-of-time; <code>訳注</code>: 予め)言語です。つまり、プログラムをコンパイルし、
-実行可能ファイルを誰かにあげ、あげた人がRustをインストールしなくても実行できるわけです。
+実行可能ファイルを誰かにあげ、あげた人がRustをインストールしていなくても実行できるわけです。
 誰かに <em>.rb</em>、<em>.py</em>、<em>.js</em>ファイルをあげたら、それぞれRuby、Python、JavaScriptの実装がインストールされている必要があります。
 ですが、そのような言語では、プログラムをコンパイルし実行するには、1コマンドしか必要ないのです。
 全ては言語設計においてトレードオフなのです。</p>
@@ -910,7 +906,7 @@ Cargoの設定フォーマットです。</p>
 <!-- The first line, `[package]`, is a section heading that indicates that the -->
 <!-- following statements are configuring a package. As we add more information to -->
 <!-- this file, we’ll add other sections. -->
-<p>最初の行の<code>[package]</code>は、後の文がパッケージを設定していることを示すセクションヘッダーです。もっと情報を追加すれば、
+<p>最初の行の<code>[package]</code>は、後の文がパッケージを設定していることを示すセクションヘッダーです。もっと情報を追加するにつれて、
 別のセクションも追加するでしょう。</p>
 <!-- The next three lines set the configuration information Cargo needs to compile -->
 <!-- your program: the name, the version, and who wrote it. Cargo gets your name and -->
@@ -959,7 +955,7 @@ Cargoを使用すると、プロジェクトを体系化する手助けをして
 適切な<em>Cargo.toml</em>ファイルを作成してください。</p>
 <!-- ### Building and Running a Cargo Project -->
 <a class="header" href="print.html#cargoプロジェクトをビルドし実行する" id="cargoプロジェクトをビルドし実行する"><h3>Cargoプロジェクトをビルドし、実行する</h3></a>
-<!-- Now let’s look what's different when we build and run the Hello, world! -->
+<!-- Now let’s look at what's different when we build and run the Hello, world! -->
 <!-- program with Cargo! From your *hello_cargo* directory, build your project by -->
 <!-- entering the following command: -->
 <p>さて、CargoでHello, world!プログラムをビルドし、実行する時の違いに目を向けましょう！<em>hello_cargo</em>ディレクトリから、
@@ -972,7 +968,7 @@ Cargoを使用すると、プロジェクトを体系化する手助けをして
 <!-- *target\debug\hello_cargo.exe* on Windows) rather than in your current -->
 <!-- directory. You can run the executable with this command: -->
 <p>このコマンドは、カレントディレクトリではなく、<em>target/debug/hello_cargo</em>(あるいはWindowsなら、
-<em>target/debug/hello_cargo.exe</em>)の実行可能ファイルを作成します。以下のコマンドで実行可能ファイルを実行できます:</p>
+<em>target/debug/hello_cargo.exe</em>)に実行可能ファイルを作成します。以下のコマンドで実行可能ファイルを実行できます:</p>
 <pre><code class="language-text">$ ./target/debug/hello_cargo # or .\target\debug\hello_cargo.exe on Windows
                              # あるいは、Windowsなら、.\target\debug\hello_cargo.exe
 Hello, world!
@@ -1002,7 +998,7 @@ Hello, world!
 <!-- the binary. If you had modified your source code, Cargo would have rebuilt the -->
 <!-- project before running it, and you would have seen this output: -->
 <p>今回は、Cargoが<code>hello_cargo</code>をコンパイルしていることを示唆する出力がないことに気付いてください。
-Cargoはファイルが変更されていないことを推論したので、単純にバイナリを実行したのです。
+Cargoはファイルが変更されていないことを推察したので、単純にバイナリを実行したのです。
 ソースコードを変更していたら、Cargoは実行前にプロジェクトを再ビルドし、こんな出力を目の当たりにしたでしょう:</p>
 <pre><code class="language-text">$ cargo run
    Compiling hello_cargo v0.1.0 (file:///projects/hello_cargo)
@@ -1037,7 +1033,7 @@ Hello, world!
 <!--   Cargo stores it in the *target/debug* directory. -->
 <ul>
 <li><code>cargo build</code>か<code>cargo check</code>でプロジェクトをビルドできる。</li>
-<li>プロジェクトのビルドと実行を1ステップで<code>cargo run</code>でできる。</li>
+<li>プロジェクトのビルドと実行を1ステップ、<code>cargo run</code>でできる。</li>
 <li>ビルドの結果をコードと同じディレクトリに保存するのではなく、Cargoは<em>target/debug</em>ディレクトリに格納する。</li>
 </ul>
 <!-- An additional advantage of using Cargo is that the commands are the same no -->
@@ -1061,7 +1057,7 @@ Hello, world!
 最適化を行なってコンパイルすることができます。このコマンドは、<em>target/debug</em>ではなく、
 <em>target/release</em>に実行可能ファイルを作成します。最適化は、Rustコードの実行を速くしてくれますが、
 オンにするとプログラムをコンパイルする時間が延びます。このため、2つの異なるプロファイルがあるのです:
-頻繁に再ビルドをかけたい開発用と、繰り返し再ビルドすることはなく、できるだけ高速に動いてユーザにあげる最終的なプログラムをビルドする用のです。
+頻繁に再ビルドをかけたい開発用と、繰り返し再ビルドすることはなく、できるだけ高速に動いてユーザにあげる最終的なプログラムをビルドする用です。
 コードの実行時間をベンチマークするなら、<code>cargo build --release</code>を確実に実行し、<em>target/release</em>の実行可能ファイルでベンチマークしてください。</p>
 <!-- ### Cargo as Convention -->
 <a class="header" href="print.html#a習慣としてのcargo" id="a習慣としてのcargo"><h3>習慣としてのCargo</h3></a>
@@ -2216,7 +2212,7 @@ You win!
 <p>素晴らしい！最後にひとつまみ変更を加えて、数当てゲームを完了にしましょう。
 プログラムが未だに秘密の数字を出力していることを思い出してください。テスト中はうまく動くけど、
 ゲームを台無しにしてしまいます。秘密の数字を出力する<code>println!</code>を削除しましょう。
-リスト2-5が成果物のコードです:</p>
+リスト2-6が成果物のコードです:</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
 <pre><code class="language-rust ignore">extern crate rand;
@@ -15363,10 +15359,6 @@ and <strong>p</strong>rint: 正規表現をグローバルで検索し表示す�
 <!-- on your system. -->
 <p>いつものように、<code>cargo new</code>で新しいプロジェクトを作りましょう。プロジェクトを<code>minigrep</code>と名付けて、
 既に自分のシステムに存在するかもしれない<code>grep</code>ツールと区別しましょう。</p>
-<pre><code class="language-text">$ cargo new --bin minigrep
-     Created binary (application) `minigrep` project
-$ cd minigrep
-</code></pre>
 <!-- The first task is to make `minigrep` accept its two command line arguments: the -->
 <!-- filename and a string to search for. That is, we want to be able to run our -->
 <!-- program with `cargo run`, a string to search for, and a path to a file to -->
@@ -17343,6 +17335,7 @@ How dreary to be somebody!
 <!-- Next, we’ll explore some Rust features that were influenced by functional -->
 <!-- languages: closures and iterators. -->
 <p>次は、関数型言語に影響されたRust機能を一部探求します: クロージャとイテレータです。</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <!-- # Functional Language Features: Iterators and Closures -->
 <a class="header" href="print.html#a関数型言語の機能-イテレータとクロージャ" id="a関数型言語の機能-イテレータとクロージャ"><h1>関数型言語の機能: イテレータとクロージャ</h1></a>
 <!-- Rust’s design has taken inspiration from many existing languages and -->
@@ -17377,7 +17370,30 @@ How dreary to be somebody!
 <!-- code, so we’ll devote this entire chapter to them. -->
 <p>パターンマッチングやenumなど、他のRustの機能も関数型に影響されていますが、他の章で講義します。
 クロージャとイテレータをマスターすることは、慣用的で速いRustコードを書く重要な部分なので、
-この章を丸ごと捧げます。</p>
+この章を丸ごと捧げます。
+=======</p>
+<a class="header" href="print.html#functional-language-features-iterators-and-closures" id="functional-language-features-iterators-and-closures"><h1>Functional Language Features: Iterators and Closures</h1></a>
+<p>The second edition of the book is no longer distributed with Rust's documentation.</p>
+<p>If you came here via a link or web search, you may want to check out <a href="../index.html">the current
+version of the book</a> instead.</p>
+<p>If you have an internet connection, you can <a href="https://doc.rust-lang.org/1.30.0/book/second-edition/ch13-00-functional-features.html">find a copy distributed with
+Rust
+1.30</a>.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>fork_master_master</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 <!-- ## Closures: Anonymous Functions that Can Capture Their Environment -->
 <a class="header" href="print.html#aクロージャ-環境をキャプチャできる匿名関数" id="aクロージャ-環境をキャプチャできる匿名関数"><h2>クロージャ: 環境をキャプチャできる匿名関数</h2></a>
 <!-- Rust’s closures are anonymous functions you can save in a variable or pass as -->
@@ -19313,6 +19329,7 @@ for i in 12..buffer.len() {
 <!-- world. -->
 <p>今や入出力プロジェクトの表現力を改善したので、プロジェクトを世界と共有するのに役に立つ<code>cargo</code>の機能にもっと目を向けましょう。</p>
 <!-- # More About Cargo and Crates.io -->
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <a class="header" href="print.html#cargoとcratesioについてより詳しく" id="cargoとcratesioについてより詳しく"><h1>CargoとCrates.ioについてより詳しく</h1></a>
 <!-- So far we’ve used only the most basic features of Cargo to build, run, and test -->
 <!-- our code, but it can do a lot more. In this chapter, we’ll discuss some of its -->
@@ -19336,7 +19353,29 @@ for i in 12..buffer.len() {
 <!-- explanation of all its features, see [its -->
 <!-- documentation](https://doc.rust-lang.org/cargo/). -->
 <p>また、Cargoはこの章で講義する以上のこともできるので、機能の全解説を見るには、
-<a href="https://doc.rust-lang.org/cargo/">ドキュメンテーション</a>を参照されたし。</p>
+<a href="https://doc.rust-lang.org/cargo/">ドキュメンテーション</a>を参照されたし。
+=======
+The second edition of the book is no longer distributed with Rust's documentation.</p>
+<p>If you came here via a link or web search, you may want to check out <a href="../index.html">the current
+version of the book</a> instead.</p>
+<p>If you have an internet connection, you can <a href="https://doc.rust-lang.org/1.30.0/book/second-edition/ch14-00-more-about-cargo.html">find a copy distributed with
+Rust
+1.30</a>.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>fork_master_master</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 <!-- ## Customizing Builds with Release Profiles -->
 <a class="header" href="print.html#aリリースプロファイルでビルドをカスタマイズする" id="aリリースプロファイルでビルドをカスタマイズする"><h2>リリースプロファイルでビルドをカスタマイズする</h2></a>
 <!-- In Rust, *release profiles* are predefined and customizable profiles with -->
@@ -20035,7 +20074,6 @@ Cargoはクレートバージョンの<em>取り下げ</em>をサポートして
 <p>第12章で、バイナリクレートとライブラリクレートを含むパッケージを構築しました。プロジェクトの開発が進むにつれて、
 ライブラリクレートの肥大化が続き、さらに複数のライブラリクレートにパッケージを分割したくなることでしょう。
 この場面において、Cargoは<em>ワークスペース</em>という協調して開発された関連のある複数のパッケージを管理するのに役立つ機能を提供しています。</p>
-<a class="header" href="print.html#creating-a-workspace" id="creating-a-workspace"><h3>Creating a Workspace</h3></a>
 <a class="header" href="print.html#aワークスペースを生成する" id="aワークスペースを生成する"><h3>ワークスペースを生成する</h3></a>
 <!-- A *workspace* is a set of packages that share the same *Cargo.lock* and output -->
 <!-- directory. Let’s make a project using a workspace-we'll use trivial code so we -->
@@ -20880,6 +20918,7 @@ fn main() {
 これら2つのトレイトをより詳しく探求しましょう。これら2つのトレイトは、
 この章の残りで議論する他のスマートポインタ型で提供される機能にとってさらに重要でしょう。</p>
 <!-- ## Treating Smart Pointers Like Regular References with the `Deref` Trait -->
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <a class="header" href="print.html#derefトレイトでスマートポインタを普通の参照のように扱う" id="derefトレイトでスマートポインタを普通の参照のように扱う"><h2><code>Deref</code>トレイトでスマートポインタを普通の参照のように扱う</h2></a>
 <!-- Implementing the `Deref` trait allows you to customize the behavior of the -->
 <!-- *dereference operator*, `*` (as opposed to the multiplication or glob -->
@@ -21308,7 +21347,29 @@ fn main() {
 その可変参照がそのデータへの唯一の参照に違いありません(でなければ、プログラムはコンパイルできません)。
 1つの可変参照を1つの不変参照に変換することは、借用ルールを絶対に破壊しません。
 不変参照を可変参照にするには、そのデータへの不変参照がたった1つしかないことが必要ですが、
-借用ルールはそれを保証してくれません。故に、不変参照を可変参照に変換することが可能であるという前提を敷けません。</p>
+借用ルールはそれを保証してくれません。故に、不変参照を可変参照に変換することが可能であるという前提を敷けません。
+=======
+The second edition of the book is no longer distributed with Rust's documentation.</p>
+<p>If you came here via a link or web search, you may want to check out <a href="../index.html">the current
+version of the book</a> instead.</p>
+<p>If you have an internet connection, you can <a href="https://doc.rust-lang.org/1.30.0/book/second-edition/ch15-02-deref.html">find a copy distributed with
+Rust
+1.30</a>.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>fork_master_master</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 <!-- ## Running Code on Cleanup with the `Drop` Trait -->
 <a class="header" href="print.html#dropトレイトで片付け時にコードを走らせる" id="dropトレイトで片付け時にコードを走らせる"><h2><code>Drop</code>トレイトで片付け時にコードを走らせる</h2></a>
 <!-- The second trait important to the smart pointer pattern is `Drop`, which lets -->
@@ -22991,7 +23052,7 @@ Rustのこの方向性を<em>恐れるな！並行性</em>とニックネーム�
 <blockquote>
 <p>注釈: 簡潔性のため、並行または並列と述べることで正確を期するのではなく、
 多くの問題を<em>並行</em>と割り切ってしまいます。この本がもし<em>並行性あるいは並列性</em>に関した本ならば、
-詳述していたでしょう。この章に対しては、<em>非同期</em>を使ったら、
+詳述していたでしょう。この章に対しては、<em>並行</em>を使ったら、
 脳内で<em>並行性または並列性</em>と置き換えてください。</p>
 </blockquote>
 <!-- Many languages are dogmatic about the solutions they offer for handling -->
@@ -23892,11 +23953,11 @@ Got: you
 <!-- concurrency. -->
 <p>チャンネルの動作方法を見たので、他の非同期処理に目を向けましょう。</p>
 <!-- ## Shared-State Concurrency -->
-<a class="header" href="print.html#a状態共有非同期処理" id="a状態共有非同期処理"><h2>状態共有非同期処理</h2></a>
+<a class="header" href="print.html#a状態共有並行性" id="a状態共有並行性"><h2>状態共有並行性</h2></a>
 <!-- Message passing is a fine way of handling concurrency, but it’s not the only -->
 <!-- one. Consider this part of the slogan from the Go language documentation again: -->
 <!-- “communicate by sharing memory.” -->
-<p>メッセージ受け渡しは、非同期処理を扱う素晴らしい方法ですが、唯一の方法ではありません。
+<p>メッセージ受け渡しは、並行性を扱う素晴らしい方法ですが、唯一の方法ではありません。
 Go言語ドキュメンテーションのスローガンのこの部分を再び考えてください:
 「メモリを共有することでやり取りする。」</p>
 <!-- What would communicating by sharing memory look like? In addition, why would -->
@@ -23914,11 +23975,11 @@ Go言語ドキュメンテーションのスローガンのこの部分を再び
 <!-- for shared memory. -->
 <p>ある意味では、どんなプログラミング言語のチャンネルも単独の所有権に類似しています。
 一旦チャンネルに値を転送したら、その値は最早使用することがないからです。
-メモリ共有非同期処理は、複数の所有権に似ています: 複数のスレッドが同時に同じメモリ位置にアクセスできるのです。
+メモリ共有並行性は、複数の所有権に似ています: 複数のスレッドが同時に同じメモリ位置にアクセスできるのです。
 第15章でスマートポインタが複数の所有権を可能にするのを目の当たりにしたように、
 異なる所有者を管理する必要があるので、複数の所有権は複雑度を増させます。
 Rustの型システムと所有権ルールにより、この管理を正当に行う大きな助けになります。
-例を挙げれば、メモリ共有を行うより一般的な非同期処理の基本型の一つであるミューテックスを見ましょう。</p>
+例を挙げれば、メモリ共有を行うより一般的な並行性の基本型の一つであるミューテックスを見ましょう。</p>
 <!-- ### Using Mutexes to Allow Access to Data from One Thread at a Time -->
 <a class="header" href="print.html#aミューテックスを使用して一度に1つのスレッドからデータにアクセスすることを許可する" id="aミューテックスを使用して一度に1つのスレッドからデータにアクセスすることを許可する"><h3>ミューテックスを使用して一度に1つのスレッドからデータにアクセスすることを許可する</h3></a>
 <!-- 1行目、as in,が肝だが、inの後は普通名詞に相当するものが来るはずだが、文になっている -->
@@ -24784,6 +24845,7 @@ Rustコードを共有でき、これは、リスト10-14で<code>Summary</code>
 <!-- of inheritance. Let’s look at how trait objects enable polymorphism in Rust. -->
 <p>これらの理由により、継承ではなくトレイトオブジェクトを使用してRustは異なるアプローチを取っています。
 Rustにおいて、トレイトオブジェクトがどう多相性を可能にするかを見ましょう。</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <!-- ## Using Trait Objects that Allow for Values of Different Types -->
 <a class="header" href="print.html#aトレイトオブジェクトで異なる型の値を許可する" id="aトレイトオブジェクトで異なる型の値を許可する"><h2>トレイトオブジェクトで異なる型の値を許可する</h2></a>
 <!-- In Chapter 8, we mentioned that one limitation of vectors is that they can -->
@@ -25301,6 +25363,29 @@ made into an object
 <!-- you’re interested in more details on object safety, see [Rust RFC 255]. -->
 <p>このエラーは、このようにこのトレイトをトレイトオブジェクトとして使用することはできないことを意味しています。
 オブジェクト安全性についてより詳しく興味があるのなら、<a href="https://github.com/rust-lang/rfcs/blob/master/text/0255-object-safety.md">Rust RFC 255</a>を参照されたし。</p>
+<p>=======</p>
+<a class="header" href="print.html#using-trait-objects-that-allow-for-values-of-different-types" id="using-trait-objects-that-allow-for-values-of-different-types"><h2>Using Trait Objects that Allow for Values of Different Types</h2></a>
+<p>The second edition of the book is no longer distributed with Rust's documentation.</p>
+<p>If you came here via a link or web search, you may want to check out <a href="../index.html">the current
+version of the book</a> instead.</p>
+<p>If you have an internet connection, you can <a href="https://doc.rust-lang.org/1.30.0/book/second-edition/ch17-02-trait-objects.html">find a copy distributed with
+Rust
+1.30</a>.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>fork_master_master</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 <!-- ## Implementing an Object-Oriented Design Pattern -->
 <a class="header" href="print.html#aオブジェクト指向デザインパターンを実装する" id="aオブジェクト指向デザインパターンを実装する"><h2>オブジェクト指向デザインパターンを実装する</h2></a>
 <!-- The *state pattern* is an object-oriented design pattern. The crux of the -->
@@ -28478,7 +28563,7 @@ unsafe impl Foo for i32 {
 <li>トレイトオブジェクトのライフタイムの推論: コンパイラにトレイトオブジェクトのライフタイムを推論させることと指定する必要があるタイミング</li>
 </ul>
 <!-- ### Ensuring One Lifetime Outlives Another with Lifetime Subtyping -->
-<a class="header" href="print.html#aライフタイムサブタイピングによりあるライフタイムが他よりも長生きすることを保証する" id="aライフタイムサブタイピングによりあるライフタイムが他よりも長生きすることを保証する"><h3>ライフタイム・サブタイピングによりあるライフタイムが他よりも長生きすることを保証する</h3></a>
+<a class="header" href="print.html#aライフタイムサブタイピングによりあるライフタイムが他よりも長生きすることを保証する" id="aライフタイムサブタイピングによりあるライフタイムが他よりも長生きすることを保証する"><h3>ライフタイム・サブタイピングにより、あるライフタイムが他よりも長生きすることを保証する</h3></a>
 <!-- *Lifetime subtyping* specifies that one lifetime should outlive another -->
 <!-- lifetime. To explore lifetime subtyping, imagine we want to write a parser. -->
 <!-- We’ll use a structure called `Context` that holds a reference to the string -->
@@ -34353,25 +34438,8 @@ hello_macro_derive = { path = &quot;../hello_macro/hello_macro_derive&quot; }
 <a class="header" href="print.html#a付録e-本の翻訳" id="a付録e-本の翻訳"><h2>付録E: 本の翻訳</h2></a>
 <!-- For resources in languages other than English. Most are still in progress; see -->
 <!-- [the Translations label][label] to help or let us know about a new translation! -->
-<p>英語以外の言語のリソースです。ほとんどは翻訳中です; <a href="https://github.com/rust-lang/book/issues?q=is%3Aopen+is%3Aissue+label%3ATranslations">Translationsラベル</a>を確認して、
+<p>英語以外の言語のリソースです。ほとんどは翻訳中です; [Translationsラベル][label]を確認して、
 新しい翻訳の手助けや開始したことをお知らせください！</p>
-<ul>
-<li><a href="https://github.com/rust-br/rust-book-pt-br">Português</a> (BR)</li>
-<li><a href="https://github.com/nunojesus/rust-book-pt-pt">Português</a> (PT)</li>
-<li><a href="https://github.com/hngnaig/rust-lang-book/tree/vi-VN">Tiếng việt</a></li>
-<li><a href="http://www.broadview.com.cn/article/144">简体中文</a>, <a href="https://github.com/KaiserY/trpl-zh-cn">alternate</a></li>
-<li><a href="https://github.com/pavloslav/rust-book-uk-ua">Українська</a></li>
-<li><a href="https://github.com/thecodix/book">Español</a></li>
-<li><a href="https://github.com/AgeOfWar/rust-book-it">Italiano</a></li>
-<li><a href="https://github.com/iDeBugger/rust-book-ru">Русский</a></li>
-<li><a href="https://github.com/rinthel/rust-lang-book-ko">한국어</a></li>
-<li><a href="https://github.com/hazama-yuinyan/book">日本語</a></li>
-<li><a href="https://github.com/quadrifoglio/rust-book-fr">Français</a></li>
-<li><a href="https://github.com/paytchoo/book-pl">Polski</a></li>
-<li><a href="https://github.com/idanmel/rust-book-heb">עברית</a></li>
-<li><a href="https://github.com/agentzero1/book">Cebuano</a></li>
-<li><a href="https://github.com/josephace135/book">Tagalog</a></li>
-</ul>
 <!-- # Appendix F - Newest Features -->
 <a class="header" href="print.html#a付録f-最新の機能" id="a付録f-最新の機能"><h1>付録F: 最新の機能</h1></a>
 <!-- This appendix documents features that have been added to stable Rust since the -->
