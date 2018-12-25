@@ -147,7 +147,7 @@
 <!-- Rust and Cargo have features that help make your published package easier for -->
 <!-- people to use and to find in the first place. We’ll talk about some of these -->
 <!-- features next and then explain how to publish a package. -->
-<p>RustとCargoは、公開したパッケージを人が使用し、まず見つけやすくしてくれる機能を有しています。
+<p>RustとCargoは、公開したパッケージを人が使用し、そもそも見つけやすくしてくれる機能を有しています。
 これらの機能の一部を次に語り、そして、パッケージの公開方法を説明します。</p>
 <!-- ### Making Useful Documentation Comments -->
 <a class="header" href="ch14-02-publishing-to-crates-io.html#a役に立つドキュメンテーションコメントを行う" id="a役に立つドキュメンテーションコメントを行う"><h3>役に立つドキュメンテーションコメントを行う</h3></a>
@@ -160,21 +160,20 @@
 <!-- for programmers interested in knowing how to *use* your crate as opposed to how -->
 <!-- your crate is *implemented*. -->
 <p>パッケージを正確にドキュメントすることで、他のユーザがパッケージを使用する方法や、いつ使用すべきかを理解する手助けをすることになるので、
-ドキュメンテーションを書くことに時間を費やす価値があります。第3章で、2スラッシュ、<code>//</code>でRustのコードにコメントをつける方法を議論しました。
-Rustには、ドキュメンテーション用のコメントも用意されていて、都合のいいことに<em>ドキュメンテーションコメント</em>として知られ、
+ドキュメンテーションを書くことに時間を費やす価値があります。第3章で、2連スラッシュ、<code>//</code>でRustのコードにコメントをつける方法を議論しました。
+Rustには、ドキュメンテーション用のコメントも用意されていて、便利なことに<em>ドキュメンテーションコメント</em>として知られ、
 HTMLドキュメントを生成します。クレートの<em>実装</em>法とは対照的にクレートの<em>使用</em>法を知ることに興味のあるプログラマ向けの、
 公開API用のドキュメンテーションコメントの中身をこのHTMLは表示します。</p>
 <!-- Documentation comments use three slashes, `///`, instead of two and support -->
 <!-- Markdown notation for formatting the text. Place documentation comments just -->
 <!-- before the item they’re documenting. Listing 14-1 shows documentation comments -->
 <!-- for an `add_one` function in a crate named `my_crate`: -->
-<p>ドキュメンテーションコメントは、2つではなく、3スラッシュ、<code>///</code>を使用し、テキストを整形するMarkdown記法もサポートしています。
+<p>ドキュメンテーションコメントは、2つではなく、3連スラッシュ、<code>///</code>を使用し、テキストを整形するMarkdown記法もサポートしています。
 ドキュメント対象の要素の直前にドキュメンテーションコメントを配置してください。
 リスト14-1は、<code>my_crate</code>という名のクレートの<code>add_one</code>関数用のドキュメンテーションコメントを示しています:</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
 <pre><code class="language-rust ignore">/// Adds one to the number given.
-///
 /// 与えられた数値に1を足す。
 ///
 /// # Examples
@@ -343,8 +342,8 @@ docテストが、例とコードがお互いに同期されていないこと�
 <!-- `my_crate::UsefulType;`. -->
 <p>第7章において、<code>mod</code>キーワードを使用してモジュールにコードを体系化する方法、<code>pub</code>キーワードで要素を公開にする方法、
 <code>use</code>キーワードで要素をスコープに導入する方法について講義しました。しかしながら、クレートの開発中に、
-自分にとって意味のある構造は、ユーザにはあまり便利ではない可能性があります。複数階層を含むヒエラルキーで、
-自分の構造体を体系化したくなるかもしれませんが、それからヒエラルキーの深いところで定義した型を使用したい人は、
+自分にとって意味のある構造は、ユーザにはあまり便利ではない可能性があります。複数階層を含む階層で、
+自分の構造体を体系化したくなるかもしれませんが、それから階層の深いところで定義した型を使用したい人は、
 型が存在することを見つけ出すのに困難を伴う可能性もあります。また、そのような人は、
 <code>use my_crate::UsefulType</code>の代わりに<code>use my_crate::some_module::another_module::UsefulType;</code>と入力するのを煩わしく感じる可能性もあります。</p>
 <!-- The structure of your public API is a major consideration when publishing a -->
@@ -357,7 +356,7 @@ docテストが、例とコードがお互いに同期されていないこと�
 <!-- from another library, you don’t have to rearrange your internal organization: -->
 <!-- instead, you can re-export items to make a public structure that’s different -->
 <!-- than your private structure by using `pub use`. Re-exporting takes a public -->
-<!-- item in one location and makes it public in another location, as if it ware -->
+<!-- item in one location and makes it public in another location, as if it were -->
 <!-- defined in the other location instead. -->
 <p>嬉しいお知らせは、構造が他人が他のライブラリから使用するのに便利では<em>ない</em>場合、内部的な体系を再構築する必要はないということです:
 代わりに、要素を再エクスポートし、<code>pub use</code>で自分の非公開構造とは異なる公開構造にできます。
@@ -367,7 +366,7 @@ docテストが、例とコードがお互いに同期されていないこと�
 <!-- named `PrimaryColor` and `SecondaryColor` and a `utils` module containing a -->
 <!-- function named `mix`, as shown in Listing 14-3: -->
 <p>例えば、芸術的な概念をモデル化するために<code>art</code>という名のライブラリを作ったとしましょう。
-このライブラリ内には、2つのモジュールがあります: <code>PrimaryColor</code>と<code>SecondaryColor</code>という名前の2つのeunmを含む、
+このライブラリ内には、2つのモジュールがあります: <code>PrimaryColor</code>と<code>SecondaryColor</code>という名前の2つのenumを含む、
 <code>kinds</code>モジュールと<code>mix</code>という関数を含む<code>utils</code>モジュールです。リスト14-3のようにですね:</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
@@ -421,7 +420,7 @@ pub mod utils {
 <!-- Note that the `PrimaryColor` and `SecondaryColor` types aren’t listed on the -->
 <!-- front page, nor is the `mix` function. We have to click `kinds` and `utils` to -->
 <!-- see them. -->
-<p><code>PrimaryColor</code>も<code>SecondaryColor</code>型も、<code>mix</code>関数もトップページには列挙されていないことに注意してください。
+<p><code>PrimaryColor</code>型も<code>SecondaryColor</code>型も、<code>mix</code>関数もトップページには列挙されていないことに注意してください。
 <code>kinds</code>と<code>utils</code>をクリックしなければ、参照することができません。</p>
 <!-- Another crate that depends on this library would need `use` statements that -->
 <!-- import the items from `art`, specifying the module structure that’s currently -->
@@ -445,7 +444,7 @@ fn main() {
 </code></pre>
 <!-- <span class="caption">Listing 14-4: A crate using the `art` crate’s items with -->
 <!-- its internal structure exported</span> -->
-<p><span class="caption">リスト14-4: 内部構造もエクスポートされて<code>art</code>クレートの要素を使用するクレート</span></p>
+<p><span class="caption">リスト14-4: 内部構造がエクスポートされて<code>art</code>クレートの要素を使用するクレート</span></p>
 <!-- The author of the code in Listing 14-4, which uses the `art` crate, had to -->
 <!-- figure out that `PrimaryColor` is in the `kinds` module and `mix` is in the -->
 <!-- `utils` module. The module structure of the `art` crate is more relevant to -->
@@ -493,7 +492,7 @@ pub mod utils {
 <!-- and link re-exports on the front page, as shown in Figure 14-4, making the -->
 <!-- `PrimaryColor` and `SecondaryColor` types and the `mix` function easier to find. -->
 <p>このクレートに対して<code>cargo doc</code>が生成するAPIドキュメンテーションは、これで図14-4のようにトップページに再エクスポートを列挙しリンクするので、
-<code>PrimaryColor</code>と<code>SecondaryColor</code>型と<code>mix</code>関数を見つけやすくします。</p>
+<code>PrimaryColor</code>型と<code>SecondaryColor</code>型と<code>mix</code>関数を見つけやすくします。</p>
 <!-- <img alt="Rendered documentation for the `art` crate with the re-exports on the front page" src="img/trpl14-04.png" class="center" /> -->
 <p><img alt="トップページに再エクスポートのある`art`クレートの描画されたドキュメンテーション" src="img/trpl14-04.png" class="center" /></p>
 <!-- <span class="caption">Figure 14-4: The front page of the documentation for `art` -->
@@ -557,7 +556,7 @@ APIキーを取り扱ってください。そして、<code>cargo login</code>�
 <!-- with anyone else. If you do share it with anyone for any reason, you should -->
 <!-- revoke it and generate a new token on [crates.io](https://crates.io)-->
 <p>このコマンドは、CargoにAPIトークンを知らせ、<em>~/.cargo/credentials</em>にローカルに保存します。
-このトークンは、<em>秘密</em>です: 他人とは共有しないでください。なんらかの理由で他人と共有してしまったら、
+このトークンは、<em>秘密</em>です: 他人とは共有しないでください。なんらかの理由で他人と実際に共有してしまったら、
 古いものを破棄して<a href="https://crates.io">crates.io</a>で新しいトークンを生成するべきです。</p>
 <!-- ### Adding Metadata to a New Crate -->
 <a class="header" href="ch14-02-publishing-to-crates-io.html#a新しいクレートにメタデータを追加する" id="a新しいクレートにメタデータを追加する"><h3>新しいクレートにメタデータを追加する</h3></a>
@@ -592,7 +591,7 @@ name = &quot;guessing_game&quot;
 warning: manifest has no description, license, license-file, documentation,
 homepage or repository.
 (警告: マニフェストに説明、ライセンス、ライセンスファイル、ドキュメンテーション、ホームページ、
-リポジトリのいずれかがありません)
+リポジトリがありません)
 --snip--
 error: api errors: missing or empty metadata fields: description, license.
 (エラー: APIエラー: 存在しないメタデータフィールド: description, license)
@@ -602,7 +601,7 @@ error: api errors: missing or empty metadata fields: description, license.
 <!-- terms they can use it. To rectify this error, you need to include this -->
 <!-- information in the *Cargo.toml* file. -->
 <p>原因は、大事な情報を一部入れていないからです: 説明とライセンスは、
-他の人が自分のクレートは何をし、どんな条件の元で使っていいのかを知るために必要なのです。
+他の人があなたのクレートは何をし、どんな条件の元で使っていいのかを知るために必要なのです。
 このエラーを解消するには、<em>Cargo.toml</em>ファイルにこの情報を入れ込む必要があります。</p>
 <!-- Add a description that is just a sentence or two, because it will appear with -->
 <!-- your crate in search results. For the `license` field, you need to give a -->
@@ -633,7 +632,7 @@ license = &quot;MIT&quot;
 <!-- same way as Rust by using a dual license of `MIT OR Apache-2.0`. This practice -->
 <!-- demonstrates that you can also specify multiple license identifiers separated -->
 <!-- by `OR` to have multiple licenses for your project. -->
-<p>どのライセンスが自分のプロジェクトに<ruby>相<rp>(</rp><rt>ふ</rt><rp>)</rp>応<rp>(</rp><rt>さわ</rt><rp>)</rp></ruby>しいというガイドは、
+<p>どのライセンスが自分のプロジェクトに<ruby>相<rp>(</rp><rt>ふ</rt><rp>)</rp>応<rp>(</rp><rt>さわ</rt><rp>)</rp></ruby>しいかというガイドは、
 この本の範疇を超えています。Rustコミュニティの多くの人間は、<code>MIT OR Apache-2.0</code>のデュアルライセンスを使用することで、
 Rust自体と同じようにプロジェクトをライセンスします。この実践は、<code>OR</code>で区切られる複数のライセンス識別子を指定して、
 プロジェクトに複数のライセンスを持たせることもできることを模擬しています。</p>
@@ -658,7 +657,7 @@ license = &quot;MIT OR Apache-2.0&quot;
 <!-- metadata you can specify to ensure others can discover and use your crate more -->
 <!-- easily. -->
 <p><a href="https://doc.rust-lang.org/cargo">Cargoのドキュメンテーション</a>には、
-指定して他人が発見しより容易くクレートを使用できることを保証する他のメタデータが解説されています。</p>
+指定して他人が発見し、より容易くクレートを使用できることを保証する他のメタデータが解説されています。</p>
 <!-- ### Publishing to Crates.io -->
 <a class="header" href="ch14-02-publishing-to-crates-io.html#cratesioに公開する" id="cratesioに公開する"><h3>Crates.ioに公開する</h3></a>
 <!-- Now that you’ve created an account, saved your API token, chosen a name for -->
@@ -693,7 +692,7 @@ Uploading guessing_game v0.1.0 (file:///projects/guessing_game)
 </code></pre>
 <!-- Congratulations! You’ve now shared your code with the Rust community, and -->
 <!-- anyone can easily add your crate as a dependency of their project. -->
-<p>おめでとうございます！Rustコミュニティとコードを共有し、誰でも自分のクレートを依存として簡単に追加できます。</p>
+<p>おめでとうございます！Rustコミュニティとコードを共有し、誰でもあなたのクレートを依存として簡単に追加できます。</p>
 <!-- ### Publishing a New Version of an Existing Crate -->
 <a class="header" href="ch14-02-publishing-to-crates-io.html#a既存のクレートの新バージョンを公開する" id="a既存のクレートの新バージョンを公開する"><h3>既存のクレートの新バージョンを公開する</h3></a>
 <!-- When you’ve made changes to your crate and are ready to release a new version, -->

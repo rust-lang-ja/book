@@ -141,7 +141,7 @@
 <!-- for error messages. This distinction enables users to choose to direct the -->
 <!-- successful output of a program to a file but still print error messages to the -->
 <!-- screen. -->
-<p>現時点では、すべての出力を<code>println!</code>関数を使用してターミナルに書き込んでいます。多くのターミナルは、
+<p>現時点では、すべての出力を<code>println!</code>関数を使用して端末に書き込んでいます。多くの端末は、
 2種類の出力を提供します: 普通の情報用の<em>標準出力</em>(<code>stdout</code>)とエラーメッセージ用の<em>標準エラー出力</em>(<code>stderr</code>)です。
 この差異のおかげで、ユーザは、エラーメッセージを画面に表示しつつ、
 プログラムの成功した出力をファイルにリダイレクトすることを選択できます。</p>
@@ -172,7 +172,7 @@
 <!-- filename, *output.txt*, that we want to redirect the standard output stream to. -->
 <!-- We won’t pass any arguments, which should cause an error: -->
 <p>この動作をデモする方法は、<code>&gt;</code>と標準出力ストリームをリダイレクトする先のファイル名、<em>output.txt</em>でプログラムを走らせることによります。
-引数は何も渡しませんが、そうするとエラーが起きるはずです:</p>
+引数は何も渡さず、そうするとエラーが起きるはずです:</p>
 <pre><code class="language-text">$ cargo run &gt; output.txt
 </code></pre>
 <!-- The `>` syntax tells the shell to write the contents of standard output to -->
@@ -233,7 +233,7 @@ Problem parsing arguments: not enough arguments
 <p>これで、エラーは画面に見えつつ、<em>output.txt</em>は何も含まなくなり、これはコマンドラインプログラムに期待する動作です。</p>
 <!-- Let’s run the program again with arguments that don’t cause an error but still -->
 <!-- redirect standard output to a file, like so: -->
-<p>再度、エラーは起こさずに標準出力をファイルにリダイレクトする引数でプログラムを走らせましょう。以下のようにですね:</p>
+<p>再度、標準出力をファイルにリダイレクトしてエラーは起こさない引数でプログラムを走らせましょう。以下のようにですね:</p>
 <pre><code class="language-text">$ cargo run to poem.txt &gt; output.txt
 </code></pre>
 <!-- We won’t see any output to the terminal, and *output.txt* will contain our -->
@@ -246,7 +246,7 @@ How dreary to be somebody!
 </code></pre>
 <!-- This demonstrates that we’re now using standard output for successful output -->
 <!-- and standard error for error output as appropriate. -->
-<p>これは、今や成功した出力には標準出力を、エラー出力には標準エラーを適切に使用していることをデモしています。</p>
+<p>これは、もう成功した出力には標準出力を、エラー出力には標準エラーを適切に使用していることをデモしています。</p>
 <!-- ## Summary -->
 <a class="header" href="ch12-06-writing-to-stderr-instead-of-stdout.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- This chapter recapped some of the major concepts you’ve learned so far and -->
@@ -255,7 +255,7 @@ How dreary to be somebody!
 <!-- errors, you’re now prepared to write command line applications. By using the -->
 <!-- concepts in previous chapters, your code will be well organized, store data -->
 <!-- effectively in the appropriate data structures, handle errors nicely, and be -->
-<!-- be well tested. -->
+<!-- well tested. -->
 <p>この章では、ここまでに学んできた主要な概念の一部を想起させ、Rustで入出力処理を行う方法を講義しました。
 コマンドライン引数、ファイル、環境変数、そしてエラー出力に<code>eprintln!</code>マクロを使用することで、
 もう、コマンドラインアプリケーションを書く準備ができています。以前の章の概念を使用することで、

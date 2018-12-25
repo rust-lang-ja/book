@@ -245,7 +245,7 @@ Dropping CustomSmartPointer with data `my stuff`!
 一例は、ロックを管理するスマートポインタを使用する時です: 同じスコープの他のコードがロックを獲得できるように、
 ロックを解放する<code>drop</code>メソッドを強制的に走らせたくなる可能性があります。Rustは、
 <code>Drop</code>トレイトの<code>drop</code>メソッドを手動で呼ばせてくれません; スコープが終わる前に値を強制的にドロップさせたいなら、
-標準ライブラリが提供する<code>std::mem:drop</code>関数を呼ばなければなりません。</p>
+代わりに標準ライブラリが提供する<code>std::mem:drop</code>関数を呼ばなければなりません。</p>
 <!-- If we try to call the `Drop` trait's `drop` method manually by modifying the -->
 <!-- `main` function in Listing 15-14, as shown in Listing 15-15, we'll get a -->
 <!-- compiler error: -->
@@ -300,7 +300,7 @@ Dropping CustomSmartPointer with data `my stuff`!
 <!-- 15-15 to call the `drop` function, as shown in Listing 15-16: -->
 <p><code>std::mem::drop</code>関数は、<code>Drop</code>トレイトの<code>drop</code>メソッドとは異なります。
 早期に強制的にドロップさせたい値を引数で渡すことで呼びます。この関数は初期化処理に含まれているので、
-リスト15-14の<code>main</code>を変更して<code>drop</code>関数を呼び出せます。リスト15-16のようにですね:</p>
+リスト15-15の<code>main</code>を変更して<code>drop</code>関数を呼び出せます。リスト15-16のようにですね:</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust"># struct CustomSmartPointer {
@@ -335,7 +335,7 @@ CustomSmartPointer dropped before the end of main.
 <!-- before the end of main.` text, showing that the `drop` method code is called to -->
 <!-- drop `c` at that point. -->
 <p><code>Dropping CustomSmartPointer with data `some data`!</code>というテキストが、
-<code>CustomSmartPointer created.</code>と<code>CustomSmartPointer dropped before the end of main</code>テキストの間に出力されるので、
+<code>CustomSmartPointer created.</code>と<code>CustomSmartPointer dropped before the end of main.</code>テキストの間に出力されるので、
 <code>drop</code>メソッドのコードがその時点で呼び出されて<code>c</code>をドロップしたことを示しています。</p>
 <!-- 3行目のwithを...があれば、と訳している。多分辞書にも載っている -->
 <!-- You can use code specified in a `Drop` trait implementation in many ways to -->
@@ -343,13 +343,13 @@ CustomSmartPointer dropped before the end of main.
 <!-- own memory allocator! With the `Drop` trait and Rust’s ownership system, you-->
 <!-- don't have to remember to clean up because Rust does it automatically. -->
 <p><code>Drop</code>トレイト実装で指定されたコードをいろんな方法で使用し、片付けを便利で安全にすることができます:
-例を挙げれば、これを使用して独自のメモリアロケータを作ることもできるでしょう。<code>Drop</code>トレイトとRustの所有権システムがあれば、
+例を挙げれば、これを使用して独自のメモリアロケータを作ることもできるでしょう！<code>Drop</code>トレイトとRustの所有権システムがあれば、
 コンパイラが自動的に行うので、片付けを覚えておく必要はなくなります。</p>
 <!-- You also don’t have to worry about problems resulting from accidentally -->
 <!-- cleaning up values still in use: the ownership system that makes sure -->
 <!-- references are always valid also ensures that `drop` gets called only once when -->
 <!-- the value is no longer being used. -->
-<p>まだ使用中の値を間違って片付けてしまうことに起因する問題を心配もしなくて済みます:
+<p>まだ使用中の値を間違って片付けてしまうことに起因する問題を心配する必要もなくて済みます:
 参照が常に有効であると確認してくれる所有権システムが、値が最早使用されなくなった時に<code>drop</code>が1回だけ呼ばれることを保証してくれるのです。</p>
 <!-- Now that we’ve examined `Box<T>` and some of the characteristics of smart -->
 <!-- pointers, let’s look at a few other smart pointers defined in the standard -->

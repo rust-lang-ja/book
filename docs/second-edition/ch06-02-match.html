@@ -187,7 +187,7 @@ fn value_in_cents(coin: Coin) -&gt; u32 {
 <!-- `coin`. This seems very similar to an expression used with `if`, but there’s a -->
 <!-- big difference: with `if`, the expression needs to return a Boolean value, but -->
 <!-- here, it can be any type. The type of `coin` in this example is the `Coin` enum -->
-<!-- that we defined on 1. -->
+<!-- that we defined on line 1. -->
 <p><code>value_in_cents</code>関数内の<code>match</code>を噛み砕きましょう。まず、<code>match</code>キーワードに続けて式を並べています。
 この式は今回の場合、値<code>coin</code>です。<code>if</code>で使用した式と非常に酷似しているみたいですね。しかし、大きな違いがあります:
 <code>if</code>では、式は論理値を返す必要がありますが、ここでは、どんな型でも構いません。この例における<code>coin</code>の型は、
@@ -298,9 +298,8 @@ enum Coin {
 <!-- While we sort our loose change by coin type, we’ll also call out the name of -->
 <!-- the state associated with each quarter so if it’s one our friend doesn’t have, -->
 <!-- they can add it to their collection. -->
-<!-- この段落は、言いたいことがよくわからない -->
-<p>友人の一人が50州全部のクォーターコインを収集しようとしているところを想像しましょう。コインの種類で並べ替えつつ、
-各クォーターに関連した州の名前を出力すると、友人が持っていない種類だったら、コレクションに追加することができます。</p>
+<p>友人の一人が50州全部のクォーターコインを収集しようとしているところを想像しましょう。コインの種類で小銭を並べ替えつつ、
+友人が持っていない種類だったら、コレクションに追加できるように、各クォーターに関連した州の名前を出力します。</p>
 <!-- In the match expression for this code, we add a variable called `state` to the -->
 <!-- pattern that matches values of the variant `Coin::Quarter`. When a -->
 <!-- `Coin::Quarter` matches, the `state` variable will bind to the value of that -->
@@ -399,7 +398,8 @@ let none = plus_one(None);
 <!-- `i` binds to the value contained in `Some`, so `i` takes the value `5`. The -->
 <!-- code in the match arm is then executed, so we add one to the value of `i` and -->
 <!-- create a new `Some` value with our total `6` inside. -->
-<p><code>Some(5)</code>は<code>Some(i)</code>にマッチしますか？えっと、します！列挙子が同じです。<code>i</code>は<code>Some</code>に含まれる値に束縛されるので、
+<!-- Why yesが怪しい -->
+<p><code>Some(5)</code>は<code>Some(i)</code>にマッチしますか？なんと、します！列挙子が同じです。<code>i</code>は<code>Some</code>に含まれる値に束縛されるので、
 <code>i</code>は値<code>5</code>になります。それから、このマッチのアームのコードが実行されるので、<code>i</code>の値に1を足し、
 合計の<code>6</code>を中身にした新しい<code>Some</code>値を生成します。</p>
 <!-- Now let’s consider the second call of `plus_one` in Listing 6-5, where `x` is -->
@@ -426,7 +426,7 @@ enumに対し<code>match</code>し、内部のデータに変数を束縛させ�
 <a class="header" href="ch06-02-match.html#aマッチは包括的" id="aマッチは包括的"><h3>マッチは包括的</h3></a>
 <!-- There’s one other aspect of `match` we need to discuss. Consider this version -->
 <!-- of our `plus_one` function that has a bug and won't compile: -->
-<p>もう一つ議論する必要のある<code>match</code>の観点があります。1点バグがありコンパイルできないこんなバージョンの<code>plus_one</code>関数を考えてください:</p>
+<p>もう一つ議論する必要のある<code>match</code>の観点があります。一点バグがありコンパイルできないこんなバージョンの<code>plus_one</code>関数を考えてください:</p>
 <pre><code class="language-rust ignore">fn plus_one(x: Option&lt;i32&gt;) -&gt; Option&lt;i32&gt; {
     match x {
         Some(i) =&gt; Some(i + 1),

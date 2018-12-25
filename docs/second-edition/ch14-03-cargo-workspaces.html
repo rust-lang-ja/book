@@ -142,8 +142,9 @@
 <!-- *workspaces* that can help manage multiple related packages that are developed -->
 <!-- in tandem. -->
 <p>第12章で、バイナリクレートとライブラリクレートを含むパッケージを構築しました。プロジェクトの開発が進むにつれて、
-ライブラリクレートの肥大化が続き、さらに複数のライブラリクレートにパッケージを分割したくなることでしょう。
+ライブラリクレートの肥大化が続き、その上で複数のライブラリクレートにパッケージを分割したくなることでしょう。
 この場面において、Cargoは<em>ワークスペース</em>という協調して開発された関連のある複数のパッケージを管理するのに役立つ機能を提供しています。</p>
+<!-- ### Creating a Workspace -->
 <a class="header" href="ch14-03-cargo-workspaces.html#aワークスペースを生成する" id="aワークスペースを生成する"><h3>ワークスペースを生成する</h3></a>
 <!-- A *workspace* is a set of packages that share the same *Cargo.lock* and output -->
 <!-- directory. Let’s make a project using a workspace-we'll use trivial code so we -->
@@ -165,7 +166,7 @@ $ cd add
 </code></pre>
 <!-- Next, in the *add* directory, we create the *Cargo.toml* file that will -->
 <!-- configure the entire workspace. This file won't have a `[package]` section or-->
-<!-- the metadata we’ve seen in other *Cargo.toml* files. Instead,  it will start -->
+<!-- the metadata we’ve seen in other *Cargo.toml* files. Instead, it will start -->
 <!-- with a `[workspace]` section that will allow us to add members to the workspace -->
 <!-- by specifying the path to our binary crate; in this case, that path is *adder*: -->
 <p>次に<em>add</em>ディレクトリにワークスペース全体を設定する<em>Cargo.toml</em>ファイルを作成します。
@@ -208,13 +209,13 @@ members = [
 <!-- recompile each of the other crates in the workspace to have the artifacts in -->
 <!-- its own *target* directory. By sharing one *target* directory, the crates can -->
 <!-- avoid unnecessary rebuilding. -->
-<p>ワークスペースには、コンパイルした生成物を置けるように最上位に<em>ターゲット</em>のディレクトリがあります;
-<code>adder</code>クレートには<em>ターゲット</em>ディレクトリはありません。
+<p>ワークスペースには、コンパイルした生成物を置けるように最上位に<em>target</em>のディレクトリがあります;
+<code>adder</code>クレートには<em>target</em>ディレクトリはありません。
 <em>adder</em>ディレクトリ内部から<code>cargo build</code>を走らせることになっていたとしても、コンパイルされる生成物は、
 <em>add/adder/target</em>ではなく、<em>add/target</em>に落ち着くでしょう。ワークスペースのクレートは、
-お互いに依存しあうことを意味するので、Cargoはワークスペースの<em>ターゲット</em>ディレクトリをこのように構成します。
-各クレートが<em>ターゲット</em>ディレクトリを持っていたら、各クレートがワークスペースの他のクレートを再コンパイルし、
-<em>ターゲット</em>ディレクトリに生成物がある状態にしなければならないでしょう。一つの<em>ターゲット</em>ディレクトリを共有することで、
+お互いに依存しあうことを意味するので、Cargoはワークスペースの<em>target</em>ディレクトリをこのように構成します。
+各クレートが<em>target</em>ディレクトリを持っていたら、各クレートがワークスペースの他のクレートを再コンパイルし、
+<em>target</em>ディレクトリに生成物がある状態にしなければならないでしょう。一つの<em>target</em>ディレクトリを共有することで、
 クレートは不必要な再ビルドを回避できるのです。</p>
 <!-- ### Creating the Second Crate in the Workspace -->
 <a class="header" href="ch14-03-cargo-workspaces.html#aワークスペース内に2番目のクレートを作成する" id="aワークスペース内に2番目のクレートを作成する"><h3>ワークスペース内に2番目のクレートを作成する</h3></a>
@@ -473,7 +474,6 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 <!-- This output shows `cargo test` only ran the tests for the `add-one` crate and -->
 <!-- didn’t run the `adder` crate tests. -->
 <p>この出力は、<code>cargo test</code>が<code>add-one</code>クレートのテストのみを実行し、<code>adder</code>クレートのテストは実行しなかったことを示しています。</p>
-<!-- FIXME: やはり、URLがイタリックにならない -->
 <!-- If you publish the crates in the workspace to *https://crates.io/*, each crate -->
 <!-- in the workspace will need to be published separately. The `cargo publish` -->
 <!-- command does not have an `--all` flag or a `-p` flag, so you must change to -->

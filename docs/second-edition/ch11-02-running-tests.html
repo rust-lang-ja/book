@@ -211,8 +211,8 @@
 <!-- line that indicates the test passed. If a test fails, we’ll see whatever was -->
 <!-- printed to standard output with the rest of the failure message. -->
 <p>標準では、テストが通ると、Rustのテストライブラリは標準出力に出力されたものを全てキャプチャします。例えば、
-テストで<code>println!</code>を呼び出してテストが通ると、<code>println!</code>の出力は、ターミナルに表示されません;
-テストが通ったことを示す行しか見れないでしょう。テストが失敗すれば、
+テストで<code>println!</code>を呼び出してテストが通ると、<code>println!</code>の出力は、端末に表示されません;
+テストが通ったことを示す行しか見られないでしょう。テストが失敗すれば、
 残りの失敗メッセージと共に、標準出力に出力されたものが全て見えるでしょう。</p>
 <!-- As an example, Listing 11-10 has a silly function that prints the value of its -->
 <!-- parameter and returns 10, as well as a test that passes and a test that fails. -->
@@ -308,7 +308,7 @@ test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 <p>テスト用の出力とテスト結果の出力がまぜこぜになっていることに注意してください;
 その理由は、前節で語ったようにテストが並行に実行されているからです。
 <code>-test-threads=1</code>オプションと<code>--nocapture</code>フラグを使ってみて、
-出力がどうなるか確かめてください！</p>
+その時、出力がどうなるか確かめてください！</p>
 <!-- ### Running a Subset of Tests by Name -->
 <a class="header" href="ch11-02-running-tests.html#a名前でテストの一部を実行する" id="a名前でテストの一部を実行する"><h3>名前でテストの一部を実行する</h3></a>
 <!-- Sometimes, running a full test suite can take a long time. If you’re working on -->
@@ -353,7 +353,7 @@ mod tests {
 #}</code></pre></pre>
 <!-- <span class="caption">Listing 11-11: Three tests with three different -->
 <!-- names</span> -->
-<p><span class="caption">リスト11-11: 3つの異なる名前の3つのテスト</span></p>
+<p><span class="caption">リスト11-11: 異なる名前の3つのテスト</span></p>
 <!-- If we run the tests without passing any arguments, as we saw earlier, all the -->
 <!-- tests will run in parallel: -->
 <p>以前見かけたように、引数なしでテストを走らせたら、全テストが並行に走ります:</p>
@@ -411,7 +411,7 @@ test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out
 また、テストが出現するモジュールがテスト名の一部になっていて、
 モジュール名でフィルターをかけることで、あるモジュール内のテスト全てを実行できることに注目してください。</p>
 <!-- ### Ignoring Some Tests Unless Specifically Requested -->
-<a class="header" href="ch11-02-running-tests.html#a特に希望のない限りテストを無視する" id="a特に希望のない限りテストを無視する"><h3>特に希望のない限りテストを無視する</h3></a>
+<a class="header" href="ch11-02-running-tests.html#a特に要望のない限りテストを無視する" id="a特に要望のない限りテストを無視する"><h3>特に要望のない限りテストを無視する</h3></a>
 <!-- Sometimes a few specific tests can be very time-consuming to execute, so you -->
 <!-- might want to exclude them during most runs of `cargo test`. Rather than -->
 <!-- listing as arguments all tests you do want to run, you can instead annotate the -->
@@ -419,7 +419,7 @@ test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out
 <!-- here: -->
 <p>時として、いくつかの特定のテストが実行するのに非常に時間がかかることがあり、
 <code>cargo test</code>の実行のほとんどで除外したくなるかもしれません。引数として確かに実行したいテストを全て列挙するのではなく、
-ここに示したように代わりに時間のかかるテストを<code>ignore</code>アトリビュートで除外すると注釈することができます。</p>
+ここに示したように代わりに時間のかかるテストを<code>ignore</code>属性で除外すると注釈することができます。</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust">

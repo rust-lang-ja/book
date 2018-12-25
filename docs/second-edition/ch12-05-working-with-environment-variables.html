@@ -154,7 +154,7 @@
 <!-- `one_result` to `case_sensitive` to clarify the differences between the two -->
 <!-- tests, as shown in Listing 12-20. -->
 <p>環境変数がオンの場合に呼び出す<code>search_case_insensitive</code>関数を新しく追加したいです。テスト駆動開発の過程に従い続けるので、
-最初の手順は、今回も失敗するテストを書くことです。新しい<code>search``_case_insensitive</code>関数用の新規テストを追加し、
+最初の手順は、今回も失敗するテストを書くことです。新しい<code>search_case_insensitive</code>関数用の新規テストを追加し、
 古いテストを<code>one_result</code>から<code>case_sensitive</code>に名前変更して、二つのテストの差異を明確化します。
 リスト12-20に示したようにですね。</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
@@ -169,6 +169,10 @@ mod test {
     #[test]
     fn case_sensitive() {
         let query = &quot;duct&quot;;
+// Rust
+// 安全かつ高速で生産的
+// 三つを選んで
+// ガムテープ
         let contents = &quot;\
 Rust:
 safe, fast, productive.
@@ -184,6 +188,8 @@ Duct tape.&quot;;
     #[test]
     fn case_insensitive() {
         let query = &quot;rUsT&quot;;
+// (最後の行のみ)
+// 私を信じて
         let contents = &quot;\
 Rust:
 safe, fast, productive.
@@ -207,8 +213,8 @@ Trust me.&quot;;
 <!-- search functionality that we’ve already implemented. This test should pass now -->
 <!-- and should continue to pass as we work on the case-insensitive search. -->
 <p>古いテストの<code>contents</code>も変更していることに注意してください。大文字小文字を区別する検索を行う際に、
-<code>&quot;duct&quot;</code>というクエリに合致しないはずの大文字Dを使用した<code>&quot;Duct tape&quot;</code>という新しい行を追加しました。
-このように古いテストを変更することで、すでに実装済みの大文字小文字を区別する検索機能を誤って壊してしまわないことを保証する助けになります。
+<code>&quot;duct&quot;</code>というクエリに合致しないはずの大文字Dを使用した<code>&quot;Duct tape&quot;</code>(ガムテープ)という新しい行を追加しました。
+このように古いテストを変更することで、既に実装済みの大文字小文字を区別する検索機能を誤って壊してしまわないことを保証する助けになります。
 このテストはもう通り、大文字小文字を区別しない検索に取り掛かっても通り続けるはずです。</p>
 <!-- The new test for the case-*insensitive* search uses “rUsT” as its query. In the -->
 <!-- `search_case_insensitive` function we’re about to add, the query “rUsT” -->
@@ -258,7 +264,7 @@ pub fn search_case_insensitive&lt;'a&gt;(query: &amp;str, contents: &amp;'a str)
 <!-- the same name. Calling `to_lowercase` on the query is necessary so no matter -->
 <!-- whether the user’s query is `“rust”`, `“RUST”`, `“Rust”`, or `“rUsT”`, we’ll treat the -->
 <!-- query as if it was `“rust”` and be insensitive to the case. -->
-<p>まず、<code>query</code>文字列を小文字化し、同じ名前の上書きされた変数に保存します。ユーザのクエリが<code>&quot;rust&quot;</code>や<code>&quot;RUST&quot;</code>、
+<p>まず、<code>query</code>文字列を小文字化し、同じ名前の覆い隠された変数に保存します。ユーザのクエリが<code>&quot;rust&quot;</code>や<code>&quot;RUST&quot;</code>、
 <code>&quot;Rust&quot;</code>、<code>&quot;rUsT&quot;</code>などだったりしても、<code>&quot;rust&quot;</code>であり、大文字小文字を区別しないかのようにクエリを扱えるように、
 <code>to_lowercase</code>をクエリに対して呼び出すことは必須です。</p>
 <!-- Note that `query` is now a `String` rather than a string slice, because calling -->
@@ -270,7 +276,7 @@ pub fn search_case_insensitive&lt;'a&gt;(query: &amp;str, contents: &amp;'a str)
 <!-- a string slice. -->
 <p><code>query</code>は最早、文字列スライスではなく<code>String</code>であることに注意してください。というのも、
 <code>to_lowercase</code>を呼び出すと、既存のデータを参照するというよりも、新しいデータを作成するからです。
-例として、クエリは<code>&quot;rUsT&quot;</code>としましょう: その文字列スライスは、小文字の<code>u</code>や<code>t</code>を使えるように含んでいないので、
+例として、クエリは<code>&quot;rUsT&quot;</code>だとしましょう: その文字列スライスは、小文字の<code>u</code>や<code>t</code>を使えるように含んでいないので、
 <code>&quot;rust&quot;</code>を含む新しい<code>String</code>のメモリを確保しなければならないのです。今、<code>contains</code>メソッドに引数として<code>query</code>を渡すと、
 アンド記号を追加する必要があります。<code>contains</code>のシグニチャは、文字列スライスを取るよう定義されているからです。</p>
 <!-- 2行目真ん中、to lowercase ...がかかる先が微妙。今の訳の通りなら、beforeの前にtoを記述する気もする -->
@@ -293,9 +299,9 @@ test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 <!-- `Config` struct to switch between case-sensitive and case-insensitive search. -->
 <!-- Adding this field will cause compiler errors because we aren’t initializing -->
 <!-- this field anywhere yet: -->
-<p>素晴らしい！通りました。では、<code>run</code>関数から新しい<code>search_case_insensitive</code>関数を呼び出しましょう。
+<p>素晴らしい！どちらも通りました。では、<code>run</code>関数から新しい<code>search_case_insensitive</code>関数を呼び出しましょう。
 1番目に大文字小文字の区別を切り替えられるよう、<code>Config</code>構造体に設定オプションを追加します。
-まだどこでも、このフィールドの初期化をしていないので、追加するとコンパイラエラーが起きます:</p>
+まだどこでも、このフィールドの初期化をしていないので、追加するとコンパイルエラーが起きます:</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust">
@@ -410,8 +416,8 @@ impl Config {
 <!-- environment variable is not set. -->
 <p>ここで、<code>case_sensitive</code>という新しい変数を生成しています。その値をセットするために、
 <code>env::var</code>関数を呼び出し、<code>CASE_INSENSITIVE</code>環境変数の名前を渡しています。<code>env::var</code>関数は、
-環境変数がセットされていたら、環境変数の値を含む<code>Ok</code>バリアントの成功値になる<code>Result</code>を返します。
-環境変数がセットされていなければ、<code>Err</code>バリアントを返すでしょう。</p>
+環境変数がセットされていたら、環境変数の値を含む<code>Ok</code>列挙子の成功値になる<code>Result</code>を返します。
+環境変数がセットされていなければ、<code>Err</code>列挙子を返すでしょう。</p>
 <!-- We’re using the `is_err` method on the `Result` to check whether it’s an error -->
 <!-- and therefore unset, which means it *should* do a case-sensitive search. If the -->
 <!-- `CASE_INSENSITIVE` environment variable is set to anything, `is_err` will -->
@@ -421,7 +427,7 @@ impl Config {
 <!-- of the other methods we’ve seen on `Result`. -->
 <p><code>Result</code>の<code>is_err</code>メソッドを使用して、エラーでありゆえに、セットされていないことを確認しています。
 これは大文字小文字を区別する検索をす<em>べき</em>ことを意味します。<code>CASE_INSENSITIVE</code>環境変数が何かにセットされていれば、
-<code>is_err</code>はfalseを返し、プログラムは大文字小文字を区別しない検索を実行するでしょう。環境変数の値はどうでもよく、
+<code>is_err</code>はfalseを返し、プログラムは大文字小文字を区別しない検索を実行するでしょう。環境変数の<em>値</em>はどうでもよく、
 セットされているかどうかだけ気にするので、<code>unwrap</code>や<code>expect</code>あるいは、他のここまで見かけた<code>Result</code>のメソッドではなく、
 <code>is_err</code>をチェックしています。</p>
 <!-- We pass the value in the `case_sensitive` variable to the `Config` instance so -->
@@ -432,7 +438,7 @@ impl Config {
 <!-- Let’s give it a try! First, we’ll run our program without the environment -->
 <!-- variable set and with the query `to`, which should match any line that contains -->
 <!-- the word “to” in all lowercase: -->
-<p>試行してみましょう！まず、環境変数をセットせずにクエリは、<code>to</code>でプログラムを実行し、
+<p>試行してみましょう！まず、環境変数をセットせずにクエリは<code>to</code>でプログラムを実行し、
 この時は全て小文字で&quot;to&quot;という言葉を含むあらゆる行が合致するはずです。</p>
 <pre><code class="language-text">$ cargo run to poem.txt
    Compiling minigrep v0.1.0 (file:///projects/minigrep)
@@ -475,14 +481,14 @@ To an admiring bog!
 <!-- should take precedence if the program is run with one set to case sensitive and -->
 <!-- one set to case insensitive. -->
 <p>引数<em>と</em>環境変数で同じ設定を行うことができるプログラムもあります。そのような場合、
-プログラムはどちらが優先されるか決定します。自身の別の練習として、コマンドライン引数か、
+プログラムはどちらが優先されるか決定します。自身の別の鍛錬として、コマンドライン引数か、
 環境変数で大文字小文字の区別を制御できるようにしてみてください。
 片方は大文字小文字を区別するようにセットされ、もう片方は区別しないようにセットしてプログラムが実行された時に、
 コマンドライン引数と環境変数のどちらの優先度が高くなるかを決めてください。</p>
 <!-- The `std::env` module contains many more useful features for dealing with -->
 <!-- environment variables: check out its documentation to see what is available. -->
 <p><code>std::env</code>モジュールは、環境変数を扱うもっと多くの有用な機能を有しています:
-ドキュメントを確認して、何が利用可能か確かめてください。</p>
+ドキュメンテーションを確認して、何が利用可能か確かめてください。</p>
 
                     </main>
 

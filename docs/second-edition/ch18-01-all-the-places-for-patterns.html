@@ -184,7 +184,7 @@
 <!-- `match` expression in which we can only express one value to compare with the -->
 <!-- patterns. Also, the conditions in a series of `if let`, `else if`, `else if -->
 <!-- let` arms aren’t required to relate to each other. -->
-<p>リスト18-1は、<code>if let</code>、<code>else if</code>、<code>else if let</code>式を混ぜて合致させることもできることを示しています。
+<p>リスト18-1は、<code>if let</code>、<code>else if</code>、<code>else if let</code>式を混ぜてマッチさせることもできることを示しています。
 そうすると、パターンと1つの値しか比較することを表現できない<code>match</code>式よりも柔軟性が高くなります。
 また、一連の<code>if let</code>、<code>else if</code>、<code>else if let</code>アームの条件は、お互いに関連している必要はありません。</p>
 <!-- The code in Listing 18-1 shows a series of checks for several conditions that -->
@@ -192,7 +192,7 @@
 <!-- variables with hardcoded values that a real program might receive from user -->
 <!-- input. -->
 <p>リスト18-1のコードは、背景色が何になるべきかを決定するいくつかの異なる条件を連なって確認するところを示しています。
-この例には、実際のプログラムではユーザ入力を受け付ける可能性のある変数をハードコードされた値で生成しています。</p>
+この例では、実際のプログラムではユーザ入力を受け付ける可能性のある変数をハードコードされた値で生成しています。</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust">fn main() {
@@ -243,10 +243,10 @@
 <!-- combine these two conditions into `if let Ok(age) = age && age > 30`. The -->
 <!-- shadowed `age` we want to compare to 30 isn’t valid until the new scope starts -->
 <!-- with the curly bracket. -->
-<p><code>match</code>アームのように<code>if let</code>もシャドウイングされた変数を導入できることがわかります:
-<code>if let Ok(age) = age</code>の行は、<code>Ok</code>列挙子の中の値を含むシャドウイングされた新しい<code>age</code>変数を導入します。
+<p><code>match</code>アームのように<code>if let</code>もシャドーイングされた変数を導入できることがわかります:
+<code>if let Ok(age) = age</code>の行は、<code>Ok</code>列挙子の中の値を含むシャドーイングされた新しい<code>age</code>変数を導入します。
 つまり、<code>if age &gt; 30</code>という条件は、そのブロック内に配置する必要があります: これら2つの条件を組み合わせて、
-<code>if let Ok(age) = age &amp;&amp; age &gt; 30</code>とすることはできません。30と比較したいシャドウイングされた<code>age</code>は、
+<code>if let Ok(age) = age &amp;&amp; age &gt; 30</code>とすることはできません。30と比較したいシャドーイングされた<code>age</code>は、
 波括弧で新しいスコープが始まるまで有効にならないのです。</p>
 <!-- The downside of using `if let` expressions is that the compiler doesn’t check -->
 <!-- exhaustiveness, whereas with `match` expressions it does. If we omitted the -->
@@ -293,12 +293,12 @@ while let Some(top) = stack.pop() {
 <!-- construction in Rust code, but we haven’t yet discussed the pattern that `for` -->
 <!-- takes. In a `for` loop, the pattern is the value that directly follows the -->
 <!-- keyword `for`, so in `for x in y` the `x` is the pattern. -->
-<p>第3章で、Rustコードにおいては、<code>for</code>ループが最もよく使われるループ構造だと述べましたが、
-<code>for</code>が取るパターンについてはまだ議論してませんでした。<code>for</code>ループにおいて、
+<p>第3章で、Rustコードにおいては、<code>for</code>ループが最もありふれたループ構造だと述べましたが、
+<code>for</code>が取るパターンについてはまだ議論していませんでした。<code>for</code>ループにおいて、
 直接キーワード<code>for</code>に続く値がパターンなので、<code>for x in y</code>では、<code>x</code>がパターンになります。</p>
 <!-- Listing 18-3 demonstrates how to use a pattern in a `for` loop to destructure, -->
 <!-- or break apart, a tuple as part of the `for` loop. -->
-<p>リスト18-3は<code>for</code>ループでパターンを使用して<code>for</code>ループの一部としてタプルを分解あるいは、分離する方法をデモしています。</p>
+<p>リスト18-3は<code>for</code>ループでパターンを使用して<code>for</code>ループの一部としてタプルを分配あるいは、分解する方法をデモしています。</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
@@ -310,7 +310,7 @@ for (index, value) in v.iter().enumerate() {
 #}</code></pre></pre>
 <!-- <span class="caption">Listing 18-3: Using a pattern in a `for` loop to -->
 <!-- destructure a tuple</span> -->
-<p><span class="caption">リスト18-3: <code>for</code>ループでパターンを使用してタプルを分解する</span></p>
+<p><span class="caption">リスト18-3: <code>for</code>ループでパターンを使用してタプルを分配する</span></p>
 <!-- The code in Listing 18-3 will print the following: -->
 <p>リスト18-3のコードは、以下のように出力するでしょう:</p>
 <pre><code class="language-text">a is at index 0
@@ -322,7 +322,7 @@ c is at index 2
 <!-- `enumerate` produces the tuple `(0, 'a')`. When this value is matched to the -->
 <!-- pattern `(index, value)`, `index` will be `0` and `value` will be `'a'`, -->
 <!-- printing the first line of the output. -->
-<p><code>enumerate</code>メソッドを使用してイテレータを改造し、値とその値のイテレータでの番号をタプルに配置して生成しています。
+<p><code>enumerate</code>メソッドを使用してイテレータを改造し、値とその値のイテレータでの添え字をタプルに配置して生成しています。
 <code>enumerate</code>の最初の呼び出しは、タプル<code>(0, 'a')</code>を生成します。この値がパターン<code>(index, value)</code>とマッチさせられると、
 <code>index</code>は<code>0</code>、<code>value</code>は<code>'a'</code>になり、出力の最初の行を出力するのです。</p>
 <!-- ### `let` Statements -->
@@ -358,7 +358,7 @@ Rustは式をパターンと比較し、見つかったあらゆる名前を代�
 <!-- To see the pattern matching aspect of `let` more clearly, consider Listing -->
 <!-- 18-4, which uses a pattern with `let` to destructure a tuple. -->
 <p><code>let</code>のパターンマッチングの観点をよりはっきり確認するためにリスト18-4を考えてください。
-これは<code>let</code>でパターンを使用し、タプルを分解します。</p>
+これは<code>let</code>でパターンを使用し、タプルを分配します。</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
@@ -366,7 +366,7 @@ let (x, y, z) = (1, 2, 3);
 #}</code></pre></pre>
 <!-- <span class="caption">Listing 18-4: Using a pattern to destructure a tuple and -->
 <!-- create three variables at once</span> -->
-<p><span class="caption">リスト18-4: パターンを使用してタプルを分解し、3つの変数を一度に生成する</span></p>
+<p><span class="caption">リスト18-4: パターンを使用してタプルを分配し、3つの変数を一度に生成する</span></p>
 <!-- Here, we match a tuple against a pattern. Rust compares the value `(1, 2, 3)` -->
 <!-- to the pattern `(x, y, z)` and sees that the value matches the pattern, so Rust -->
 <!-- binds `1` to `x`, `2` to `y`, and `3` to `z`. You can think of this tuple -->
@@ -379,7 +379,7 @@ let (x, y, z) = (1, 2, 3);
 <!-- example, Listing 18-5 shows an attempt to destructure a tuple with three -->
 <!-- elements into two variables, which won’t work. -->
 <p>パターンの要素数がタプルの要素数と一致しない場合、全体の型が一致せず、コンパイルエラーになるでしょう。
-例えば、リスト18-5は、3要素のタプルを2つの変数に分解しようとしているところを表示していて、動きません。</p>
+例えば、リスト18-5は、3要素のタプルを2つの変数に分配しようとしているところを表示していて、動きません。</p>
 <pre><code class="language-rust ignore">let (x, y) = (1, 2, 3);
 </code></pre>
 <!-- <span class="caption">Listing 18-5: Incorrectly constructing a pattern whose -->
@@ -392,6 +392,7 @@ let (x, y, z) = (1, 2, 3);
   |
 2 |     let (x, y) = (1, 2, 3);
   |         ^^^^^^ expected a tuple with 3 elements, found one with 2 elements
+  |                (3要素のタプルを予期したのに、2要素のタプルが見つかりました)
   |
   = note: expected type `({integer}, {integer}, {integer})`
              found type `(_, _)`
@@ -441,7 +442,7 @@ fn main() {
 </code></pre></pre>
 <!-- <span class="caption">Listing 18-7: A function with parameters that destructure -->
 <!-- a tuple</span> -->
-<p><span class="caption">リスト18-7: タプルを分解する引数を伴う関数</span></p>
+<p><span class="caption">リスト18-7: タプルを分配する引数を伴う関数</span></p>
 <!-- This code prints `Current location: (3, 5)`. The values `&(3, 5)` match the -->
 <!-- pattern `&(x, y)`, so `x` is the value `3` and `y` is the value `5`. -->
 <p>このコードは<code>Current location: (3, 5)</code>と出力します。値<code>&amp;(3, 5)</code>はパターン<code>&amp;(x, y)</code>と合致するので、

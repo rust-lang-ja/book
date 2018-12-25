@@ -139,8 +139,8 @@
 <!-- different configurations that allow a programmer to have more control over -->
 <!-- various options for compiling code. Each profile is configured independently of -->
 <!-- the others. -->
-<p>Rustにおいて、<em>リリースプロファイル</em>とは、プログラマがコードのコンパイルオプションについて制御可能な異なる設定を持つ、
-定義済みのカスタマイズ可能なプロファイルです。各プロファイルは、それぞれ個別で設定されます。</p>
+<p>Rustにおいて、<em>リリースプロファイル</em>とは、プログラマがコードのコンパイルオプションについてより制御可能にしてくれる、
+定義済みのカスタマイズ可能なプロファイルです。各プロファイルは、それぞれ独立して設定されます。</p>
 <!-- Cargo has two main profiles: the `dev` profile Cargo uses when you run `cargo -->
 <!-- build` and the `release` profile Cargo uses when you run `cargo build -->
 <!-- --release`. The `dev` profile is defined with good defaults for development, -->
@@ -150,7 +150,7 @@
 <code>dev</code>プロファイルは、開発中に役に立つデフォルト設定がなされており、<code>release</code>プロファイルは、
 リリース用の設定がなされています。</p>
 <!-- These profile names might be familiar from the output of your builds: -->
-<p>これらのプロファイル名は、ビルドの出力で馴染みのあるものかもしれません:</p>
+<p>これらのプロファイル名は、ビルドの出力で馴染みのある可能性があります:</p>
 <pre><code class="language-text">$ cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
 $ cargo build --release
@@ -175,7 +175,7 @@ opt-level = 0
 [profile.release]
 opt-level = 3
 </code></pre>
-<!-- 4行目、最後、唯一の理由と言っているのは、the reasonになっているから -->
+<!-- 4行目最後、唯一の理由と言っているのは、the reasonになっているから -->
 <!-- The `opt-level` setting controls the number of optimizations Rust will apply to -->
 <!-- your code with a range of 0 to 3. Applying more optimizations extends -->
 <!-- compiling time, so if you’re in development and compiling your code often, -->
@@ -192,7 +192,7 @@ opt-level = 3
 コードのリリース準備ができたら、より長い時間をコンパイルにかけるのが最善の策です。
 リリースモードでコンパイルするのはたった1回ですが、コンパイル結果のプログラムは何度も実行するので、
 リリースモードでは、長いコンパイル時間と引き換えに、生成したコードが速く動作します。
-これが<code>release</code>の<code>opt-level</code>のデフォルト設定が<code>3</code>になっている唯一の理由です。</p>
+そのため、<code>release</code>の<code>opt-level</code>のデフォルト設定が<code>3</code>になっているのです。</p>
 <!-- You can override any default setting by adding a different value for it in -->
 <!-- *Cargo.toml*. For example, if we want to use optimization level 1 in the -->
 <!-- development profile, we can add these two lines to our project’s *Cargo.toml* -->

@@ -210,8 +210,7 @@ fn main() {
 <!-- name as the crate, `communicator`. We call the top-level module of a crate the -->
 <!-- *root module*. -->
 <p><code>communicator</code>ライブラリの外部のクレートが検索するという観点から言えば、これまでに作ってきたモジュールは全て、
-<code>communicator</code>というクレートと同じ名前を持つモジュール内にあります。クレートのトップ階層のモジュールを、
-<em>ルートモジュール</em>と呼びます。</p>
+<code>communicator</code>というクレートと同じ名前を持つモジュール内にあります。クレートのトップ階層のモジュールを<em>ルートモジュール</em>と呼びます。</p>
 <!-- Also note that even if we’re using an external crate within a submodule of our -->
 <!-- project, the `extern crate` should go in our root module (so in *src/main.rs* -->
 <!-- or *src/lib.rs*). Then, in our submodules, we can refer to items from external -->
@@ -328,7 +327,7 @@ warning: function is never used: `connect`
 <!-- But in this case, we *do* want the other two functions to be part of our -->
 <!-- crate’s public API, so let’s mark them as `pub` as well to get rid of the -->
 <!-- remaining warnings. Modify *src/network/mod.rs* to look like the following: -->
-<p>しかし今回は、本当に他の2つの関数もクレートの公開APIにしたいので、これも<code>pub</code>とマークして残りの警告を除去しましょう。
+<p>しかし今回は、<em>本当に</em>他の2つの関数もクレートの公開APIにしたいので、これも<code>pub</code>とマークして残りの警告を除去しましょう。
 <em>src/network/mod.rs</em>を変更して以下のようにしてください:</p>
 <!-- <span class="filename">Filename: src/network/mod.rs</span> -->
 <p><span class="filename">ファイル名: src/network/mod.rs</span></p>
@@ -401,7 +400,7 @@ pub mod network;
 <!-- library project and enter the code in Listing 7-6 into your new project’s -->
 <!-- *src/lib.rs*. -->
 <p>もうちょっと鍛錬を得るために、もういくつかプライバシー例を見てみましょう。新しいライブラリプロジェクトを作成し、
-リスト7-5のコードを新規プロジェクトの<em>src/lib.rs</em>に入力してください。</p>
+リスト7-6のコードを新規プロジェクトの<em>src/lib.rs</em>に入力してください。</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
 <pre><code class="language-rust ignore">mod outermost {
@@ -438,7 +437,7 @@ fn try_me() {
 <!-- function is allowed to access the `outermost` module because `outermost` is in -->
 <!-- the current (root) module, as is `try_me`. -->
 <p><code>try_me</code>関数は、プロジェクトのルートモジュールに存在しています。<code>outermost</code>という名前のモジュールは非公開ですが、
-プライバシー規則の2番目にある通り、<code>try_me</code>そのままに、<code>outermost</code>は現在(ルート)のモジュールなので、
+プライバシー規則の2番目にある通り、<code>try_me</code>のように、<code>outermost</code>は現在(ルート)のモジュールなので、
 <code>try_me</code>関数は、<code>outermost</code>モジュールにアクセスすることを許可されるのです。</p>
 <!-- The call to `outermost::middle_function` will work because `middle_function` is -->
 <!-- public and `try_me` is accessing `middle_function` through its parent module -->

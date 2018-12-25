@@ -141,7 +141,7 @@
 <!-- version four and version six. These are the only possibilities for an IP -->
 <!-- address that our program will come across: we can *enumerate* all possible -->
 <!-- values, which is where enumeration gets its name. -->
-<p>コードで表現したくなるかもしれない場面に目を向けて、enumが有効でこの場合、構造体よりも適切である理由を確認しましょう。
+<p>コードで表現したくなるかもしれない場面に目を向けて、enumが有用でこの場合、構造体よりも適切である理由を確認しましょう。
 IPアドレスを扱う必要が出たとしましょう。現在、IPアドレスの規格は二つあります: バージョン4とバージョン6です。
 これらは、プログラムが遭遇するIPアドレスのすべての可能性です: 列挙型は、取りうる値をすべて<em>列挙</em>でき、
 これが列挙型の名前の由来です。</p>
@@ -152,8 +152,8 @@ IPアドレスを扱う必要が出たとしましょう。現在、IPアドレ�
 <!-- addresses, so they should be treated as the same type when the code is handling -->
 <!-- situations that apply to any kind of IP address. -->
 <p>どんなIPアドレスも、バージョン4かバージョン6のどちらかになりますが、同時に両方にはなり得ません。
-IPアドレスのその特性によりenumデータ構造が適切なものになります。というのも、
-enumの値は、そのバリアントのいずれか一つにしかなり得ないからです。バージョン4とバージョン6のアドレスは、
+IPアドレスのその特性により、enumデータ構造が適切なものになります。というのも、
+enumの値は、その列挙子のいずれか一つにしかなり得ないからです。バージョン4とバージョン6のアドレスは、
 どちらも根源的にはIPアドレスですから、コードがいかなる種類のIPアドレスにも適用される場面を扱う際には、
 同じ型として扱われるべきです。</p>
 <!-- We can express this concept in code by defining an `IpAddrKind` enumeration and -->
@@ -174,7 +174,7 @@ enum IpAddrKind {
 <!-- ### Enum Values -->
 <a class="header" href="ch06-01-defining-an-enum.html#enumの値" id="enumの値"><h3>Enumの値</h3></a>
 <!-- We can create instances of each of the two variants of `IpAddrKind` like this: -->
-<p>以下のようにして、<code>IpAddrKind</code>の各バリアントのインスタンスは生成できます:</p>
+<p>以下のようにして、<code>IpAddrKind</code>の各列挙子のインスタンスは生成できます:</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
@@ -206,7 +206,7 @@ let six = IpAddrKind::V6;
 fn route(ip_type: IpAddrKind) { }
 #}</code></pre></pre>
 <!-- And we can call this function with either variant: -->
-<p>そして、この関数をどちらのバリアントに対しても呼び出せます:</p>
+<p>そして、この関数をどちらの列挙子に対しても呼び出せます:</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
@@ -226,7 +226,7 @@ route(IpAddrKind::V6);
 <!-- Chapter 5, you might tackle this problem as shown in Listing 6-1. -->
 <p>enumの利用には、さらなる利点さえもあります。このIPアドレス型についてもっと考えてみると、現状では、
 実際のIPアドレスの<em>データ</em>を保持する方法がありません。つまり、どんな<em>種類</em>であるかを知っているだけです。
-構造体について第5章で学んだばっかりとすると、この問題に対しては、リスト6-1のように対処するかもしれません。</p>
+構造体について第5章で学んだばっかりとすると、この問題に対して、あなたはリスト6-1のように対処するかもしれません。</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
@@ -252,7 +252,7 @@ let loopback = IpAddr {
 #}</code></pre></pre>
 <!-- <span class="caption">Listing 6-1: Storing the data and `IpAddrKind` variant of -->
 <!-- an IP address using a `struct`</span> -->
-<p><span class="caption">リスト6-1: IPアドレスのデータと<code>IpAddrKind</code>のバリアントを<code>struct</code>を使って保持する</span></p>
+<p><span class="caption">リスト6-1: IPアドレスのデータと<code>IpAddrKind</code>の列挙子を<code>struct</code>を使って保持する</span></p>
 <!-- Here, we’ve defined a struct `IpAddr` that has two fields: a `kind` field that -->
 <!-- is of type `IpAddrKind` (the enum we defined previously) and an `address` field -->
 <!-- of type `String`. We have two instances of this struct. The first, `home`, has -->
@@ -296,8 +296,8 @@ let loopback = IpAddr::V6(String::from(&quot;::1&quot;));
 <!-- still express `V6` addresses as one `String` value, we wouldn’t be able to with -->
 <!-- a struct. Enums handle this case with ease: -->
 <p>構造体よりもenumを使うことには、別の利点もあります: 各列挙子に紐付けるデータの型と量は、異なってもいいのです。
-バージョン4のIPアドレスには、常に0から255の値を持つ4つの数値があります。<code>V4</code>のアドレスは、4つの<code>u8</code>型の値として、
-格納するけれども、<code>V6</code>のアドレスは引き続き、単独の<code>String</code>型の値で格納したかったとしても、構造体では不可能です。
+バージョン4のIPアドレスには、常に0から255の値を持つ4つの数値があります。<code>V4</code>のアドレスは、4つの<code>u8</code>型の値として格納するけれども、
+<code>V6</code>のアドレスは引き続き、単独の<code>String</code>型の値で格納したかったとしても、構造体では不可能です。
 enumなら、こんな場合も容易に対応できます:</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
@@ -358,7 +358,7 @@ enum IpAddr {
 <!-- what you might come up with. -->
 <p>このコードは、enum列挙子内にいかなる種類のデータでも格納できることを描き出しています:
 例を挙げれば、文字列、数値型、構造体などです。他のenumを含むことさえできます！また、
-標準ライブラリの型は、あなたが思い付いたよりも複雑ではないことがしばしばあります。</p>
+標準ライブラリの型は、あなたが思い付いた可能性のあるものよりも複雑ではないことがしばしばあります。</p>
 <!-- Note that even though the standard library contains a definition for `IpAddr`, -->
 <!-- we can still create and use our own definition without conflict because we -->
 <!-- haven’t brought the standard library’s definition into our scope. We’ll talk -->
@@ -490,7 +490,8 @@ m.call();
 変数は常に二者択一どちらかの状態になります: nullかそうでないかです。</p>
 <!-- In his 2009 presentation “Null References: The Billion Dollar Mistake,” Tony -->
 <!-- Hoare, the inventor of null, has this to say: -->
-<p>nullの開発者であるTony Hoareの2009年のプレゼンテーション、&quot;Null References: The Billion Dollar Mistake&quot;では、こんなことが語られています。</p>
+<p>nullの開発者であるトニー・ホーア(Tony Hoare)の2009年のプレゼンテーション、
+&quot;Null References: The Billion Dollar Mistake&quot;(Null参照: 10億円の間違い)では、こんなことが語られています。</p>
 <!-- > I call it my billion-dollar mistake. At that time, I was designing the first -->
 <!-- > comprehensive type system for references in an object-oriented language. My -->
 <!-- > goal was to ensure that all use of references should be absolutely safe, with -->
@@ -603,7 +604,7 @@ not satisfied
 足し合わせる方法がコンパイラにはわからないことを意味します。Rustにおいて、<code>i8</code>のような型の値がある場合、
 コンパイラが常に有効な値であることを確認してくれます。この値を使う前にnullであることをチェックする必要なく、
 自信を持って先に進むことができるのです。<code>Option&lt;i8&gt;</code>がある時(あるいはどんな型を扱おうとしていても)のみ、
-値を保持していない可能性を心配する必要はないわけであり、
+値を保持していない可能性を心配する必要があるわけであり、
 コンパイラはプログラマが値を使用する前にそのような場面を扱っているか確かめてくれます。</p>
 <!-- In other words, you have to convert an `Option<T>` to a `T` before you can -->
 <!-- perform `T` operations with it. Generally, this helps catch one of the most -->

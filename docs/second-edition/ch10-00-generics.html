@@ -171,7 +171,7 @@
 <!-- us to borrow values in many situations while still enabling the compiler to -->
 <!-- check that the references are valid. -->
 <p>最後に、ライフタイムを議論します。ライフタイムとは、コンパイラに参照がお互いにどう関係しているかの情報を与える1種のジェネリクスです。
-ライフタイムのおかげでコンパイラに参照が有効であることを確認してもらうことを可能にしつつ、多くの場面で値を借用できます。</p>
+ライフタイムのおかげでコンパイラに参照が合法であることを確認してもらうことを可能にしつつ、多くの場面で値を借用できます。</p>
 <!-- ## Removing Duplication by Extracting a Function -->
 <a class="header" href="ch10-00-generics.html#a関数を抽出することで重複を取り除く" id="a関数を抽出することで重複を取り除く"><h2>関数を抽出することで重複を取り除く</h2></a>
 <!-- Before diving into generics syntax, let’s first look at how to remove -->
@@ -254,9 +254,9 @@
 </code></pre></pre>
 <!-- <span class="caption">Listing 10-2: Code to find the largest number in *two* -->
 <!-- lists of numbers</span> -->
-<p><span class="caption">リスト10-2: <em>2</em>つの数値のリストから最大値を探すコード</span></p>
+<p><span class="caption">リスト10-2: <em>2つ</em>の数値のリストから最大値を探すコード</span></p>
 <!-- Although this code works, duplicating code is tedious and error prone. We also -->
-<!-- have to update the code in multiple places whe we want to change it. -->
+<!-- have to update the code in multiple places when we want to change it. -->
 <p>このコードは動くものの、コードを複製することは退屈ですし、間違いも起きやすいです。また、
 複数箇所のコードを変更したい時に更新しなければなりません。</p>
 <!-- To eliminate this duplication, we can create an abstraction by defining a -->

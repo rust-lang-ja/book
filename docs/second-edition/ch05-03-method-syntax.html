@@ -215,8 +215,8 @@ fn main() {
 <p>ここで<code>&amp;self</code>を選んでいるのは、関数バージョンで<code>&amp;Rectangle</code>を使用していたのと同様の理由です:
 所有権はいらず、構造体のデータを読み込みたいだけで、書き込む必要はないわけです。
 メソッドの一部でメソッドを呼び出したインスタンスを変更したかったら、第1引数に<code>&amp;mut self</code>を使用するでしょう。
-<code>self</code>だけを第1引数にしてインスタンスの所有権を奪うメソッドを定義することは稀です; このテクニックは、
-通常メソッドが<code>self</code>を何か別のものに変形し、変形後に呼び出し元が元のインスタンスを使用できないようにしたい場合に使用されます。</p>
+<code>self</code>だけを第1引数にしてインスタンスの所有権を奪うメソッドを定義することは稀です; このテクニックは通常、
+メソッドが<code>self</code>を何か別のものに変形し、変形後に呼び出し元が元のインスタンスを使用できないようにしたい場合に使用されます。</p>
 <!-- The main benefit of using methods instead of functions, in addition to using -->
 <!-- method syntax and not having to repeat the type of `self` in every method’s -->
 <!-- signature, is for organization. We’ve put all the things we can do with an -->
@@ -307,7 +307,7 @@ p1.distance(&amp;p2);
 <p>前者の方がずっと明確です。メソッドには自明な受け手(<code>self</code>の型)がいるので、この自動参照機能は動作するのです。
 受け手とメソッド名が与えられれば、コンパイラは確実にメソッドが読み込み専用(<code>&amp;self</code>)か、書き込みもする(<code>&amp;mut self</code>)のか、
 所有権を奪う(<code>self</code>)のか判断できるわけです。Rustにおいて、メソッドの受け手に関して借用が明示されないという事実は、
-所有権を現実世界でプログラマフレンドリーにさせる大部分を占めているのです。</p>
+所有権を現実世界でエルゴノミックにさせる大部分を占めているのです。</p>
 </blockquote>
 <!-- ### Methods with More Parameters -->
 <a class="header" href="ch05-03-method-syntax.html#aより引数の多いメソッド" id="aより引数の多いメソッド"><h3>より引数の多いメソッド</h3></a>
@@ -363,7 +363,7 @@ Can rect1 hold rect3? false
 <code>&amp;rect2</code>、<code>Rectangle</code>のインスタンスである<code>rect2</code>への不変借用を渡しています。
 これは道理が通っています。なぜなら、<code>rect2</code>を読み込む(書き込みではなく。この場合、可変借用が必要になります)だけでよく、
 <code>can_hold</code>メソッドを呼び出した後にも<code>rect2</code>が使えるよう、所有権を<code>main</code>に残したままにしたいからです。
-<code>can_hold</code>の返り値は、論理型になり、メソッドの中身は、<code>self</code>の幅と高さがもう一つの<code>Rectangle</code>の幅と高さよりも、
+<code>can_hold</code>の返り値は、booleanになり、メソッドの中身は、<code>self</code>の幅と高さがもう一つの<code>Rectangle</code>の幅と高さよりも、
 それぞれ大きいことを確認します。リスト5-13の<code>impl</code>ブロックに新しい<code>can_hold</code>メソッドを追記しましょう。
 リスト5-15に示した通りです。</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
@@ -475,8 +475,8 @@ impl Rectangle {
 <!-- There’s no reason to separate these methods into multiple `impl` blocks here, -->
 <!-- but this is valid syntax. We'll see a case in which multiple `impl` blocks are -->
 <!-- useful in Chapter 10, where we discuss generic types and traits. -->
-<p>ここでこれらのメソッドを個々の<code>impl</code>ブロックに分ける理由はないのですが、有効な書き方です。
-複数の<code>impl</code>ブロックが有用になるケースは第10章で見ますが、そこではジェネリクスのある型と、トレイトについて議論します。</p>
+<p>ここでこれらのメソッドを個々の<code>impl</code>ブロックに分ける理由はないのですが、合法な書き方です。
+複数の<code>impl</code>ブロックが有用になるケースは第10章で見ますが、そこではジェネリック型と、トレイトについて議論します。</p>
 <!-- ## Summary -->
 <a class="header" href="ch05-03-method-syntax.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- Structs let us create custom types that are meaningful for your domain. By -->

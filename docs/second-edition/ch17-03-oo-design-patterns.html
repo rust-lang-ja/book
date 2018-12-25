@@ -214,7 +214,7 @@ fn main() {
 <!-- `content` method, but we’re not going to write tests for this example. -->
 <p>ユーザが<code>Post::new</code>で新しいブログ記事の草稿を作成できるようにしたいです。それから、
 草稿状態の間にブログ記事にテキストを追加できるようにしたいです。承認前に記事の内容を即座に得ようとしたら、
-記事はまだ草稿なので、何も起きるべきではありません。デモするためにコードに<code>assert_eq!</code>を追加しました。
+記事はまだ草稿なので、何も起きるべきではありません。デモ目的でコードに<code>assert_eq!</code>を追加しました。
 これに対する素晴らしい単体テストは、ブログ記事の草稿が<code>content</code>メソッドから空の文字列を返すことをアサートすることでしょうが、
 この例に対してテストを書くつもりはありません。</p>
 <!-- Next, we want to enable a request for a review of the post, and we want -->
@@ -306,8 +306,7 @@ impl State for Draft {}
 <!-- how the `content` field’s data is read. The `add_text` method is pretty -->
 <!-- straightforward, so let’s add the implementation in Listing 17-13 to the `impl -->
 <!-- Post` block: -->
-<p><code>Post::new</code>関数では、<code>content</code>フィールドを新しい空の<code>String</code>にセットしています。
-リスト17-11は、<code>add_text</code>というメソッドを呼び出し、ブログ記事のテキスト内容に追加される<code>&amp;str</code>を渡せるようになりたいことを示しました。
+<p>リスト17-11は、<code>add_text</code>というメソッドを呼び出し、ブログ記事のテキスト内容に追加される<code>&amp;str</code>を渡せるようになりたいことを示しました。
 これを<code>content</code>フィールドを<code>pub</code>にして晒すのではなく、メソッドとして実装しています。
 これは、後ほど<code>content</code>フィールドデータの読まれ方を制御するメソッドを実装できることを意味しています。
 <code>add_text</code>メソッドは非常に素直なので、リスト17-13の実装を<code>impl Post</code>ブロックに追加しましょう:</p>
@@ -379,6 +378,8 @@ impl Post {
 <!-- With this added `content` method, everything in Listing 17-11 up to line 8 -->
 <!-- works as intended. -->
 <p>この追加された<code>content</code>メソッドとともに、リスト17-11の8行目までのコードは、想定通り動きます。</p>
+<!-- [Requesting a Review of the Post] Changes ... ともRequesting that [a Review ...]とも読める。どちらがふさわしいだろうか -->
+<!-- 次の1行目にrequest a review of a post, whichとあるので、前者で訳しておく。 -->
 <!-- ### Requesting a Review of the Post Changes Its State -->
 <a class="header" href="ch17-03-oo-design-patterns.html#a記事の査読を要求すると状態が変化する" id="a記事の査読を要求すると状態が変化する"><h3>記事の査読を要求すると、状態が変化する</h3></a>
 <!-- Next, we need to add functionality to request a review of a post, which should -->
@@ -430,7 +431,7 @@ impl State for PendingReview {
 <!-- We give `Post` a public method named `request_review` that will take a mutable -->
 <!-- reference to `self`. Then we call an internal `request_review` method on the -->
 <!-- current state of `Post`, and this second `request_review` method consumes the -->
-<!-- current state and return a new state. -->
+<!-- current state and returns a new state. -->
 <p><code>Post</code>に<code>self</code>への可変参照を取る<code>request_review</code>という公開メソッドを与えます。それから、
 <code>Post</code>の現在の状態に対して内部の<code>request_review</code>メソッドを呼び出し、
 この2番目の<code>request_review</code>が現在の状態を消費し、新しい状態を返します。</p>
@@ -443,8 +444,8 @@ impl State for PendingReview {
 <!-- `Post` can transform into a new state. -->
 <p><code>State</code>トレイトに<code>request_review</code>メソッドを追加しました; このトレイトを実装する型は全て、
 これで<code>request_review</code>メソッドを実装する必要があります。メソッドの第1引数に<code>self</code>、<code>&amp;self</code>、<code>&amp;mut self</code>ではなく、
-<code>self: Box&lt;Self&gt;</code>としていることに注意してください。この記法は、型を保持する<code>Box</code>に対して呼ばれた時、
-このメソッドが有効のみになることを意味しています。この記法は、<code>Box&lt;Self&gt;</code>の所有権を奪い、古い状態を無効化するので、
+<code>self: Box&lt;Self&gt;</code>としていることに注意してください。この記法は、型を保持する<code>Box</code>に対して呼ばれた時のみ、
+このメソッドが合法になることを意味しています。この記法は、<code>Box&lt;Self&gt;</code>の所有権を奪い、古い状態を無効化するので、
 <code>Post</code>の状態値は、新しい状態に変形できます。</p>
 <!-- To consume the old state, the `request_review` method needs to take ownership -->
 <!-- of the state value. This is where the `Option` in the `state` field of `Post` -->
@@ -484,7 +485,7 @@ impl State for PendingReview {
 <!-- slice. We can now have a `Post` in the `PendingReview` state as well as in the -->
 <!-- `Draft` state, but we want the same behavior in the `PendingReview` state. -->
 <!-- Listing 17-11 now works up to line 11! -->
-<p><code>Post</code>の<code>content</code>メソッドを空の文字列スライスを返すというようにそのままにします。
+<p><code>Post</code>の<code>content</code>メソッドを空の文字列スライスを返してそのままにします。
 これで<code>Post</code>は<code>PendingReview</code>と<code>Draft</code>状態になり得ますが、<code>PendingReview</code>状態でも、
 同じ振る舞いが欲しいです。もうリスト17-11は11行目まで動くようになりました！</p>
 <!-- ### Adding the `approve` Method that Changes the Behavior of `content` -->
@@ -572,7 +573,7 @@ impl State for Published {
 何も効果はありません。<code>PendingReview</code>に対して<code>approve</code>を呼び出すと、
 <code>Published</code>構造体の新しいボックス化されたインスタンスを返します。<code>Published</code>構造体は<code>State</code>トレイトを実装し、
 <code>request_review</code>メソッドと<code>approve</code>メソッド両方に対して、自身を返します。
-そのような場合には記事は、<code>Published</code>状態に留まるべきだからです。</p>
+そのような場合に記事は、<code>Published</code>状態に留まるべきだからです。</p>
 <!-- Now we need to update the `content` method on `Post`: if the state is -->
 <!-- `Published`, we want to return the value in the post’s `content` field; -->
 <!-- otherwise, we want to return an empty string slice, as shown in Listing 17-17: -->
@@ -686,7 +687,7 @@ impl State for Published {
 その規則に関連するロジックは、<code>Post</code>中に散乱するのではなく、ステートオブジェクトに息づいています。</p>
 <!-- ### Trade-offs of the State Pattern -->
 <a class="header" href="ch17-03-oo-design-patterns.html#aステートパターンの代償" id="aステートパターンの代償"><h3>ステートパターンの代償</h3></a>
-<!-- 3行目末尾、The wayと次の文、we onlyの繋がりがよく分からない。とりあえずandで繋いでるような感じで訳している -->
+<!-- The wayで「・・・の仕方によれば」という意味になるらしい -->
 <!-- We’ve shown that Rust is capable of implementing the object-oriented state -->
 <!-- pattern to encapsulate the different kinds of behavior a post should have in -->
 <!-- each state. The methods on `Post` know nothing about the various behaviors. The -->
@@ -694,10 +695,10 @@ impl State for Published {
 <!-- different ways a published post can behave: the implementation of the `State` -->
 <!-- trait on the `Published` struct. -->
 <p>オブジェクト指向のステートパターンを実装して各状態の時に記事がなり得る異なる種類の振る舞いをカプセル化する能力が、
-Rustにあることを示しました。<code>Post</code>のメソッドは、種々の振る舞いについては何も知りません。
-コードを体系化した方法、公開された記事が振る舞うことのある様々な方法を知るには、1箇所のみを調べればいいのです:
+Rustにあることを示してきました。<code>Post</code>のメソッドは、種々の振る舞いについては何も知りません。
+コードを体系化の仕方によれば、公開された記事が振る舞うことのある様々な方法を知るには、1箇所のみを調べればいいのです:
 <code>Published</code>構造体の<code>State</code>トレイトの実装です。</p>
-<!-- 5行目末尾がよくわからない。The more ..., the more ...のような感じで訳し文脈には合ってそうだが、合ってる自信がない -->
+<!-- FIX: 5行目末尾がよくわからない。The more ..., the more ...のような感じで訳し文脈には合ってそうだが、合ってる自信がない -->
 <!-- つまり、This would only increase, the more states we addedのように訳している -->
 <!-- If we were to create an alternative implementation that didn’t use the state -->
 <!-- pattern, we might instead use `match` expressions in the methods on `Post` or -->
@@ -744,7 +745,7 @@ Rustにあることを示しました。<code>Post</code>のメソッドは、�
 <code>PendingReview</code>と<code>Published</code>の間に、<code>Scheduled</code>のような別の状態を追加したら、
 代わりに<code>PendingReview</code>のコードを<code>Scheduled</code>に遷移するように変更しなければならないでしょう。
 状態が追加されても<code>PendingReview</code>を変更する必要がなければ、作業が減りますが、
-そうすれば別のデザインパターンに切り替えることになります。</p>
+そうすれば別のデザインパターンに切り替えることになるでしょう。</p>
 <!-- Another downside is that we’ve duplicated some logic. To eliminate some of the -->
 <!-- duplication, we might try to make default implementations for the -->
 <!-- `request_review` and `approve` methods on the `State` trait that return `self`; -->
@@ -763,7 +764,7 @@ Rustにあることを示しました。<code>Post</code>のメソッドは、�
 <!-- repetition (see Appendix D for more on Macros). -->
 <p>他の重複には、<code>Post</code>の<code>request_review</code>と<code>approve</code>メソッドの実装が似ていることが含まれます。
 両メソッドは<code>Option</code>の<code>state</code>の値に対する同じメソッドの実装に委譲していて、<code>state</code>フィールドの新しい値を結果にセットします。
-このパターンに従う<code>Post</code>のメソッドが多くあれば、マクロを定義して繰り返しを排除することも考える可能性があります(マクロについては付録Dを参照)。</p>
+このパターンに従う<code>Post</code>のメソッドが多くあれば、マクロを定義して繰り返しを排除することも考慮する可能性があります(マクロについては付録Dを参照)。</p>
 <!-- By implementing the state pattern exactly as it’s defined for object-oriented -->
 <!-- languages, we’re not taking as full advantage of Rust’s strengths as we could. -->
 <!-- Let’s look at some changes we can make to the `blog` crate that can make -->
@@ -945,7 +946,7 @@ impl PendingReviewPost {
 <!-- compile code that tries to use the content of posts in those states any longer. -->
 <!-- The updated code in `main` is shown in Listing 17-21: -->
 <p>ですが、さらに<code>main</code>にも多少小さな変更を行わなければなりません。<code>request_review</code>と<code>approve</code>メソッドは、
-呼ばれた構造体を変更するのではなく、新しいインスタンスを返すので、<code>let post =</code>という上書き代入をもっと追加し、
+呼ばれた構造体を変更するのではなく、新しいインスタンスを返すので、<code>let post =</code>というシャドーイング代入をもっと追加し、
 返却されたインスタンスを保存する必要があります。また、草稿と査読待ち記事の内容を空の文字列でアサートすることも、
 する必要もありません: 最早、その状態にある記事の内容を使用しようとするコードはコンパイル不可能だからです。
 <code>main</code>の更新されたコードは、リスト17-21に示されています:</p>
@@ -976,7 +977,7 @@ fn main() {
 <!-- now impossible because of the type system and the type checking that happens at -->
 <!-- compile time! This ensures that certain bugs, such as display of the content of -->
 <!-- an unpublished post, will be discovered before they make it to production. -->
-<p><code>post</code>を再代入するために<code>main</code>に行う必要のあった変更は、この実装が最早、
+<p><code>post</code>を再代入するために<code>main</code>に行う必要のあった変更は、この実装がもう、
 全くオブジェクト指向のステートパターンに沿っていないことを意味します:
 状態間の変形は最早、<code>Post</code>実装内に完全にカプセル化されていません。
 ですが、型システムとコンパイル時に起きる型チェックのおかげでもう無効な状態があり得なくなりました。
@@ -1000,7 +1001,7 @@ fn main() {
 <!-- object-oriented languages don’t have. -->
 <p>Rustは、オブジェクト指向のデザインパターンを実装する能力があるものの、状態を型システムにコード化するなどの他のパターンも、
 Rustでは利用可能なことを確かめました。これらのパターンには、異なる代償があります。
-オブジェクト指向のパターンには馴染み深い可能性があるものの、問題を再考してRustの機能の強みを活かすと、
+あなたはオブジェクト指向のパターンには非常に馴染み深い可能性があるものの、問題を再考してRustの機能の強みを活かすと、
 コンパイル時に一部のバグを回避できるなどの利益が得られることもあります。オブジェクト指向のパターンは、
 オブジェクト指向言語にはない所有権などの特定の機能によりRustでは、必ずしも最善の解決策ではないでしょう。</p>
 <!-- ## Summary -->

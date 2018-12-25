@@ -154,8 +154,8 @@
 <!-- with writing a program that accepts command line arguments, but because you're -->
 <!-- just learning this concept, let’s implement this capability ourselves. -->
 <p>今現在は、<code>cargo new</code>で生成されたプログラムは、与えた引数を処理できません。
-<a href="https://crates.io/">Crates.io</a>に存在するある既存のライブラリは、
-コマンドライン引数を受け付けるプログラムを書く手助けをしてくれますが、ちょうどこの概念を学んでいる最中なので、
+<a href="https://crates.io/">Crates.io</a>に存在する既存のライブラリには、
+コマンドライン引数を受け付けるプログラムを書く手助けをしてくれるものもありますが、ちょうどこの概念を学んでいる最中なので、
 この能力を自分で実装しましょう。</p>
 <!-- ### Reading the Argument Values -->
 <a class="header" href="ch12-01-accepting-command-line-arguments.html#a引数の値を読み取る" id="a引数の値を読み取る"><h3>引数の値を読み取る</h3></a>
@@ -169,13 +169,13 @@
 <!-- vector, containing all the elements the iterator produces. -->
 <p><code>minigrep</code>が渡したコマンドライン引数の値を読み取れるようにするために、Rustの標準ライブラリで提供されている関数が必要になり、
 それは、<code>std::env::args</code>です。この関数は、<code>minigrep</code>に与えられたコマンドライン引数の<em>イテレータ</em>を返します。
-イテレータについてはまだ議論していません(完全には第13章で解説します)が、とりあえずイテレータに関しては、
+イテレータについてはまだ議論していません(完全には第13章で講義します)が、とりあえずイテレータに関しては、
 2つの詳細のみ知っていればいいです: イテレータは一連の値を生成することと、イテレータに対して<code>collect</code>関数を呼び出し、
-イテレータが生成する要素全部を含むベクタ型などのコレクションに変えられることです。</p>
+イテレータが生成する要素全部を含むベクタなどのコレクションに変えられることです。</p>
 <!-- Use the code in Listing 12-1 to allow your `minigrep` program to read any -->
 <!-- command line arguments passed to it and then collect the values into a vector. -->
 <p>リスト12-1のコードを使用して<code>minigrep</code>プログラムに渡されたあらゆるコマンドライン引数を読み取れるようにし、
-それからその値をベクタ型として集結させてください。</p>
+それからその値をベクタとして集結させてください。</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust">use std::env;
@@ -187,7 +187,7 @@ fn main() {
 </code></pre></pre>
 <!-- <span class="caption">Listing 12-1: Collecting the command line arguments into -->
 <!-- a vector and printing them</span> -->
-<p><span class="caption">リスト12-1: コマンドライン引数をベクタ型に集結させ、出力する</span></p>
+<p><span class="caption">リスト12-1: コマンドライン引数をベクタに集結させ、出力する</span></p>
 <!-- First, we bring the `std::env` module into scope with a `use` statement so we -->
 <!-- can use its `args` function. Notice that the `std::env::args` function is -->
 <!-- nested in two levels of modules. As we discussed in Chapter 7, in cases where -->
@@ -209,7 +209,7 @@ fn main() {
 <!-- > Note that `std::env::args` will panic if any argument contains invalid -->
 <!-- > Unicode. If your program needs to accept arguments containing invalid -->
 <!-- > Unicode, use `std::env::args_os` instead. That function returns an iterator -->
-<!-- > that produces `OsString` values instead of `String` values. We’ve chosen -->
+<!-- > that produces `OsString` values instead of `String` values. We’ve chosen to -->
 <!-- > use `std::env::args` here for simplicity because `OsString` values differ -->
 <!-- > per platform and are more complex to work with than `String` values. -->
 <blockquote>
@@ -228,7 +228,7 @@ fn main() {
 <!-- Rust, `collect` is one function you do often need to annotate because Rust -->
 <!-- isn’t able to infer the kind of collection you want. -->
 <p><code>main</code>の最初の行で<code>env::args</code>を呼び出し、そして即座に<code>collect</code>を使用して、
-イテレータをイテレータが生成する値全てを含むベクタ型に変換しています。
+イテレータをイテレータが生成する値全てを含むベクタに変換しています。
 <code>collect</code>関数を使用して多くの種類のコレクションを生成することができるので、
 <code>args</code>の型を明示的に注釈して文字列のベクタが欲しいのだと指定しています。Rustにおいて、
 型を注釈しなければならない頻度は非常に少ないのですが、<code>collect</code>はよく確かに注釈が必要になる一つの関数なのです。
@@ -262,7 +262,7 @@ $ cargo run needle haystack
 <!-- able to access the values specified as command line arguments. Now we need to -->
 <!-- save the values of the two arguments in variables so we can use the values -->
 <!-- throughout the rest of the program. We do that in Listing 12-2. -->
-<p>引数のベクタの値を出力すると、プログラムはコマンドライン引数として指定された値にアクセスできることが具現化されました。
+<p>引数のベクタの値を出力すると、プログラムはコマンドライン引数として指定された値にアクセスできることが説明されました。
 さて、プログラムの残りを通して使用できるように、二つの引数の値を変数に保存する必要があります。
 それをしているのがリスト12-2です。</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
@@ -291,13 +291,13 @@ fn main() {
 <!-- will be the filename, so we put a reference to the second argument in the -->
 <!-- variable `filename`. -->
 <p>ベクタを出力した時に確認したように、プログラム名がベクタの最初の値、<code>args[0]</code>を占めているので、
-添字<code>1</code>から始めます。<code>minigrep</code>が取る最初の引数は、検索する文字列なので、
+添え字<code>1</code>から始めます。<code>minigrep</code>が取る最初の引数は、検索する文字列なので、
 最初の引数への参照を変数<code>query</code>に置きました。2番目の引数はファイル名でしょうから、
 2番目の引数への参照は変数<code>filename</code>に置きました。</p>
 <!-- We temporarily print the values of these variables to prove that the code is -->
 <!-- working as we intend. Let’s run this program again with the arguments `test` -->
 <!-- and `sample.txt`: -->
-<p>一時的にこれら変数の値を出力して、コードが意図通りに動いていることを証明しています。
+<p>一時的にこれらの変数の値を出力して、コードが意図通りに動いていることを証明しています。
 再度このプログラムを<code>test</code>と<code>sample.txt</code>という引数で実行しましょう:</p>
 <pre><code class="language-text">$ cargo run test sample.txt
    Compiling minigrep v0.1.0 (file:///projects/minigrep)
@@ -312,7 +312,7 @@ In file sample.txt
 <!-- arguments; for now, we’ll ignore that situation and work on adding file-reading -->
 <!-- capabilities instead. -->
 <p>素晴らしい、プログラムは動作しています！必要な引数の値が、正しい変数に保存されています。後ほど、
-何らかのエラー処理を加えて、特定の可能性のあるエラー状況に対処します。ユーザが引数を提供しなかった場合などです;
+何らかのエラー処理を加えて、ユーザが引数を提供しなかった場合など、可能性のある特定のエラー状況に対処します;
 今は、そのような状況はないものとし、代わりにファイル読み取り能力を追加することに取り組みます。</p>
 
                     </main>

@@ -149,8 +149,8 @@
 <p>Rustは<em>静的型付き</em>言語であることを弁えておいてください。つまり、
 コンパイル時に全ての変数の型が判明している必要があるということです。コンパイラは通常、値と使用方法に基づいて、
 使用したい型を推論してくれます。複数の型が推論される可能性がある場合、例えば、
-第2章の「秘密の数字と予想を比較する」節で<code>parse</code>メソッドを使って<code>String</code>型を数値型に変換した時のような場合には、
-型注釈をつけなければいけません。以下のようにですね:</p>
+第2章の「秘密の数字と予想を比較する」節で<code>parse</code>メソッドを使って<code>String</code>型を数値型に変換した時のように、
+複数の型が可能な場合には、型注釈をつけなければいけません。以下のようにですね:</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
@@ -191,7 +191,7 @@ Rustでの動作方法に飛び込みましょう。</p>
 <!-- the built-in integer types in Rust. Each variant in the Signed and Unsigned -->
 <!-- columns (for example, `i16`) can be used to declare the type of an integer -->
 <!-- value. -->
-<p>整数とは、小数部分のない数値のことです。第2章で一つの整数型を使用しました。<code>u32</code>型です。
+<p>整数とは、小数部分のない数値のことです。第2章で一つの整数型を使用しましたね。<code>u32</code>型です。
 この型定義は、紐付けられる値が、符号なし整数(符号付き整数は<code>u</code>ではなく、<code>i</code>で始まります)になり、
 これは、32ビット分のサイズを取ります。表3-1は、Rustの組み込み整数型を表示しています。
 符号付きと符号なし欄の各バリアント(例: <code>i16</code>)を使用して、整数値の型を宣言することができます。</p>
@@ -247,7 +247,7 @@ Rustでの動作方法に飛び込みましょう。</p>
 <!-- `57u8`, and `_` as a visual separator, such as `1_000`. -->
 <p>整数リテラル(<code>訳注</code>: リテラルとは、見たままの値ということ)は、表3-2に示すどの形式でも記述することができます。
 バイトリテラルを除く数値リテラルは全て、
-型接尾辞(例えば、<code>57u8</code>)と<code>_</code>を見た目の区切り記号(例えば、<code>1_000</code>)を付加することができます。</p>
+型接尾辞(例えば、<code>57u8</code>)と<code>_</code>を見た目の区切り記号(例えば、<code>1_000</code>)に付加することができます。</p>
 <!-- <span class="caption">Table 3-2: Integer Literals in Rust</span> -->
 <p><span class="caption">表3-2: Rustの整数リテラル</span></p>
 <!-- | Number literals  | Example       | -->
@@ -342,7 +342,7 @@ Rustの浮動小数点型は、<code>f32</code>と<code>f64</code>で、それ�
 <!-- Each expression in these statements uses a mathematical operator and evaluates -->
 <!-- to a single value, which is then bound to a variable. Appendix B contains a -->
 <!-- list of all operators that Rust provides. -->
-<p>これらの文の各式は、数学演算子を使用しており、一つの値に評価され、変数に束縛されます。
+<p>これらの文の各式は、数学演算子を使用しており、一つの値に評価され、そして、変数に束縛されます。
 付録BにRustで使える演算子の一覧が載っています。</p>
 <!-- #### The Boolean Type -->
 <a class="header" href="ch03-02-data-types.html#a論理値型" id="a論理値型"><h4>論理値型</h4></a>
@@ -370,7 +370,7 @@ Rustの論理値型は、<code>bool</code>と指定されます。
 <!-- expression. We’ll cover how `if` expressions work in Rust in the “Control Flow” -->
 <!-- section. -->
 <p>論理値を使う主な手段は、条件式です。例えば、<code>if</code>式などですね。<code>if</code>式のRustでの動作方法については、
-「制御フロー」節で解説します。</p>
+「制御フロー」節で講義します。</p>
 <!-- #### The Character Type -->
 <a class="header" href="ch03-02-data-types.html#a文字型" id="a文字型"><h4>文字型</h4></a>
 <!-- So far we’ve worked only with numbers, but Rust supports letters too. Rust’s -->
@@ -417,7 +417,7 @@ Rustにおける<code>char</code>値が何かとは合致しない可能性が�
 <!-- different values in the tuple don’t have to be the same. We’ve added optional -->
 <!-- type annotations in this example: -->
 <p>タプルは、丸かっこの中にカンマ区切りの値リストを書くことで生成します。タプルの位置ごとに型があり、
-タプル内の値はそれぞれ全てが同じ型である必要はありません。今回の例では、型注釈をあえて追加してみました:</p>
+タプル内の値はそれぞれ全てが同じ型である必要はありません。今回の例では、型注釈をあえて追加しました:</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust">fn main() {
@@ -445,7 +445,7 @@ Rustにおける<code>char</code>値が何かとは合致しない可能性が�
 <!-- the single tuple into three parts. Finally, the program prints the value of -->
 <!-- `y`, which is `6.4`. -->
 <p>このプログラムは、まずタプルを生成し、それを変数<code>tup</code>に束縛しています。
-それから<code>let</code>文とパターンを使って<code>tup</code>変数の中身を3つの個別の変数(<code>x</code>、<code>y</code>、<code>z</code>ですね)に変換しています。
+それから<code>let</code>とパターンを使って<code>tup</code>変数の中身を3つの個別の変数(<code>x</code>、<code>y</code>、<code>z</code>ですね)に変換しています。
 この過程は、<em>分配</em>と呼ばれます。単独のタプルを破壊して三分割しているからです。最後に、
 プログラムは<code>y</code>変数の値を出力し、<code>6.4</code>と表示されます。</p>
 <!-- In addition to destructuring through pattern matching, we can also access a tuple -->
@@ -495,7 +495,8 @@ Rustにおける<code>char</code>値が何かとは合致しない可能性が�
 <!-- provided by the standard library that *is* allowed to grow or shrink in size. -->
 <!-- If you’re unsure whether to use an array or a vector, you should probably use a -->
 <!-- vector. Chapter 8 discusses vectors in more detail. -->
-<p>配列は、ヒープよりもスタック(スタックとヒープについては第4章で<ruby>詳<rp>(</rp><rt>つまび</rt><rp>)</rp></ruby>らかに議論します)にデータのメモリを確保したい時、または、常に固定長の要素があることを確認したい時に有効です。
+<p>配列は、ヒープよりもスタック(スタックとヒープについては第4章で<ruby>詳<rp>(</rp><rt>つまび</rt><rp>)</rp></ruby>らかに議論します)にデータのメモリを確保したい時、
+または、常に固定長の要素があることを確認したい時に有効です。
 ただ、配列は、ベクタ型ほど柔軟ではありません。ベクタは、標準ライブラリによって提供されている配列と似たようなコレクション型で、
 こちらは、サイズを伸縮させることが<em>できます</em>。配列とベクタ型、どちらを使うべきか確信が持てない時は、
 おそらくベクタ型を使うべきです。第8章でベクタについて詳細に議論します。</p>
@@ -504,7 +505,7 @@ Rustにおける<code>char</code>値が何かとは合致しない可能性が�
 <!-- unlikely that such a program will need to add or remove months, so you can use -->
 <!-- an array because you know it will always contain 12 items: -->
 <p>ベクタ型よりも配列を使いたくなるかもしれない例は、1年の月の名前を扱うプログラムです。そのようなプログラムで、
-月を追加したり削除したりすることまずないので、配列を使用できます。常に12個要素があることもわかってますしね:</p>
+月を追加したり削除したりすることまずないので、配列を使用できます。常に12個要素があることもわかってますからね:</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {

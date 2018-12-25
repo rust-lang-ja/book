@@ -175,7 +175,7 @@ fn calculate_length(s: &amp;String) -&gt; usize {
 <p><img alt="文字列s1を指す&amp;String型のs" src="img/trpl04-05.svg" class="center" /></p>
 <!-- <span class="caption">Figure 4-5: A diagram of `&String s` pointing at `String -->
 <!-- s1`</span> -->
-<p><span class="caption">図4-5: <code>String s1</code>を指す<code>&amp;String</code>の図表</span></p>
+<p><span class="caption">図4-5: <code>String s1</code>を指す<code>&amp;String s</code>の図表</span></p>
 <!-- Note: The opposite of referencing by using `&` is *dereferencing*, which is -->
 <!-- accomplished with the dereference operator, `*`. We’ll see some uses of the -->
 <!-- dereference operator in Chapter 8 and discuss details of dereferencing in -->
@@ -288,7 +288,7 @@ fn change(some_string: &amp;mut String) {
 <!-- But mutable references have one big restriction: you can have only one mutable -->
 <!-- reference to a particular piece of data in a particular scope. This code will -->
 <!-- fail: -->
-<p>ところが、可変な参照には大きな制約が一つあります: 特定のスコープである特定のデータに対しては、
+<p>ところが、可変な参照には大きな制約が一つあります: 特定のスコープで、ある特定のデータに対しては、
 一つしか可変な参照を持てないことです。こちらのコードは失敗します:</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
@@ -414,7 +414,7 @@ immutable
 <p>ポインタのある言語では、誤ってダングリングポインタを生成してしまいやすいです。ダングリングポインタとは、
 他人に渡されてしまった可能性のあるメモリを指すポインタのことであり、その箇所へのポインタを保持している間に、
 メモリを解放してしまうことで発生します。対照的にRustでは、コンパイラが、
-参照がダングリング参照に絶対ならないよう保証してくれます:つまり、何らかのデータへの参照があったら、
+参照がダングリング参照に絶対ならないよう保証してくれます: つまり、何らかのデータへの参照があったら、
 コンパイラは参照がスコープを抜けるまで、データがスコープを抜けることがないよう確認してくれるわけです。</p>
 <!-- Let’s try to create a dangling reference, which Rust will prevent with a -->
 <!-- compile-time error: -->
@@ -448,10 +448,10 @@ fn dangle() -&gt; &amp;String {
 </code></pre>
 <!-- This error message refers to a feature we haven’t covered yet: *lifetimes*. We'll -->
 <!-- discuss lifetimes in detail in Chapter 10. But, if you disregard the parts -->
-<!-- parts about lifetimes, the message does contain the key to why this code is a problem: -->
-<p>このエラーメッセージは、まだ解説していない機能について触れています: <em>ライフタイム</em>です。
+<!-- about lifetimes, the message does contain the key to why this code is a problem: -->
+<p>このエラーメッセージは、まだ講義していない機能について触れています: <em>ライフタイム</em>です。
 ライフタイムについては第10章で詳しく議論しますが、ライフタイムに関する部分を無視すれば、
-このメッセージは、このコードが問題になる理由に関する鍵を握っています:</p>
+このメッセージは、確かにこのコードが問題になる理由に関する鍵を握っています:</p>
 <pre><code class="language-text">this function's return type contains a borrowed value, but there is no value
 for it to be borrowed from.
 </code></pre>
@@ -472,12 +472,12 @@ for it to be borrowed from.
     let s = String::from(&quot;hello&quot;); // sは新しいString
 
     &amp;s // String sへの参照を返す
-} // ここで、sはスコープを抜け、ドロップされる。そのメモリは吹き飛ばされる。
+} // ここで、sはスコープを抜け、ドロップされる。そのメモリは消される。
   // 危険だ
 </code></pre>
 <!-- Because `s` is created inside `dangle`, when the code of `dangle` is finished, -->
 <!-- `s` will be deallocated. But we tried to return a reference to it. That means -->
-<!-- this reference would be pointing to an invalid `String` That’s no good! Rust -->
+<!-- this reference would be pointing to an invalid `String`. That’s no good! Rust -->
 <!-- won’t let us do this. -->
 <p><code>s</code>は、<code>dangle</code>内で生成されているので、<code>dangle</code>のコードが終わったら、<code>s</code>は解放されてしまいますが、
 そこへの参照を返そうとしました。つまり、この参照は無効な<code>String</code>を指していると思われるのです。

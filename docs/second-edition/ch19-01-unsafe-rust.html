@@ -151,7 +151,7 @@ Rustには、これらのメモリ安全保証を強制しない第2の言語が
 <!-- risk: if you use unsafe code incorrectly, problems due to memory unsafety, such -->
 <!-- as null pointer dereferencing, can occur. -->
 <p>静的解析は原理的に保守的なので、unsafe Rustが存在します。コードが保証を保持しているかコンパイラが決定しようとする際、
-なんらかの不正なプログラムを受け入れるよりも有効なプログラムを拒否したほうがいいのです。コードは大丈夫かもしれないけれど、
+なんらかの不正なプログラムを受け入れるよりも合法なプログラムを拒否したほうがいいのです。コードは大丈夫かもしれないけれど、
 コンパイラにわかる範囲ではダメなのです！このような場合、unsafeコードを使用してコンパイラに「信じて！何をしているかわかってるよ」と教えられます。
 欠点は、自らのリスクで使用することです: unsafeコードを誤って使用したら、
 nullポインタ参照外しなどのメモリ非安全に起因する問題が起こることもあるのです。</p>
@@ -167,7 +167,7 @@ Rustがunsafeな処理を行わせてくれなかったら、特定の仕事を�
 直接OSと相互作用したり、独自のOSを書くことさえもそうです。低レベルなシステムプログラミングに取り組むことは、
 言語の目標の1つなのです。unsafe Rustでできることとその方法を探求しましょう。</p>
 <!-- ### Unsafe Superpowers -->
-<a class="header" href="ch19-01-unsafe-rust.html#unsafeの強大な力" id="unsafeの強大な力"><h3>unsafeの強大な力</h3></a>
+<a class="header" href="ch19-01-unsafe-rust.html#unsafeの強大な力superpower" id="unsafeの強大な力superpower"><h3>unsafeの強大な力(superpower)</h3></a>
 <!-- To switch to unsafe Rust, use the `unsafe` keyword and then start a new block -->
 <!-- that holds the unsafe code. You can take four actions in unsafe Rust, called -->
 <!-- *unsafe superpowers*, that you can’t in safe Rust. Those superpowers include -->
@@ -218,7 +218,7 @@ unsafeコードで参照を使用しても、チェックはされます。<code
 <p>unsafeなコードをできるだけ分離するために、unsafeなコードを安全な抽象の中に閉じ込め、安全なAPIを提供するのが最善です。
 これについては、後ほどunsafeな関数とメソッドを調査する際に議論します。標準ライブラリの一部は、
 検査されたunsafeコードの安全な抽象として実装されています。安全な抽象にunsafeなコードを包むことで、
-<code>unsafe</code>があなたやあなたのユーザが<code>unsafe</code>コードで実装された機能を使いたがる可能性のある箇所全部に漏れ出ることを防ぎます。
+<code>unsafe</code>が、あなたやあなたのユーザが<code>unsafe</code>コードで実装された機能を使いたがる可能性のある箇所全部に漏れ出ることを防ぎます。
 安全な抽象を使用することは、安全だからです。</p>
 <!-- Let’s look at each of the four unsafe superpowers in turn. We’ll also look at -->
 <!-- some abstractions that provide a safe interface to unsafe code. -->
@@ -250,7 +250,7 @@ unsafe Rustには参照に類似した<em>生ポインタ</em>と呼ばれる2�
 <li>自動的な片付けは実装されていない</li>
 </ul>
 <!-- By opting out of having Rust enforce these guarantees, you can give up -->
-<!-- the guaranteed safety in exchange ofor greater performance or the ability to -->
+<!-- the guaranteed safety in exchange for greater performance or the ability to -->
 <!-- interface with another language or hardware where Rust’s guarantees don’t apply. -->
 <p>これらの保証をコンパイラに強制させることから抜けることで、保証された安全性を諦めてパフォーマンスを向上させたり、
 Rustの保証が適用されない他の言語やハードウェアとのインターフェイスの能力を得ることができます。</p>
@@ -357,7 +357,7 @@ unsafeな関数を導入し、それからunsafeコードを使用する安全�
 <!-- we’re saying that we’ve read this function’s documentation and take -->
 <!-- responsibility for upholding the function’s contracts. -->
 <p>unsafeブロックが必要になる2番目の処理は、unsafe関数の呼び出しです。unsafeな関数やメソッドも見た目は、
-普通の関数やメソッドと全く同じですが、定義の残りの前に追加の<code>unsafe</code>があります。この文脈での<code>unsafe</code>キーワードは、
+普通の関数やメソッドと全く同じですが、残りの定義の前に追加の<code>unsafe</code>があります。この文脈での<code>unsafe</code>キーワードは、
 この関数を呼ぶ際に保持しておく必要のある要求が関数にあることを示唆します。コンパイラには、
 この要求を満たしているか保証できないからです。<code>unsafe</code>ブロックでunsafeな関数を呼び出すことで、
 この関数のドキュメンテーションを読み、関数の契約を守っているという責任を取ると宣言します。</p>
@@ -393,7 +393,7 @@ unsafe {
 <!-- Bodies of unsafe functions are effectively `unsafe` blocks, so to perform other -->
 <!-- unsafe operations within an unsafe function, we don’t need to add another -->
 <!-- `unsafe` block. -->
-<p>unsafe関数の本体は、実効的に<code>unsafe</code>ブロックになるので、unsafe関数内でunsafeな別の処理を行うには、
+<p>unsafe関数の本体は、実効的に<code>unsafe</code>ブロックになるので、unsafe関数内でunsafeな別の処理を行うのに、
 別の<code>unsafe</code>ブロックは必要ないのです。</p>
 <!-- #### Creating a Safe Abstraction over Unsafe Code -->
 <a class="header" href="ch19-01-unsafe-rust.html#unsafeコードに安全な抽象を行う" id="unsafeコードに安全な抽象を行う"><h4>unsafeコードに安全な抽象を行う</h4></a>
@@ -407,7 +407,7 @@ unsafe {
 <p>関数がunsafeなコードを含んでいるだけで関数全体をunsafeでマークする必要があることにはなりません。
 事実、安全な関数でunsafeなコードをラップすることは一般的な抽象化です。例として、
 なんらかのunsafeコードが必要になる標準ライブラリの関数<code>split_at_mut</code>を学び、その実装方法を探求しましょう。
-この安全なメソッドは、可変なスライスに定義されています: スライスを1つ取り、引数で与えられた添字でスライスを分割して2つにします。
+この安全なメソッドは、可変なスライスに定義されています: スライスを1つ取り、引数で与えられた添え字でスライスを分割して2つにします。
 リスト19-4は、<code>split_at_mut</code>の使用法を示しています。</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
@@ -448,11 +448,11 @@ assert_eq!(b, &amp;mut [4, 5, 6]);
 <!-- that is greater than the index to split the slice at, the function will panic -->
 <!-- before it attempts to use that index. -->
 <p>この関数はまず、スライスの全体の長さを得ます。それから引数で与えられた添え字が長さ以下であるかを確認してスライス内にあることをアサートします。
-このアサートは、スライスを分割する添字よりも大きい添字を渡したら、その添字を使用しようとする前に関数がパニックすることを意味します。</p>
+このアサートは、スライスを分割する添え字よりも大きい添え字を渡したら、その添え字を使用しようとする前に関数がパニックすることを意味します。</p>
 <!-- Then we return two mutable slices in a tuple: one from the start of the -->
 <!-- original slice to the `mid` index and another from `mid` to the end of the -->
 <!-- slice. -->
-<p>そして、2つの可変なスライスをタプルで返します: 1つは元のスライスの最初から<code>mid</code>添字まで、
+<p>そして、2つの可変なスライスをタプルで返します: 1つは元のスライスの最初から<code>mid</code>添え字まで、
 もう一方は、<code>mid</code>からスライスの終わりまでです。</p>
 <!-- When we try to compile the code in Listing 19-5, we’ll get an error. -->
 <p>リスト19-5のコードのコンパイルを試みると、エラーになるでしょう。</p>
@@ -515,7 +515,7 @@ fn split_at_mut(slice: &amp;mut [i32], mid: usize) -&gt; (&amp;mut [i32], &amp;m
 <!-- method on `ptr` with `mid` as an argument to get a raw pointer that starts at -->
 <!-- `mid`, and we create a slice using that pointer and the remaining number of -->
 <!-- items after `mid` as the length. -->
-<p><code>mid</code>添字がスライス内にあるかというアサートを残しています。そして、unsafeコードに到達します:
+<p><code>mid</code>添え字がスライス内にあるかというアサートを残しています。そして、unsafeコードに到達します:
 <code>slice::from_raw_parts_mut</code>関数は、生ポインタと長さを取り、スライスを生成します。この関数を使って、
 <code>ptr</code>から始まり、<code>mid</code>の長さのスライスを生成しています。それから<code>ptr</code>に<code>mid</code>を引数として<code>offset</code>メソッドを呼び出し、
 <code>mid</code>で始まる生ポインタを得て、そのポインタと<code>mid</code>の後の残りの要素数を長さとして使用してスライスを生成しています。</p>
@@ -540,7 +540,7 @@ fn split_at_mut(slice: &amp;mut [i32], mid: usize) -&gt; (&amp;mut [i32], &amp;m
 <!-- `unsafe` code in a safe way, because it creates only valid pointers from the -->
 <!-- data this function has access to. -->
 <p>できあがった<code>split_at_mut</code>関数を<code>unsafe</code>でマークする必要はなく、この関数をsafe Rustから呼び出せることに注目してください。
-<code>unsafe</code>コードを安全に使用する関数の実装でunsafeコードへの安全な抽象化を行いました。
+<code>unsafe</code>コードを安全に使用する関数の実装で、unsafeコードへの安全な抽象化を行いました。
 この関数がアクセスするデータからの有効なポインタだけを生成するからです。</p>
 <!-- In contrast, the use of `slice::from_raw_parts_mut` in Listing 19-7 would -->
 <!-- likely crash when the slice is used. This code takes an arbitrary memory -->
@@ -643,12 +643,13 @@ ABIは関数の呼び出し方法をアセンブリレベルで定義します�
 <em>マングル</em>とは、コンパイラが関数に与えた名前を他のコンパイル過程の情報をより多く含むけれども、人間に読みにくい異なる名前にすることです。
 全ての言語のコンパイラは、少々異なる方法でマングルを行うので、Rustの関数が他の言語で名前付けできるように、
 Rustコンパイラの名前マングルをオフにしなければならないのです。</p>
-<p>以下の例では、共有ライブラリにコンパイルし、Cからリンクした後に<code>call_from_c</code>関数をCコードからアクセスできるようにしています。</p>
+<p>以下の例では、共有ライブラリにコンパイルし、Cからリンクした後に<code>call_from_c</code>関数をCコードからアクセスできるようにしています:</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
 #[no_mangle]
 pub extern &quot;C&quot; fn call_from_c() {
+     // CからRust関数を呼び出したばかり！
     println!(&quot;Just called a Rust function from C!&quot;);
 }
 #}</code></pre></pre>
@@ -659,7 +660,7 @@ pub extern &quot;C&quot; fn call_from_c() {
 <!-- Until now, we’ve not talked about *global variables*, which Rust does support -->
 <!-- but can be problematic with Rust’s ownership rules. If two threads are -->
 <!-- accessing the same mutable global variable, it can cause a data race. -->
-<p>今までずっと、<em>グローバル変数</em>について語りませんでした。グローバル変数をRustはサポートしていますが、
+<p>今までずっと、<em>グローバル変数</em>について語りませんでした。グローバル変数をRustは確かにサポートしていますが、
 Rustの所有権規則で問題になることもあります。2つのスレッドが同じ可変なグローバル変数にアクセスしていたら、
 データ競合を起こすこともあります。</p>
 <!-- In Rust, global variables are called *static* variables. Listing 19-9 shows an -->
@@ -672,6 +673,7 @@ Rustの所有権規則で問題になることもあります。2つのスレッ
 <pre><pre class="playpen"><code class="language-rust">static HELLO_WORLD: &amp;str = &quot;Hello, world!&quot;;
 
 fn main() {
+    // 名前は: {}
     println!(&quot;name is: {}&quot;, HELLO_WORLD);
 }
 </code></pre></pre>
@@ -739,7 +741,7 @@ fn main() {
 <!-- that data accessed from different threads is done safely. -->
 <p>グローバルにアクセス可能な可変なデータがあると、データ競合がないことを保証するのは難しくなり、そのため、
 Rustは可変で静的な変数をunsafeと考えるのです。可能なら、コンパイラが異なるスレッドからアクセスされるデータが安全に行われているかを確認するように、
-第16章で議論した非同期テクニックとスレッド安全なスマートポインタを使用するのが望ましいです。</p>
+第16章で議論した並行性テクニックとスレッド安全なスマートポインタを使用するのが望ましいです。</p>
 <!-- ### Implementing an Unsafe Trait -->
 <a class="header" href="ch19-01-unsafe-rust.html#unsafeなトレイトを実装する" id="unsafeなトレイトを実装する"><h3>unsafeなトレイトを実装する</h3></a>
 <!-- The final action that works only with `unsafe` is implementing an unsafe trait. -->
@@ -747,7 +749,7 @@ Rustは可変で静的な変数をunsafeと考えるのです。可能なら、�
 <!-- compiler can’t verify. We can declare that a trait is `unsafe` by adding the -->
 <!-- `unsafe` keyword before `trait` and marking the implementation of the trait as -->
 <!-- `unsafe` too, as shown in Listing 19-11. -->
-<p><code>unsafe</code>でのみ動く最後の動作は、unsafeなトレイトを実装することです。少なくとも、1つのメソッドにコンパイラが確かめられない何らかの不変条件があると、
+<p><code>unsafe</code>でのみ動く最後の動作は、unsafeなトレイトを実装することです。少なくとも、1つのメソッドにコンパイラが確かめられないなんらかの不変条件があると、
 トレイトはunsafeになります。<code>trait</code>の前に<code>unsafe</code>キーワードを追加し、トレイトの実装も<code>unsafe</code>でマークすることで、
 トレイトが<code>unsafe</code>であると宣言できます。リスト19-11のようにですね。</p>
 <pre><pre class="playpen"><code class="language-rust">
@@ -778,7 +780,7 @@ unsafe impl Foo for i32 {
 <!-- that our type upholds the guarantees that it can be safely sent across threads -->
 <!-- or accessed from multiple threads; therefore, we need to do those checks -->
 <!-- manually and indicate as such with `unsafe`. -->
-<p>例として、第16章の「<code>Sync</code>と<code>Send</code>トレイトで拡張可能な非同期」節で議論した<code>Sync</code>と<code>Send</code>マーカートレイトを思い出してください:
+<p>例として、第16章の「<code>Sync</code>と<code>Send</code>トレイトで拡張可能な並行性」節で議論した<code>Sync</code>と<code>Send</code>マーカートレイトを思い出してください:
 型が完全に<code>Send</code>と<code>Sync</code>型だけで構成されていたら、コンパイラはこれらのトレイトを自動的に実装します。
 生ポインタなどの<code>Send</code>や<code>Sync</code>でない型を含む型を実装し、その型を<code>Send</code>や<code>Sync</code>でマークしたいなら、
 <code>unsafe</code>を使用しなければなりません。コンパイラは、型がスレッド間を安全に送信できたり、

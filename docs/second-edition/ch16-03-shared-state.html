@@ -159,7 +159,7 @@ Go言語ドキュメンテーションのスローガンのこの部分を再び
 メモリ共有並行性は、複数の所有権に似ています: 複数のスレッドが同時に同じメモリ位置にアクセスできるのです。
 第15章でスマートポインタが複数の所有権を可能にするのを目の当たりにしたように、
 異なる所有者を管理する必要があるので、複数の所有権は複雑度を増させます。
-Rustの型システムと所有権ルールにより、この管理を正当に行う大きな助けになります。
+Rustの型システムと所有権規則により、この管理を正当に行う大きな助けになります。
 例を挙げれば、メモリ共有を行うより一般的な並行性の基本型の一つであるミューテックスを見ましょう。</p>
 <!-- ### Using Mutexes to Allow Access to Data from One Thread at a Time -->
 <a class="header" href="ch16-03-shared-state.html#aミューテックスを使用して一度に1つのスレッドからデータにアクセスすることを許可する" id="aミューテックスを使用して一度に1つのスレッドからデータにアクセスすることを許可する"><h3>ミューテックスを使用して一度に1つのスレッドからデータにアクセスすることを許可する</h3></a>
@@ -198,12 +198,12 @@ Rustの型システムと所有権ルールにより、この管理を正当に�
 パネリストが発言できる前に、マイクを使用したいと申し出たり、通知しなければなりません。マイクを受け取ったら、
 話したいだけ話し、それから次に発言を申し出たパネリストにマイクを手渡します。パネリストが発言し終わった時に、
 マイクを手渡すのを忘れていたら、誰も他の人は発言できません。共有されているマイクの管理がうまくいかなければ、
-パネルは予定通りに動かないでしょう！</p>
+パネルは予定通りに機能しないでしょう！</p>
 <!-- Management of mutexes can be incredibly tricky to get right, which is why so -->
 <!-- many people are enthusiastic about channels. However, thanks to Rust’s type -->
 <!-- system and ownership rules, you can’t get locking and unlocking wrong. -->
 <p>ミューテックスの管理は、正しく行うのに著しく巧妙なことがあるので、多くの人がチャンネルに熱狂的になるわけです。
-しかしながら、Rustの型システムと所有権ルールのおかげで、ロックとアンロックを間違えることはありません。</p>
+しかしながら、Rustの型システムと所有権規則のおかげで、ロックとアンロックをおかしくすることはありません。</p>
 <!-- #### The API of `Mutex<T>` -->
 <a class="header" href="ch16-03-shared-state.html#mutextのapi" id="mutextのapi"><h4><code>Mutex&lt;T&gt;</code>のAPI</h4></a>
 <!-- As an example of how to use a mutex, let’s start by using a mutex in a -->
@@ -258,7 +258,7 @@ fn main() {
 <!-- 16-12. As a result, we don’t risk forgetting to release the lock and blocking -->
 <!-- the mutex from being used by other threads because the lock release happens -->
 <!-- automatically. -->
-<p>疑っているかもしれませんが、<code>Mutex&lt;T&gt;</code>はスマートポインタです。より正確を期すなら、
+<p>疑っている可能性がありますが、<code>Mutex&lt;T&gt;</code>はスマートポインタです。より正確を期すなら、
 <code>lock</code>の呼び出しが<code>MutexGuard</code>というスマートポインタを<em>返却</em>します。このスマートポインタが、
 内部のデータを指す<code>Deref</code>を実装しています; このスマートポインタはさらに<code>MutexGuard</code>がスコープを外れた時に、
 自動的にロックを解除する<code>Drop</code>実装もしていて、これがリスト16-12の内部スコープの終わりで発生します。
@@ -433,9 +433,9 @@ error: aborting due to 2 previous errors
 <!-- threads were in a loop, and Rust can’t point to different threads in different -->
 <!-- iterations of the loop. Let’s fix the compiler error with a multiple-ownership -->
 <!-- method we discussed in Chapter 15. -->
-<p>なるほど！最初のメッセージは、<code>handle</code>に紐付けられたスレッドのクロージャに<code>counter</code>がムーブされていることを示唆しています。
+<p>なるほど！最初のエラーメッセージは、<code>handle</code>に紐づけられたスレッドのクロージャに<code>counter</code>がムーブされていることを示唆しています。
 そのムーブにより、それに対して<code>lock</code>を呼び出し、結果を2番目のスレッドの<code>num2</code>に保持しようとした時に、
-<code>counter</code>をキャプチャすることを妨げています。ゆえに、コンパイラは、<code>counter</code>の所有権を複数のスレッドに移すことはできないと教えてくれています。
+<code>counter</code>をキャプチャすることを妨げています！ゆえに、コンパイラは、<code>counter</code>の所有権を複数のスレッドに移すことはできないと教えてくれています。
 これは、以前では確認しづらかったことです。なぜなら、スレッドはループの中にあり、
 ループの違う繰り返しにある違うスレッドをコンパイラは指し示せないからです。
 第15章で議論した複数所有権メソッドによりコンパイルエラーを修正しましょう。</p>
@@ -532,9 +532,9 @@ not implemented for `std::rc::Rc&lt;std::sync::Mutex&lt;i32&gt;&gt;`
 <!-- to the reference count in a thread-safe way. -->
 <p>残念ながら、<code>Rc&lt;T&gt;</code>はスレッド間で共有するには安全ではないのです。<code>Rc&lt;T&gt;</code>が参照カウントを管理する際、
 <code>clone</code>が呼び出されるたびにカウントを追加し、クローンがドロップされるたびにカウントを差し引きます。
-しかし、非同期基本型を使用してカウントの変更が別のスレッドに妨害されないことを確認していないのです。
+しかし、並行基本型を使用してカウントの変更が別のスレッドに妨害されないことを確認していないのです。
 これは間違ったカウントにつながる可能性があり、今度はメモリリークや、使用し終わる前に値がドロップされることにつながる可能性のある潜在的なバグです。
-必要なのは、全く<code>Rc&lt;T&gt;</code>のようだけれども、参照カウントへの変更をスレッドセーフに行うものです。</p>
+必要なのは、いかにも<code>Rc&lt;T&gt;</code>のようだけれども、参照カウントへの変更をスレッドセーフに行うものです。</p>
 <!-- #### Atomic Reference Counting with `Arc<T>` -->
 <a class="header" href="ch16-03-shared-state.html#arctで原子的な参照カウント" id="arctで原子的な参照カウント"><h4><code>Arc&lt;T&gt;</code>で原子的な参照カウント</h4></a>
 <!-- Fortunately, `Arc<T>` *is* a type like `Rc<T>` that is safe to use in -->
@@ -546,18 +546,18 @@ not implemented for `std::rc::Rc&lt;std::sync::Mutex&lt;i32&gt;&gt;`
 <!-- across threads. -->
 <p>幸いなことに、<code>Arc&lt;T&gt;</code>は<code>Rc&lt;T&gt;</code>のような並行な状況で安全に使用できる型<em>です</em>。
 <em>a</em>は<em>atomic</em>を表し、原子的に参照カウントする型を意味します。アトミックは、
-ここでは詳しく講義しない非同期処理の別の基本型です: 詳細は、
+ここでは詳しく講義しない並行性の別の基本型です: 詳細は、
 <code>std::sync::atomic</code>の標準ライブラリドキュメンテーションを参照されたし。現時点では、
-アトミックは、基本型のように動くけれども、スレッド間で共有しても安全なことだけ知っていればいいです。</p>
+アトミックは、基本型のように動くけれども、スレッド間で共有しても安全なことだけ知っていれば良いです。</p>
 <!-- You might then wonder why all primitive types aren’t atomic and why standard -->
 <!-- library types aren’t implemented to use `Arc<T>` by default. The reason is that -->
 <!-- thread safety comes with a performance penalty that you only want to pay when -->
 <!-- you really need to. If you’re just performing operations on values within a -->
 <!-- single thread, your code can run faster if it doesn’t have to enforce the -->
 <!-- guarantees atomics provide. -->
-<p>そうしたら、なぜ全ての基本型がアトミックでなく、標準ライブラリの型も標準で<code>Arc&lt;T&gt;</code>を使って実装されていないのか疑問に思う可能性があります。
-その理由は、本当に必要な時だけ支払いたいパフォーマンスの犠牲とともにスレッド安全性が得られるものだからです。
-シングルスレッドで値に処理を施すだけなら、アトミックが提供する保証を強制する必要がなければコードはより速く走るのです。</p>
+<p>そうしたらあなたは、なぜ全ての基本型がアトミックでなく、標準ライブラリの型も標準で<code>Arc&lt;T&gt;</code>を使って実装されていないのか疑問に思う可能性があります。
+その理由は、スレッド安全性が、本当に必要な時だけ支払いたいパフォーマンスの犠牲とともに得られるものだからです。
+シングルスレッドで値に処理を施すだけなら、アトミックが提供する保証を強制する必要がない方がコードはより速く走るのです。</p>
 <!-- Let’s return to our example: `Arc<T>` and `Rc<T>` have the same API, so we fix -->
 <!-- our program by changing the `use` line, the call to `new`, and the call to -->
 <!-- `clone`. The code in Listing 16-15 will finally compile and run: -->
@@ -615,7 +615,7 @@ fn main() {
 <!-- Chapter 15 to allow us to mutate contents inside an `Rc<T>`, we use `Mutex<T>` -->
 <!-- to mutate contents inside an `Arc<T>`. -->
 <p><code>counter</code>は不変なのに、その内部にある値への可変参照を得ることができたことに気付いたでしょうか;
-つまり、<code>Mutex&lt;T&gt;</code>は、<code>Cell</code>系のように内部可変性(interior mutability)を提供するわけです。
+つまり、<code>Mutex&lt;T&gt;</code>は、<code>Cell</code>系のように内部可変性を提供するわけです。
 第15章で<code>RefCell&lt;T&gt;</code>を使用して<code>Rc&lt;T&gt;</code>の内容を可変化できるようにしたのと同様に、
 <code>Mutex&lt;T&gt;</code>を使用して<code>Arc&lt;T&gt;</code>の内容を可変化しているのです。</p>
 <!-- Another detail to note is that Rust can’t protect you from all kinds of logic -->
@@ -629,14 +629,14 @@ fn main() {
 <!-- mutexes in any language and have a go at implementing them in Rust. The -->
 <!-- standard library API documentation for `Mutex<T>` and `MutexGuard` offers -->
 <!-- useful information. -->
-<p>また、気付いておくべき別の詳細は、<code>Mutex&lt;T&gt;</code>を使用する際にあらゆる種類のロジックエラーからは、
+<p>気付いておくべき別の詳細は、<code>Mutex&lt;T&gt;</code>を使用する際にあらゆる種類のロジックエラーからは、
 コンパイラは保護してくれないということです。第15章で<code>Rc&lt;T&gt;</code>は、循環参照を生成してしまうリスクを伴い、
 2つの<code>Rc&lt;T&gt;</code>の値がお互いを参照し合い、メモリリークを引き起こしてしまうことを思い出してください。
 同様に、<code>Mutex&lt;T&gt;</code>は<em>デッドロック</em>を生成するリスクを伴っています。これは、処理が2つのリソースをロックする必要があり、
 2つのスレッドがそれぞれにロックを1つ獲得して永久にお互いを待ちあってしまうときに起こります。
 デッドロックに興味があるのなら、デッドロックのあるRustプログラムを組んでみてください;
 それからどんな言語でもいいので、ミューテックスに対してデッドロックを緩和する方法を調べて、
-Rustでそれを実装してみてください。<code>Mutex&lt;T&gt;</code>と<code>MutexGuard</code>に関する標準ライブラリのAPIドキュメンテーションは、
+Rustで是非、それを実装してみてください。<code>Mutex&lt;T&gt;</code>と<code>MutexGuard</code>に関する標準ライブラリのAPIドキュメンテーションは、
 役に立つ情報を提供してくれます。</p>
 <!-- We’ll round out this chapter by talking about the `Send` and `Sync` traits and -->
 <!-- how we can use them with custom types. -->

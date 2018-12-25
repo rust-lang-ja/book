@@ -185,7 +185,7 @@
 <!-- particular worker is shutting down, and then we call `join` on that worker’s -->
 <!-- thread. If the call to `join` fails, we use `unwrap` to make Rust panic and go -->
 <!-- into an ungraceful shutdown. -->
-<p>まず、スレッドプール<code>worker</code>それぞれを走査します。<code>self</code>は可変参照であり、<code>worker</code>を可変化できる必要もあるので、
+<p>まず、スレッドプール<code>workers</code>それぞれを走査します。<code>self</code>は可変参照であり、<code>worker</code>を可変化できる必要もあるので、
 これには<code>&amp;mut</code>を使用しています。ワーカーそれぞれに対して、特定のワーカーを終了する旨のメッセージを出力し、
 それから<code>join</code>をワーカースレッドに対して呼び出しています。<code>join</code>の呼び出しが失敗したら、
 <code>unwrap</code>を使用してRustをパニックさせ、優美でないシャットダウンに移行します。</p>
@@ -401,7 +401,7 @@ impl Worker {
 <!-- is received. -->
 <p><code>Message</code> enumを具体化するために、2箇所で<code>Job</code>を<code>Message</code>に変更する必要があります:
 <code>ThreadPool</code>の定義と<code>Worker::new</code>のシグニチャです。<code>ThreadPool</code>の<code>execute</code>メソッドは、
-仕事を<code>Message::NewJob</code>に包んで送信する必要があります。それから、
+仕事を<code>Message::NewJob</code>列挙子に包んで送信する必要があります。それから、
 <code>Message</code>がチャンネルから受け取られる<code>Worker::new</code>で、<code>NewJob</code>列挙子が受け取られたら、
 仕事が処理され、<code>Terminate</code>列挙子が受け取られたら、スレッドはループを抜けます。</p>
 <!-- With these changes, the code will compile and continue to function in the same -->
@@ -409,8 +409,8 @@ impl Worker {
 <!-- creating any messages of the `Terminate` variety. Let’s fix this warning by -->
 <!-- changing our `Drop` implementation to look like Listing 20-25. -->
 <p>これらの変更と共に、コードはコンパイルでき、リスト20-21の後と同じように機能し続けます。ですが、
-<code>Terminate</code>のメッセージを何も生成していないので、
-警告が出るでしょう。<code>Drop</code>実装をリスト20-25のような見た目に変更してこの警告を修正しましょう。</p>
+<code>Terminate</code>のメッセージを何も生成していないので、警告が出るでしょう。
+<code>Drop</code>実装をリスト20-25のような見た目に変更してこの警告を修正しましょう。</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
 <pre><code class="language-rust ignore">impl Drop for ThreadPool {
@@ -457,7 +457,7 @@ impl Worker {
 <p>2つの個別のループが必要な理由をよりよく理解するために、2つのワーカーがある筋書きを想像してください。
 単独のループで各ワーカーを走査すると、最初の繰り返しでチャンネルに停止メッセージが送信され、
 <code>join</code>が最初のワーカースレッドで呼び出されます。その最初のワーカーが現在、リクエストの処理で忙しければ、
-2番目のワーカーがチャンネルから停止メッセージを受け取り、閉じます。最初のワーカーの終了待ちをしていますが、
+2番目のワーカーがチャンネルから停止メッセージを受け取り、閉じます。最初のワーカーの終了待ちをしたままですが、
 2番目のスレッドが停止メッセージを拾ってしまったので、終了することは絶対にありません。デッドロックです！</p>
 <!-- To prevent this scenario, we first put all of our `Terminate` messages on the -->
 <!-- channel in one loop; then we join on all the threads in another loop. Each -->
@@ -492,12 +492,12 @@ impl Worker {
 </code></pre>
 <!-- <span class="caption">Listing 20-26: Shut down the server after serving two -->
 <!-- requests by exiting the loop</span> -->
-<p><span class="caption">リスト20-26: ループを抜けて2つのリクエストを処理した後にサーバを閉じる</span></p>
+<p><span class="caption">リスト20-26: ループを抜けることで、2つのリクエストを処理した後にサーバを閉じる</span></p>
 <!-- You wouldn’t want a real-world web server to shut down after serving only two -->
 <!-- requests. This code just demonstrates that the graceful shutdown and cleanup is -->
 <!-- in working order. -->
 <p>現実世界のWebサーバには、たった2つしかリクエストを受け付けた後に閉じてほしくはないでしょう。
-このコードは、単に優美なシャットダウンと片付けが機能する状態にあることをデモするだけです。</p>
+このコードは、単に優美なシャットダウンと片付けが機能する状態にあることを模擬するだけです。</p>
 <!-- The `take` method is defined in the `Iterator` trait and limits the iteration -->
 <!-- to the first two items at most. The `ThreadPool` will go out of scope at the -->
 <!-- end of `main`, and the `drop` implementation will run. -->
@@ -750,7 +750,7 @@ impl Worker {
 <li>ライブラリの機能のテストを追加する。</li>
 <li><code>unwrap</code>の呼び出しをもっと頑健なエラー処理に変更する。</li>
 <li><code>ThreadPool</code>を使用してWebリクエスト以外のなんらかの作業を行う。</li>
-<li><em>https://crates.io</em>でスレッドプールのクレートを探してそのクレートを代わりに使用して似たWebサーバを実装する。
+<li><em>https://crates.io</em> でスレッドプールのクレートを探して、そのクレートを代わりに使用して似たWebサーバを実装する。
 そして、APIと頑健性を我々が実装したものと比較する。</li>
 </ul>
 <!-- ## Summary -->
@@ -762,7 +762,7 @@ impl Worker {
 <!-- challenges you encounter on your Rust journey. -->
 <p>よくやりました！本の最後に到達しました！Rustのツアーに参加していただき、感謝の辞を述べたいです。
 もう、ご自身のRustプロジェクトや他の方のプロジェクトのお手伝いをする準備ができています。
-あなたのRustの旅で遭遇するあらゆる挑戦の手助けを是非とも行いたい他のRustaceanの歓迎されるコミュニティがあることを肝に命じておいてください。</p>
+あなたのRustの旅で遭遇するあらゆる挑戦の手助けを是非とも行いたい他のRustaceanの歓迎されるコミュニティがあることを心に留めておいてくださいね。</p>
 
                     </main>
 

@@ -140,7 +140,7 @@
 <!-- containing data. Here’s the idea in a slogan from [the Go language -->
 <!-- documentation](http://golang.org/doc/effective_go.html): “Do not communicate by -->
 <!-- sharing memory; instead, share memory by communicating.” -->
-<p>人気度を増してきている安全な非同期処理を保証する一つのアプローチが<em>メッセージ受け渡し</em>で、
+<p>人気度を増してきている安全な並行性を保証する一つのアプローチが<em>メッセージ受け渡し</em>で、
 スレッドやアクターがデータを含むメッセージを相互に送り合うことでやり取りします。
 こちらが、<a href="http:golang.org/doc/effective_go.html">Go言語のドキュメンテーション</a>のスローガンにある考えです:
 「メモリを共有することでやり取りするな; 代わりにやり取りすることでメモリを共有しろ」</p>
@@ -150,7 +150,7 @@
 <!-- channel of water, such as a stream or a river. If you put something like a -->
 <!-- rubber duck or a boat into a stream, it will travel downstream to the end of the -->
 <!-- waterway. -->
-<p>メッセージ送信非同期処理を達成するためにRustに存在する一つの主な道具は、<em>チャンネル</em>で、
+<p>メッセージ送信並行性を達成するためにRustに存在する一つの主な道具は、<em>チャンネル</em>で、
 Rustの標準ライブラリが実装を提供しているプログラミング概念です。プログラミングのチャンネルは、
 水の流れのように考えることができます。小川とか川ですね。アヒルのおもちゃやボートみたいなものを流れに置いたら、
 水路の終端まで下流に流れていきます。</p>
@@ -176,7 +176,7 @@ Rustの標準ライブラリが実装を提供しているプログラミング�
 <!-- results. -->
 <p>ここで、1つのスレッドが値を生成し、それをチャンネルに送信し、別のスレッドがその値を受け取り、
 出力するプログラムに取り掛かります。チャンネルを使用してスレッド間に単純な値を送り、
-機能の具体化を行います。一旦、そのテクニックに慣れてしまえば、チャンネルを使用してチャットシステムや、
+機能の説明を行います。一旦、そのテクニックに慣れてしまえば、チャンネルを使用してチャットシステムや、
 多くのスレッドが計算の一部を担い、結果をまとめる1つのスレッドにその部分を送るようなシステムを実装できるでしょう。</p>
 <!-- First, in Listing 16-6, we’ll create a channel but not do anything with it. -->
 <!-- Note that this won’t compile yet because Rust can’t tell what type of values we -->
@@ -208,7 +208,7 @@ fn main() {
 簡潔に言えば、Rustの標準ライブラリがチャンネルを実装している方法は、1つのチャンネルが値を生成する複数の<em>送信</em>側と、
 その値を消費するたった1つの<em>受信</em>側を持つことができるということを意味します。
 複数の小川が互いに合わさって1つの大きな川になるところを想像してください:
-どの川を通っても、送られたものは最終的に1つの川に行き着きます。今は、1つの生成器から始めますが、
+どの小川を通っても、送られたものは最終的に1つの川に行き着きます。今は、1つの生成器から始めますが、
 この例が動作するようになったら、複数の生成器を追加します。</p>
 <!-- NEXT PARAGRAPH WRAPPED WEIRD INTENTIONALLY SEE #199 -->
 <!-- The `mpsc::channel` function returns a tuple, the first element of which is the -->
@@ -221,8 +221,8 @@ fn main() {
 <!-- extract the pieces of the tuple returned by `mpsc::channel`. -->
 <p><code>mpsc::channel</code>関数はタプルを返し、1つ目の要素は、送信側、2つ目の要素は受信側になります。
 <code>tx</code>と<code>rx</code>という略称は、多くの分野で伝統的に<em>転送機</em>と<em>受信機</em>にそれぞれ使用されているので、
-変数をそのように名付けて、各終端を示します。タプルを分解するパターンを伴う<code>let</code>文を使用しています;
-<code>let</code>文でパターンを使用することと分解については、第18章で議論しましょう。このように<code>let</code>文を使うと、
+変数をそのように名付けて、各終端を示します。タプルを分配するパターンを伴う<code>let</code>文を使用しています;
+<code>let</code>文でパターンを使用することと分配については、第18章で議論しましょう。このように<code>let</code>文を使うと、
 <code>mpsc::channel</code>で返ってくるタプルの部品を抽出するのが便利になります。</p>
 <!-- Let’s move the transmitting end into a spawned thread and have it send one -->
 <!-- string so the spawned thread is communicating with the main thread, as shown in -->
@@ -254,7 +254,7 @@ fn main() {
 <!-- messages through the channel. -->
 <p>今回も、<code>thread::spawn</code>を使用して新しいスレッドを生成し、それから<code>move</code>を使用して、
 立ち上げたスレッドが<code>tx</code>を所有するようにクロージャに<code>tx</code>をムーブしています。立ち上げたスレッドは、
-メッセージをチャンネルを通して送信できるようにチャンネルの送信側を所有する必要があります。</p>
+メッセージをチャンネルを通して送信できるように、チャンネルの送信側を所有する必要があります。</p>
 <!-- The transmitting end has a `send` method that takes the value we want to send. -->
 <!-- The `send` method returns a `Result<T, E>` type, so if the receiving end has -->
 <!-- already been dropped and there’s nowhere to send a value, the send operation -->
@@ -262,7 +262,7 @@ fn main() {
 <!-- of an error. But in a real application, we would handle it properly: return to -->
 <!-- Chapter 9 to review strategies for proper error handling. -->
 <p>転送側には、送信したい値を取る<code>send</code>メソッドがあります。<code>send</code>メソッドは<code>Result&lt;T, E&gt;</code>型を返すので、
-すでに受信側がドロップされ、値を送信する場所がなければ、送信処理はエラーを返します。
+既に受信側がドロップされ、値を送信する場所がなければ、送信処理はエラーを返します。
 この例では、エラーの場合には、パニックするように<code>unwrap</code>を呼び出しています。ですが、実際のアプリケーションでは、
 ちゃんと扱うでしょう: 第9章に戻ってちゃんとしたエラー処理の方法を再確認してください。</p>
 <!-- In Listing 16-8, we’ll get the value from the receiving end of the channel in -->
@@ -298,7 +298,7 @@ fn main() {
 <!-- channel closes, `recv` will return an error to signal that no more values will -->
 <!-- be coming. -->
 <p>チャンネルの受信側には有用なメソッドが2つあります: <code>recv</code>と<code>try_recv</code>です。
-<em>receive</em>の省略形である<code>recv</code>を使っていて、これは、メインスレッドの実行をブロックし、
+<em>receive</em>の省略形である<code>recv</code>を使っています。これは、メインスレッドの実行をブロックし、
 値がチャンネルを流れてくるまで待機します。一旦値が送信されたら、<code>recv</code>はそれを<code>Result&lt;T, E&gt;</code>に含んで返します。
 チャンネルの送信側が閉じたら、<code>recv</code>はエラーを返し、もう値は来ないと通知します。</p>
 <!-- The `try_recv` method doesn’t block, but will instead return a `Result<T, E>` -->
@@ -312,7 +312,7 @@ fn main() {
 メッセージがあったら、それを含む<code>Ok</code>値、今回は何もメッセージがなければ、<code>Err</code>値です。
 メッセージを待つ間にこのスレッドにすることが他にあれば、<code>try_recv</code>は有用です:
 <code>try_recv</code>を頻繁に呼び出し、メッセージがあったら処理し、それ以外の場合は、
-再度チェックするまでちょっとの間他の作業をするループを書くことができるでしょう。</p>
+再度チェックするまでちょっとの間、他の作業をするループを書くことができるでしょう。</p>
 <!-- We’ve used `recv` in this example for simplicity; we don’t have any other work -->
 <!-- for the main thread to do other than wait for messages, so blocking the main -->
 <!-- thread is appropriate. -->
@@ -320,7 +320,7 @@ fn main() {
 メインスレッドをブロックするのは適切です。</p>
 <!-- When we run the code in Listing 16-8, we’ll see the value printed from the main -->
 <!-- thread: -->
-<p>リスト16-8のコードを実行したら、メインスレッドから値が出力されます:</p>
+<p>リスト16-8のコードを実行したら、メインスレッドから値が出力されるところを目撃するでしょう:</p>
 <pre><code class="language-text">Got: hi
 </code></pre>
 <!-- Perfect! -->
@@ -334,11 +334,11 @@ fn main() {
 <!-- problems: we’ll try to use a `val` value in the spawned thread *after* we’ve -->
 <!-- sent it down the channel. Try compiling the code in Listing 16-9 to see why -->
 <!-- this code isn’t allowed: -->
-<p>安全な並行コードを書く手助けをしてくれるので、所有権ルールは、メッセージ送信で重要な役割を担っています。
+<p>安全な並行コードを書く手助けをしてくれるので、所有権規則は、メッセージ送信で重要な役割を担っています。
 並行プログラミングでエラーを回避することは、Rustプログラム全体で所有権について考える利点です。
-実験をしてチャンネルと所有権がともに動いてどう問題を回避するかをお見せしましょう:
+実験をしてチャンネルと所有権がともに動いて、どう問題を回避するかをお見せしましょう:
 <code>val</code>値を立ち上げたスレッドで、チャンネルに送った<em>後</em>に使用を試みます。
-リスト16-9のコードのコンパイルを試みてこのコードが許容されない理由を確認してください:</p>
+リスト16-9のコードのコンパイルを試みて、このコードが許容されない理由を確認してください:</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
 <pre><code class="language-rust ignore">use std::thread;
@@ -387,7 +387,7 @@ not implement the `Copy` trait
 <!-- takes ownership of its parameter, and when the value is moved, the receiver -->
 <!-- takes ownership of it. This stops us from accidentally using the value again -->
 <!-- after sending it; the ownership system checks that everything is okay. -->
-<p>非同期処理のミスがコンパイルエラーを招きました。<code>send</code>関数は引数の所有権を奪い、
+<p>並行性のミスがコンパイルエラーを招きました。<code>send</code>関数は引数の所有権を奪い、
 値がムーブされると、受信側が所有権を得るのです。これにより、送信後に誤って再度値を使用するのを防いでくれます;
 所有権システムが、万事問題ないことを確認してくれます。</p>
 <!-- ### Sending Multiple Values and Seeing the Receiver Waiting -->
@@ -437,7 +437,7 @@ fn main() {
 <!-- between each by calling the `thread::sleep` function with a `Duration` value of -->
 <!-- 1 second. -->
 <p>今回は、メインスレッドに送信したい文字列のベクタを立ち上げたスレッドが持っています。
-それらをイテレートし、各々個別に送信し、<code>Duration</code>の値1秒とともに<code>thread::sleep</code>関数を呼び出すことで、
+それらを繰り返し、各々個別に送信し、<code>Duration</code>の値1秒とともに<code>thread::sleep</code>関数を呼び出すことで、
 メッセージ間で停止します。</p>
 <!-- In the main thread, we’re not calling the `recv` function explicitly anymore: -->
 <!-- instead, we’re treating `rx` as an iterator. For each value received, we’re -->
@@ -527,7 +527,7 @@ for received in rx {
 これにより、最初に立ち上げたスレッドに渡せる新しい送信ハンドルが得られます。
 元のチャンネルの送信側は、2番目に立ち上げたスレッドに渡します。これにより2つスレッドが得られ、
 それぞれチャンネルの受信側に異なるメッセージを送信します。</p>
-<!-- When you run the code, your output output should look something like this: -->
+<!-- When you run the code, your output should look something like this: -->
 <p>コードを実行すると、出力は以下のようなものになるはずです:</p>
 <pre><code class="language-text">Got: hi
 Got: more
@@ -542,12 +542,12 @@ Got: you
 <!-- what makes concurrency interesting as well as difficult. If you experiment with -->
 <!-- `thread::sleep`, giving it various values in the different threads, each run -->
 <!-- will be more nondeterministic and create different output each time. -->
-<p>別の順番で値が出る可能性もあります; システム次第です。非同期処理が面白いと同時に難しい部分でもあります。
+<p>別の順番で値が出る可能性もあります; システム次第です。並行性が面白いと同時に難しい部分でもあります。
 異なるスレッドで色々な値を与えて<code>thread::sleep</code>で実験をしたら、走らせるたびにより非決定的になり、
 毎回異なる出力をするでしょう。</p>
 <!-- Now that we’ve looked at how channels work, let’s look at a different method of -->
 <!-- concurrency. -->
-<p>チャンネルの動作方法を見たので、他の非同期処理に目を向けましょう。</p>
+<p>チャンネルの動作方法を見たので、他の並行性に目を向けましょう。</p>
 
                     </main>
 

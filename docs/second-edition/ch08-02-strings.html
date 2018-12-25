@@ -215,7 +215,7 @@ let mut s = String::new();
 <!-- two examples. -->
 <p>この行は、新しい空の<code>s</code>という文字列を生成しています。それからここにデータを読み込むことができるわけです。
 だいたい、文字列の初期値を決めるデータがあるでしょう。そのために、<code>to_string</code>メソッドを使用します。
-このメソッドは、文字列リテラルがしているように、<code>Display</code>トレイトを実装する型ならなんでも使用できます。
+このメソッドは、文字列リテラルのように、<code>Display</code>トレイトを実装する型ならなんでも使用できます。
 リスト8-12に2例、示しています。</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
@@ -281,7 +281,7 @@ let hello = String::from(&quot;Hola&quot;);
 <!-- A `String` can grow in size and its contents can change, just like the contents -->
 <!-- of a `Vec<T>`, if you push more data into it. In addition, we can conveniently -->
 <!-- use the `+` operator or the `format!` macro to concatenate `String` values. -->
-<p><code>String</code>は、サイズを伸ばすことができ、中身も変化します。追加のデータをプッシュすれば、<code>Vec&lt;T&gt;</code>の中身のようですね。
+<p><code>String</code>は、サイズを伸ばすことができ、<code>Vec&lt;T&gt;</code>の中身のように、追加のデータをプッシュすれば、中身も変化します。
 付け加えると、<code>String</code>値を連結する<code>+</code>演算子や、<code>format!</code>マクロを便利に使用することができます。</p>
 <!-- #### Appending to a String with `push_str` and `push` -->
 <a class="header" href="ch08-02-strings.html#push_strとpushで文字列に追加する" id="push_strとpushで文字列に追加する"><h4><code>push_str</code>と<code>push</code>で文字列に追加する</h4></a>
@@ -453,7 +453,7 @@ let s = format!(&quot;{}-{}-{}&quot;, s1, s2, s3);
 <!-- string by referencing them by index is a valid and common operation. However, -->
 <!-- if you try to access parts of a `String` using indexing syntax in Rust, you’ll -->
 <!-- get an error. Consider the invalid code in Listing 8-19. -->
-<p>他の多くのプログラミング言語では、文字列中の文字に、番号で参照してアクセスすることは、有効なコードであり、
+<p>他の多くのプログラミング言語では、文字列中の文字に、添え字で参照してアクセスすることは、有効なコードであり、
 一般的な処理です。しかしながら、Rustにおいて、添え字記法で<code>String</code>の一部にアクセスしようとすると、
 エラーが発生するでしょう。リスト8-19の非合法なコードを考えてください。</p>
 <pre><code class="language-rust ignore">let s1 = String::from(&quot;hello&quot;);
@@ -504,12 +504,12 @@ let len = String::from(&quot;Здравствуйте&quot;).len();
 <!-- Asked how long the string is, you might say 12. However, Rust’s answer is 24: -->
 <!-- that’s the number of bytes it takes to encode “Здравствуйте” in UTF-8, because -->
 <!-- each Unicode scalar value takes two bytes of storage. Therefore, an index into -->
-<!--  the string’s bytes will not always correlate to a valid Unicode scalar value. -->
+<!-- the string’s bytes will not always correlate to a valid Unicode scalar value. -->
 <!-- To demonstrate, consider this invalid Rust code: -->
 <p>文字列の長さはと問われたら、あなたは12と答えるかもしれません。ところが、Rustの答えは、24です:
 “Здравствуйте”をUTF-8でエンコードすると、この長さになります。各Unicodeスカラー値は、2バイトの領域を取るからです。
-それ故に、文字列のバイト番号は、必ずしも有効なUnicodeのスカラー値とは相互に関係しないのです。
-デモ用に、こんな無効なRustコードを考えてください:</p>
+それ故に、文字列のバイトの添え字は、必ずしも有効なUnicodeのスカラー値とは相互に関係しないのです。
+デモ用に、こんな非合法なRustコードを考えてください:</p>
 <pre><code class="language-rust ignore">let hello = &quot;Здравствуйте&quot;;
 let answer = &amp;hello[0];
 </code></pre>
@@ -527,7 +527,7 @@ let answer = &amp;hello[0];
 <p><code>answer</code>の値は何になるべきでしょうか？最初の文字の<code>З</code>になるべきでしょうか？UTF-8エンコードされた時、
 <code>З</code>の最初のバイトは<code>208</code>、2番目は<code>151</code>になるので、<code>answer</code>は実際、<code>208</code>になるべきですが、
 <code>208</code>は単独では有効な文字ではありません。この文字列の最初の文字を求めている場合、<code>208</code>を返すことは、
-ユーザの望んでいるものではないでしょう; しかしながら、Rustには、番号0の位置には、そのデータしかないのです。
+ユーザの望んでいるものではないでしょう; しかしながら、Rustには、バイト添え字0の位置には、そのデータしかないのです。
 文字列がラテン文字のみを含む場合でも、ユーザは一般的にバイト値が返ることを望みません:
 <code>&amp;&quot;hello&quot;[0]</code>がバイト値を返す有効なコードだったら、<code>h</code>ではなく、<code>104</code>を返すでしょう。
 予期しない値を返し、すぐには判明しないバグを引き起こさないために、Rustはこのコードを全くコンパイルせず、
@@ -574,7 +574,7 @@ Rustの<code>char</code>型はこれなのですが、このバイトは以下�
 <p>Rustで文字を得るのに<code>String</code>に添え字アクセスすることが許されない最後の理由は、
 添え字アクセスという処理が常に定数時間(O(1))になると期待されるからです。
 しかし、<code>String</code>でそのパフォーマンスを保証することはできません。というのも、
-有効な文字がいくつあるか決定するのに、最初から番号まで中身を走査する必要があるからです。</p>
+合法な文字がいくつあるか決定するのに、最初から添え字まで中身を走査する必要があるからです。</p>
 <!-- ### Slicing Strings -->
 <a class="header" href="ch08-02-strings.html#a文字列をスライスする" id="a文字列をスライスする"><h3>文字列をスライスする</h3></a>
 <!-- Indexing into a string is often a bad idea because it’s not clear what the -->
@@ -603,10 +603,10 @@ let s = &amp;hello[0..4];
 <code>s</code>は<code>Зд</code>になります。</p>
 <!-- What would happen if we used `&hello[0..1]`? The answer: Rust would panic at -->
 <!-- runtime in the same way as if an invalid index were accessed in a vector: -->
-<p><code>&amp;hello[0..1]</code>と使用したら、何が起きるでしょうか？答え: Rustはベクタの無効な番号にアクセスしたかのように、
+<p><code>&amp;hello[0..1]</code>と使用したら、何が起きるでしょうか？答え: Rustはベクタの非合法な添え字にアクセスしたかのように、
 実行時にパニックするでしょう:</p>
 <pre><code class="language-text">thread 'main' panicked at 'byte index 1 is not a char boundary; it is inside 'З' (bytes 0..2) of `Здравствуйте`', src/libcore/str/mod.rs:2188:4
-('main'スレッドは「バイト番号1は文字の境界ではありません; `Здравствуйте`の'З'(バイト番号0から2)の中です」でパニックしました)
+('main'スレッドは「バイト添え字1は文字の境界ではありません; `Здравствуйте`の'З'(バイト番号0から2)の中です」でパニックしました)
 </code></pre>
 <!-- You should use ranges to create string slices with caution, because doing so -->
 <!-- can crash your program. -->
@@ -658,7 +658,7 @@ for b in &quot;नमस्ते&quot;.bytes() {
 </code></pre>
 <!-- But be sure to remember that valid Unicode scalar values may be made up of more -->
 <!-- than 1 byte. -->
-<p>ですが、有効なUnicodeスカラー値は、2バイト以上からなる場合もあることは心得ておいてください。</p>
+<p>ですが、合法なUnicodeスカラー値は、2バイト以上からなる場合もあることは心得ておいてください。</p>
 <!-- Getting grapheme clusters from strings is complex, so this functionality is not -->
 <!-- provided by the standard library. Crates are available on -->
 <!-- [crates.io](https://crates.io) if this is the functionality you need. -->

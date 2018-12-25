@@ -312,7 +312,7 @@ fn build_user(email: String, username: String) -&gt; User {
 <!-- than `email: email`. -->
 <p>ここで、<code>email</code>というフィールドを持つ<code>User</code>構造体の新規インスタンスを生成しています。
 <code>email</code>フィールドを<code>build_user</code>関数の<code>email</code>引数の値にセットしたいわけです。
-<code>email</code>フィールドと<code>email</code>引数は同じ名前なので、<code>email: email</code>と書くよりも、
+<code>email</code>フィールドと<code>email</code>引数は同じ名前なので、<code>email: email</code>と書くのではなく、
 <code>email</code>と書くだけで済むのです。</p>
 <!-- ### Creating Instances From Other Instances With Struct Update Syntax -->
 <a class="header" href="ch05-01-defining-structs.html#a構造体更新記法で他のインスタンスからインスタンスを生成する" id="a構造体更新記法で他のインスタンスからインスタンスを生成する"><h3>構造体更新記法で他のインスタンスからインスタンスを生成する</h3></a>
@@ -428,8 +428,8 @@ let origin = Point(0, 0, 0);
 <p><code>black</code>と<code>origin</code>の値は、違う型であることに注目してください。これらは、異なるタプル構造体のインスタンスだからですね。
 定義された各構造体は、構造体内のフィールドが同じ型であっても、それ自身が独自の型になります。
 例えば、<code>Color</code>型を引数に取る関数は、<code>Point</code>を引数に取ることはできません。たとえ、両者の型が、
-3つの<code>i32</code>値からできているにもかかわらずです。それ以外については、タプル構造体のインスタンスは、
-タプルと同じように振る舞います: 分解して個々の部品にしたり、<code>.</code>と番号を使用して個々の値にアクセスするなどです。</p>
+3つの<code>i32</code>値からできていてもです。それ以外については、タプル構造体のインスタンスは、
+タプルと同じように振る舞います: 分配して個々の部品にしたり、<code>.</code>と添え字を使用して個々の値にアクセスするなどです。</p>
 <!-- ### Unit-Like Structs without Any Fields -->
 <a class="header" href="ch05-01-defining-structs.html#aフィールドのないユニットruby様rprprtようrtrprpruby構造体" id="aフィールドのないユニットruby様rprprtようrtrprpruby構造体"><h3>フィールドのないユニット<ruby>様<rp>(</rp><rt>よう</rt><rp>)</rp></ruby>構造体</h3></a>
 <!-- We can also define structs that don’t have any fields! These are called -->
@@ -478,20 +478,20 @@ let origin = Point(0, 0, 0);
 <!--  ```text -->
 <!--  error[E0106]: missing lifetime specifier -->
 <!--   -->
-<!-- >   | -->
-<!-- > 2 |     username: &str, -->
-<!-- >   |               ^ expected lifetime parameter -->
-<!-- > -->
-<!-- > error[E0106]: missing lifetime specifier -->
-<!-- >  -->
-<!-- >   | -->
-<!-- > 3 |     email: &str, -->
-<!-- >   |            ^ expected lifetime parameter -->
-<!-- > ``` -->
-<!-- > -->
-<!-- > In Chapter 10, we’ll discuss how to fix these errors so you can store -->
-<!-- > references in structs, but for now, we’ll fix errors like these using owned -->
-<!-- > types like `String` instead of references like `&str`. -->
+<!--    | -->
+<!--  2 |     username: &str, -->
+<!--    |               ^ expected lifetime parameter -->
+<!--  -->
+<!--  error[E0106]: missing lifetime specifier -->
+<!--   -->
+<!--    | -->
+<!--  3 |     email: &str, -->
+<!--    |            ^ expected lifetime parameter -->
+<!--  ``` -->
+<!--  -->
+<!--  In Chapter 10, we’ll discuss how to fix these errors so you can store -->
+<!--  references in structs, but for now, we’ll fix errors like these using owned -->
+<!--  types like `String` instead of references like `&str`. -->
 <blockquote>
 <a class="header" href="ch05-01-defining-structs.html#a構造体データの所有権" id="a構造体データの所有権"><h3>構造体データの所有権</h3></a>
 <p>リスト5-1の<code>User</code>構造体定義において、<code>&amp;str</code>文字列スライス型ではなく、所有権のある<code>String</code>型を使用しました。
@@ -534,7 +534,7 @@ error[E0106]: missing lifetime specifier
   |            ^ expected lifetime parameter
 </code></pre>
 <p>第10章で、これらのエラーを解消して構造体に参照を保持する方法について議論しますが、
-当面、今回のようなエラーは、<code>&amp;str</code>のような参照の代わりに、<code>String</code>のような所有された型を使うことで解消します。</p>
+当面、今回のようなエラーは、<code>&amp;str</code>のような参照の代わりに、<code>String</code>のような所有された型を使うことで修正します。</p>
 </blockquote>
 
                     </main>

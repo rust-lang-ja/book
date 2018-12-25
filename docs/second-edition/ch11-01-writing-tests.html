@@ -152,7 +152,7 @@
 <!-- take these actions, which include the `test` attribute, a few macros, and the -->
 <!-- `should_panic` attribute. -->
 <p>Rustが、特にこれらの動作を行うテストを書くために用意している機能を見ていきましょう。
-これには、<code>test</code>アトリビュート、いくつかのマクロ、<code>should_panic</code>アトリビュートが含まれます。</p>
+これには、<code>test</code>属性、いくつかのマクロ、<code>should_panic</code>属性が含まれます。</p>
 <!-- ### The Anatomy of a Test Function -->
 <a class="header" href="ch11-01-writing-tests.html#aテスト関数の解剖" id="aテスト関数の解剖"><h2>テスト関数の解剖</h2></a>
 <!-- At its simplest, a test in Rust is a function that’s annotated with the `test` -->
@@ -162,10 +162,10 @@
 <!-- tests with the `cargo test` command, Rust builds a test runner binary that runs -->
 <!-- the functions annotated with the `test` attribute and reports on whether each -->
 <!-- test function passes or fails. -->
-<p>最も単純には、Rustにおけるテストは<code>test</code>アトリビュートで注釈された関数のことです。アトリビュートとは、
-Rustコードの欠片に関するメタデータです; 一例を挙げれば、構造体とともに第5章で使用した<code>derive</code>アトリビュートです。
+<p>最も単純には、Rustにおけるテストは<code>test</code>属性で注釈された関数のことです。属性とは、
+Rustコードの欠片に関するメタデータです; 一例を挙げれば、構造体とともに第5章で使用した<code>derive</code>属性です。
 関数をテスト関数に変えるには、<code>fn</code>の前に<code>#[test]</code>を付け加えるのです。
-<code>cargo test</code>コマンドでテストを実行したら、コンパイラは<code>test</code>アトリビュートで注釈された関数を走らせるテスト用バイナリをビルドし、
+<code>cargo test</code>コマンドでテストを実行したら、コンパイラは<code>test</code>属性で注釈された関数を走らせるテスト用バイナリをビルドし、
 各テスト関数が通過したか失敗したかを報告します。</p>
 <!-- In Chapter 7, we saw that when we make a new library project with Cargo, a test -->
 <!-- module with a test function in it is automatically generated for us. This -->
@@ -175,7 +175,7 @@ Rustコードの欠片に関するメタデータです; 一例を挙げれば�
 <!-- as you want! -->
 <p>第7章で、Cargoで新規ライブラリプロジェクトを作成した時に、テスト関数が含まれるテストモジュールが自動で生成されたことを見かけました。
 このモジュールのおかげでテストを書き始めることができるので、新しいプロジェクトを立ち上げる度に、
-テスト関数の正確な構造と記法を調べる必要がなくなるわけです。必要なだけテスト関数とテストモジュールは追加することができます。</p>
+テスト関数の正確な構造と記法を調べる必要がなくなるわけです。必要なだけ追加のテスト関数とテストモジュールは追加することができます。</p>
 <!-- We’ll explore some aspects of how tests work by experimenting with the template -->
 <!-- test generated for us without actually testing any code. Then we’ll write some -->
 <!-- real-world tests that call some code that we’ve written and assert that its -->
@@ -190,7 +190,7 @@ $ cd adder
 </code></pre>
 <!-- The contents of the *src/lib.rs* file in your `adder` library should look like -->
 <!-- Listing 11-1. -->
-<p><code>adder</code>ライブラリの<em>src/lib.rs</em>ファイルの中身はリスト11-1のような見た目のはずです。</p>
+<p><code>adder</code>ライブラリの<em>src/lib.rs</em>ファイルの中身は、リスト11-1のような見た目のはずです。</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust"># fn main() {}
@@ -212,10 +212,10 @@ mod tests {
 <!-- to help set up common scenarios or perform common operations, so we need to -->
 <!-- indicate which functions are tests by using the `#[test]` attribute. -->
 <p>とりあえず、最初の2行は無視し、関数に集中してその動作法を見ましょう。
-<code>fn</code>行の<code>#[test]</code>アノテーションに注目してください: このアトリビュートは、これがテスト関数であることを示唆しますので、
+<code>fn</code>行の<code>#[test]</code>注釈に注目してください: この属性は、これがテスト関数であることを示唆しますので、
 テスト実行機はこの関数をテストとして扱うとわかるのです。さらに、<code>tests</code>モジュール内には非テスト関数を入れ込み、
 一般的なシナリオをセットアップしたり、共通の処理を行う手助けをしたりもできるので、
-<code>#[test]</code>アトリビュートでどの関数がテストかを示唆する必要があるのです。</p>
+<code>#[test]</code>属性でどの関数がテストかを示唆する必要があるのです。</p>
 <!-- The function body uses the `assert_eq!` macro to assert that 2 + 2 equals 4. -->
 <!-- This assertion serves as an example of the format for a typical test. Let’s run -->
 <!-- it to see that this test passes. -->
@@ -264,7 +264,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 <!-- Benchmark tests are, as of this writing, only available in nightly Rust. See -->
 <!-- [the documentation about benchmark tests][bench] to learn more. -->
 <p><code>0 measured</code>という統計は、パフォーマンスを測定するベンチマークテスト用です。
-ベンチマークテストは、本書記述の時点では、ナイトリー版のRustでのみ利用可能です。
+ベンチマークテストは、本書記述の時点では、ナイトリ版のRustでのみ利用可能です。
 詳しくは、<a href="../../unstable-book/library-features/test.html">ベンチマークテストのドキュメンテーション</a>を参照されたし。</p>
 <!-- The next part of the test output, which starts with `Doc-tests adder`, is for -->
 <!-- the results of any documentation tests. We don’t have any documentation tests -->
@@ -354,7 +354,7 @@ error: test failed
 </code></pre>
 <!-- <span class="caption">Listing 11-4: Test results when one test passes and one -->
 <!-- test fails</span> -->
-<p><span class="caption">リスト11-4: 1つのテストが通り、失敗するときのテスト結果</span></p>
+<p><span class="caption">リスト11-4: 一つのテストが通り、一つが失敗するときのテスト結果</span></p>
 <!-- Instead of `ok`, the line `test tests::another` shows `FAILED`. Two new -->
 <!-- sections appear between the individual results and the summary: the first -->
 <!-- section displays the detailed reason for each test failure. In this case, -->
@@ -367,17 +367,17 @@ error: test failed
 <p><code>ok</code>の代わりに<code>test test::another</code>の行は、<code>FAILED</code>を表示しています。個々の結果とまとめの間に、
 2つ新たな区域ができました: 最初の区域は、失敗したテスト各々の具体的な理由を表示しています。
 今回の場合、<code>another</code>は<code>'Make this test fail'でパニックした</code>ために失敗し、
-これは、<em>src/lib.rs</em>ファイルの10行で起きました。次の区域は失敗したテストの名前だけを列挙し、
-テストがたくさんあり、失敗したテストの詳細がたくさん表示されるときに有用になります。
+これは、<em>src/lib.rs</em>ファイルの10行で起きました。次の区域は失敗したテストの名前だけを列挙しています。
+これは、テストがたくさんあり、失敗したテストの詳細がたくさん表示されるときに有用になります。
 失敗したテストの名前を使用してそのテストだけを実行し、より簡単にデバッグすることができます。
-ただし、テストの実行方法については、「テストの実行され方を制御する」節でもっと語りましょう。</p>
+テストの実行方法については、「テストの実行され方を制御する」節でもっと語りましょう。</p>
 <!-- The summary line displays at the end: overall, our test result is `FAILED`. -->
 <!-- We had one test pass and one test fail. -->
 <p>総括の行が最後に出力されています: 総合的に言うと、テスト結果は<code>失敗</code>でした。
 一つのテストが通り、一つが失敗したわけです。</p>
 <!-- Now that you’ve seen what the test results look like in different scenarios, -->
 <!-- let’s look at some macros other than `panic!` that are useful in tests. -->
-<p>異なるシナリオでのテスト結果がどんな風になるか見てきたので、テストを行う際に有用になる<code>panic!</code>以外のマクロに目を向けましょう。</p>
+<p>異なる筋書きでのテスト結果がどんな風になるか見てきたので、テストを行う際に有用になる<code>panic!</code>以外のマクロに目を向けましょう。</p>
 <!-- ### Checking Results with the `assert!` Macro -->
 <a class="header" href="ch11-01-writing-tests.html#assertマクロで結果を確認する" id="assertマクロで結果を確認する"><h3><code>assert!</code>マクロで結果を確認する</h3></a>
 <!-- The `assert!` macro, provided by the standard library, is useful when you want -->
@@ -448,7 +448,7 @@ mod tests {
 <!-- module into the scope of the inner module. We use a glob here so anything we -->
 <!-- define in the outer module is available to this `tests` module. -->
 <p><code>tests</code>モジュール内に新しい行を加えたことに注目してください: <code>use super::*</code>です。
-<code>tests</code>モジュールは、第7章の「プライバシー規則」節で解説した通常の公開ルールに従う普通のモジュールです。
+<code>tests</code>モジュールは、第7章の「プライバシー規則」節で講義した通常の公開ルールに従う普通のモジュールです。
 <code>tests</code>モジュールは、内部モジュールなので、外部モジュール内のテスト配下にあるコードを内部モジュールのスコープに持っていく必要があります。
 ここではglobを使用して、外部モジュールで定義したもの全てがこの<code>tests</code>モジュールでも使用可能になるようにしています。</p>
 <!-- We’ve named our test `larger_can_hold_smaller`, and we’ve created the two -->
@@ -529,6 +529,8 @@ failures:
 ---- tests::larger_can_hold_smaller stdout ----
     thread 'tests::larger_can_hold_smaller' panicked at 'assertion failed:
     larger.can_hold(&amp;smaller)', src/lib.rs:22:8
+    (スレッド'tests::larger_can_hold_smallerはsrc/lib.rs:22:8の'assertion failed: larger.can_hold(&amp;smaller)'
+    でパニックしました)
 note: Run with `RUST_BACKTRACE=1` for a backtrace.
 
 failures:
@@ -644,7 +646,7 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 <code>expected</code>と<code>actual</code>と呼ばれ、引数を指定する順序が問題になることに注意してください。
 ですがRustでは、<code>left</code>と<code>right</code>と呼ばれ、期待する値とテスト下のコードが生成する値を指定する順序は、
 問題になりません。<code>assert_eq!(add_two(2), 4)</code>と今回のテストのアサーションを書くこともでき、
-そうすると失敗メッセージは、<code>assertion failed: `(left == right)`</code>と、
+そうすると失敗メッセージは、<code>assertion failed: `(left == right)`</code>となり、
 <code>left</code>が<code>5</code>で<code>right</code>が<code>4</code>と表示されるわけです。</p>
 <!-- The `assert_ne!` macro will pass if the two values we give it are not equal and -->
 <!-- fail if they’re equal. This macro is most useful for cases when we’re not sure -->
@@ -655,7 +657,7 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 <!-- to assert might be that the output of the function is not equal to the input. -->
 <p><code>assert_ne!</code>マクロは、与えた2つの値が等しくなければ通り、等しければ失敗します。
 このマクロは、値が何になる<em>だろう</em>か確信が持てないけれども、コードが意図した通りに動いていれば、
-確実にこの値にはならない<em>だろう</em>とわかっているような場合に最も有用になります。例えば、
+確実にこの値にはなら<em>ないだろう</em>とわかっているような場合に最も有用になります。例えば、
 入力を何らかの手段で変えることが保障されているけれども、入力が変更される方法がテストを実行する曜日に依存する関数をテストしているなら、
 アサーションすべき最善の事柄は、関数の出力が入力と等しくないことかもしれません。</p>
 <!-- Under the surface, the `assert_eq!` and `assert_ne!` macros use the operators -->
@@ -705,6 +707,7 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust"># fn main() {}
 pub fn greeting(name: &amp;str) -&gt; String {
+    // こんにちは、{}さん！
     format!(&quot;Hello {}!&quot;, name)
 }
 
@@ -725,7 +728,7 @@ mod tests {
 <!-- so instead of checking for exact equality to the value returned from the -->
 <!-- `greeting` function, we’ll just assert that the output contains the text of the -->
 <!-- input parameter. -->
-<p>このプログラムの必要事項はまだ合意が得られておらず、挨拶の先頭の<code>Hello</code>というテキストは変わるだろうということは確かです。
+<p>このプログラムの必要事項はまだ合意が得られておらず、挨拶の先頭の<code>Hello</code>というテキストは変わるだろうということは極めて確かです。
 要件が変わった時にテストを更新しなくてもよいようにしたいと決定したので、
 <code>greeting</code>関数から返る値と正確な等値性を確認するのではなく、出力が入力引数のテキストを含むことをアサーションするだけにします。</p>
 <!-- Let’s introduce a bug into this code by changing `greeting` to not include -->
@@ -763,9 +766,9 @@ failures:
 <pre><code class="language-rust ignore">#[test]
 fn greeting_contains_name() {
     let result = greeting(&quot;Carol&quot;);
-    //挨拶は名前を含んでいません。値は`{}`でした
     assert!(
         result.contains(&quot;Carol&quot;),
+        //挨拶は名前を含んでいません。値は`{}`でした
         &quot;Greeting did not contain name, value was `{}`&quot;, result
     );
 }
@@ -797,12 +800,12 @@ note: Run with `RUST_BACKTRACE=1` for a backtrace.
 <!-- We do this by adding another attribute, `should_panic`, to our test function. -->
 <!-- This attribute makes a test pass if the code inside the function panics; the -->
 <!-- test will fail if the code inside the function doesn’t panic. -->
-<p>これは、テスト関数に<code>should_panic</code>という別のアトリビュートを追加することで達成できます。
-このアトリビュートは、関数内のコードがパニックしたら、テストを通過させます。つまり、
+<p>これは、テスト関数に<code>should_panic</code>という別の属性を追加することで達成できます。
+この属性は、関数内のコードがパニックしたら、テストを通過させます。つまり、
 関数内のコードがパニックしなかったら、テストは失敗するわけです。</p>
 <!-- Listing 11-8 shows a test that checks that the error conditions of `Guess::new` -->
 <!-- happen when we expect them to. -->
-<p>リスト11-8は、想定した時に<code>Guess::new</code>のエラー状態が発生していることを確認するテストを示しています。</p>
+<p>リスト11-8は、想定した時に<code>Guess::new</code>のエラー条件が発生していることを確認するテストを示しています。</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust"># fn main() {}
@@ -840,7 +843,7 @@ mod tests {
 <!-- We place the `#[should_panic]` attribute after the `#[test]` attribute and -->
 <!-- before the test function it applies to. Let’s look at the result when this test -->
 <!-- passes: -->
-<p><code>#[test]</code>アトリビュートの後、適用するテスト関数の前に<code>#[should_panic]</code>アトリビュートを配置しています。
+<p><code>#[test]</code>属性の後、適用するテスト関数の前に<code>#[should_panic]</code>属性を配置しています。
 このテストが通るときの結果を見ましょう:</p>
 <pre><code class="language-text">running 1 test
 test tests::greater_than_100 ... ok
@@ -897,7 +900,7 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 <!-- different messages depending on whether the value is too small or too large. -->
 <p><code>should_panic</code>を使用するテストは不正確なこともあります。なぜなら、コードが何らかのパニックを起こしたことしか示さないからです。
 <code>should_panic</code>のテストは、起きると想定していたもの以外の理由でテストがパニックしても通ってしまうのです。
-<code>should_panic</code>のテストの正確を期すために、<code>should_panic</code>アトリビュートの省略可能な<code>expected</code>引数を追加できます。
+<code>should_panic</code>のテストの正確を期すために、<code>should_panic</code>属性の省略可能な<code>expected</code>引数を追加できます。
 このテストの拘束具が、失敗メッセージに与えられたテキストが含まれていることを確かめてくれるでしょう。
 例えば、リスト11-9の<code>Guess</code>の変更されたコードを考えてください。ここでは、
 <code>new</code>関数は、値の大小によって異なるメッセージでパニックします。</p>
@@ -913,11 +916,11 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 impl Guess {
     pub fn new(value: u32) -&gt; Guess {
         if value &lt; 1 {
-            //予想値は、1以上でなければなりません
+            //予想値は、1以上でなければなりませんが、{}でした
             panic!(&quot;Guess value must be greater than or equal to 1, got {}.&quot;,
                    value);
         } else if value &gt; 100 {
-            //予想値は100以下でなければなりません
+            //予想値は100以下でなければなりませんが、{}でした
             panic!(&quot;Guess value must be less than or equal to 100, got {}.&quot;,
                    value);
         }
@@ -952,8 +955,8 @@ mod tests {
 <!-- and how precise you want your test to be. In this case, a substring of the -->
 <!-- panic message is enough to ensure that the code in the test function executes -->
 <!-- the `else if value > 100` case. -->
-<p><code>should_panic</code>アトリビュートの<code>expected</code>引数に置いた値が<code>Guess::new</code>関数がパニックしたメッセージの一部になっているので、
-このテストは通ります。予想されるパニックメッセージ全体を指定することもでき、そうすれば今回の場合、
+<p><code>should_panic</code>属性の<code>expected</code>引数に置いた値が<code>Guess::new</code>関数がパニックしたメッセージの一部になっているので、
+このテストは通ります。予想されるパニックメッセージ全体を指定することもでき、今回の場合、
 <code>Guess value must be less than or equal to 100, got 200.</code>となります。
 <code>should_panic</code>の予想される引数に指定すると決めたものは、パニックメッセージの固有性や活動性、
 テストの正確性によります。今回の場合、パニックメッセージの一部でも、テスト関数内のコードが、
@@ -982,6 +985,7 @@ greater than or equal to 1, got 200.', src/lib.rs:11:12
 note: Run with `RUST_BACKTRACE=1` for a backtrace.
 note: Panic did not include expected string 'Guess value must be less than or
 equal to 100'
+(注釈: パニックには'Guess value must be less than or equal to 100'という予想される文字列が含まれませんでした)
 
 failures:
     tests::greater_than_100
@@ -1001,7 +1005,7 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 <!-- when we run our tests and explore the different options we can use with `cargo -->
 <!-- test`. -->
 <p>今やテスト記法を複数知ったので、テストを走らせる際に起きていることに目を向け、
-<code>cargo test</code>で使用できる色んなオプションを探求しましょう。</p>
+<code>cargo test</code>で使用できるいろんなオプションを探求しましょう。</p>
 
                     </main>
 

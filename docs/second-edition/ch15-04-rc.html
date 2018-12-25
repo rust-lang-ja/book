@@ -150,7 +150,7 @@
 <!-- number of references to a value which determines whether or not a value is -->
 <!-- still in use. If there are zero references to a value, the value can be cleaned -->
 <!-- up without any references becoming invalid. -->
-<p>複数の所有権を可能にするため、Rustには<code>Rc&lt;T&gt;</code>という型があり、これは、<em>reference counting</em>の省略形です。
+<p>複数の所有権を可能にするため、Rustには<code>Rc&lt;T&gt;</code>という型があり、これは、<em>reference counting</em>(参照カウント)の省略形です。
 <code>Rc&lt;T&gt;</code>型は、値がまだ使用中かどうか決定する値への参照の数を追跡します。値への参照が0なら、どの参照も無効にすることなく、
 値は片付けられます。</p>
 <!-- Imagine `Rc<T>` as a TV in a family room. When one person enters to watch TV, -->
@@ -173,8 +173,8 @@
 <!-- Note that `Rc<T>` is only for use in single-threaded scenarios. When we discuss -->
 <!-- concurrency in Chapter 16, we’ll cover how to do reference counting in -->
 <!-- multithreaded programs. -->
-<p><code>Rc&lt;T&gt;</code>は、シングルスレッドシナリオで使用するためだけのものであることに注意してください。
-第16章で非同期処理について議論する時に、マルチスレッドプログラムで参照カウントをする方法を講義します。</p>
+<p><code>Rc&lt;T&gt;</code>は、シングルスレッドの筋書きで使用するためだけのものであることに注意してください。
+第16章で並行性について議論する時に、マルチスレッドプログラムで参照カウントをする方法を講義します。</p>
 <!-- ### Using `Rc<T>` to Share Data -->
 <a class="header" href="ch15-04-rc.html#rctでデータを共有する" id="rctでデータを共有する"><h3><code>Rc&lt;T&gt;</code>でデータを共有する</h3></a>
 <!-- Let’s return to our cons list example in Listing 15-5. Recall that we defined -->
@@ -303,7 +303,7 @@ fn main() {
 <!-- code, we only need to consider the deep-copy clones and can disregard calls to -->
 <!-- `Rc::clone`. -->
 <p><code>Rc::clone(&amp;a)</code>ではなく、<code>a.clone()</code>を呼ぶこともできますが、Rustのしきたりは、この場合<code>Rc::clone</code>を使うことです。
-<code>Rc::clone</code>の実装は、多くの型の<code>clone</code>実装がするように、全てのデータのディープコピーをすることではありません。
+<code>Rc::clone</code>の実装は、多くの型の<code>clone</code>実装のように、全てのデータのディープコピーをすることではありません。
 <code>Rc::clone</code>の呼び出しは、参照カウントをインクリメントするだけであり、時間はかかりません。
 データのディープコピーは時間がかかることもあります。参照カウントに<code>Rc::clone</code>を使うことで、
 視覚的にディープコピーをする類のクローンと参照カウントを増やす種類のクローンを区別することができます。
@@ -377,9 +377,9 @@ count after c goes out of scope = 2
 <!-- completely at that point. Using `Rc<T>` allows a single value to have -->
 <!-- multiple owners, and the count ensures that the value remains valid as long as -->
 <!-- any of the owners still exist. -->
-<p>この例ではわからないことは、<code>b</code>そして<code>a</code>が、<code>main</code>の終端でスコープを抜ける時に、カウントが0になり、
+<p>この例でわからないことは、<code>b</code>そして<code>a</code>が、<code>main</code>の終端でスコープを抜ける時に、カウントが0になり、
 その時点で<code>Rc&lt;List&gt;</code>が完全に片付けられることです。<code>Rc&lt;T&gt;</code>で単独の値に複数の所有者を持たせることができ、
-所有者のいずれも存在している限り、値が有効であり続けることをカウントは保証します。</p>
+所有者のいずれかが存在している限り、値が有効であり続けることをカウントは保証します。</p>
 <!-- Via immutable references, `Rc<T>` allows you to share data between multiple -->
 <!-- parts of our program for reading only. If `Rc<T>` allowed you to have multiple -->
 <!-- mutable references too, you might violate one of the borrowing rules discussed -->
@@ -389,7 +389,7 @@ count after c goes out of scope = 2
 <!-- type that you can use in conjunction with an `Rc<T>` to work with this -->
 <!-- immutability restriction. -->
 <p>不変参照経由で、<code>Rc&lt;T&gt;</code>は読み取り専用にプログラムの複数箇所間でデータを共有させてくれます。
-<code>Rc&lt;T&gt;</code>が複数の可変参照を存在させることも許可してくれたら、第4章で議論した借用ルールの1つを侵害する恐れがあります:
+<code>Rc&lt;T&gt;</code>が複数の可変参照を存在させることも許可してくれたら、第4章で議論した借用ルールの1つを侵害する<ruby>虞<rp>(</rp><rt>おそれ</rt><rp>)</rp></ruby>があります:
 同じ場所への複数の可変借用は、データ競合や矛盾を引き起こすことがあるのです。しかし、
 データを可変化する能力はとても有用です！次の節では、内部可変性パターンと、
 <code>Rc&lt;T&gt;</code>と絡めて使用してこの不変性制限を手がけられる<code>RefCell&lt;T&gt;</code>型について議論します。</p>

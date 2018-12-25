@@ -171,7 +171,7 @@ mod tests {
     }
 }
 #}</code></pre></pre>
-<!-- Cargo creates an empty test to help us get our library started, rather than the -->
+<!-- Cargo creates an empty test to help us get our library started, rather than -->
 <!-- the “Hello, world!” binary that we get when we use the `--bin` option. We’ll -->
 <!-- look at the `#[]` and `mod tests` syntax in the “Using `super` to Access a -->
 <!-- Parent Module” section later in this chapter, but for now, leave this code at -->
@@ -259,10 +259,10 @@ mod client {
 <!-- they were inside the `network` namespace instead, as in Listing 7-2. -->
 <p>今回の場合、ライブラリを構成しているので、ライブラリビルド時にエントリーポイントとなるファイルは、
 <em>src/lib.rs</em>になります。しかし、モジュールを作成するという点に関しては、<em>src/lib.rs</em>には何も特別なことはありません。
-ライブラリクレートに対して<em>src/lib.rs</em>にモジュールを生成するのと全く同様に、
+ライブラリクレートに対して<em>src/lib.rs</em>にモジュールを生成するのと同様に、
 バイナリクレートに対して<em>src/main.rs</em>にモジュールを生成することもできます。実は、モジュール内にモジュールを書くこともでき、
 モジュールが肥大化するにつれて、関連のある機能を一緒くたにし、機能を切り離すのに有用なのです。
-コードを体系化すると選択する方法は、コードの部分部分の関連性に対する考え方によって選択することになります。
+コードを体系化すると選択する方法は、コードの部分部分の関連性に対する考え方によります。
 例ですが、<code>client</code>コードとその<code>connect</code>関数は、リスト7-2のように、代わりに<code>network</code>名前空間内に存在したら、
 ライブラリの使用者にとって意味のあるものになるかもしれません。</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
@@ -310,7 +310,7 @@ mod network {
 </code></pre>
 <!-- The hierarchy shows that in Listing 7-2, `client` is a child of the `network` -->
 <!-- module rather than a sibling. More complicated projects can have many modules, -->
-<!-- and they’ll need to be organized logically in order fro you to keep track of -->
+<!-- and they’ll need to be organized logically in order for you to keep track of -->
 <!-- them. What “logically” means in your project is up to you and depends on how -->
 <!-- you and your library’s users think about your project’s domain. Use the -->
 <!-- techniques shown here to create side-by-side modules and nested modules in -->
@@ -407,8 +407,7 @@ mod network {
 <!-- *client.rs* file in your *src/* directory and open it. Then enter the -->
 <!-- following, which is the `connect` function in the `client` module that we -->
 <!-- removed in the previous step: -->
-<!-- 何故か「*src/*ディレクトリ内に*client.rs*」までが斜体になってしまう。mdbookのバグ？ -->
-<p>さて、このモジュール名の外部ファイルを作成する必要が出てきました。<em>src/<em>ディレクトリ内に</em>client.rs</em>ファイルを作成し、
+<p>さて、このモジュール名の外部ファイルを作成する必要が出てきました。<em>src/</em> ディレクトリ内に<em>client.rs</em>ファイルを作成し、
 開いてください。それから以下のように入力してください。前段階で削除した<code>client</code>モジュールの<code>connect</code>関数です:</p>
 <!-- <span class="filename">Filename: src/client.rs</span> -->
 <p><span class="filename">ファイル名: src/client.rs</span></p>
@@ -475,7 +474,7 @@ warning: function is never used: `connect`
 <!-- Next, let’s extract the `network` module into its own file using the same -->
 <!-- pattern. In *src/lib.rs*, delete the body of the `network` module and add a -->
 <!-- semicolon to the declaration, like so: -->
-<p>次に、同様のパターンを使用して<code>network</code>モジュールも単独のファイルに抽出しましょう。
+<p>次に、同様のパターンで<code>network</code>モジュールも単独のファイルに抽出しましょう。
 <em>src/lib.rs</em>で、<code>network</code>モジュールの本体を削除し、宣言にセミコロンを付加してください。こんな感じです:</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
@@ -531,7 +530,7 @@ fn connect() {
 }
 #}</code></pre></pre>
 <!-- When we try to run `cargo build`, we’ll get the error shown in Listing 7-5: -->
-<p><code>cargo build</code>を実行しようとすると、リスト7-4に示したようなエラーが出ます:</p>
+<p><code>cargo build</code>を実行しようとすると、リスト7-5に示したようなエラーが出ます:</p>
 <pre><code class="language-text">$ cargo build
    Compiling communicator v0.1.0 (file:///projects/communicator)
 error: cannot declare a new module at this location
@@ -590,7 +589,7 @@ $ mv src/server.rs src/network
 <!-- Now when we try to run `cargo build`, compilation will work (we’ll still have -->
 <!-- warnings, though). Our module layout still looks exactly the same as it did when -->
 <!-- we had all the code in *src/lib.rs* in Listing 7-3: -->
-<p><code>cargo build</code>を走らせたら、ようやくコンパイルは通ります(まだ警告はありますけどね)。
+<p><code>cargo build</code>を走らせたら、コンパイルは通ります(まだ警告はありますけどね)。
 それでも、モジュールの配置は、リスト7-3で<em>src/lib.rs</em>に全てのコードを収めていたときと全く同じになります:</p>
 <pre><code class="language-text">communicator
  ├── client
@@ -638,7 +637,7 @@ $ mv src/server.rs src/network
 <!-- *src/client.rs* file, Rust wouldn’t have any way to know whether the code was -->
 <!-- for `client` or for `network::client`. -->
 <p>この例でも、モジュールは3つあります: <code>client</code>、<code>network</code>、<code>network::client</code>です。
-以前と同じ段階を経てモジュールをファイルに抽出すると、<code>client</code>モジュール用に<em>src/client.rs</em>を作成することになるでしょう。
+以前と同じ手順を経てモジュールをファイルに抽出すると、<code>client</code>モジュール用に<em>src/client.rs</em>を作成することになるでしょう。
 <code>network</code>モジュールに関しては、<em>src/network.rs</em>を作成します。しかし、
 <code>network::client</code>モジュールを<em>src/client.rs</em>ファイルに抽出することはできません。
 もうトップ階層の<code>client</code>モジュールとして存在するからです！
@@ -675,11 +674,14 @@ $ mv src/server.rs src/network
 <!-- in your *src* directory: -->
 <p>これらのルールは再帰的に適用されるので、<code>foo</code>というモジュールに<code>bar</code>というサブモジュールがあり、
 <code>bar</code>にはサブモジュールがなければ、<em>src</em>ディレクトリには以下のようなファイルが存在するはずです:</p>
+<!-- ```text -->
+<!-- ├── foo -->
+<!-- │   ├── bar.rs (contains the declarations in `foo::bar`) -->
+<!-- │   └── mod.rs (contains the declarations in `foo`, including `mod bar`) -->
+<!-- ``` -->
 <pre><code class="language-text">├── foo
-│   ├── bar.rs (contains the declarations in `foo::bar`)
-│   │          (`foo::bar`内の定義を含む)
-│   └── mod.rs (contains the declarations in `foo`, including `mod bar`)
-               (`mod bar`を含む、`foo`内の定義を含む)
+│   ├── bar.rs (`foo::bar`内の定義を含む)
+│   └── mod.rs (`mod bar`を含む、`foo`内の定義を含む)
 </code></pre>
 <!-- The modules should be declared in their parent module’s file using the `mod` -->
 <!-- keyword. -->

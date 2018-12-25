@@ -140,14 +140,14 @@
 <!-- interpret and respond to. For example, if you try to open a file and that -->
 <!-- operation fails because the file doesn’t exist, we might want to create the -->
 <!-- file instead of terminating the process. -->
-<p>多くのエラーは、プログラムを完全にストップさせるほど深刻ではありません。時々、関数が失敗すると、
+<p>多くのエラーは、プログラムを完全にストップさせるほど深刻ではありません。時々、関数が失敗した時に、
 容易に解釈し、対応できる理由によることがあります。例えば、ファイルを開こうとして、
-ファイルが存在しないために処理が失敗したら、プロセスを殺すのではなく、ファイルを作成したいことがあります。</p>
+ファイルが存在しないために処理が失敗したら、プロセスを停止するのではなく、ファイルを作成したいことがあります。</p>
 <!-- Recall from “[Handling Potential Failure with the `Result` -->
-<!-- Type][handle_failure]” in Chapter2 that the `Result` enum is -->
+<!-- Type][handle_failure]” in Chapter 2 that the `Result` enum is -->
 <!-- defined as having two variants, `Ok` and `Err`, as follows: -->
 <p>第2章の<a href="ch02-00-guessing-game-tutorial.html#handling-potential-failure-with-the-result-type">「<code>Result</code>型で失敗する可能性に対処する」</a>で<code>Result</code> enumが以下のように、
-<code>Ok</code>と<code>Err</code>の2値からなるよう定義されていることを思い出してください:</p>
+<code>Ok</code>と<code>Err</code>の2列挙子からなるよう定義されていることを思い出してください:</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
@@ -165,9 +165,9 @@ enum Result&lt;T, E&gt; {
 <!-- library has defined on it in many different situations where the successful -->
 <!-- value and error value we want to return may differ. -->
 <p><code>T</code>と<code>E</code>は、ジェネリックな型引数です: ジェネリクスについて詳しくは、第10章で議論します。
-たった今知っておく必要があることは、<code>T</code>が成功した時に<code>Ok</code>バリアントに含まれて返される値の型を表すことと、
-<code>E</code>が失敗した時に<code>Err</code>バリアントに含まれて返されるエラーの型を表すことです。<code>Result</code>はこのようなジェネリックな型引数を含むので、
-標準ライブラリ上に定義されている<code>Result</code>型や関数などを、成功した時とエラーの値が異なるような様々な場面で使用できるのです。</p>
+たった今知っておく必要があることは、<code>T</code>が成功した時に<code>Ok</code>列挙子に含まれて返される値の型を表すことと、
+<code>E</code>が失敗した時に<code>Err</code>列挙子に含まれて返されるエラーの型を表すことです。<code>Result</code>はこのようなジェネリックな型引数を含むので、
+標準ライブラリ上に定義されている<code>Result</code>型や関数などを、成功した時とエラーの時に返したい値が異なるような様々な場面で使用できるのです。</p>
 <!-- Let’s call a function that returns a `Result` value because the function could -->
 <!-- fail. In Listing 9-3 we try to open a file. -->
 <p>関数が失敗する可能性があるために<code>Result</code>値を返す関数を呼び出しましょう: リスト9-3では、
@@ -197,7 +197,7 @@ fn main() {
 <pre><code class="language-rust ignore">let f: u32 = File::open(&quot;hello.txt&quot;);
 </code></pre>
 <!-- Attempting to compile now gives us the following output: -->
-<p>コンパイルしようとすると、以下のような出力が得られます:</p>
+<p>これでコンパイルしようとすると、以下のような出力が得られます:</p>
 <pre><code class="language-text">error[E0308]: mismatched types
 (エラー: 型が合いません)
  --&gt; src/main.rs:4:18
@@ -263,8 +263,8 @@ fn main() {
 <!-- Note that, like the `Option` enum, the `Result` enum and its variants have been -->
 <!-- imported in the prelude, so we don’t need to specify `Result::` before the `Ok` -->
 <!-- and `Err` variants in the `match` arms. -->
-<p><code>Option</code> enumのように、<code>Result</code> enumとそのバリアントは、初期化処理でインポートされているので、
-<code>match</code>アーム内で<code>Ok</code>と<code>Err</code>バリアントの前に<code>Result::</code>を指定する必要がないことに注目してください。</p>
+<p><code>Option</code> enumのように、<code>Result</code> enumとその列挙子は、初期化処理でインポートされているので、
+<code>match</code>アーム内で<code>Ok</code>と<code>Err</code>列挙子の前に<code>Result::</code>を指定する必要がないことに注目してください。</p>
 <!-- Here we tell Rust that when the result is `Ok`, return the inner `file` value -->
 <!-- out of the `Ok` variant, and we then assign that file handle value to the -->
 <!-- variable `f`. After the `match`, we can use the file handle for reading or -->
@@ -316,8 +316,8 @@ fn main() {
             match File::create(&quot;hello.txt&quot;) {
                 Ok(fc) =&gt; fc,
                 Err(e) =&gt; {
-                    //ファイルを作成しようとしましたが、問題がありました
                     panic!(
+                        //ファイルを作成しようとしましたが、問題がありました
                         &quot;Tried to create file but there was a problem: {:?}&quot;,
                         e
                     )
@@ -374,7 +374,7 @@ fn main() {
 <p>マッチガードで精査したい条件は、<code>error.kind()</code>により返る値が、<code>ErrorKind</code> enumの<code>NotFound</code>列挙子であるかということです。
 もしそうなら、<code>File::create</code>でファイル作成を試みます。ところが、<code>File::create</code>も失敗する可能性があるので、
 内部にも<code>match</code>式を追加する必要があるのです。ファイルが開けないなら、異なるエラーメッセージが出力されるでしょう。
-外側の<code>match</code>の最後のアームは同じままなので、ファイルが行方不明のエラー以外ならプログラムはパニックします。</p>
+外側の<code>match</code>の最後のアームは同じままなので、ファイルが欠けているエラー以外ならプログラムはパニックします。</p>
 <!-- ### Shortcuts for Panic on Error: `unwrap` and `expect` -->
 <a class="header" href="ch09-02-recoverable-errors-with-result.html#aエラー時にパニックするショートカット-unwrapとexpect" id="aエラー時にパニックするショートカット-unwrapとexpect"><h3>エラー時にパニックするショートカット: <code>unwrap</code>と<code>expect</code></h3></a>
 <!-- Using `match` works well enough, but it can be a bit verbose and doesn’t always -->
@@ -515,8 +515,8 @@ fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {
 <!-- calling code as this function’s error value. If `File::open` succeeds, we store -->
 <!-- the file handle in the variable `f` and continue. -->
 <p>関数の本体は、<code>File::open</code>関数を呼び出すところから始まります。そして、リスト9-4の<code>match</code>に似た<code>match</code>で返ってくる<code>Result</code>値を扱い、
-<code>Err</code>ケースに<code>panic!</code>を呼び出す代わりだけですが、この関数から早期リターンしてこの関数のエラー値として、
-<code>File::open</code>から得たエラー値を呼び出し元に渡し返します。<code>File::open</code>が成功すれば、
+<code>Err</code>ケースに<code>panic!</code>を呼び出すだけの代わりに、この関数から早期リターンしてこの関数のエラー値として、
+<code>File::open</code>から得たエラー値を呼び出し元に渡し戻します。<code>File::open</code>が成功すれば、
 ファイルハンドルを変数<code>f</code>に保管して継続します。</p>
 <!-- Then we create a new `String` in variable `s` and call the `read_to_string` -->
 <!-- method on the file handle in `f` to read the contents of the file into `s`. The -->
@@ -647,8 +647,8 @@ fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {
 <p><code>s</code>の新規<code>String</code>の生成を関数の冒頭に移動しました; その部分は変化していません。変数<code>f</code>を生成する代わりに、
 <code>read_to_string</code>の呼び出しを直接<code>File::open(&quot;hello.txt&quot;)?</code>の結果に連結させました。
 それでも、<code>read_to_string</code>呼び出しの末尾には<code>?</code>があり、<code>File::open</code>と<code>read_to_string</code>両方が成功したら、
-エラーを返すというよりもまだ<code>s</code>にユーザ名を含む<code>Ok</code>値を返します。機能もまたリスト9-6及び、9-7と同じです;
-ただ単に異なるバージョンのよりプログラマフレンドリーな書き方なのです。</p>
+エラーを返すというよりもそれでも、<code>s</code>にユーザ名を含む<code>Ok</code>値を返します。機能もまたリスト9-6及び、9-7と同じです;
+ただ単に異なるバージョンのよりエルゴノミックな書き方なのです。</p>
 <!-- #### `?` Operator Can Only Be Used in Functions That Return `Result` -->
 <a class="header" href="ch09-02-recoverable-errors-with-result.html#a演算子はresultを返す関数でしか使用できない" id="a演算子はresultを返す関数でしか使用できない"><h4><code>?</code>演算子は、<code>Result</code>を返す関数でしか使用できない</h4></a>
 <!-- The `?` operator can only be used in functions that have a return type of -->

@@ -254,7 +254,7 @@ fn main() {
 <!-- <span class="caption">Listing 15-26: Creating a reference cycle of two `List` -->
 <!-- values pointing to each other</span> -->
 <p><span class="caption">リスト15-26: 2つの<code>List</code>値がお互いを指して循環参照する</span></p>
-<!-- in the variable `a` | `b`がかかる先が不明瞭だが、コード例を見る限り、この訳が合っているようだ -->
+<!-- in the variable `a` or `b`がかかる先が不明瞭だが、コード例を見る限り、この訳が合っているようだ -->
 <!-- We create an `Rc<List>` instance holding a `List` value in the variable `a` -->
 <!-- with an initial list of `5, Nil`. We then create an `Rc<List>` instance -->
 <!-- holding another `List` value in the variable `b` that contains the value 10 and -->
@@ -334,7 +334,7 @@ a rc count after changing a = 2
 <!-- to see when non-ownership relationships are an appropriate way to prevent -->
 <!-- reference cycles. -->
 <p>循環参照を回避する別の解決策は、ある参照は所有権を表現して他の参照はしないというようにデータ構造を再構成することです。
-結果として所有権のある関係と所有権のない関係からなる循環ができ、所有権のある関係だけが値がドロップされうるかどうかに影響します。
+結果として、所有権のある関係と所有権のない関係からなる循環ができ、所有権のある関係だけが値がドロップされうるかどうかに影響します。
 リスト15-25では、常に<code>Cons</code>列挙子にリストを所有してほしいので、データ構造を再構成することはできません。
 親ノードと子ノードからなるグラフを使った例に目を向けて、どんな時に所有権のない関係が循環参照を回避するのに適切な方法になるか確認しましょう。</p>
 <!-- ### Preventing Reference Cycles: Turning an `Rc<T>` into a `Weak<T>` -->
@@ -533,7 +533,7 @@ fn main() {
 <!-- Creating the `leaf` node looks similar to how creating the `leaf` node looked -->
 <!-- in Listing 15-27 with the exception of the `parent` field: `leaf` starts out -->
 <!-- without a parent, so we create a new, empty `Weak<Node>` reference instance. -->
-<p><code>leaf</code>ノードを作成することは、<code>parent</code>フィールドの例外を除いてリスト15-27での<code>leaf</code>ノードの作成法に似ています:
+<p><code>leaf</code>ノードを作成することは、<code>parent</code>フィールドの例外を除いてリスト15-27での<code>leaf</code>ノードの作成法の見た目に似ています:
 <code>leaf</code>は親なしで始まるので、新しく空の<code>Weak&lt;Node&gt;</code>参照インスタンスを作ります。</p>
 <!-- At this point, when we try to get a reference to the parent of `leaf` by using -->
 <!-- the `upgrade` method, we get a `None` value. We see this in the output from the -->
@@ -601,8 +601,8 @@ fn main() {
         children: RefCell::new(vec![]),
     });
 
-    // leafのstrong_count = {}, weak_count = {}
     println!(
+        // leafのstrong_count = {}, weak_count = {}
         &quot;leaf strong = {}, weak = {}&quot;,
         Rc::strong_count(&amp;leaf),
         Rc::weak_count(&amp;leaf),
@@ -617,8 +617,8 @@ fn main() {
 
         *leaf.parent.borrow_mut() = Rc::downgrade(&amp;branch);
 
-        // branchのstrong_count = {}, weak_count = {}
         println!(
+            // branchのstrong_count = {}, weak_count = {}
             &quot;branch strong = {}, weak = {}&quot;,
             Rc::strong_count(&amp;branch),
             Rc::weak_count(&amp;branch),
@@ -643,7 +643,7 @@ fn main() {
 <!-- examining strong and weak reference counts</span> -->
 <p><span class="caption">リスト15-29: 内側のスコープで<code>branch</code>を作成し、強弱参照カウントを調査する</span></p>
 <!-- 4行目後半、カッコ内、forは接続詞の用法かと思ったが、文ではなかった。for S to Vのように訳した -->
-<!-- 通常forの後は、現在分詞が来るため、そう書いているだけだろうか -->
+<!-- 通常forの後は、名詞が来るため、そう書いているだけだろうか -->
 <!-- After `leaf` is created, its `Rc<Node>` has a strong count of 1 and a weak -->
 <!-- count of 0. In the inner scope, we create `branch` and associate it with -->
 <!-- `leaf`, at which point when we print the counts, the `Rc<Node>` in `branch` -->
@@ -694,13 +694,12 @@ fn main() {
 <p>この章は、スマートポインタを使用してRustが規定で普通の参照に対して行うのと異なる保証や代償を行う方法を講義しました。
 <code>Box&lt;T&gt;</code>型は、既知のサイズで、ヒープに確保されたデータを指します。<code>Rc&lt;T&gt;</code>型は、ヒープのデータへの参照の数を追跡するので、
 データは複数の所有者を保有できます。内部可変性のある<code>RefCell&lt;T&gt;</code>型は、不変型が必要だけれども、
-その型の中の値を変更する必要がある時に使用できる型を与えてくれます; また、コンパイル時ではなく実行時に借用ルールを強制します。</p>
+その型の中の値を変更する必要がある時に使用できる型を与えてくれます; また、コンパイル時ではなく実行時に借用規則を強制します。</p>
 <!-- Also discussed were the `Deref` and `Drop` traits, which enable a lot of the -->
 <!-- functionality of smart pointers. We explored reference cycles that can cause -->
 <!-- memory leaks and how to prevent them using `Weak<T>`. -->
 <p><code>Deref</code>と<code>Drop</code>トレイトについても議論しましたね。これらは、スマートポインタの多くの機能を可能にしてくれます。
 メモリリークを引き起こす循環参照と<code>Weak&lt;T&gt;</code>でそれを回避する方法も探求しました。</p>
-<!-- FIXME: URLがイタリックになっていない -->
 <!-- If this chapter has piqued your interest and you want to implement your own -->
 <!-- smart pointers, check out [“The Rustonomicon”][nomicon] for more useful -->
 <!-- information. -->
@@ -708,7 +707,7 @@ fn main() {
 <a href="https://doc.rust-lang.org/stable/nomicon/">“The Rustonomicon”</a>をチェックしてください。</p>
 <!-- Next, we’ll talk about concurrency in Rust. You’ll even learn about a few new -->
 <!-- smart pointers. -->
-<p>次は、Rustでの非同期処理について語ります。もういくつか新しいスマートポインタについてさえも学ぶでしょう。</p>
+<p>次は、Rustでの並行性について語ります。もういくつか新しいスマートポインタについてさえも学ぶでしょう。</p>
 
                     </main>
 

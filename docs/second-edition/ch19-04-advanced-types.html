@@ -140,7 +140,7 @@
 <!-- examine why newtypes are useful as types. Then we’ll move on to type aliases, a -->
 <!-- feature similar to newtypes but with slightly different semantics. We’ll also -->
 <!-- discuss the `!` type and dynamically sized types. -->
-<p>Rustの型システムには、この本で触れたけれども、まだ議論していない機能があります。ニュータイプが何故型として有用なのかを調査するにつれて、
+<p>Rustの型システムには、この本で触れたけれども、まだ議論していない機能があります。ニュータイプが何故型として有用なのかを調査するため、
 一般化してニュータイプを議論することから始めます。そして、型エイリアスに移ります。ニュータイプに類似しているけれども、
 多少異なる意味を持つ機能です。また、<code>!</code>型と動的サイズ付け型も議論します。</p>
 <!-- > Note: The next section assumes you’ve read the earlier section “The Newtype -->
@@ -175,12 +175,12 @@
 <!-- internally. The newtype pattern is a lightweight way to achieve encapsulation -->
 <!-- to hide implementation details, which we discussed in the “Encapsulation that -->
 <!-- Hides Implementation Details” section of Chapter 17. -->
-<p>ニュータイプはまた、内部の実装を隠匿することもできます。例を挙げれば、<code>People</code>型を提供して、
-人のIDと名前を紐付けて格納する<code>HashMap&lt;i32, String&gt;</code>をラップすることができるでしょう。
+<p>ニュータイプはまた、内部の実装を<ruby>隠匿<rp>(</rp><rt>いんとく</rt><rp>)</rp></ruby>することもできます。例を挙げれば、<code>People</code>型を提供して、
+人のIDと名前を紐づけて格納する<code>HashMap&lt;i32, String&gt;</code>をラップすることができるでしょう。
 <code>People</code>を使用するコードは、名前の文字列を<code>People</code>コレクションに追加するメソッドなど、
 提供している公開APIとだけ相互作用するでしょう; そのコードは、内部で<code>i32</code>IDを名前に代入していることを知る必要はないでしょう。
 ニュータイプパターンは、カプセル化を実現して実装の詳細を隠匿する軽い方法であり、
-第17章の「カプセル化は実装詳細を隠蔽する」節で議論しましたね。</p>
+実装の詳細を隠匿することは、第17章の「カプセル化は実装詳細を隠蔽する」節で議論しましたね。</p>
 <!-- ### Creating Type Synonyms with Type Aliases -->
 <a class="header" href="ch19-04-advanced-types.html#a型エイリアスで型同義語を生成する" id="a型エイリアスで型同義語を生成する"><h3>型エイリアスで型同義語を生成する</h3></a>
 <!-- Along with the newtype pattern, Rust provides the ability to declare a *type -->
@@ -223,8 +223,8 @@ println!(&quot;x + y = {}&quot;, x + y);
 <!-- Writing this lengthy type in function signatures and as type annotations all -->
 <!-- over the code can be tiresome and error prone. Imagine having a project full of -->
 <!-- code like that in Listing 19-32. -->
-<p>この長ったらしい型を関数シグニチャや型注釈としてコードのあちこちで記述するのは、嫌なことで間違いも起きやすいです。
-リスト19-32のようなコードで溢れかえったプロジェクトがあることを想像してください。</p>
+<p>この長ったらしい型を関数シグニチャや型注釈としてコードのあちこちで記述するのは、面倒で間違いも起きやすいです。
+リスト19-32のそのようなコードで溢れかえったプロジェクトがあることを想像してください。</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
@@ -299,7 +299,7 @@ pub trait Write {
 #}</code></pre></pre>
 <!-- The `Result<..., Error>` is repeated a lot. As such, `std::io` has this type of -->
 <!-- alias declaration: -->
-<p><code>Result&lt;..., Error&gt;</code>がなんども繰り返されてます。そんな状態なので、<code>std::io</code>にはこんな類のエイリアス宣言があります:</p>
+<p><code>Result&lt;..., Error&gt;</code>が何度も繰り返されてます。そんな状態なので、<code>std::io</code>にはこんな類のエイリアス宣言があります:</p>
 <pre><code class="language-rust ignore">type Result&lt;T&gt; = Result&lt;T, std::io::Error&gt;;
 </code></pre>
 <!-- Because this declaration is in the `std::io` module, we can use the fully -->
@@ -332,7 +332,7 @@ pub trait Write {
 <!-- because it stands in the place of the return type when a function will never -->
 <!-- return. Here is an example: -->
 <p>Rustには、型理論用語で値がないため、空型として知られる<code>!</code>という特別な型があります。私たちは、
-関数が絶対に返らない時に戻り値の型の場所に立つので、<em>never type</em>(<code>訳注</code>: 日本語にはできないので、ネバー型と呼ぶしかないか)と呼ぶのが好きです。
+関数が絶対に返らない時に戻り値の型の場所に立つので、<em>never type</em>(<code>訳注</code>: 日本語にはできないので、never型と呼ぶしかないか)と呼ぶのが好きです。
 こちらが例です:</p>
 <pre><code class="language-rust ignore">fn bar() -&gt; ! {
     // --snip--
@@ -341,7 +341,7 @@ pub trait Write {
 <!-- This code is read as “the function `bar` returns never.” Functions that return -->
 <!-- never are called *diverging functions*. We can’t create values of the type `!` -->
 <!-- so `bar` can never possibly return. -->
-<p>このコードは、「関数<code>bar</code>はneverを返す」と解読します。neverを返す関数は、<em>発散関数</em>(diverging function)と呼ばれます。
+<p>このコードは、「関数<code>bar</code>はneverを返す」と解読します。neverを返す関数は、<em>発散する関数</em>(diverging function)と呼ばれます。
 型<code>!</code>の値は生成できないので、<code>bar</code>が返ることは絶対にあり得ません。</p>
 <!-- But what use is a type you can never create values for? Recall the code from -->
 <!-- Listing 2-5; we’ve reproduced part of it here in Listing 19-34. -->
@@ -376,7 +376,7 @@ let guess: u32 = match guess.trim().parse() {
 <!-- and Rust requires that `guess` have only one type. So what does `continue` -->
 <!-- return? How were we allowed to return a `u32` from one arm and have another arm -->
 <!-- that ends with `continue` in Listing 19-34? -->
-<p>このコードの<code>guess</code>は整数<em>かつ</em>文字列にならなければならないでしょうが、Rustでは、<code>guess</code>は1つの型にしかなりません。
+<p>このコードの<code>guess</code>は整数<em>かつ</em>文字列にならなければならないでしょうが、Rustでは、<code>guess</code>は1つの型にしかならないことを要求されます。
 では、<code>continue</code>は何を返すのでしょうか？どうやってリスト19-34で1つのアームからは<code>u32</code>を返し、別のアームでは、
 <code>continue</code>で終わっていたのでしょうか？</p>
 <!-- As you might have guessed, `continue` has a `!` value. That is, when Rust -->
@@ -397,7 +397,7 @@ let guess: u32 = match guess.trim().parse() {
 <!-- The never type is useful with the `panic!` macro as well. Remember the `unwrap` -->
 <!-- function that we call on `Option<T>` values to produce a value or panic? Here -->
 <!-- is its definition: -->
-<p>never型は、<code>panic!</code>マクロとも有用です。<code>Option&lt;T&gt;</code>値に対して呼び出して値かパニックを生成した<code>unwrap</code>関数を覚えていますか？
+<p>never型は、<code>panic!</code>マクロとも有用です。<code>Option&lt;T&gt;</code>値に対して呼び出して、値かパニックを生成した<code>unwrap</code>関数を覚えていますか？
 こちらがその定義です:</p>
 <pre><code class="language-rust ignore">impl&lt;T&gt; Option&lt;T&gt; {
     pub fn unwrap(self) -&gt; T {
@@ -419,9 +419,11 @@ let guess: u32 = match guess.trim().parse() {
 このコードは合法なのです。</p>
 <!-- One final expression that has the type `!` is a `loop`: -->
 <p>型が<code>!</code>の最後の式の1つは、<code>loop</code>です:</p>
-<pre><code class="language-rust ignore">print!(&quot;forever &quot;);
+<pre><code class="language-rust ignore">// 永遠に
+print!(&quot;forever &quot;);
 
 loop {
+    // さらに永遠に
     print!(&quot;and ever &quot;);
 }
 </code></pre>
@@ -438,7 +440,7 @@ loop {
 <!-- as *DSTs* or *unsized types*, these types let us write code using values whose -->
 <!-- size we can know only at runtime. -->
 <p>コンパイラが特定の型の値1つにどれくらいのスペースのメモリを確保するのかなどの特定の詳細を知る必要があるために、
-型システムには混乱することもある秘密の場所があります: 動的サイズ付け型の概念です。時として<em>DST</em>や<em>サイズなし型</em>とも称され、
+型システムには混乱することもある秘密の場所があります: <em>動的サイズ付け型</em>の概念です。時として<em>DST</em>や<em>サイズなし型</em>とも称され、
 これらの型により、実行時にしかサイズを知ることのできない値を使用するコードを書かせてくれます。</p>
 <!-- Let’s dig into the details of a dynamically sized type called `str`, which -->
 <!-- we’ve been using throughout the book. That’s right, not `&str`, but `str` on -->
@@ -449,7 +451,9 @@ loop {
 そうです。<code>&amp;str</code>ではなく、<code>str</code>は単独でDSTなのです。実行時までは文字列の長さを知ることができず、
 これは、型<code>str</code>の変数を生成したり、型<code>str</code>を引数に取ることはできないことを意味します。
 動かない以下のコードを考えてください:</p>
-<pre><code class="language-rust ignore">let s1: str = &quot;Hello there!&quot;;
+<pre><code class="language-rust ignore">// こんにちは
+let s1: str = &quot;Hello there!&quot;;
+// 調子はどう？
 let s2: str = &quot;How's it going?&quot;;
 </code></pre>
 <!-- Rust needs to know how much memory to allocate for any value of a particular -->
@@ -501,7 +505,7 @@ Rustでこのコードを書くことが許容されたら、これら2つの<co
 <!-- In addition, Rust implicitly adds a bound on `Sized` to every generic function. -->
 <!-- That is, a generic function definition like this: -->
 <p>DSTを扱うために、Rustには<code>Sized</code>トレイトと呼ばれる特定のトレイトがあり、型のサイズがコンパイル時にわかるかどうかを決定します。
-このトレイトは、コンパイル時にサイズの判明する全てに自動的に実装されます。加えて、
+このトレイトは、コンパイル時にサイズの判明する全てのものに自動的に実装されます。加えて、
 コンパイラは暗黙的に全てのジェネリックな関数に<code>Sized</code>の境界を追加します。つまり、こんな感じのジェネリック関数定義は:</p>
 <pre><code class="language-rust ignore">fn generic&lt;T&gt;(t: T) {
     // --snip--

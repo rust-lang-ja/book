@@ -168,7 +168,7 @@
 <!-- `summarize` method on an instance. Listing 10-12 shows the definition of a -->
 <!-- `Summary` trait that expresses this behavior. -->
 <p><code>NewsArticle</code>や<code>Tweet</code>インスタンスに格納される可能性のあるデータの総括を表示するメディア総括ライブラリを作成したいです。
-このために、各型からまとめが必要で、インスタンスに対して<code>summarize</code>メソッドを呼び出すことでそのまとめを要求する必要があります。
+このために、各型から総括が必要で、インスタンスに対して<code>summarize</code>メソッドを呼び出すことでその総括を要求する必要があります。
 リスト10-12は、この振る舞いを表現する<code>Summary</code>トレイトの定義を表示しています。</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
@@ -267,7 +267,7 @@ impl Summary for Tweet {
 波括弧を使用し、メソッド本体に特定の型のトレイトのメソッドに欲しい特定の振る舞いを入れます。</p>
 <!-- After implementing the trait, we can call the methods on instances of -->
 <!-- `NewsArticle` and `Tweet` in the same way we call regular methods, like this: -->
-<p>トレイトを実装後、普通の関数同様に<code>NewsArticle</code>や<code>Tweet</code>のインスタンスに対してメソッドを呼び出せます。
+<p>トレイトを実装後、普通のメソッド同様に<code>NewsArticle</code>や<code>Tweet</code>のインスタンスに対してこのメソッドを呼び出せます。
 こんな感じで:</p>
 <pre><code class="language-rust ignore">let tweet = Tweet {
     username: String::from(&quot;horse_ebooks&quot;),
@@ -306,11 +306,11 @@ println!(&quot;1 new tweet: {}&quot;, tweet.summarize());
 <!-- because the type `Tweet` is local to our `aggregator` crate. We can also -->
 <!-- implement `Summary` on `Vec<T>` in our `aggregator` crate, because the -->
 <!-- trait `Summary` is local to our `aggregator` crate. -->
-<p>トレイト実装で注意すべき制限の1つは、トレイトか対象の型が自分のクレートにローカルである時のみ、
+<p>トレイト実装で注意すべき制限の1つは、トレイトか対象の型が自分のクレートに固有(local)である時のみ、
 型に対してトレイトを実装できるということです。例えば、<code>Display</code>のような標準ライブラリのトレイトを<code>aggregator</code>クレートの機能の一部として、
-<code>Tweet</code>のような独自の型に実装できます。型<code>Tweet</code>が<code>aggregator</code>クレートにローカルだからです。
+<code>Tweet</code>のような独自の型に実装できます。型<code>Tweet</code>が<code>aggregator</code>クレートに固有だからです。
 また、<code>Summary</code>を<code>aggregator</code>クレートで<code>Vec&lt;T&gt;</code>に対して実装することもできます。
-トレイト<code>Summary</code>は、<code>aggregator</code>クレートにローカルだからです。</p>
+トレイト<code>Summary</code>は、<code>aggregator</code>クレートに固有だからです。</p>
 <!-- But we can’t implement external traits on external types. For example, we can’t -->
 <!-- implement the `Display` trait on `Vec<T>` within our `aggregator` crate, -->
 <!-- because `Display` and `Vec<T>` are defined in the standard library and aren’t -->
@@ -322,7 +322,7 @@ println!(&quot;1 new tweet: {}&quot;, tweet.summarize());
 <!-- implementation to use. -->
 <p>しかし、外部のトレイトを外部の型に対して実装することはできません。例として、
 <code>aggregator</code>クレート内で<code>Vec&lt;T&gt;</code>に対して<code>Display</code>トレイトを実装することはできません。
-<code>Display</code>と<code>Vec&lt;T&gt;</code>は標準ライブラリで定義され、<code>aggregator</code>クレートにローカルではないからです。
+<code>Display</code>と<code>Vec&lt;T&gt;</code>は標準ライブラリで定義され、<code>aggregator</code>クレートに固有ではないからです。
 この制限は、<em>コヒーレンス</em>(coherence)あるいは、具体的に<em>オーファンルール</em>(orphan rule)と呼ばれるプログラムの特性の一部で、
 親の型が存在しないためにそう命名されました。この規則により、他の人のコードが自分のコードを壊したり、
 その逆が起きないことを保証してくれます。この規則がなければ、2つのクレートが同じ型に対して同じトレイトを実装できてしまい、
@@ -358,7 +358,7 @@ pub trait Summary {
 <!-- To use a default implementation to summarize instances of `NewsArticle` instead -->
 <!-- of defining a custom implementation, we specify an empty `impl` block with -->
 <!-- `impl Summary for NewsArticle {}`. -->
-<p>デフォルト実装を使用して独自の実装を定義するのではなく、<code>NewsArticle</code>のインスタンスをまとめるには、
+<p>独自の実装を定義するのではなく、デフォルト実装を使用して<code>NewsArticle</code>のインスタンスをまとめるには、
 <code>impl Summary for NewsArticle {}</code>と空の<code>impl</code>ブロックを指定します。</p>
 <!-- Even though we’re no longer defining the `summarize` method on `NewsArticle` -->
 <!-- directly, we’ve provided a default implementation and specified that -->
@@ -371,9 +371,11 @@ pub trait Summary {
 <pre><code class="language-rust ignore">let article = NewsArticle {
     // ペンギンチームがスタンレーカップチャンピオンシップを勝ち取る！
     headline: String::from(&quot;Penguins win the Stanley Cup Championship!&quot;),
+    // ピッツバーグ、ペンシルベニア州、アメリカ
     location: String::from(&quot;Pittsburgh, PA, USA&quot;),
+    // アイスバーグ
     author: String::from(&quot;Iceburgh&quot;),
-    // ピッツバーグ・ペンギンが再度NHLで最強のホッケーチームになった
+    // ピッツバーグ・ペンギンが再度NHL(National Hockey League)で最強のホッケーチームになった
     content: String::from(&quot;The Pittsburgh Penguins once again are the best
     hockey team in the NHL.&quot;),
 };
@@ -388,7 +390,7 @@ println!(&quot;New article available! {}&quot;, article.summarize());
 <!-- reason is that the syntax for overriding a default implementation is the same -->
 <!-- as the syntax for implementing a trait method that doesn’t have a default -->
 <!-- implementation. -->
-<p><code>summarize</code>にデフォルト実装を作っても、リスト10-13の<code>Tweet</code>の<code>Summary</code>実装を変える必要はありません。
+<p><code>summarize</code>にデフォルト実装を用意しても、リスト10-13の<code>Tweet</code>の<code>Summary</code>実装を変える必要はありません。
 理由は、デフォルト実装をオーバーライドする記法がデフォルト実装のないトレイトメソッドを実装する記法と同じだからです。</p>
 <!-- Default implementations can call other methods in the same trait, even if those -->
 <!-- other methods don’t have a default implementation. In this way, a trait can -->
@@ -415,7 +417,7 @@ pub trait Summary {
 #}</code></pre></pre>
 <!-- To use this version of `Summary`, we only need to define `summarize_author` -->
 <!-- when we implement the trait on a type: -->
-<p>このバージョンの<code>Summary</code>を使用するには、型にトレイトを実装する際に<code>summarize_author</code>を定義する必要だけあります:</p>
+<p>このバージョンの<code>Summary</code>を使用するには、型にトレイトを実装する際に<code>summarize_author</code>を定義する必要しかありません:</p>
 <pre><code class="language-rust ignore">impl Summary for Tweet {
     fn summarize_author(&amp;self) -&gt; String {
         format!(&quot;@{}&quot;, self.username)
@@ -465,7 +467,7 @@ println!(&quot;1 new tweet: {}&quot;, tweet.summarize());
 ジェネリックな型<code>T</code>がメソッド<code>summarize</code>を実装しないというエラーを出さずに<code>item</code>に<code>summarize</code>を呼び出せるために、
 <code>T</code>に対してトレイト境界を使用して<code>item</code>は、<code>Summary</code>トレイトを実装する型でなければならないと指定できます:</p>
 <pre><code class="language-rust ignore">pub fn notify&lt;T: Summary&gt;(item: T) {
-    // 衝撃的なニュース！ {}
+    // 新ニュース！ {}
     println!(&quot;Breaking news! {}&quot;, item.summarize());
 }
 </code></pre>
@@ -533,7 +535,7 @@ println!(&quot;1 new tweet: {}&quot;, tweet.summarize());
 <!-- look like this: -->
 <p><code>largest</code>の本体で、大なり演算子(<code>&gt;</code>)を使用して型<code>T</code>の2つの値を比較したかったのです。その演算子は、
 標準ライブラリトレイトの<code>std::cmp::PartialOrd</code>でデフォルトメソッドとして定義されているので、
-<code>largest</code>関数が、比較できるあらゆる型のスライスに対して動くように<code>T</code>のトレイト境界に<code>PartialOrd</code>を指定する必要があります。
+<code>largest</code>関数が、比較できるあらゆる型のスライスに対して動くように、<code>T</code>のトレイト境界に<code>PartialOrd</code>を指定する必要があります。
 初期化処理に含まれているので、<code>PartialOrd</code>をスコープに導入する必要はありません。
 <code>largest</code>のシグニチャを以下のような見た目に変えてください:</p>
 <pre><code class="language-rust ignore">fn largest&lt;T: PartialOrd&gt;(list: &amp;[T]) -&gt; T {
@@ -576,7 +578,7 @@ error[E0507]: cannot move out of borrowed content
 第4章の「スタックだけのデータ: コピー」節で議論したように、<code>i32</code>や<code>char</code>のような既知のサイズの型は、
 スタックに格納できるので、<code>Copy</code>トレイトを実装しています。しかし、<code>largest</code>関数をジェネリックにすると、
 <code>list</code>引数が<code>Copy</code>トレイトを実装しない型を含む可能性も出てきたのです。結果として、
-<code>list[0]</code>から値をムーブできず、<code>largest</code>にムーブできず、このエラーに落ち着いたのです。</p>
+<code>list[0]</code>から値を<code>largest</code>にムーブできず、このエラーに落ち着いたのです。</p>
 <!-- To call this code with only those types that implement the `Copy` trait, we can -->
 <!-- add `Copy` to the trait bounds of `T`! Listing 10-15 shows the complete code of -->
 <!-- a generic `largest` function that will compile as long as the types of the -->
@@ -624,7 +626,7 @@ fn main() {
 <!-- data like `String`, and heap allocations can be slow if we’re working with -->
 <!-- large amounts of data. -->
 <p>もし<code>largest</code>関数を<code>Copy</code>を実装する型だけに制限したくなかったら、<code>Copy</code>ではなく、
-Tが<code>Clone</code>というトレイト境界を含むと指定することもできます。そうしたら、
+<code>T</code>が<code>Clone</code>というトレイト境界を含むと指定することもできます。そうしたら、
 <code>largest</code>関数に所有権が欲しい時にスライスの各値をクローンできます。<code>clone</code>関数を使用するということは、
 <code>String</code>のようなヒープデータを所有する型の場合にもっとヒープ確保が発生する可能性があることを意味し、
 大きなデータを取り扱っていたら、ヒープ確保は遅いこともあります。</p>
@@ -728,7 +730,7 @@ let s = 3.to_string();
 それからコンパイラは、トレイト境界の情報を活用してコードに使用された具体的な型が正しい振る舞いを提供しているか確認できます。
 動的型付け言語では、型が実装しない型のメソッドを呼び出せば、実行時にエラーが出るでしょう。
 しかし、Rustはこの種のエラーをコンパイル時に移したので、コードが動かせるようにさえなる以前に問題を修正することを強制されるのです。
-加えて、コンパイル時に既に確認したので、実行時に振る舞いがあるかどう確認するコードを書かなくても済みます。
+加えて、コンパイル時に既に確認したので、実行時に振る舞いがあるかどうか確認するコードを書かなくても済みます。
 そうすることでジェネリクスの柔軟性を諦める必要なく、パフォーマンスを向上させます。</p>
 <!-- Another kind of generic that we’ve already been using is called *lifetimes*. -->
 <!-- Rather than ensuring that a type has the behavior we want, lifetimes ensure -->

@@ -150,9 +150,9 @@
 <!-- values, allowing the `Config` struct to own those values. In Listing 13-24, -->
 <!-- we’ve reproduced the implementation of the `Config::new` function as it was in -->
 <!-- Listing 12-23: -->
-<p>リスト12-6において、スライスに添字アクセスして値をクローンすることで、<code>Config</code>構造体に値を所有させながら、
+<p>リスト12-6において、スライスに添え字アクセスして値をクローンすることで、<code>Config</code>構造体に値を所有させながら、
 <code>String</code>値のスライスを取り、<code>Config</code>構造体のインスタンスを作るコードを追記しました。リスト13-24では、
-リスト12-23のような<code>Config::new</code>の実装を再現しました。</p>
+リスト12-23のような<code>Config::new</code>の実装を再現しました:</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
 <pre><code class="language-rust ignore">impl Config {
@@ -192,12 +192,12 @@
 <!-- `Config::new` function is doing because the iterator will access the values. -->
 <p>イテレータについての新しい知識があれば、<code>new</code>関数をスライスを借用する代わりに、
 引数としてイテレータの所有権を奪うように変更することができます。スライスの長さを確認し、
-特定の場所に添字アクセスするコードの代わりにイテレータの機能を使います。これにより、
+特定の場所に添え字アクセスするコードの代わりにイテレータの機能を使います。これにより、
 イテレータは値にアクセスするので、<code>Config::new</code>関数がすることが明確化します。</p>
 <!-- Once `Config::new` takes ownership of the iterator and stops using indexing -->
 <!-- operations that borrow, we can move the `String` values from the iterator into -->
 <!-- `Config` rather than calling `clone` and making a new allocation. -->
-<p>ひとたび、<code>Config::new</code>がイテレータの所有権を奪い、借用する添字アクセス処理をやめたら、
+<p>ひとたび、<code>Config::new</code>がイテレータの所有権を奪い、借用する添え字アクセス処理をやめたら、
 <code>clone</code>を呼び出して新しくメモリ確保するのではなく、イテレータからの<code>String</code>値を<code>Config</code>にムーブできます。</p>
 <!-- #### Using the Returned Iterator Directly -->
 <a class="header" href="ch13-03-improving-our-io-project.html#a返却されるイテレータを直接使う" id="a返却されるイテレータを直接使う"><h4>返却されるイテレータを直接使う</h4></a>
@@ -216,7 +216,7 @@
     // --snip--
 }
 </code></pre>
-<!-- 1行目最後のatは消し忘れ？ -->
+<!-- 1行目最後のatは消し忘れ？thatをat whichに書き換えられなさそうだし、よくわからない。at whichへの書き換えなら、we had (the) codeになるのでは？ -->
 <!-- We’ll change the start of the `main` function that we had in Listing 12-24 at -->
 <!-- to the code in Listing 13-25. This won’t compile until we update `Config::new` -->
 <!-- as well. -->
@@ -269,7 +269,7 @@
 <code>std::env::Args</code>になりました。<code>args</code>の所有権を奪い、繰り返しを行うことで<code>args</code>を可変化する予定なので、
 <code>args</code>引数の仕様に<code>mut</code>キーワードを追記し、可変にできます。</p>
 <!-- #### Using `Iterator` Trait Methods Instead of Indexing -->
-<a class="header" href="ch13-03-improving-our-io-project.html#a添字の代わりにiteratorトレイトのメソッドを使用する" id="a添字の代わりにiteratorトレイトのメソッドを使用する"><h4>添字の代わりに<code>Iterator</code>トレイトのメソッドを使用する</h4></a>
+<a class="header" href="ch13-03-improving-our-io-project.html#a添え字の代わりにiteratorトレイトのメソッドを使用する" id="a添え字の代わりにiteratorトレイトのメソッドを使用する"><h4>添え字の代わりに<code>Iterator</code>トレイトのメソッドを使用する</h4></a>
 <!-- Next, we’ll fix the body of `Config::new`. The standard library documentation -->
 <!-- also mentions that `std::env::Args` implements the `Iterator` trait, so we know -->
 <!-- we can call the `next` method on it! Listing 13-27 updates the code from -->
@@ -277,7 +277,7 @@
 <p>次に、<code>Config::new</code>の本体を修正しましょう。標準ライブラリのドキュメントは、
 <code>std::env::Args</code>が<code>Iterator</code>トレイトを実装していることにも言及しているので、
 それに対して<code>next</code>メソッドを呼び出せることがわかります！リスト13-27は、
-リスト13-23のコードを<code>next</code>メソッドを使用するように更新したものです:</p>
+リスト12-23のコードを<code>next</code>メソッドを使用するように更新したものです:</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust"># fn main() {}
@@ -395,7 +395,7 @@ impl Config {
 <!-- the iterator must pass. -->
 <p>次の論理的な疑問は、自身のコードでどちらのスタイルを選ぶかと理由です: リスト13-28の元の実装とリスト13-29のイテレータを使用するバージョンです。
 多くのRustプログラマは、イテレータスタイルを好みます。とっかかりが少し困難ですが、
-いろんなイテレータアダプタとそれがすることの感覚を一度掴めれば、イテレータの方が理解しやすいこともあるでしょう。
+いろんなイテレータアダプタとそれがすることの感覚を一度掴めれば、イテレータの方が理解しやすいこともあります。
 いろんなループを少しずつもてあそんだり、新しいベクタを構築する代わりに、コードは、ループの高難度の目的に集中できるのです。
 これは、ありふれたコードの一部を抽象化するので、イテレータの各要素が通過しなければならないふるい条件など、
 このコードに独特の概念を理解しやすくなります。</p>

@@ -133,8 +133,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<!-- ## Using Trait Objects that Allow for Values of Different Types -->
+                        <!-- ## Using Trait Objects that Allow for Values of Different Types -->
 <a class="header" href="ch17-02-trait-objects.html#aトレイトオブジェクトで異なる型の値を許可する" id="aトレイトオブジェクトで異なる型の値を許可する"><h2>トレイトオブジェクトで異なる型の値を許可する</h2></a>
 <!-- In Chapter 8, we mentioned that one limitation of vectors is that they can -->
 <!-- store elements of only one type. We created a workaround in Listing 8-10 where -->
@@ -158,7 +157,7 @@
 <!-- `gui` users will want to create their own types that can be drawn: for -->
 <!-- instance, one programmer might add an `Image` and another might add a -->
 <!-- `SelectBox`. -->
-<p>ところが、時として、ライブラリの使用者が特定の場面で有効になる型のセットを拡張できるようにしたくなることがあります。
+<p>ところが、時として、ライブラリの使用者が特定の場面で合法になる型のセットを拡張できるようにしたくなることがあります。
 これをどう実現する可能性があるか示すために、各アイテムに<code>draw</code>メソッドを呼び出してスクリーンに描画するという、
 GUIツールで一般的なテクニックをしてあるリストの要素を走査する例のGUIツールを作ります。
 GUIライブラリの構造を含む<code>gui</code>と呼ばれるライブラリクレートを作成します。
@@ -223,11 +222,11 @@ Rustの型システムは、コンパイル時にその文脈で使用されて�
 <!-- behavior. -->
 <p>Rustでは、構造体とenumを他の言語のオブジェクトと区別するために「オブジェクト」と呼ぶことを避けていることに触れましたね。
 構造体やenumにおいて、構造体のフィールドのデータや<code>impl</code>ブロックの振る舞いは区分けされているものの、
-他の言語では1つの概念に押し込められるデータと振る舞いにはしばしばオブジェクトと分類されます。
+他の言語では1つの概念に押し込められるデータと振る舞いは、しばしばオブジェクトと分類されます。
 しかしながら、トレイトオブジェクトは、データと振る舞いをごちゃ混ぜにするという観点で他の言語のオブジェクトに近い<em>です</em>。
 しかし、トレイトオブジェクトは、データを追加できないという点で伝統的なオブジェクトと異なっています。
 トレイトオブジェクトは、他の言語のオブジェクトほど一般的に有用ではありません:
-その目的は、共通の振る舞いに対して抽象化を行うことです。</p>
+その特定の目的は、共通の振る舞いに対して抽象化を行うことです。</p>
 <!-- Listing 17-3 shows how to define a trait named `Draw` with one method named -->
 <!-- `draw`: -->
 <p>リスト17-3は、<code>draw</code>という1つのメソッドを持つ<code>Draw</code>というトレイトを定義する方法を示しています:</p>
@@ -400,7 +399,7 @@ impl Draw for Button {
 <!-- `width`, `height`, and `options` fields, they implement the `Draw` trait on the -->
 <!-- `SelectBox` type as well, as shown in Listing 17-8: -->
 <p>ライブラリの使用者が、<code>width</code>、<code>height</code>、<code>options</code>フィールドのある<code>SelectBox</code>構造体を実装しようと決めたら、
-<code>SelectBox</code>型に<code>Draw</code>トレイトも実装します。リスト17-8のようにですね:</p>
+<code>SelectBox</code>型にも<code>Draw</code>トレイトを実装します。リスト17-8のようにですね:</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
 <pre><code class="language-rust ignore">extern crate gui;
@@ -488,6 +487,14 @@ fn main() {
 <code>Button</code>や<code>SelectBox</code>のインスタンスであるかを確認することはなく、コンポーネントの<code>draw</code>メソッドを呼び出すだけです。
 <code>components</code>ベクタで<code>Box&lt;Draw&gt;</code>を値の型として指定することで、<code>Screen</code>を、
 <code>draw</code>メソッドを呼び出せる値を必要とするように定義できたのです。</p>
+<blockquote>
+<a class="header" href="ch17-02-trait-objects.html#a注釈-ダックタイピングについて" id="a注釈-ダックタイピングについて"><h4>注釈: ダックタイピングについて</h4></a>
+<p>ご存知かもしれませんが、ダックタイピングについて補足です。ダックタイピングとは、動的型付け言語やC++のテンプレートで使用される、
+特定のフィールドやメソッドがあることを想定してコンパイルを行い、実行時に実際にあることを確かめるというプログラミング手法です。
+ダック・テストという思考法に由来するそうです。</p>
+<p>ダックタイピングの利点は、XMLやJSONなど、厳密なスキーマがないことが多い形式を扱いやすくなること、
+欠点は、実行してみるまで動くかどうかわからないことでしょう。</p>
+</blockquote>
 <!-- The advantage of using trait objects and Rust’s type system to write code -->
 <!-- similar to code using duck typing is that we never have to check whether a -->
 <!-- value implements a particular method at runtime or worry about getting errors -->
@@ -549,7 +556,7 @@ fn main() {
 <!-- method to call. -->
 <p>第10章の「ジェネリクスを使用したコードのパフォーマンス」節でジェネリクスに対してトレイト境界を使用した時に、
 コンパイラが行う単相化過程の議論を思い出してください: コンパイラは、関数やメソッドのジェネリックでない実装を、
-ジェネリックな型引数の箇所に使用している具体的な型に対して生成するんでした。単相化の結果吐かれるコードは、
+ジェネリックな型引数の箇所に使用している具体的な型に対して生成するのでした。単相化の結果吐かれるコードは、
 <em>スタティックディスパッチ</em>を行い、これは、コンパイル時にコンパイラがどのメソッドを呼び出しているかわかる時のことです。
 これは、<em>ダイナミックディスパッチ</em>とは対照的で、この時、コンパイラは、コンパイル時にどのメソッドを呼び出しているのかわかりません。
 ダイナミックディスパッチの場合、コンパイラは、実行時にどのメソッドを呼び出すか弾き出すコードを生成します。</p>
@@ -568,7 +575,7 @@ fn main() {
 どの型に実装されたどのメソッドを呼び出すかわからないのです。代わりに実行時に、トレイトオブジェクト内でポインタを使用して、
 コンパイラは、どのメソッドを呼ぶか知ります。スタティックディスパッチでは行われないこの検索が起きる時には、
 実行時コストがあります。また、ダイナミックディスパッチは、コンパイラがメソッドのコードをインライン化することも妨げ、
-そのためある種の最適化が不可能になります。ですが、リスト17-5で記述し、
+そのため、ある種の最適化が不可能になります。ですが、リスト17-5で記述し、
 リスト17-9ではサポートできたコードで追加の柔軟性を確かに得られたので、考慮すべき代償です。</p>
 <!-- ### Object Safety Is Required for Trait Objects -->
 <a class="header" href="ch17-02-trait-objects.html#aトレイトオブジェクトにはオブジェクト安全性が必要" id="aトレイトオブジェクトにはオブジェクト安全性が必要"><h3>トレイトオブジェクトには、オブジェクト安全性が必要</h3></a>
@@ -620,8 +627,8 @@ pub trait Clone {
 <!-- instance of `Vec<T>`. The signature of `clone` needs to know what type will -->
 <!-- stand in for `Self`, because that’s the return type. -->
 <p><code>String</code>型は<code>Clone</code>トレイトを実装していて、<code>String</code>のインスタンスに対して<code>clone</code>メソッドを呼び出すと、
-<code>String</code>のインスタンスが返ってきます。同様に、<code>Vec</code>のインスタンスに対して<code>clone</code>を呼び出すと、
-<code>Vec</code>のインスタンスが返ってきます。<code>clone</code>のシグニチャは、<code>Self</code>の代わりに入る型を知る必要があります。
+<code>String</code>のインスタンスが返ってきます。同様に、<code>Vec&lt;T&gt;</code>のインスタンスに対して<code>clone</code>を呼び出すと、
+<code>Vec&lt;T&gt;</code>のインスタンスが返ってきます。<code>clone</code>のシグニチャは、<code>Self</code>の代わりに入る型を知る必要があります。
 それが、戻り値の型になるからです。</p>
 <!-- The compiler will indicate when you’re trying to do something that violates the -->
 <!-- rules of object safety in regard to trait objects. For example, let’s say we -->
@@ -635,7 +642,7 @@ pub trait Clone {
 }
 </code></pre>
 <!-- We would get this error: -->
-<p>こんなエラーになります:</p>
+<p>こんなエラーになるでしょう:</p>
 <pre><code class="language-text">error[E0038]: the trait `std::clone::Clone` cannot be made into an object
 (エラー: `std::clone::Clone`トレイトは、オブジェクトにすることはできません)
  --&gt; src/lib.rs:2:5
@@ -650,30 +657,7 @@ made into an object
 <!-- This error means you can’t use this trait as a trait object in this way. If -->
 <!-- you’re interested in more details on object safety, see [Rust RFC 255]. -->
 <p>このエラーは、このようにこのトレイトをトレイトオブジェクトとして使用することはできないことを意味しています。
-オブジェクト安全性についてより詳しく興味があるのなら、<a href="https://github.com/rust-lang/rfcs/blob/master/text/0255-object-safety.md">Rust RFC 255</a>を参照されたし。</p>
-<p>=======</p>
-<a class="header" href="ch17-02-trait-objects.html#using-trait-objects-that-allow-for-values-of-different-types" id="using-trait-objects-that-allow-for-values-of-different-types"><h2>Using Trait Objects that Allow for Values of Different Types</h2></a>
-<p>The second edition of the book is no longer distributed with Rust's documentation.</p>
-<p>If you came here via a link or web search, you may want to check out <a href="../index.html">the current
-version of the book</a> instead.</p>
-<p>If you have an internet connection, you can <a href="https://doc.rust-lang.org/1.30.0/book/second-edition/ch17-02-trait-objects.html">find a copy distributed with
-Rust
-1.30</a>.</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>fork_master_master</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+オブジェクト安全性についての詳細に興味があるのなら、<a href="https://github.com/rust-lang/rfcs/blob/master/text/0255-object-safety.md">Rust RFC 255</a>を参照されたし。</p>
 
                     </main>
 

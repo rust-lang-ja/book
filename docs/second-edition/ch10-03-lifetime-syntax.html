@@ -134,7 +134,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Validating References with Lifetimes -->
-<a class="header" href="ch10-03-lifetime-syntax.html#aライフタイムで参照を有効化する" id="aライフタイムで参照を有効化する"><h2>ライフタイムで参照を有効化する</h2></a>
+<a class="header" href="ch10-03-lifetime-syntax.html#aライフタイムで参照を検証する" id="aライフタイムで参照を検証する"><h2>ライフタイムで参照を検証する</h2></a>
 <!-- One detail we didn’t discuss in the “References and Borrowing” section in -->
 <!-- Chapter 4 is that every reference in Rust has a *lifetime*, which is the scope -->
 <!-- for which that reference is valid. Most of the time, lifetimes are implicit and -->
@@ -143,7 +143,7 @@
 <!-- when the lifetimes of references could be related in a few different ways. Rust -->
 <!-- requires us to annotate the relationships using generic lifetime parameters to -->
 <!-- ensure the actual references used at runtime will definitely be valid. -->
-<p>第4章の「参照と借用」節で議論しなかった詳細の1つは、Rustにおいて参照は全てライフタイムを保持することであり、
+<p>第4章の「参照と借用」節で議論しなかった詳細の一つは、Rustにおいて参照は全てライフタイムを保持することであり、
 ライフタイムとは、その参照が有効になるスコープのことです。多くの場合、型が推論されるように、
 多くの場合、ライフタイムも暗黙的に推論されます。複数の型の可能性があるときには、型を注釈しなければなりません。
 同様に、参照のライフタイムがいくつか異なる方法で関係することがある場合には注釈しなければなりません。
@@ -352,6 +352,7 @@ Rustで、このコードが動くことを許可していたら、<code>r</code
   |
 1 | fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str {
   |                                 ^ expected lifetime parameter
+  |                                   (ライフタイム引数が予想されます)
   |
   = help: this function's return type contains a borrowed value, but the
 signature does not say whether it is borrowed from `x` or `y`
@@ -471,7 +472,7 @@ fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {
 <!-- constraints. Note that the `longest` function doesn’t need to know exactly how -->
 <!-- long `x` and `y` will live, only that some scope can be substituted for `'a` -->
 <!-- that will satisfy this signature. -->
-<p>これで関数シグニチャは、なんらかのライフタイム<code>'a</code>に対して、関数は2つの引数を取り、
+<p>これで関数シグニチャは、何らかのライフタイム<code>'a</code>に対して、関数は2つの引数を取り、
 どちらも少なくともライフタイム<code>'a</code>と同じだけ生きる文字列スライスであるとコンパイラに教えています。
 また、この関数シグニチャは、関数から返る文字列スライスも少なくともライフタイム<code>'a</code>と同じだけ生きると、
 コンパイラに教えています。これらの制約は、コンパイラに強制してほしいものです。
@@ -697,7 +698,7 @@ function body at 1:1...
 <!-- struct named `ImportantExcerpt` that holds a string slice. -->
 <p>ここまで、所有された型を保持する構造体だけを定義してきました。構造体に参照を保持させることもできますが、
 その場合、構造体定義の全参照にライフタイム注釈を付け加える必要があるでしょう。
-リスト10-25には、文字列スライスを保持する<code>ImportantExcerpt</code>という構造体があります。</p>
+リスト10-25には、文字列スライスを保持する<code>ImportantExcerpt</code>(重要な一節)という構造体があります。</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust">struct ImportantExcerpt&lt;'a&gt; {
@@ -783,7 +784,7 @@ fn first_word(s: &amp;str) -&gt; &amp;str {
 <!-- the borrow checker could infer the lifetimes in these situations and wouldn't -->
 <!-- need explicit annotations. -->
 <p>多くのRustコードを書いた後、Rustチームは、Rustプログラマが特定の場面では、
-何度も何度も同じライフタイム注釈に入ることを発見しました。これらの場面は予測可能で、
+何度も何度も同じライフタイム注釈を入力することを発見しました。これらの場面は予測可能で、
 いくつかの決定的なパターンに従っていました。開発者はこのパターンをコンパイラのコードに落とし込んだので、
 このような場面には借用精査機がライフタイムを推論できるようになり、明示的な注釈を必要としなくなったのです。</p>
 <!-- This piece of Rust history is relevant because it’s possible that more -->
@@ -805,7 +806,7 @@ fn first_word(s: &amp;str) -&gt; &amp;str {
 <!-- you an error that you can resolve by adding the lifetime annotations that -->
 <!-- specify how the references relate to each other. -->
 <p>省略規則は、完全な推論を提供しません。コンパイラが決定的に規則を適用できるけれども、
-参照がなるライフタイムに関してそれでも曖昧性があるなら、コンパイラは、残りの参照がなるべきライフタイムを推論しません。
+参照が保持するライフタイムに関してそれでも曖昧性があるなら、コンパイラは、残りの参照がなるべきライフタイムを推論しません。
 この場合、推論ではなく、コンパイラは、参照がお互いにどう関係するかを指定するライフタイム注釈を追記することで、
 解決できるエラーを与えます。</p>
 <!-- Lifetimes on function or method parameters are called *input lifetimes*, and -->
@@ -847,7 +848,7 @@ fn first_word(s: &amp;str) -&gt; &amp;str {
 <!-- in Listing 10-26 are. The signature starts without any lifetimes associated -->
 <!-- with the references: -->
 <p>コンパイラになってみましょう。これらの規則を適用して、リスト10-26の<code>first_word</code>関数のシグニチャの参照のライフタイムが何か計算します。
-シグニチャは、参照に紐付けられるライフタイムがない状態から始まります:</p>
+シグニチャは、参照に紐づけられるライフタイムがない状態から始まります:</p>
 <pre><code class="language-rust ignore">fn first_word(s: &amp;str) -&gt; &amp;str {
 </code></pre>
 <!-- Then the compiler applies the first rule, which specifies that each parameter -->
@@ -868,7 +869,7 @@ fn first_word(s: &amp;str) -&gt; &amp;str {
 <!-- compiler can continue its analysis without needing the programmer to annotate -->
 <!-- the lifetimes in this function signature. -->
 <p>もうこの関数シグニチャの全ての参照にライフタイムが付いたので、コンパイラは、
-プログラマにこの関数シグニチャのライフタムを注釈してもらう必要なく、解析を続行できます。</p>
+プログラマにこの関数シグニチャのライフタイムを注釈してもらう必要なく、解析を続行できます。</p>
 <!-- Let’s look at another example, this time using the `longest` function that had -->
 <!-- no lifetime parameters when we started working with it in Listing 10-21: -->
 <p>別の例に目を向けましょう。今回は、リスト10-21で取り掛かったときにはライフタイム引数はなかった<code>longest</code>関数です:</p>
@@ -933,6 +934,7 @@ impl&lt;'a&gt; ImportantExcerpt&lt;'a&gt; {
     }
 }
 #}</code></pre></pre>
+<!-- 1行目、The lifetimeとuse after the type nameを並列しているように訳しているが、それならisではなくareになるはずでは・・・-->
 <!-- The lifetime parameter declaration after `impl` and use after the type name is -->
 <!-- required, but we’re not required to annotate the lifetime of the reference to -->
 <!-- `self` because of the first elision rule. -->
@@ -967,13 +969,14 @@ impl&lt;'a&gt; ImportantExcerpt&lt;'a&gt; {
 <!-- One special lifetime we need to discuss is `'static`, which denotes the entire -->
 <!-- duration of the program. All string literals have the `'static` lifetime, which -->
 <!-- we can annotate as follows: -->
+<p>議論する必要のある1種の特殊なライフタイムが、<code>'static</code>であり、これはプログラム全体の期間を示します。
+文字列リテラルは全て<code>'static</code>ライフタイムになり、次のように注釈できます:</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
+// 静的ライフタイムを持ってるよ
 let s: &amp;'static str = &quot;I have a static lifetime.&quot;;
 #}</code></pre></pre>
-<p>議論する必要のある1種の特殊なライフタイムが、<code>'static</code>であり、これはプログラム全体の期間を示します。
-文字列リテラルは全て<code>'static</code>ライフタイムになり、次のように注釈できます:</p>
 <!-- The text of this string is stored directly in the binary of your program, which -->
 <!-- is always available. Therefore, the lifetime of all string literals is -->
 <!-- `'static`. -->
@@ -986,7 +989,7 @@ let s: &amp;'static str = &quot;I have a static lifetime.&quot;;
 <!-- if it could. Most of the time, the problem results from attempting to create a -->
 <!-- dangling reference or a mismatch of the available lifetimes. In such cases, the -->
 <!-- solution is fixing those problems, not specifying the `'static` lifetime. -->
-<p>エラーメッセージで<code>'static</code>ライフタイムを使用することを勧められることがある可能性があります。
+<p>エラーメッセージで<code>'static</code>ライフタイムを使用することを勧められる可能性があります。
 ですが、参照に対してライフタイムとして<code>'static</code>を指定する前に、今ある参照が本当にプログラムの全期間生きるかどうか考えてください。
 可能であっても、参照がそれだけの期間生きるかどうか考慮する可能性があります。
 ほとんどの場合、問題は、ダングリング参照を生成しようとしているか、利用可能なライフタイムの不一致が原因です。
@@ -1004,6 +1007,7 @@ use std::fmt::Display;
 fn longest_with_an_announcement&lt;'a, T&gt;(x: &amp;'a str, y: &amp;'a str, ann: T) -&gt; &amp;'a str
     where T: Display
 {
+    // アナウンス！
     println!(&quot;Announcement! {}&quot;, ann);
     if x.len() &gt; y.len() {
         x

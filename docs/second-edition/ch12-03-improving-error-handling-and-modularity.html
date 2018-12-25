@@ -134,10 +134,10 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Refactoring to Improve Modularity and Error Handling -->
-<a class="header" href="ch12-03-improving-error-handling-and-modularity.html#aリファクタリングしてモジュール性の向上とエラー処理" id="aリファクタリングしてモジュール性の向上とエラー処理"><h2>リファクタリングしてモジュール性の向上とエラー処理</h2></a>
+<a class="header" href="ch12-03-improving-error-handling-and-modularity.html#aリファクタリングしてモジュール性とエラー処理を向上させる" id="aリファクタリングしてモジュール性とエラー処理を向上させる"><h2>リファクタリングしてモジュール性とエラー処理を向上させる</h2></a>
 <!-- To improve our program, we’ll fix four problems that have to do with the -->
 <!-- program’s structure and how it’s handling potential errors. -->
-<p>プログラムを改善するために、プログラムの構造と起こりうるエラーに対処する方法に関連する4つの問題を解消していきましょう。</p>
+<p>プログラムを改善するために、プログラムの構造と起こりうるエラーに対処する方法に関連する4つの問題を修正していきましょう。</p>
 <!-- First, our `main` function now performs two tasks: it parses arguments and -->
 <!-- opens files. For such a small function, this isn’t a major problem. However, if -->
 <!-- we continue to grow our program inside `main`, the number of separate tasks the -->
@@ -148,7 +148,7 @@
 <p>1番目は、<code>main</code>関数が2つの仕事を受け持っていることです: 引数を解析し、ファイルを開いています。
 このような小さな関数なら、これは、大した問題ではありませんが、<code>main</code>内でプログラムを巨大化させ続けたら、
 <code>main</code>関数が扱う個別の仕事の数も増えていきます。関数が責任を受け持つごとに、
-内容が把握しにくくなり、テストも行いづらくなり、機能を壊さずに変更するのも困難になっていきます。
+正しいことを確認しにくくなり、テストも行いづらくなり、機能を壊さずに変更するのも困難になっていきます。
 機能を小分けして、各関数が1つの仕事のみに責任を持つようにするのが最善です。</p>
 <!-- This issue also ties into the second problem: although `query` and `filename` -->
 <!-- are configuration variables to our program, variables like `f` and `contents` -->
@@ -156,7 +156,7 @@
 <!-- variables we’ll need to bring into scope; the more variables we have in scope, -->
 <!-- the harder it will be to keep track of the purpose of each. It’s best to group -->
 <!-- the configuration variables into one structure to make their purpose clear. -->
-<p>この問題は、2番目の問題にも紐付いています: <code>query</code>と<code>filename</code>はプログラムの設定用変数ですが、
+<p>この問題は、2番目の問題にも結びついています: <code>query</code>と<code>filename</code>はプログラムの設定用変数ですが、
 <code>f</code>や<code>contents</code>といった変数は、プログラムのロジックを担っています。<code>main</code>が長くなるほど、
 スコープに入れるべき変数も増えます。そして、スコープにある変数が増えれば、各々の目的を追うのも大変になるわけです。
 設定用変数を一つの構造に押し込め、目的を明瞭化するのが最善です。</p>
@@ -194,7 +194,7 @@
 <!-- community has developed a process to use as a guideline for splitting the -->
 <!-- separate concerns of a binary program when `main` starts getting large. The -->
 <!-- process has the following steps: -->
-<p><code>main</code>関数に複数の仕事の責任を押し付けるという構造上の問題は、多くのバイナリプロジェクトでありふれています。
+<p><code>main</code>関数に複数の仕事の責任を割り当てるという構造上の問題は、多くのバイナリプロジェクトでありふれています。
 結果として、<code>main</code>が肥大化し始めた際にバイナリプログラムの個別の責任を分割するためにガイドラインとして活用できる工程をRustコミニュティは、
 開発しました。この工程は、以下のような手順になっています:</p>
 <!-- * Split your program into a *main.rs* and a *lib.rs* and move your program’s -->
@@ -270,10 +270,10 @@ fn parse_config(args: &amp;[String]) -&gt; (&amp;str, &amp;str) {
 <!-- the `query` and `filename` variables in `main`, but `main` no longer has the -->
 <!-- responsibility of determining how the command line arguments and variables -->
 <!-- correspond. -->
-<p>それでもまだ、コマンドライン引数をベクタ型に集結させていますが、<code>main</code>関数内で引数の値のインデックス1を変数<code>query</code>に、
-インデックス2を変数<code>filename</code>に代入する代わりに、ベクタ全体を<code>parse_config</code>関数に渡しています。
+<p>それでもまだ、コマンドライン引数をベクタに集結させていますが、<code>main</code>関数内で引数の値の添え字1を変数<code>query</code>に、
+添え字2を変数<code>filename</code>に代入する代わりに、ベクタ全体を<code>parse_config</code>関数に渡しています。
 そして、<code>parse_config</code>関数にはどの引数がどの変数に入り、それらの値を<code>main</code>に返すというロジックが存在します。
-まだ<code>main</code>内で<code>query</code>と<code>filename</code>という変数を生成していますが、もう<code>main</code>は、
+まだ<code>main</code>内に<code>query</code>と<code>filename</code>という変数を生成していますが、もう<code>main</code>は、
 コマンドライン引数と変数がどう対応するかを決定する責任は持ちません。</p>
 <!-- This rework may seem like overkill for our small program, but we’re refactoring -->
 <!-- in small, incremental steps. After making this change, run the program again to -->
@@ -303,8 +303,8 @@ fn parse_config(args: &amp;[String]) -&gt; (&amp;str, &amp;str) {
 現状では、一つのタプルにまとめていること以外、この意味をデータの構造に載せていません;
 この二つの値を1構造体に置き換え、構造体のフィールドそれぞれに意味のある名前をつけることもできるでしょう。
 そうすることで将来このコードのメンテナンス者が、異なる値が相互に関係する仕方や、目的を理解しやすくできるでしょう。</p>
-<!--  Note: Some people call this anti-pattern of using primitive values when a -->
-<!--  complex type would be more appropriate *primitive obsession*. -->
+<!-- > Note: Some people call this anti-pattern of using primitive values when a -->
+<!-- > complex type would be more appropriate *primitive obsession*. -->
 <blockquote>
 <p>注釈: この複雑型(complex type)がより適切な時に組み込みの値を使うアンチパターンを、
 <em>primitive obsession</em>(<code>訳注</code>: 初めて聞いた表現。<em>組み込み型強迫観念</em>といったところだろうか)と呼ぶ人もいます。</p>
@@ -343,7 +343,7 @@ fn parse_config(args: &amp;[String]) -&gt; Config {
 </code></pre></pre>
 <!-- <span class="caption">Listing 12-6: Refactoring `parse_config` to return an -->
 <!-- instance of a `Config` struct</span> -->
-<p><span class="caption">リスト12-6: <code>parse_config</code>をリファクタリングして<code>Config</code>構造体のインスタンスを返すようにした</span></p>
+<p><span class="caption">リスト12-6: <code>parse_config</code>をリファクタリングして<code>Config</code>構造体のインスタンスを返す</span></p>
 <!-- We’ve added a struct named `Config` defined to have fields named `query` and -->
 <!-- `filename`. The signature of `parse_config` now indicates that it returns a -->
 <!-- `Config` value. In the body of `parse_config`, where we used to return string -->
@@ -383,7 +383,7 @@ Rustの借用規則に違反してしまうことを意味します。</p>
 <!-- > with Rust, it’ll be easier to start with the most efficient solution, but for -->
 <!-- > now, it’s perfectly acceptable to call `clone`. -->
 <blockquote>
-<a class="header" href="ch12-03-improving-error-handling-and-modularity.html#cloneを使用するトレードオフ" id="cloneを使用するトレードオフ"><h3><code>clone</code>を使用するトレードオフ</h3></a>
+<a class="header" href="ch12-03-improving-error-handling-and-modularity.html#cloneを使用する代償" id="cloneを使用する代償"><h3><code>clone</code>を使用する代償</h3></a>
 <p>実行時コストのために<code>clone</code>を使用して所有権問題を解消するのを避ける傾向が多くのRustaceanにあります。
 第13章で、この種の状況においてより効率的なメソッドの使用法を学ぶでしょう。ですがとりあえずは、
 これらのコピーをするのは1回だけですし、ファイル名とクエリ文字列は非常に小さなものなので、
@@ -411,7 +411,7 @@ Rustの借用規則に違反してしまうことを意味します。</p>
 <!-- relationship should be conveyed in our code. We then added a `Config` struct to -->
 <!-- name the related purpose of `query` and `filename` and to be able to return the -->
 <!-- values’ names as struct field names from the `parse_config` function. -->
-<p>ここまで、コマンドライン引数を解析する責任を負ったロジックを<code>main</code>から抽出し、<code>parse_config</code>関数に配置しました。
+<p>ここまでで、コマンドライン引数を解析する責任を負ったロジックを<code>main</code>から抽出し、<code>parse_config</code>関数に配置しました。
 そうすることで<code>query</code>と<code>filename</code>の値が関連し、その関係性がコードに載っていることを確認する助けになりました。
 それから<code>Config</code>構造体を追加して<code>query</code>と<code>filename</code>の関係する目的を名前付けし、
 構造体のフィールド名として<code>parse_config</code>関数からその値の名前を返すことができています。</p>
@@ -424,9 +424,9 @@ Rustの借用規則に違反してしまうことを意味します。</p>
 <!-- be able to create instances of `Config` by calling `Config::new`. Listing 12-7 -->
 <!-- shows the changes we need to make. -->
 <p>したがって、今や<code>parse_config</code>関数の目的は<code>Config</code>インスタンスを生成することになったので、
-<code>parse_config</code>をただの関数から<code>Config</code>構造体に紐付く<code>new</code>という関数に変えることができます。
+<code>parse_config</code>をただの関数から<code>Config</code>構造体に紐づく<code>new</code>という関数に変えることができます。
 この変更を行うことで、コードがより慣用的になります。<code>String</code>などの標準ライブラリの型のインスタンスを、
-<code>String::new</code>を呼び出すことで生成できます。同様に、<code>parse_config</code>を<code>Config</code>に紐付く<code>new</code>関数に変えれば、
+<code>String::new</code>を呼び出すことで生成できます。同様に、<code>parse_config</code>を<code>Config</code>に紐づく<code>new</code>関数に変えれば、
 <code>Config::new</code>を呼び出すことで<code>Config</code>のインスタンスを生成できるようになります。リスト12-7が、
 行う必要のある変更を示しています。</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
@@ -465,7 +465,7 @@ impl Config {
 <!-- within an `impl` block, which associates the `new` function with `Config`. Try -->
 <!-- compiling this code again to make sure it works. -->
 <p><code>parse_config</code>を呼び出していた<code>main</code>を代わりに<code>Config::new</code>を呼び出すように更新しました。
-<code>parse_config</code>の名前を<code>new</code>に変え、<code>impl</code>ブロックに入れ込んだので、<code>new</code>関数と<code>Config</code>が紐付くようになりました。
+<code>parse_config</code>の名前を<code>new</code>に変え、<code>impl</code>ブロックに入れ込んだので、<code>new</code>関数と<code>Config</code>が紐づくようになりました。
 再度このコードをコンパイルしてみて、動作することを確かめてください。</p>
 <!-- ### Fixing the Error Handling -->
 <a class="header" href="ch12-03-improving-error-handling-and-modularity.html#aエラー処理を修正する" id="aエラー処理を修正する"><h3>エラー処理を修正する</h3></a>
@@ -473,7 +473,7 @@ impl Config {
 <!-- the values in the `args` vector at index 1 or index 2 will cause the program to -->
 <!-- panic if the vector contains fewer than three items. Try running the program -->
 <!-- without any arguments; it will look like this: -->
-<p>さて、エラー処理の修正に取り掛かりましょう。ベクタが2個以下の要素しか含んでいないときに<code>args</code>ベクタのインデックス1か2にアクセスしようとすると、
+<p>さて、エラー処理の修正に取り掛かりましょう。ベクタが2個以下の要素しか含んでいないときに<code>args</code>ベクタの添え字1か2にアクセスしようとすると、
 プログラムがパニックすることを思い出してください。試しに引数なしでプログラムを実行してください。すると、こんな感じになります:</p>
 <pre><code class="language-text">$ cargo run
    Compiling minigrep v0.1.0 (file:///projects/minigrep)
@@ -481,13 +481,13 @@ impl Config {
      Running `target/debug/minigrep`
 thread 'main' panicked at 'index out of bounds: the len is 1
 but the index is 1', src/main.rs:29:21
-(スレッド'main'は、「境界外アクセス: 長さは1なのにインデックスも1です」でパニックしました)
+(スレッド'main'は、「境界外アクセス: 長さは1なのに添え字も1です」でパニックしました)
 note: Run with `RUST_BACKTRACE=1` for a backtrace.
 </code></pre>
 <!-- The line `index out of bounds: the len is 1 but the index is 1` is an error -->
 <!-- message intended for programmers. It won’t help our end users understand what -->
 <!-- happened and what they should do instead. Let’s fix that now. -->
-<p><code>境界外アクセス: 長さは1なのにインデックスも1です</code>という行は、プログラマ向けのエラーメッセージです。
+<p><code>境界外アクセス: 長さは1なのに添え字も1です</code>という行は、プログラマ向けのエラーメッセージです。
 エンドユーザが起きたことと代わりにすべきことを理解する手助けにはならないでしょう。これを今修正しましょう。</p>
 <!-- #### Improving the Error Message -->
 <a class="header" href="ch12-03-improving-error-handling-and-modularity.html#aエラーメッセージを改善する" id="aエラーメッセージを改善する"><h4>エラーメッセージを改善する</h4></a>
@@ -495,7 +495,7 @@ note: Run with `RUST_BACKTRACE=1` for a backtrace.
 <!-- slice is long enough before accessing index 1 and 2. If the slice isn’t long -->
 <!-- enough, the program panics and displays a better error message than the `index -->
 <!-- out of bounds` message. -->
-<p>リスト12-8で、<code>new</code>関数にインデックス1と2にアクセスする前にスライスが十分長いことを実証するチェックを追加しています。
+<p>リスト12-8で、<code>new</code>関数に、添え字1と2にアクセスする前にスライスが十分長いことを実証するチェックを追加しています。
 スライスの長さが十分でなければ、プログラムはパニックし、<code>境界外インデックス</code>よりもいいエラーメッセージを表示します。</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
@@ -523,7 +523,7 @@ fn new(args: &amp;[String]) -&gt; Config {
 <code>args</code>に2要素以下しかなければ、この条件は真になり、<code>panic!</code>マクロを呼び出して、即座にプログラムを終了させます。</p>
 <!-- With these extra few lines of code in `new`, let’s run the program without any -->
 <!-- arguments again to see what the error looks like now: -->
-<p>では、<code>new</code>のこのおまけの数行がある状態で、再度引数なしでプログラムを走らせ、エラーがどんな見た目か確かめましょう:</p>
+<p>では、<code>new</code>のこの追加の数行がある状態で、再度引数なしでプログラムを走らせ、エラーがどんな見た目か確かめましょう:</p>
 <pre><code class="language-text">$ cargo run
    Compiling minigrep v0.1.0 (file:///projects/minigrep)
     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
@@ -553,9 +553,9 @@ note: Run with `RUST_BACKTRACE=1` for a backtrace.
 <!-- variant into a more practical error for our users without the surrounding text -->
 <!-- about `thread 'main'` and `RUST_BACKTRACE` that a call to `panic!` causes. -->
 <p>代わりに、成功時には<code>Config</code>インスタンスを含み、エラー時には問題に言及する<code>Result</code>値を返すことができます。
-<code>Config::new</code>が<code>main</code>と対話する時、<code>Result</code>型を使用して問題があったとシグナルを送ることができます。
+<code>Config::new</code>が<code>main</code>と対話する時、<code>Result</code>型を使用して問題があったと信号を送ることができます。
 それから<code>main</code>を変更して、<code>panic!</code>呼び出しが引き起こしていた<code>thread 'main'</code>と<code>RUST_BACKTRACE</code>に関する周囲のテキストがない、
-ユーザ向けのより実用的なエラーに<code>Err</code>バリアントを変換することができます。</p>
+ユーザ向けのより実用的なエラーに<code>Err</code>列挙子を変換することができます。</p>
 <!-- Listing 12-9 shows the changes we need to make to the return value of -->
 <!-- `Config::new` and the body of the function needed to return a `Result`. Note -->
 <!-- that this won’t compile until we update `main` as well, which we’ll do in the -->
@@ -584,7 +584,7 @@ note: Run with `RUST_BACKTRACE=1` for a backtrace.
 <!-- success case and a `&'static str` in the error case. Recall from “The Static -->
 <!-- Lifetime” section in Chapter 10 that `&'static str` is the type of string -->
 <!-- literals, which is our error message type for now. -->
-<p><code>new</code>関数は、今や、成功時には<code>Config</code>インスタンスを、エラー時には<code>&amp;'static str</code>を伴う<code>Result</code>を返すようになりました。
+<p><code>new</code>関数は、これで、成功時には<code>Config</code>インスタンスを、エラー時には<code>&amp;'static str</code>を伴う<code>Result</code>を返すようになりました。
 第10章の「静的ライフタイム」節から<code>&amp;'static str</code>は文字列リテラルの型であることを思い出してください。
 これは、今はエラーメッセージの型になっています。</p>
 <!-- We’ve made two changes in the body of the `new` function: instead of calling -->
@@ -646,7 +646,7 @@ fn main() {
 <code>panic!</code>ではない何らか独自のエラー処理を定義できるのです。この<code>Result</code>が<code>Ok</code>値だったら、
 このメソッドの振る舞いは<code>unwrap</code>に似ています: <code>Ok</code>が包んでいる中身の値を返すのです。
 しかし、値が<code>Err</code>値なら、このメソッドは、<em>クロージャ</em>内でコードを呼び出し、
-クロージャは定義し、引数として<code>unwrap_or_else</code>に渡す匿名関数です。クロージャについては第13章で詳しく解説します。
+クロージャは私たちが定義し、引数として<code>unwrap_or_else</code>に渡す匿名関数です。クロージャについては第13章で詳しく講義します。
 とりあえず、<code>unwrap_or_else</code>は、今回リスト12-9で追加した<code>not enough arguments</code>という静的文字列の<code>Err</code>の中身を、
 縦棒の間に出現する<code>err</code>引数のクロージャに渡していることだけ知っておく必要があります。
 クロージャのコードはそれから、実行された時に<code>err</code>値を使用できます。</p>
@@ -840,13 +840,13 @@ fn run(config: Config) -&gt; Result&lt;(), Box&lt;Error&gt;&gt; {
 <code>unwrap_or_else</code>に包まれた値を返してもらう必要はないのです。</p>
 <!-- The bodies of the `if let` and the `unwrap_or_else` functions are the same in -->
 <!-- both cases: we print the error and exit. -->
-<p><code>if let</code>を<code>unwrap_or_else</code>関数の中身はどちらも同じです: エラーを出力して終了します。</p>
+<p><code>if let</code>と<code>unwrap_or_else</code>関数の中身はどちらも同じです: エラーを出力して終了します。</p>
 <!-- ### Splitting Code into a Library Crate -->
 <a class="header" href="ch12-03-improving-error-handling-and-modularity.html#aコードをライブラリクレートに分割する" id="aコードをライブラリクレートに分割する"><h3>コードをライブラリクレートに分割する</h3></a>
 <!-- Our `minigrep` project is looking good so far! Now we’ll split the -->
 <!-- *src/main.rs* file and put some code into the *src/lib.rs* file so we can test -->
 <!-- it and have a *src/main.rs* file with fewer responsibilities. -->
-<p>ここまで<code>minigrep</code>は良さそうですね！では、テストを行い、<em>src/main.rs</em>ファイルの責任が減らせるように、
+<p>ここまで<code>minigrep</code>は良さそうですね！では、テストを行え、<em>src/main.rs</em>ファイルの責任が減らせるように、
 <em>src/main.rs</em>ファイルを分割し、一部のコードを<em>src/lib.rs</em>ファイルに置きましょう。</p>
 <!-- Let’s move all the code that isn’t the `main` function from *src/main.rs* to -->
 <!-- *src/lib.rs*: -->
@@ -865,7 +865,7 @@ fn run(config: Config) -&gt; Result&lt;(), Box&lt;Error&gt;&gt; {
 <!-- (we’ve omitted the bodies of the functions for brevity). Note that this won't -->
 <!-- compile until we modify *src/main.rs* in Listing 12-14. -->
 <p><em>src/lib.rs</em>の中身にはリスト12-13に示したようなシグニチャがあるはずです(関数の本体は簡潔性のために省略しました)。
-リスト12-14で<em>src/main.rs</em>に変更を加えるまでこのコードはコンパイルできないことに注意してください。</p>
+リスト12-14で<em>src/main.rs</em>に変更を加えるまで、このコードはコンパイルできないことに注意してください。</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
 <pre><code class="language-rust ignore">use std::error::Error;
@@ -924,7 +924,7 @@ fn main() {
 <!-- functionality should be connected and should work. Run the program with `cargo -->
 <!-- run` and make sure everything works correctly. -->
 <p>ライブラリクレートをバイナリクレートに持っていくのに、<code>extern crate minigrep</code>を使用しています。
-それから<code>use minigrep::Config</code>行を追加して<code>Config</code>型をスコープに持っていき、
+それから<code>use minigrep::Config</code>行を追加して<code>Config</code>型をスコープに持ってきて、
 <code>run</code>関数にクレート名を接頭辞として付けます。これで全機能が連結され、動くはずです。
 <code>cargo run</code>でプログラムを走らせて、すべてがうまくいっていることを確かめてください。</p>
 <!-- Whew! That was a lot of work, but we’ve set ourselves up for success in the -->

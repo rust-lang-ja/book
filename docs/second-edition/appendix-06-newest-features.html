@@ -152,6 +152,7 @@ struct Person {
 }
 
 fn main() {
+    // ピーター
     let name = String::from(&quot;Peter&quot;);
     let age = 27;
 
@@ -159,6 +160,7 @@ fn main() {
     // Using full syntax:
     let peter = Person { name: name, age: age };
 
+    // ポーティア
     let name = String::from(&quot;Portia&quot;);
     let age = 27;
 
@@ -232,7 +234,7 @@ use foo::{
 <!-- which is inclusive of the upper bound. Now, `..=` is accepted as syntax for -->
 <!-- inclusive ranges in both expression and range context: -->
 <p>以前は、範囲を式として使用する際、<code>..</code>でなければならず、これは上限を含まない一方、パターンは<code>...</code>を使用しなければならず、
-これは、上限を含みます。現在では、<code>..=</code>が両方の式と範囲の文脈で上限を含む範囲の記法として受け付けられます。</p>
+これは、上限を含みます。現在では、<code>..=</code>が式と範囲の文脈両方で上限を含む範囲の記法として受け付けられます。</p>
 <pre><pre class="playpen"><code class="language-rust">fn main() {
     for i in 0 ..= 10 {
         match i {
@@ -249,7 +251,7 @@ use foo::{
 <!-- ## 128-bit integers -->
 <a class="header" href="appendix-06-newest-features.html#a128ビット整数" id="a128ビット整数"><h2>128ビット整数</h2></a>
 <!-- Rust 1.26.0 added 128-bit integer primitives: -->
-<p>Rust1.26.0で128ビットの整数が追加されました:</p>
+<p>Rust1.26.0で128ビットの整数基本型が追加されました:</p>
 <!-- - `u128`: A 128-bit unsigned integer with range [0, 2^128 - 1] -->
 <!-- - `i128`: A 128-bit signed integer with range [-(2^127), 2^127 - 1] -->
 <ul>

@@ -160,9 +160,9 @@ Rustコードの実行フローを制御する最も一般的な文法要素は�
     let number = 3;
 
     if number &lt; 5 {
-        println!(&quot;condition was true&quot;);       // 条件は真です
+        println!(&quot;condition was true&quot;);       // 条件は真でした
     } else {
-        println!(&quot;condition was false&quot;);      // 条件は偽です
+        println!(&quot;condition was false&quot;);      // 条件は偽でした
     }
 }
 </code></pre></pre>
@@ -176,10 +176,10 @@ Rustコードの実行フローを制御する最も一般的な文法要素は�
 <!-- discussed in the “Comparing the Guess to the Secret Number” section of -->
 <!-- Chapter 2. -->
 <p><code>if</code>式は全て、キーワードの<code>if</code>から始め、条件式を続けます。今回の場合、
-条件式は変数<code>number</code>が５未満の値になっているかどうかをチェックします。
+条件式は変数<code>number</code>が5未満の値になっているかどうかをチェックします。
 条件が真の時に実行したい一連のコードを条件式の直後に波かっこで包んで配置します。<code>if</code>式の条件式と紐付けられる一連のコードは、
 時として<em>アーム</em>と呼ばれることがあります。
-第2章の「予想と秘密の数字を比較する」の節で議論した<code>match</code>式のアームのようですね。</p>
+第2章の「予想と秘密の数字を比較する」の節で議論した<code>match</code>式のアームと同じです。</p>
 <!-- Optionally, we can also include an `else` expression, which we chose -->
 <!-- to do here, to give the program an alternative block of code to execute should -->
 <!-- the condition evaluate to false. If you don’t provide an `else` expression and -->
@@ -187,7 +187,7 @@ Rustコードの実行フローを制御する最も一般的な文法要素は�
 <!-- to the next bit of code. -->
 <p>オプションとして、<code>else</code>式を含むこともでき(ここではそうしています)、これによりプログラムは、
 条件式が偽になった時に実行するコードを与えられることになります。仮に、<code>else</code>式を与えずに条件式が偽になったら、
-プログラムは単に<code>if</code>ブロックを無視して次のコードを実行しにいきます。</p>
+プログラムは単に<code>if</code>ブロックを飛ばして次のコードを実行しにいきます。</p>
 <!-- Try running this code; you should see the following output: -->
 <p>このコードを走らせてみましょう; 以下のような出力を目の当たりにするはずです:</p>
 <pre><code class="language-text">$ cargo run
@@ -246,7 +246,7 @@ condition was false
 <!-- expression to the following: -->
 <p>このエラーは、コンパイラは<code>bool</code>型を予期していたのに、整数だったことを示唆しています。
 RubyやJavaScriptなどの言語とは異なり、Rustでは、論理値以外の値が、自動的に論理値に変換されることはありません。
-明示的に必ず<code>if</code>には条件式として、<code>論理値</code>を与えなければなりません。
+明示し、必ず<code>if</code>には条件式として、<code>論理値</code>を与えなければなりません。
 例えば、数値が<code>0</code>以外の時だけ<code>if</code>のコードを走らせたいなら、以下のように<code>if</code>式を変更することができます:</p>
 <!--<span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
@@ -303,7 +303,7 @@ number is divisible by 3
 <p>このプログラムを実行すると、<code>if</code>式が順番に吟味され、最初に条件が真になった本体が実行されます。
 6は2で割り切れるものの、<code>number is devisible by 2</code>や、
 <code>else</code>ブロックの<code>number is not divisible by 4, 3, or 2</code>という出力はされないことに注目してください。
-それは、言語が最初の真条件のブロックのみを実行し、
+それは、Rustが最初の真条件のブロックのみを実行し、
 条件に合ったものが見つかったら、残りはチェックすらしないからです。</p>
 <!-- Using too many `else if` expressions can clutter your code, so if you have more -->
 <!-- than one, you might want to refactor your code. Chapter 6 describes a powerful -->
@@ -352,7 +352,7 @@ The value of number is: 5
 <p>一連のコードは、そのうちの最後の式に評価され、数値はそれ単独でも式になることを思い出してください。
 今回の場合、この<code>if</code>式全体の値は、どのブロックのコードが実行されるかに基づきます。これはつまり、
 <code>if</code>の各アームの結果になる可能性がある値は、同じ型でなければならないということになります;
-リスト3-4で、<code>if</code>アームも<code>else</code>アームも結果は、<code>i32</code>の整数でした。以下の例のように、
+リスト3-2で、<code>if</code>アームも<code>else</code>アームも結果は、<code>i32</code>の整数でした。以下の例のように、
 型が合わない時には、エラーになるでしょう:</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
@@ -414,15 +414,15 @@ Rustにはいくつかの<em>ループ</em>が用意されています。ルー�
 直後にまた最初から処理を開始します。
 ループを試してみるのに、<em>loops</em>という名の新プロジェクトを作りましょう。</p>
 <!-- Rust has three kinds of loops: `loop`, `while`, and `for`. Let’s try each one. -->
-<p>Rustには3種類のループが存在します: <code>loop</code>と<code>while</code>と<code>for</code>です。 それぞれ試してみましょう。</p>
+<p>Rustには3種類のループが存在します: <code>loop</code>と<code>while</code>と<code>for</code>です。それぞれ試してみましょう。</p>
 <!-- #### Repeating Code with `loop` -->
 <a class="header" href="ch03-05-control-flow.html#loopでコードを繰り返す" id="loopでコードを繰り返す"><h4><code>loop</code>でコードを繰り返す</h4></a>
 <!-- The `loop` keyword tells Rust to execute a block of code over and over again -->
 <!-- forever or until you explicitly tell it to stop. -->
-<p><code>loop</code>キーワードを使用すると、同じコードを何回も何回も永遠に明示的にやめさせるまで実行します。</p>
+<p><code>loop</code>キーワードを使用すると、同じコードを何回も何回も永遠に、明示的にやめさせるまで実行します。</p>
 <!-- As an example, change the *src/main.rs* file in your *loops* directory to look -->
 <!-- like this: -->
-<p>例として、<em>loops</em>ディレクトリの<em>src/main.rs</em>ファイルを以下のような感じに書き換えましょう:</p>
+<p>例として、<em>loops</em>ディレクトリの<em>src/main.rs</em>ファイルを以下のような感じに書き換えてください:</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
 <pre><code class="language-rust ignore">fn main() {
@@ -436,7 +436,7 @@ Rustにはいくつかの<em>ループ</em>が用意されています。ルー�
 <!-- <span class="keystroke">ctrl-c</span>, to halt a program that is stuck in a -->
 <!-- continual loop. Give it a try: -->
 <p>このプログラムを実行すると、プログラムを手動で止めるまで、何度も何度も続けて<code>again!</code>と出力するでしょう。
-ほとんどのターミナルで<span class="keystroke">ctrl-c</span>というショートカットが使え、
+ほとんどの端末で<span class="keystroke">ctrl-c</span>というショートカットが使え、
 永久ループに囚われてしまったプログラムを終了させられます。試しにやってみましょう:</p>
 <pre><code class="language-text">$ cargo run
    Compiling loops v0.1.0 (file:///projects/loops)
@@ -459,7 +459,7 @@ again!
 <!-- “Quitting After a Correct Guess” section of Chapter 2 to exit the program when -->
 <!-- the user won the game by guessing the correct number. -->
 <p>幸いなことに、Rustにはループを抜け出す別のより信頼できる手段があります。
-ループ内に<code>break</code>キーワードを配置することでプログラムに実行を終了すべきタイミングを教えることができます。
+ループ内に<code>break</code>キーワードを配置することで、プログラムに実行を終了すべきタイミングを教えることができます。
 第2章の「正しい予想をした後に終了する」節の数当てゲーム内でこれをして、ユーザが予想を的中させ、
 ゲームに勝った時にプログラムを終了させたことを思い出してください。</p>
 <!-- #### Conditional Loops with `while` -->
@@ -472,7 +472,7 @@ again!
 <p>プログラムにとってループ内で条件式を評価できると、有益なことがしばしばあります。条件が真の間、
 ループが走るわけです。条件が真でなくなった時にプログラムは<code>break</code>を呼び出し、ループを終了します。
 このタイプのループは、<code>loop</code>、<code>if</code>、<code>else</code>、<code>break</code>を組み合わせることでも実装できます;
-お望みなら、プログラムで試してみるのもいいでしょう。</p>
+お望みなら、プログラムで今、試してみるのもいいでしょう。</p>
 <!-- However, this pattern is so common that Rust has a built-in language construct -->
 <!-- for it, called a `while` loop. Listing 3-3 uses `while`: the program loops -->
 <!-- three times, counting down each time, and then, after the loop, it prints -->
@@ -594,13 +594,13 @@ the value is: 50
 <!-- that generates all numbers in sequence starting from one number and ending -->
 <!-- before another number. -->
 <p><code>for</code>ループのこの安全性と簡潔性により、Rustで使用頻度の最も高いループになっています。
-リスト3-5で<code>while</code>ループを使ったカウントダウンサンプルのように、一定の回数、同じコードを実行したいような状況であっても、
+リスト3-3で<code>while</code>ループを使ったカウントダウンサンプルのように、一定の回数、同じコードを実行したいような状況であっても、
 多くのRustaceanは、<code>for</code>ループを使うでしょう。どうやってやるかといえば、
 <code>Range</code>型を使うのです。Range型は、標準ライブラリで提供される片方の数字から始まって、
 もう片方の数字未満の数値を順番に生成する型です。</p>
 <!-- Here’s what the countdown would look like using a `for` loop and another method -->
 <!-- we’ve not yet talked about, `rev`, to reverse the range: -->
-<p><code>for</code>ループを使い、まだ話していない別のメソッド<code>rev</code>を使って範囲を逆順にしたカウントダウンはこうなります:</p>
+<p><code>for</code>ループと、まだ話していない別のメソッド<code>rev</code>を使って範囲を逆順にしたカウントダウンはこうなります:</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust">fn main() {
@@ -618,7 +618,7 @@ the value is: 50
 <!-- and compound data types, functions, comments, `if` expressions, and loops! If -->
 <!-- you want to practice with the concepts discussed in this chapter, try building -->
 <!-- programs to do the following: -->
-<p>やりましたね！結構長い章でした: 変数とスカラー値、複合データ型、関数、コメント、<code>if</code>式、そして、ループについて学びました！
+<p>やりましたね！結構長い章でした: 変数、スカラー値と複合データ型、関数、コメント、<code>if</code>式、そして、ループについて学びました！
 この章で議論した概念について経験を積みたいのであれば、以下のことをするプログラムを組んでみてください:</p>
 <!-- * Convert temperatures between Fahrenheit and Celsius. -->
 <!-- * Generate the nth Fibonacci number. -->
