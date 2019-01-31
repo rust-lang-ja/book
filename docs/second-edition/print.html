@@ -2832,7 +2832,7 @@ Rustの論理値型は、<code>bool</code>と指定されます。
 <p>Rustの<code>char</code>型は、ユニコードのスカラー値を表します。これはつまり、アスキーよりもずっとたくさんのものを表せるということです。
 アクセント文字; 中国語、日本語、韓国語文字;
 絵文字; ゼロ幅スペースは、全てRustでは、有効な<code>char</code>型になります。ユニコードスカラー値は、
-<code>U+0000</code>から<code>U+D7FF</code>までと<code>U+E0000</code>から<code>U+10FFFF</code>までの範囲になります。
+<code>U+0000</code>から<code>U+D7FF</code>までと<code>U+E000</code>から<code>U+10FFFF</code>までの範囲になります。
 ところが、「文字」は実はユニコードの概念ではないので、文字とは何かという人間としての直観は、
 Rustにおける<code>char</code>値が何かとは合致しない可能性があります。この話題については、第8章の「文字列」で詳しく議論しましょう。</p>
 <!-- ### Compound Types -->
@@ -17068,7 +17068,7 @@ pub struct Config {
 #      vec![]
 # }
 #
-# struct Config {
+# pub struct Config {
 #     query: String,
 #     filename: String,
 #     case_sensitive: bool,
@@ -17925,7 +17925,7 @@ let n = example_closure(5);
 <!-- case, our closure has a parameter of type `u32` and returns a `u32`, so the -->
 <!-- trait bound we specify is `Fn(u32) -> u32`. -->
 <p><code>Fn</code>トレイト境界への型を追加して、クロージャがこのトレイト境界を合致させるために持っていなければならない引数と戻り値の型を表します。
-今回の場合、クロージャは、引数の型が<code>u32</code>で、<code>u32</code>を返すので、指定するトレイト境界は、<code>Fn(u32) =&gt; u32</code>です。</p>
+今回の場合、クロージャは、引数の型が<code>u32</code>で、<code>u32</code>を返すので、指定するトレイト境界は、<code>Fn(u32) -&gt; u32</code>です。</p>
 <!-- Listing 13-9 shows the definition of the `Cacher` struct that holds a closure -->
 <!-- and an optional result value. -->
 <p>リスト13-9は、クロージャとオプションの結果値を保持する<code>Cacher</code>構造体の定義を示しています。</p>

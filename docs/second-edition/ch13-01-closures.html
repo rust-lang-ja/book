@@ -673,7 +673,7 @@ let n = example_closure(5);
 <!-- case, our closure has a parameter of type `u32` and returns a `u32`, so the -->
 <!-- trait bound we specify is `Fn(u32) -> u32`. -->
 <p><code>Fn</code>トレイト境界への型を追加して、クロージャがこのトレイト境界を合致させるために持っていなければならない引数と戻り値の型を表します。
-今回の場合、クロージャは、引数の型が<code>u32</code>で、<code>u32</code>を返すので、指定するトレイト境界は、<code>Fn(u32) =&gt; u32</code>です。</p>
+今回の場合、クロージャは、引数の型が<code>u32</code>で、<code>u32</code>を返すので、指定するトレイト境界は、<code>Fn(u32) -&gt; u32</code>です。</p>
 <!-- Listing 13-9 shows the definition of the `Cacher` struct that holds a closure -->
 <!-- and an optional result value. -->
 <p>リスト13-9は、クロージャとオプションの結果値を保持する<code>Cacher</code>構造体の定義を示しています。</p>
