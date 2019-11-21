@@ -4,7 +4,7 @@
 
 TRPL 2 日本語版のHTML BookをCircleCIでビルドするためのリポジトリ。
 
-- TRPL 2のソースリポジトリ： https://github.com/hazama-yuinyan/book
+- TRPL 2のソースリポジトリ： https://github.com/rust-lang-ja/book-ja
 - HTML Bookの公開先： https://doc.rust-jp.rs/book/second-edition/
 
 
