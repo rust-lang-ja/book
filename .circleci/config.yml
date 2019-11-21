@@ -17,9 +17,9 @@ jobs:
             mkdir ~/.ssh
             chmod 700 ~/.ssh
             ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-            git clone git@github.com:hazama-yuinyan/book.git
+            git clone git@github.com:rust-lang-ja/book-ja.git
             cd book
-            git checkout master
+            git checkout second-edition-ja
           working_directory: ~/trpl2
       - run:
           name: Removing blank lines and HTML comments from SUMMARY.md
