@@ -148,7 +148,7 @@
 <!-- have devoted the necessary years learning to avoid its infamous pitfalls. And -->
 <!-- even those who practice it do so with caution, lest their code be open to -->
 <!-- exploits, crashes, or corruption. -->
-<p>一例を挙げると、メモリ管理やデータ表現、並列性などの低レベルな詳細を扱う「システムレベル」のプログラミングがあります。
+<p>一例を挙げると、メモリ管理やデータ表現、並行性などの低レベルな詳細を扱う「システムレベル」のプログラミングがあります。
 伝統的にこの分野は難解で、年月をかけてやっかいな落とし穴を回避する術を習得した選ばれし者にだけ可能と見なされています。
 そのように鍛錬を積んだ者でさえ注意が必要で、さもないと書いたコードがクラッキングの糸口になったりクラッシュやデータ破損を引き起こしかねないのです。</p>
 <!-- Rust breaks down these barriers by eliminating the old pitfalls and providing a -->
@@ -10190,7 +10190,7 @@ println!(&quot;{:?}&quot;, map);
 これは、利用可能な最速のハッシュアルゴリズムではありませんが、パフォーマンスの欠落と引き換えに安全性を得るというトレードオフは、
 価値があります。自分のコードをプロファイリングして、自分の目的では標準のハッシュ関数は遅すぎると判明したら、
 異なる<em>hasher</em>を指定することで別の関数に切り替えることができます。hasherとは、
-<code>BuildeHasher</code>トレイトを実装する型のことです。トレイトについてとその実装方法については、第10章で語ります。
+<code>BuildHasher</code>トレイトを実装する型のことです。トレイトについてとその実装方法については、第10章で語ります。
 必ずしも独自のhasherを1から作り上げる必要はありません; <a href="https://crates.io">crates.io</a>には、
 他のRustユーザによって共有された多くの一般的なハッシュアルゴリズムを実装したhasherを提供するライブラリがあります。</p>
 <!-- ## Summary -->
@@ -12152,8 +12152,8 @@ Rustのジェネリクスは実行時に究極的に効率的になるのです�
 <!-- need a summary from each type, and we need to request that summary by calling a -->
 <!-- `summarize` method on an instance. Listing 10-12 shows the definition of a -->
 <!-- `Summary` trait that expresses this behavior. -->
-<p><code>NewsArticle</code>や<code>Tweet</code>インスタンスに格納される可能性のあるデータの総括を表示するメディア総括ライブラリを作成したいです。
-このために、各型から総括が必要で、インスタンスに対して<code>summarize</code>メソッドを呼び出すことでその総括を要求する必要があります。
+<p><code>NewsArticle</code> または <code>Tweet</code> インスタンスに保存されているデータのサマリを表示できるメディア アグリゲータ ライブラリを作成します。
+これをするには、各型のサマリーが必要で、インスタンスで <code>summarize</code> メソッドを呼び出してサマリーを要求する必要があります。
 リスト10-12は、この振る舞いを表現する<code>Summary</code>トレイトの定義を表示しています。</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
@@ -12196,10 +12196,9 @@ pub trait Summary {
 <!-- `summarize`. For the `Tweet` struct, we define `summarize` as the username -->
 <!-- followed by the entire text of the tweet, assuming that tweet content is -->
 <!-- already limited to 280 characters. -->
-<p>今や<code>Summary</code>トレイトで欲しい振る舞いを定義したので、メディア総括機で型に実装することができます。
-リスト10-13は見出し、著者、場所を使用して<code>summarize</code>の戻り値を生成する<code>NewsArticle</code>構造体の<code>Summary</code>トレイト実装を示しています。
-<code>Tweet</code>構造体に関しては、ツイートの内容が既に280文字に限定されていることを想定して、
-<code>summarize</code>をユーザ名にツイート全体のテキストが続く形で定義します。</p>
+<p>今や <code>Summary</code> トレイトを使用して目的の動作を定義できたので、メディア アグリゲータで型に実装できます。
+リスト10-13は、 <code>Summary</code> トレイトを <code>NewsArticle</code> 構造体上に実装したもので、ヘッドライン、著者、そして <code>Summarize</code> の戻り値を示しています。
+<code>Tweet</code> 構造体に関しては、ツイートの内容が既に280文字に制限されていると仮定して、ユーザー名の後にツイートのテキスト全体が続くものとして <code>Summarize</code> を定義します。</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust">
@@ -12920,7 +12919,7 @@ Rustで、このコードが動くことを許可していたら、<code>r</code
 第4章の「引数としての文字列スライス」節をご参照ください。</p>
 <!-- If we try to implement the `longest` function as shown in Listing 10-21, it -->
 <!-- won’t compile. -->
-<p>リスト10-21に示したように<code>longetst</code>関数を実装しようとしたら、コンパイルできないでしょう。</p>
+<p>リスト10-21に示したように<code>longest</code>関数を実装しようとしたら、コンパイルできないでしょう。</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
 <pre><code class="language-rust ignore">fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str {
@@ -13622,7 +13621,7 @@ fn longest_with_an_announcement&lt;'a, T&gt;(x: &amp;'a str, y: &amp;'a str, ann
 <code>Display</code>トレイト境界が必要なのです。ライフタイムは1種のジェネリックなので、
 ライフタイム引数<code>'a</code>とジェネリックな型引数<code>T</code>が関数名の後、山カッコ内の同じリストに収まっています。</p>
 <!-- ## Summary -->
-<a class="header" href="print.html#a総括" id="a総括"><h2>総括</h2></a>
+<a class="header" href="print.html#aまとめ-9" id="aまとめ-9"><h2>まとめ</h2></a>
 <!-- We covered a lot in this chapter! Now that you know about generic type -->
 <!-- parameters, traits and trait bounds, and generic lifetime parameters, you’re -->
 <!-- ready to write code without repetition that works in many different situations. -->
@@ -13936,7 +13935,7 @@ error: test failed
 テストの実行方法については、「テストの実行され方を制御する」節でもっと語りましょう。</p>
 <!-- The summary line displays at the end: overall, our test result is `FAILED`. -->
 <!-- We had one test pass and one test fail. -->
-<p>総括の行が最後に出力されています: 総合的に言うと、テスト結果は<code>失敗</code>でした。
+<p>サマリー行が最後に出力されています: 総合的に言うと、テスト結果は<code>失敗</code>でした。
 一つのテストが通り、一つが失敗したわけです。</p>
 <!-- Now that you’ve seen what the test results look like in different scenarios, -->
 <!-- let’s look at some macros other than `panic!` that are useful in tests. -->
@@ -14708,10 +14707,10 @@ test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 <!-- is printed when the test that passes runs. That output has been captured. The -->
 <!-- output from the test that failed, `I got the value 8`, appears in the section -->
 <!-- of the test summary output, which also shows the cause of the test failure. -->
-<p>この出力のどこにも<code>I got the value 4</code>という出力が見られないことに注意してください。
-この出力は、通るテストが走る際に出力されるものです。この出力はキャプチャされてしまったのです。
-失敗したテストからの出力である<code>I got the value 8</code>はテスト総括出力の区域に出現し、
-ここには、テスト失敗の原因も表示されています。</p>
+<p>この出力のどこにも <code>I got the value 4</code> と表示されていないことに注意してください。
+これは、テストに合格した場合に出力されるものです。
+その出力はキャプチャされてしまいました。
+失敗したテストのからの出力 <code>I got the value 8</code> がテストサマリー出力のセクションに表示され、テストが失敗した原因も示されます。</p>
 <!-- If we want to see printed values for passing tests as well, we can disable the -->
 <!-- output capture behavior by using the `--nocapture` flag: -->
 <p>通過するテストについても出力される値が見たかったら、出力キャプチャ機能を<code>--nocapture</code>フラグで無効化することができます:</p>
@@ -15113,7 +15112,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 <!-- Listing 11-12) and then a summary line for the unit tests. -->
 <p>3つの区域の出力が単体テスト、結合テスト、ドックテストを含んでいます。単体テスト用の最初の区域は、
 今まで見てきたものと同じです: 各単体テストに1行(リスト11-12で追加した<code>internal</code>という名前のもの)と、
-単体テストの総括行です。</p>
+単体テストのサマリー行です。</p>
 <!-- The integration tests section starts with the line `Running -->
 <!-- target/debug/deps/integration-test-ce99bcc2479f4607` (the hash at the end of -->
 <!-- your output will be different). Next, there is a line for each test function in -->
@@ -15122,7 +15121,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 <p>結合テストの区域は、
 <code>Running target/debug/deps/integration-test-ce99bcc2479f4607</code>という行で始まっています(最後のハッシュはあなたの出力とは違うでしょう)。
 次に、この結合テストの各テスト関数用の行があり、<code>Doc-tests adder</code>区域が始まる直前に、
-結合テストの結果用の総括行があります。</p>
+結合テストの結果用のサマリー行があります。</p>
 <!-- Similarly to how adding more unit test functions adds more result lines to the -->
 <!-- unit tests section, adding more test functions to the integration test file -->
 <!-- adds more result lines to this integration test file’s section. Each -->
@@ -15287,7 +15286,7 @@ fn it_adds_two() {
 この構造を使用して結合テストは、<code>extern crate</code>を使用して重要な機能を用いることでライブラリクレートをテストすることが<em>できます</em>。
 この重要な機能が動作すれば、<em>src/main.rs</em>ファイルの少量のコードも動作し、その少量のコードはテストする必要がないわけです。</p>
 <!-- ## Summary -->
-<a class="header" href="print.html#aまとめ-9" id="aまとめ-9"><h2>まとめ</h2></a>
+<a class="header" href="print.html#aまとめ-10" id="aまとめ-10"><h2>まとめ</h2></a>
 <!-- Rust’s testing features provide a way to specify how code should function to -->
 <!-- ensure it continues to work as we expect, even as we make changes. Unit tests -->
 <!-- exercise different parts of a library separately and can test private -->
@@ -17335,7 +17334,7 @@ How dreary to be somebody!
 <!-- and standard error for error output as appropriate. -->
 <p>これは、もう成功した出力には標準出力を、エラー出力には標準エラーを適切に使用していることをデモしています。</p>
 <!-- ## Summary -->
-<a class="header" href="print.html#aまとめ-10" id="aまとめ-10"><h2>まとめ</h2></a>
+<a class="header" href="print.html#aまとめ-11" id="aまとめ-11"><h2>まとめ</h2></a>
 <!-- This chapter recapped some of the major concepts you’ve learned so far and -->
 <!-- covered how to perform common I/O operations in Rust. By using command line -->
 <!-- arguments, files, environment variables, and the `eprintln!` macro for printing -->
@@ -18274,7 +18273,7 @@ fn call_with_different_values() {
 <!-- * `FnMut` can change the environment because it mutably borrows values. -->
 <!-- * `Fn` borrows values from the environment immutably. -->
 <ul>
-<li><code>FnOnce</code>は内包されたスコープからキャプチャした変数を消費し、これがクロージャの<em>環境</em>として知られています。
+<li><code>FnOnce</code>は、クロージャの<em>環境</em>として知られている内包されたスコープからキャプチャした変数を消費します。
 キャプチャした変数を消費するために、定義された際にクロージャはこれらの変数の所有権を奪い、
 自身にムーブするのです。名前のうち、<code>Once</code>の部分は、
 このクロージャは同じ変数の所有権を2回以上奪うことができないという事実を表しているので、1回しか呼ぶことができないのです。</li>
@@ -19307,7 +19306,7 @@ for i in 12..buffer.len() {
 もうイテレータとクロージャを恐れなしに使用することができますね！それらのおかげでコードは、高レベルだけれども、
 そうすることに対して実行時のパフォーマンスを犠牲にしないようになります。</p>
 <!-- ## Summary -->
-<a class="header" href="print.html#aまとめ-11" id="aまとめ-11"><h2>まとめ</h2></a>
+<a class="header" href="print.html#aまとめ-12" id="aまとめ-12"><h2>まとめ</h2></a>
 <!-- Closures and iterators are Rust features inspired by functional programming -->
 <!-- language ideas. They contribute to Rust’s capability to clearly express -->
 <!-- high-level ideas at low-level performance. The implementations of closures and -->
@@ -20346,7 +20345,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 <!-- the `add-one` crate. Running `cargo test` in a workspace structured like this -->
 <!-- one will run the tests for all the crates in the workspace. -->
 <p>出力の最初の区域が、<code>add-one</code>クレートの<code>it_works</code>テストが通ったことを示しています。
-次の区域には、<code>adder</code>クレートにはテストが見つなかったことが示され、
+次の区域には、<code>adder</code>クレートにはテストが見つからなかったことが示され、
 さらに最後の区域には、<code>add-one</code>クレートにドキュメンテーションテストは見つからなかったと表示されています。
 このような構造をしたワークスペースで<code>cargo test</code>を走らせると、ワークスペースの全クレートのテストを実行します。</p>
 <!-- We can also run tests for one particular crate in a workspace from the -->
@@ -20451,7 +20450,7 @@ Cargoのサブコマンドであるかのように実行することができま
 <code>cargo --list</code>を実行すると、列挙もされます。<code>cargo install</code>を使用して拡張をインストールし、
 それから組み込みのCargoツール同様に実行できることは、Cargoの設計上の非常に便利な恩恵です！</p>
 <!-- ## Summary -->
-<a class="header" href="print.html#aまとめ-12" id="aまとめ-12"><h2>まとめ</h2></a>
+<a class="header" href="print.html#aまとめ-13" id="aまとめ-13"><h2>まとめ</h2></a>
 <!-- Sharing code with Cargo and [crates.io](https://crates.io) is -->
 <!-- part of what makes the Rust ecosystem useful for many different tasks. Rust’s -->
 <!-- standard library is small and stable, but crates are easy to share, use, and -->
@@ -21428,7 +21427,7 @@ Dropping CustomSmartPointer with data `my stuff`!
 一例は、ロックを管理するスマートポインタを使用する時です: 同じスコープの他のコードがロックを獲得できるように、
 ロックを解放する<code>drop</code>メソッドを強制的に走らせたくなる可能性があります。Rustは、
 <code>Drop</code>トレイトの<code>drop</code>メソッドを手動で呼ばせてくれません; スコープが終わる前に値を強制的にドロップさせたいなら、
-代わりに標準ライブラリが提供する<code>std::mem:drop</code>関数を呼ばなければなりません。</p>
+代わりに標準ライブラリが提供する<code>std::mem::drop</code>関数を呼ばなければなりません。</p>
 <!-- If we try to call the `Drop` trait's `drop` method manually by modifying the -->
 <!-- `main` function in Listing 15-14, as shown in Listing 15-15, we'll get a -->
 <!-- compiler error: -->
@@ -22928,7 +22927,7 @@ fn main() {
 <code>Node</code>の定義で子供から親への関係は<code>Weak&lt;T&gt;</code>参照になるべきと指定することで、
 循環参照やメモリリークを引き起こさずに親ノードに子ノードを参照させたり、その逆を行うことができます。</p>
 <!-- ## Summary -->
-<a class="header" href="print.html#aまとめ-13" id="aまとめ-13"><h2>まとめ</h2></a>
+<a class="header" href="print.html#aまとめ-14" id="aまとめ-14"><h2>まとめ</h2></a>
 <!-- This chapter covered how to use smart pointers to make different guarantees and -->
 <!-- trade-offs than those Rust makes by default with regular references. The -->
 <!-- `Box<T>` type has a known size and points to data allocated on the heap. The -->
@@ -24487,7 +24486,7 @@ unsafeなRustコードを使用することについては第19章で語りま�
 注意深い思考が必要になるということです。<a href="https://doc.rust-lang.org/stable/nomicon/">The Rustonomicon</a>には、
 これらの保証とそれを保持する方法についての情報がより多くあります。</p>
 <!-- ## Summary -->
-<a class="header" href="print.html#aまとめ-14" id="aまとめ-14"><h2>まとめ</h2></a>
+<a class="header" href="print.html#aまとめ-15" id="aまとめ-15"><h2>まとめ</h2></a>
 <!-- This isn’t the last you’ll see of concurrency in this book: the project in -->
 <!-- Chapter 20 will use the concepts in this chapter in a more realistic situation -->
 <!-- than the smaller examples discussed here. -->
@@ -26185,7 +26184,7 @@ Rustでは利用可能なことを確かめました。これらのパターン�
 コンパイル時に一部のバグを回避できるなどの利益が得られることもあります。オブジェクト指向のパターンは、
 オブジェクト指向言語にはない所有権などの特定の機能によりRustでは、必ずしも最善の解決策ではないでしょう。</p>
 <!-- ## Summary -->
-<a class="header" href="print.html#a総括-1" id="a総括-1"><h2>総括</h2></a>
+<a class="header" href="print.html#aまとめ-16" id="aまとめ-16"><h2>まとめ</h2></a>
 <!-- No matter whether or not you think Rust is an object-oriented language after -->
 <!-- reading this chapter, you now know that you can use trait objects to get some -->
 <!-- object-oriented features in Rust. Dynamic dispatch can give your code some -->
@@ -27763,7 +27762,7 @@ match msg {
 <!-- Using `@` lets us test a value and save it in a variable within one pattern. -->
 <p><code>@</code>を使用することで、値を検査しつつ、1つのパターン内で変数に保存させてくれるのです。</p>
 <!-- ## Summary -->
-<a class="header" href="print.html#aまとめ-15" id="aまとめ-15"><h2>まとめ</h2></a>
+<a class="header" href="print.html#aまとめ-17" id="aまとめ-17"><h2>まとめ</h2></a>
 <!-- Rust’s patterns are very useful in that they help distinguish between different -->
 <!-- kinds of data. When used in `match` expressions, Rust ensures your patterns -->
 <!-- cover every possible value, or your program won’t compile. Patterns in `let` -->
@@ -30309,7 +30308,7 @@ fn returns_closure() -&gt; Box&lt;Fn(i32) -&gt; i32&gt; {
 <p>このコードは、問題なくコンパイルできます。トレイトオブジェクトについて詳しくは、
 第17章の「トレイトオブジェクトで異なる型の値を許容する」節を参照してください。</p>
 <!-- ## Summary -->
-<a class="header" href="print.html#aまとめ-16" id="aまとめ-16"><h2>まとめ</h2></a>
+<a class="header" href="print.html#aまとめ-18" id="aまとめ-18"><h2>まとめ</h2></a>
 <!-- Whew! Now you have some features of Rust in your toolbox that you won’t use -->
 <!-- often, but you’ll know they’re available in very particular circumstances. -->
 <!-- We’ve introduced several complex topics so that when you encounter them in -->
@@ -30701,9 +30700,8 @@ message-body
 <!-- a reason phrase that provides a text description of the status code. After the -->
 <!-- CRLF sequence are any headers, another CRLF sequence, and the body of the -->
 <!-- response. -->
-<p>1行目は、<em>ステータス行</em>で、レスポンスで使用されるHTTPバージョン、リクエストの結果を総括する数値のステータスコード、
-ステータスコードをテキストで表現する理由フレーズを含みます。CRLFの後には、あらゆるヘッダ、別のCRLF、
-レスポンスの本体があります。</p>
+<p>最初の行は、レスポンスで使用されるHTTPバージョン、リクエストの結果を要約する数値ステータス・コード、そしてステータス・コードのテキスト記述を提供する理由句を含む <em>ステータス行</em> です。
+CRLFシーケンスの後には、任意のヘッダ、別のCRLFシーケンス、そしてレスポンスの本体が続きます。</p>
 <!-- Here is an example response that uses HTTP version 1.1, has a status code of -->
 <!-- 200, an OK reason phrase, no headers, and no body: -->
 <p>こちらがHTTPバージョン1.1を使用し、ステータスコードが200で、OKフレーズ、ヘッダと本体なしの例のレスポンスです:</p>
@@ -33043,7 +33041,7 @@ impl Worker {
 そして、APIと頑健性を我々が実装したものと比較する。</li>
 </ul>
 <!-- ## Summary -->
-<a class="header" href="print.html#a総括-2" id="a総括-2"><h2>総括</h2></a>
+<a class="header" href="print.html#aまとめ-19" id="aまとめ-19"><h2>まとめ</h2></a>
 <!-- Well done! You’ve made it to the end of the book! We want to thank you for -->
 <!-- joining us on this tour of Rust. You’re now ready to implement your own Rust -->
 <!-- projects and help with other peoples’ projects. Keep in mind that there is a -->
@@ -34515,7 +34513,7 @@ use foo::{
 <!-- integers efficiently, such as certain cryptographic algorithms. -->
 <p>これらの基本型は、特定の暗号化アルゴリズムなど、非常に大きな整数を効率的に使用する必要のあるアルゴリズムで、とても有用です。</p>
 <!-- # Appendix G - How Rust is Made and “Nightly Rust” -->
-<a class="header" href="print.html#a付録g---rustが作られ方とnightly-rust" id="a付録g---rustが作られ方とnightly-rust"><h1>付録G - Rustが作られ方と“Nightly Rust”</h1></a>
+<a class="header" href="print.html#a付録g-rustが作られ方とnightly-rust" id="a付録g-rustが作られ方とnightly-rust"><h2>付録G: Rustが作られ方と“Nightly Rust”</h2></a>
 <!-- This appendix is about how Rust is made and how that affects you as a Rust -->
 <!-- developer. We mentioned that the output in this book was generated by stable -->
 <!-- Rust 1.21.0, but any examples that compile should continue to compile in any -->

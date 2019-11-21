@@ -1021,7 +1021,7 @@ fn call_with_different_values() {
 <!-- * `FnMut` can change the environment because it mutably borrows values. -->
 <!-- * `Fn` borrows values from the environment immutably. -->
 <ul>
-<li><code>FnOnce</code>は内包されたスコープからキャプチャした変数を消費し、これがクロージャの<em>環境</em>として知られています。
+<li><code>FnOnce</code>は、クロージャの<em>環境</em>として知られている内包されたスコープからキャプチャした変数を消費します。
 キャプチャした変数を消費するために、定義された際にクロージャはこれらの変数の所有権を奪い、
 自身にムーブするのです。名前のうち、<code>Once</code>の部分は、
 このクロージャは同じ変数の所有権を2回以上奪うことができないという事実を表しているので、1回しか呼ぶことができないのです。</li>

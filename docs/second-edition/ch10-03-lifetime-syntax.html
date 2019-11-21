@@ -329,7 +329,7 @@ Rustで、このコードが動くことを許可していたら、<code>r</code
 第4章の「引数としての文字列スライス」節をご参照ください。</p>
 <!-- If we try to implement the `longest` function as shown in Listing 10-21, it -->
 <!-- won’t compile. -->
-<p>リスト10-21に示したように<code>longetst</code>関数を実装しようとしたら、コンパイルできないでしょう。</p>
+<p>リスト10-21に示したように<code>longest</code>関数を実装しようとしたら、コンパイルできないでしょう。</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
 <pre><code class="language-rust ignore">fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str {
@@ -1031,7 +1031,7 @@ fn longest_with_an_announcement&lt;'a, T&gt;(x: &amp;'a str, y: &amp;'a str, ann
 <code>Display</code>トレイト境界が必要なのです。ライフタイムは1種のジェネリックなので、
 ライフタイム引数<code>'a</code>とジェネリックな型引数<code>T</code>が関数名の後、山カッコ内の同じリストに収まっています。</p>
 <!-- ## Summary -->
-<a class="header" href="ch10-03-lifetime-syntax.html#a総括" id="a総括"><h2>総括</h2></a>
+<a class="header" href="ch10-03-lifetime-syntax.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- We covered a lot in this chapter! Now that you know about generic type -->
 <!-- parameters, traits and trait bounds, and generic lifetime parameters, you’re -->
 <!-- ready to write code without repetition that works in many different situations. -->
