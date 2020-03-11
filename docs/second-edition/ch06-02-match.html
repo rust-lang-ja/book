@@ -343,7 +343,7 @@ fn value_in_cents(coin: Coin) -&gt; u32 {
 <!-- state value out of the `Coin` enum variant for `Quarter`. -->
 <p><code>value_in_cents(Coin::Quarter(UsState::Alaska))</code>と呼び出すつもりだったなら、<code>coin</code>は
 <code>Coin::Quarter(UsState::Alaska)</code>になります。その値をmatchの各アームと比較すると、
-<code>Coin::Quater(state)</code>に到達するまで、どれにもマッチしません。その時に、<code>state</code>に束縛されるのは、
+<code>Coin::Quarter(state)</code>に到達するまで、どれにもマッチしません。その時に、<code>state</code>に束縛されるのは、
 <code>UsState::Alaska</code>という値です。そして、<code>println!</code>式でその束縛を使用することができ、
 そのため、<code>Coin</code> enumの列挙子から<code>Quarter</code>に対する中身のstateの値を取得できたわけです。</p>
 <!-- ### Matching with `Option<T>` -->
