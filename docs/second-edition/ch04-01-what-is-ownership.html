@@ -226,7 +226,7 @@ Rustと所有権システムの規則と経験を積むにつれて、自然に�
 この章の後半でスタックとヒープを絡めて所有権の一部は解説されるので、ここでちょっと予行演習をしておきましょう。</p>
 <p>スタックもヒープも、実行時にコードが使用できるメモリの一部になりますが、異なる手段で構成されています。
 スタックは、得た順番に値を並べ、逆の順で値を取り除いていきます。これは、
-<em>last in, first out</em>(<code>訳注</code>: あえて日本語にするなら、けつ入れ頭出しといったところでしょうか)と呼ばれます。
+<em>last in, first out</em>(<code>訳注</code>: あえて日本語にするなら、「最後に入れたものが最初に出てくる」といったところでしょうか)と呼ばれます。
 お皿の山を思い浮かべてください: お皿を追加する時には、山の一番上に置き、お皿が必要になったら、一番上から1枚を取り去りますよね。
 途中や一番下に追加したり、取り除いたりすることもできません。データを追加することは、
 <em>スタックにpushする</em>といい、データを取り除くことは、<em>スタックからpopする</em>と表現します(<code>訳注</code>:
@@ -237,8 +237,8 @@ Rustと所有権システムの規則と経験を積むにつれて、自然に�
 <p>コンパイル時にサイズがわからなかったり、サイズが可変のデータについては、代わりにヒープに格納することができます。
 ヒープは、もっとごちゃごちゃしています: ヒープにデータを置く時、あるサイズのスペースを求めます。
 OSはヒープ上に十分な大きさの空の領域を見つけ、使用中にし、<em>ポインタ</em>を返してきます。ポインタとは、その場所へのアドレスです。
-この過程は、<em>ヒープに領域を確保する</em>と呼ばれ、時としてそのフレーズを単に<em>allocateする</em>などと省略したりします。
-(<code>訳注</code>: こちらもこなれた日本語訳はないでしょう。allocateはメモリを確保すると訳したいところですが)
+この過程は、<em>ヒープに領域を確保する(allocating on the heap)<em>と呼ばれ、時としてそのフレーズを単に</em>allocateする</em>などと省略したりします。
+(<code>訳注</code>: こちらもこなれた日本語訳はないでしょう。allocateは「メモリを確保する」と訳したいところですが)
 スタックに値を載せることは、メモリ確保とは考えられません。ポインタは、既知の固定サイズなので、
 スタックに保管することができますが、実データが必要になったら、ポインタを追いかける必要があります。</p>
 <p>レストランで席を確保することを考えましょう。入店したら、グループの人数を告げ、
@@ -589,7 +589,8 @@ do if Rust copied the heap data as well</span> -->
 その変数が使っていたヒープメモリを片付けると述べました。しかし、図4-2は、
 両方のデータポインタが同じ場所を指していることを示しています。これは問題です: <code>s2</code>と<code>s1</code>がスコープを抜けたら、
 両方とも同じメモリを解放しようとします。これは<em>二重解放</em>エラーとして知られ、以前触れたメモリ安全性上のバグの一つになります。
-メモリを2回解放することは、メモリの退廃につながり、さらにセキュリティ上の脆弱性を生む可能性があります。</p>
+メモリを2回解放することは、memory corruption (<code>訳注</code>: メモリの崩壊。意図せぬメモリの書き換え) につながり、
+セキュリティ上の脆弱性を生む可能性があります。</p>
 <!-- To ensure memory safety, there’s one more detail to what happens in this -->
 <!-- situation in Rust. Instead of trying to copy the allocated memory, Rust -->
 <!-- considers `s1` to no longer be valid and, therefore, Rust doesn’t need to free -->
@@ -671,7 +672,7 @@ println!(&quot;s1 = {}, s2 = {}&quot;, s1, s2);
 #}</code></pre></pre>
 <!-- This works just fine and explicitly produces the behavior shown in Figure 4-3, -->
 <!-- where the heap data *does* get copied. -->
-<p>これは単純にうまく動き、図4-3で示した動作を明示的に生み出します。ここでは、
+<p>これは問題なく動作し、図4-3で示した動作を明示的に生み出します。ここでは、
 ヒープデータが<em>実際に</em>コピーされています。</p>
 <!-- When you see a call to `clone`, you know that some arbitrary code is being -->
 <!-- executed and that code may be expensive. It’s a visual indicator that something -->
@@ -737,9 +738,9 @@ println!(&quot;x = {}, y = {}&quot;, x, y);
 <!-- `(i32, i32)` is `Copy`, but `(i32, String)` is not. -->
 <ul>
 <li>あらゆる整数型。<code>u32</code>など。</li>
-<li>論理値型、<code>bool</code>、<code>true</code>と<code>false</code>という値がある。</li>
+<li>論理値型である<code>bool</code>。<code>true</code>と<code>false</code>という値がある。</li>
 <li>あらゆる浮動小数点型、<code>f64</code>など。</li>
-<li>文字型、<code>char</code>。</li>
+<li>文字型である<code>char</code>。</li>
 <li>タプル。ただ、<code>Copy</code>の型だけを含む場合。例えば、<code>(i32, i32)</code>は<code>Copy</code>だが、
 <code>(i32, String)</code>は違う。</li>
 </ul>

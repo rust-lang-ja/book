@@ -290,8 +290,8 @@ fn main() {
 <!-- `s` is tedious and error prone! Managing these indices is even more brittle if -->
 <!-- we write a `second_word` function. Its signature would have to look like this: -->
 <p><code>word</code>内の添え字が<code>s</code>に格納されたデータと同期されなくなるのを心配することは、面倒ですし間違いになりやすいです！
-これらの添え字を管理するのは、<code>second_word</code>関数を書いたら、さらに脆くなります。
-そのシグニチャは以下のようにならなければおかしいです:</p>
+これらの添え字の管理は、<code>second_word</code>関数を書いたら、さらに難しくなります。
+そのシグニチャは以下のようになるはずです:</p>
 <pre><code class="language-rust ignore">fn second_word(s: &amp;String) -&gt; (usize, usize) {
 </code></pre>
 <!-- Now we’re tracking a starting *and* an ending index, and we have even more -->
@@ -299,7 +299,7 @@ fn main() {
 <!-- that state at all. We now have three unrelated variables floating around that -->
 <!-- need to be kept in sync. -->
 <p>今、私たちは開始<em>と</em>終端の添え字を追うようになりました。特定の状態のデータから計算されたけど、
-その状態に全く紐付かない値が増えました。同期を取る必要のある宙に浮いた関連性のない変数が3つになってしまいました。</p>
+その状態に全く紐付かない値が増えました。いつの間にか変わってしまうので、同期を取る必要のある、関連性のない変数が3つになってしまいました。</p>
 <!-- Luckily, Rust has a solution to this problem: string slices. -->
 <p>運のいいことに、Rustにはこの問題への解決策が用意されています: 文字列スライスです。</p>
 <!-- ### String Slices -->
@@ -417,7 +417,7 @@ fn first_word(s: &amp;String) -&gt; &amp;str {
 <!-- return a string slice using the start of the string and the index of the space -->
 <!-- as the starting and ending indices. -->
 <p>リスト4-7で取った手段と同じ方法で単語の終端添え字を取得しています。つまり、最初の空白を探すことです。
-空白を発見したら、文字列の最初と、空白の添え字を開始、終了地点として使用して文字列スライスを返しています。</p>
+空白を発見したら、文字列の最初を開始地点、空白の添え字を終了地点として使用して文字列スライスを返しています。</p>
 <!-- Now when we call `first_word`, we get back a single value that is tied to the -->
 <!-- underlying data. The value is made up of a reference to the starting point of -->
 <!-- the slice and the number of elements in the slice. -->

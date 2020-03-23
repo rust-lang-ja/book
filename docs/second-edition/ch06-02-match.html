@@ -453,9 +453,9 @@ enumに対し<code>match</code>し、内部のデータに変数を束縛させ�
 <!-- have null, thus making the billion dollar mistake discussed earlier. -->
 <p>全可能性を網羅していないことをコンパイラは検知しています。もっと言えば、どのパターンを忘れているかさえ知っているのです。
 Rustにおけるマッチは、<em>包括的</em>です: 全てのあらゆる可能性を網羅し尽くさなければ、コードは有効にならないのです。
-特に<code>Option&lt;T&gt;</code>の場合には、コンパイラが明示的に<code>None</code>の場合を扱うのを忘れないようにする時、
-nullになるかもしれない値があることを想定しないように、故に、前に議論した10億ドルの失敗を犯さないよう、
-保護してくれるわけです。</p>
+特に<code>Option&lt;T&gt;</code>の場合には、私達が明示的に<code>None</code>の場合を処理するのを忘れないようにしてくれます。
+nullになるかもしれないのに値があると思い込まないよう、すなわち前に議論した10億ドルの失敗を犯さないよう、
+コンパイラが保護してくれるわけです。</p>
 <!-- ### The `_` Placeholder -->
 <a class="header" href="ch06-02-match.html#a_というプレースホルダー" id="a_というプレースホルダー"><h3><code>_</code>というプレースホルダー</h3></a>
 <!-- Rust also has a pattern we can use when we don’t want to list all possible -->
