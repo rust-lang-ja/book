@@ -309,7 +309,7 @@ docテストが、例とコードがお互いに同期されていないこと�
 <!-- that contains this comment rather than an item that follows this comment. In -->
 <!-- this case, the item that contains this comment is the *src/lib.rs* file, which -->
 <!-- is the crate root. These comments describe the entire crate. -->
-<p><code>//!</code>で始まる最後の行以降には、コードが何もないことに気付いてください。<code>///</code>ではなく、<code>//!</code>でコメントを開始しているので、
+<p><code>//!</code>で始まる最後の行のあとにコードがないことに気付いてください。<code>///</code>ではなく、<code>//!</code>でコメントを開始しているので、
 このコメントに続く要素ではなく、このコメントを含む要素にドキュメントをつけているわけです。
 今回の場合、このコメントを含む要素は<em>src/lib.rs</em>ファイルであり、クレートのルートです。
 これらのコメントは、クレート全体を解説しています。</p>
@@ -711,18 +711,18 @@ Uploading guessing_game v0.1.0 (file:///projects/guessing_game)
 <!-- future projects from adding them as a new dependency. This is useful when a -->
 <!-- crate version is broken for one reason or another. In such situations, Cargo -->
 <!-- supports *yanking* a crate version. -->
-<p>以前のバージョンのクレートを削除することはできないものの、新しい依存として将来的にプロジェクトに追加することを防ぐことはできます。
-ある理由により、クレートバージョンが壊れている場合に有用です。そのような場面において、
-Cargoはクレートバージョンの<em>取り下げ</em>をサポートしています。</p>
+<p>以前のバージョンのクレートを削除することはできないものの、将来のプロジェクトがこれに新たに依存することを防ぐことはできます。
+これは、なんらかの理由により、クレートバージョンが壊れている場合に有用です。そのような場面において、
+Cargoはクレートバージョンの <em>取り下げ(yank)</em> をサポートしています。</p>
 <!-- Yanking a version prevents new projects from starting to depend on that version -->
 <!-- while allowing all existing projects that depend on it to continue to download -->
 <!-- and depend on that version. Essentially, a yank means that all projects with a -->
 <!-- *Cargo.lock* will not break, and any future *Cargo.lock* files generated will -->
 <!-- not use the yanked version. -->
-<p>バージョンを取り下げると、他の既存のプロジェクトには、引き続きダウンロードし、そのバージョンに依存させ続けつつ、
-新規プロジェクトが新しくそのバージョンに依存しだすことを防ぎます。本質的に取り下げは、
-<em>Cargo.lock</em>が存在するプロジェクトは全て壊れないことを意味し、将来的に<em>Cargo.lock</em>ファイルが生成されるものは、
-取り下げられたバージョンを使わないのです。</p>
+<p>バージョンを取り下げると、既存のプロジェクトは、引き続きダウンロードしたりそのバージョンに依存したりしつづけられますが、
+新規プロジェクトが新しくそのバージョンに依存しだすことは防止されます。つまるところ、取り下げは、
+すでに<em>Cargo.lock</em>が存在するプロジェクトは壊さないが、将来的に生成された<em>Cargo.lock</em>ファイルは
+取り下げられたバージョンを使わない、ということを意味します。</p>
 <!-- To yank a version of a crate, run `cargo yank` and specify which version you -->
 <!-- want to yank: -->
 <p>あるバージョンのクレートを取り下げるには、<code>cargo yank</code>を実行し、取り下げたいバージョンを指定します:</p>

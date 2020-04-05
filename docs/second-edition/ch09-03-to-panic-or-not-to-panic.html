@@ -224,7 +224,7 @@ let home: IpAddr = &quot;127.0.0.1&quot;.parse().unwrap();
 コンパイラはまだ<code>Err</code>列挙子になる可能性があるかのように<code>Result</code>を処理することを強制してきます。
 コンパイラは、この文字列が常に合法なIPアドレスであると把握できるほど利口ではないからです。
 プログラムにハードコードされるのではなく、IPアドレス文字列がユーザ起源でそれ故に<em>確かに</em>失敗する可能性がある場合、
-絶対に<code>Result</code>をもっと頑健な方法で代わりに処理したくなるでしょう。</p>
+<code>Result</code>をもっと頑健な方法で処理したほうが絶対にいいでしょう。</p>
 <!-- ### Guidelines for Error Handling -->
 <a class="header" href="ch09-03-to-panic-or-not-to-panic.html#aエラー処理のガイドライン" id="aエラー処理のガイドライン"><h3>エラー処理のガイドライン</h3></a>
 <!-- It’s advisable to have your code panic when it’s possible that your code -->

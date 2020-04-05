@@ -155,7 +155,7 @@
 <!--   implements a particular trait rather than being of a specific type -->
 <ul>
 <li>コンパイル時にはサイズを知ることができない型があり、正確なサイズを要求する文脈でその型の値を使用する時</li>
-<li>多くのデータがあり、所有権を転送したいが、そうする時にデータがコピーされないことを確認する時</li>
+<li>多くのデータがあり、所有権を転送したいが、その際にデータがコピーされないようにしたい時</li>
 <li>値を所有する必要があり、特定の型ではなく特定のトレイトを実装する型であることのみ気にかけている時</li>
 </ul>
 <!-- 最後の行がよくわからない。what ... (that) you'll apply ... なのか？ -->
@@ -169,18 +169,18 @@
 <!-- third case is known as a *trait object*, and Chapter 17 devotes an entire -->
 <!-- section, “Using Trait Objects That Allow for Values of Different Types,” just -->
 <!-- to that topic. So what you learn here you’ll apply again in Chapter 17! -->
-<p>「ボックスで再帰的型を可能にする」節の最初の場面を模擬します。
+<p>「ボックスで再帰的な型を可能にする」節で1つ目の場合について実際に説明します。
 2番目の場合、多くのデータの所有権を転送するには、データがスタック上でコピーされるので、長い時間がかかり得ます。
 この場面でパフォーマンスを向上させるには、多くのデータをヒープ上にボックスとして格納することができます。
 そして、参照しているデータはヒープ上の1箇所に留まりつつ、少量のポインタのデータのみをスタック上でコピーするのです。
-3番目のケースは、<em>トレイトオブジェクト</em>として知られ、第17章は、
-その話題だけに「トレイトオブジェクトで異なる型の値を許容する」1節全体を捧げています。
-従って、ここで学ぶことは、第17章でまた適用するでしょう！</p>
+3番目のケースは、<em>トレイトオブジェクト</em>として知られ、第17章の「トレイトオブジェクトで異なる型の値を許容する」の節は、
+すべてその話題を説明するためだけのものです。
+従って、ここで学ぶのと同じことが第17章においても適用するでしょう！</p>
 <!-- ### Using a `Box<T>` to Store Data on the Heap -->
 <a class="header" href="ch15-01-box.html#boxtを使ってヒープにデータを格納する" id="boxtを使ってヒープにデータを格納する"><h3><code>Box&lt;T&gt;</code>を使ってヒープにデータを格納する</h3></a>
 <!-- Before we discuss this use case for `Box<T>`, we’ll cover the syntax and how to -->
 <!-- interact with values stored within a `Box<T>`. -->
-<p><code>Box&lt;T&gt;</code>のこのユースケースを議論する前に、記法と<code>Box&lt;T&gt;</code>内に格納された値と相互作用する方法について講義しましょう。</p>
+<p><code>Box&lt;T&gt;</code>のこのユースケースを議論する前に、<code>Box&lt;T&gt;</code>の記法と、<code>Box&lt;T&gt;</code>内に格納された値を読み書きする方法について講義しましょう。</p>
 <!-- Listing 15-1 shows how to use a box to store an `i32` value on the heap: -->
 <p>リスト15-1は、ボックスを使用してヒープに<code>i32</code>の値を格納する方法を示しています:</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
