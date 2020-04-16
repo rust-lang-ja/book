@@ -210,7 +210,7 @@
 <!-- situations. Let’s look at a case where boxes allow us to define types that we -->
 <!-- wouldn’t be allowed to if we didn’t have boxes. -->
 <p>ヒープに単独の値を置くことはあまり有用ではないので、このように単独でボックスを使用することはあまりありません。
-単独の<code>i32</code>のような値を規定で格納される場所であるスタックに置くことが、大多数の場合にはより適切です。
+単独の<code>i32</code>のような値を既定の格納場所であるスタックに置くことが、大多数の場合にはより適切です。
 ボックスがなかったら定義することの叶わない型をボックスが定義させてくれる場合を見ましょう。</p>
 <!-- ### Enabling Recursive Types with Boxes -->
 <a class="header" href="ch15-01-box.html#aボックスで再帰的な型を可能にする" id="aボックスで再帰的な型を可能にする"><h3>ボックスで再帰的な型を可能にする</h3></a>
@@ -444,9 +444,9 @@ fn main() {
 <!-- broken the infinite, recursive chain, so the compiler can figure out the size -->
 <!-- it needs to store a `List` value. Figure 15-2 shows what the `Cons` variant -->
 <!-- looks like now. -->
-<p><code>Cons</code>列挙子は、1つの<code>i32</code>のサイズプラスボックスのポインタデータを格納する領域を必要とするでしょう。
+<p><code>Cons</code>列挙子は、1つの<code>i32</code>のサイズに加えてボックスのポインタデータを格納する領域を必要とするでしょう。
 <code>Nil</code>列挙子は、値を格納しないので、<code>Cons</code>列挙子よりも必要な領域は小さいです。これで、
-どんな<code>List</code>値も<code>i32</code>1つのサイズプラスボックスのポインタデータのサイズを必要とすることがわかりました。
+どんな<code>List</code>値も<code>i32</code>1つのサイズに加えてボックスのポインタデータのサイズを必要とすることがわかりました。
 ボックスを使うことで、無限の再帰的な繰り返しを破壊したので、コンパイラは、<code>List</code>値を格納するのに必要なサイズを計算できます。
 図15-2は、<code>Cons</code>列挙子の今の見た目を示しています。</p>
 <!-- <img alt="A finite Cons list" src="img/trpl15-02.svg" class="center" /> -->

@@ -137,7 +137,7 @@
 <a class="header" href="ch04-01-what-is-ownership.html#a所有権とは" id="a所有権とは"><h2>所有権とは？</h2></a>
 <!-- Rust’s central feature is *ownership*. Although the feature is straightforward -->
 <!-- to explain, it has deep implications for the rest of the language. -->
-<p>Rustの中心的な機能は、<em>所有権</em>です。機能は説明するのに単純なのですが、言語の残りの機能全てにかかるほど
+<p>Rustの中心的な機能は、<em>所有権</em>です。この機能は、説明するのは簡単なのですが、言語の残りの機能全てにかかるほど
 深い裏の意味を含んでいるのです。</p>
 <!-- All programs have to manage the way they use a computer’s memory while running. -->
 <!-- Some languages have garbage collection that constantly looks for no longer used -->
@@ -156,8 +156,8 @@
 <!-- and the rules of the ownership system, the more you’ll be able to naturally -->
 <!-- develop code that is safe and efficient. Keep at it!  -->
 <p>所有権は多くのプログラマにとって新しい概念なので、慣れるまでに時間がかかります。
-Rustと所有権システムの規則と経験を積むにつれて、自然に安全かつ効率的なコードを構築できるようになることは、
-素晴らしいお知らせです。その調子でいきましょう！</p>
+嬉しいことに、Rustと、所有権システムの規則の経験を積むと、より自然に安全かつ効率的なコードを構築できるようになります。
+その調子でいきましょう！</p>
 <!-- When you understand ownership, you’ll have a solid foundation for understanding -->
 <!-- the features that make Rust unique. In this chapter, you’ll learn ownership by -->
 <!-- working through some examples that focus on a very common data structure: -->
@@ -221,9 +221,9 @@ Rustと所有権システムの規則と経験を積むにつれて、自然に�
 <blockquote>
 <a class="header" href="ch04-01-what-is-ownership.html#aスタックとヒープ" id="aスタックとヒープ"><h3>スタックとヒープ</h3></a>
 <p>多くのプログラミング言語において、スタックとヒープについて考える機会はそう多くないでしょう。
-しかし、Rustのようなシステムプログラミング言語においては、値がスタックに載るかヒープに載るかは、
+しかし、Rustのようなシステムプログラミング言語においては、値がスタックに積まれるかヒープに置かれるかは、
 言語の振る舞い方や、特定の決断を下す理由などに影響以上のものを与えるのです。
-この章の後半でスタックとヒープを絡めて所有権の一部は解説されるので、ここでちょっと予行演習をしておきましょう。</p>
+この章の後半でスタックとヒープを交えて所有権の一部が解説されるので、ここでちょっと予行演習をしておきましょう。</p>
 <p>スタックもヒープも、実行時にコードが使用できるメモリの一部になりますが、異なる手段で構成されています。
 スタックは、得た順番に値を並べ、逆の順で値を取り除いていきます。これは、
 <em>last in, first out</em>(<code>訳注</code>: あえて日本語にするなら、「最後に入れたものが最初に出てくる」といったところでしょうか)と呼ばれます。
@@ -231,15 +231,15 @@ Rustと所有権システムの規則と経験を積むにつれて、自然に�
 途中や一番下に追加したり、取り除いたりすることもできません。データを追加することは、
 <em>スタックにpushする</em>といい、データを取り除くことは、<em>スタックからpopする</em>と表現します(<code>訳注</code>:
 日本語では単純に英語をそのまま活用してプッシュ、ポップと表現するでしょう)。</p>
-<p>データへのアクセス方法のおかげで、スタックは高速です: 新データを置いたり、
+<p>データへのアクセス方法のおかげで、スタックは高速です: 新しいデータを置いたり、
 データを取得する場所を探す必要が絶対にないわけです。というのも、その場所は常に一番上だからですね。
-スタックを高速にする特性は他にもあり、それはスタック上のデータは全て既知の固定サイズにならなければならないということです。</p>
+スタックを高速にする特性は他にもあり、それはスタック上のデータは全て既知の固定サイズでなければならないということです。</p>
 <p>コンパイル時にサイズがわからなかったり、サイズが可変のデータについては、代わりにヒープに格納することができます。
 ヒープは、もっとごちゃごちゃしています: ヒープにデータを置く時、あるサイズのスペースを求めます。
-OSはヒープ上に十分な大きさの空の領域を見つけ、使用中にし、<em>ポインタ</em>を返してきます。ポインタとは、その場所へのアドレスです。
+OSはヒープ上に十分な大きさの空の領域を見つけ、使用中にし、<em>ポインタ</em>を返します。ポインタとは、その場所へのアドレスです。
 この過程は、<em>ヒープに領域を確保する(allocating on the heap)<em>と呼ばれ、時としてそのフレーズを単に</em>allocateする</em>などと省略したりします。
 (<code>訳注</code>: こちらもこなれた日本語訳はないでしょう。allocateは「メモリを確保する」と訳したいところですが)
-スタックに値を載せることは、メモリ確保とは考えられません。ポインタは、既知の固定サイズなので、
+スタックに値を積むことは、メモリ確保とは考えられません。ポインタは、既知の固定サイズなので、
 スタックに保管することができますが、実データが必要になったら、ポインタを追いかける必要があります。</p>
 <p>レストランで席を確保することを考えましょう。入店したら、グループの人数を告げ、
 店員が全員座れる空いている席を探し、そこまで誘導します。もしグループの誰かが遅れて来るのなら、
@@ -345,7 +345,7 @@ valid</span> -->
 <p>所有権の規則を具体化するには、第3章の「データ型」節で講義したものよりも、より複雑なデータ型が必要になります。
 以前講義した型は全てスタックに保管され、スコープが終わるとスタックから取り除かれますが、
 ヒープに確保されるデータ型を観察して、
-コンパイラがどうそのデータを掃除すべきタイミングを把握しているかを掘り下げていきたいです。</p>
+コンパイラがどうそのデータを掃除すべきタイミングを把握しているかを掘り下げていきたいと思います。</p>
 <!-- We’ll use `String` as the example here and concentrate on the parts of `String` -->
 <!-- that relate to ownership. These aspects also apply to other complex data types -->
 <!-- provided by the standard library and that you create. We’ll discuss `String` in -->
@@ -477,7 +477,7 @@ GCがないなら、メモリがもう使用されないことを見計らって
 <!-- Rust calls `drop` automatically at the closing curly bracket. -->
 <p><code>String</code>型が必要とするメモリをOSに返還することが自然な地点があります: <code>s</code>変数がスコープを抜ける時です。
 変数がスコープを抜ける時、Rustは特別な関数を呼んでくれます。この関数は、<code>drop</code>と呼ばれ、
-ここに<code>String</code>型の書き手はメモリ返還するコードを配置することができます。Rustは、閉じ波括弧で自動的に<code>drop</code>関数を呼び出します。</p>
+ここに<code>String</code>型の書き手はメモリを返還するコードを配置することができます。Rustは、閉じ波括弧で自動的に<code>drop</code>関数を呼び出します。</p>
 <!-- Note: In C++, this pattern of deallocating resources at the end of an item's -->
 <!-- lifetime is sometimes called *Resource Acquisition Is Initialization (RAII)*. -->
 <!-- The `drop` function in Rust will be familiar to you if you’ve used RAII -->
@@ -661,7 +661,7 @@ invalidated</span> -->
 <code>clone</code>と呼ばれるよくあるメソッドを使うことができます。メソッド記法については第5章で議論しますが、
 メソッドは多くのプログラミング言語に見られる機能なので、以前に見かけたこともあるんじゃないでしょうか。</p>
 <!-- Here’s an example of the `clone` method in action: -->
-<p>こちらで、<code>clone</code>メソッドの稼働例をご覧ください:</p>
+<p>これは、<code>clone</code>メソッドの動作例です:</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
@@ -683,8 +683,8 @@ println!(&quot;s1 = {}, s2 = {}&quot;, s1, s2);
 <a class="header" href="ch04-01-what-is-ownership.html#aスタックのみのデータ-コピー" id="aスタックのみのデータ-コピー"><h4>スタックのみのデータ: コピー</h4></a>
 <!-- There’s another wrinkle we haven’t talked about yet. This code using integers, -->
 <!-- part of which was shown in Listing 4-2, works and is valid: -->
-<p>まだ話題にしていない別のしわ(<code>訳注</code>: 「気になるもの」程度の意味と思われる)の話があります。
-この整数を使用したコードは、一部をリスト4-2で示しましたが、うまく動作し、合法です:</p>
+<p>まだ話題にしていない別の問題があります。
+この整数を使用したコードは、一部をリスト4-2で示しましたが、うまく動作する有効なものです:</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
