@@ -11690,7 +11690,7 @@ Rustの引数名は短く(しばしばたった1文字になります)、Rustの
 <!-- to declare the type parameter name before we use it. To define the generic -->
 <!-- `largest` function, place type name declarations inside angle brackets, `<>`, -->
 <!-- between the name of the function and the parameter list, like this: -->
-<p>関数の本体で引数を使用すると、コンパイラがその名前の意味を把握できるようにシグニチャでその引数名を宣言しなければなりません。
+<p>関数の本体で引数を使用するとき、コンパイラがその名前の意味を把握できるようにシグニチャでその引数名を宣言しなければなりません。
 同様に、型引数名を関数シグニチャで使用する際には、使用する前に型引数名を宣言しなければなりません。
 ジェネリックな<code>largest</code>関数を定義するために、型名宣言を山カッコ(<code>&lt;&gt;</code>)内、関数名と引数リストの間に配置してください。
 こんな感じに:</p>
@@ -11759,7 +11759,7 @@ fn main() {
 <!-- for more on this trait). You’ll learn how to specify that a generic type has a -->
 <!-- particular trait in the “Trait Bounds” section, but let’s first explore other -->
 <!-- ways of using generic type parameters. -->
-<p>注釈が<code>std::cmp::PartialOrd</code>に触れていて、これは、<em>トレイト</em>です。トレイトについては、次の節で語ります。
+<p>注釈が<code>std::cmp::PartialOrd</code>に触れています。これは、<em>トレイト</em>です。トレイトについては、次の節で語ります。
 とりあえず、このエラーは、<code>largest</code>の本体は、<code>T</code>がなりうる全ての可能性のある型に対して動作しないと述べています。
 本体で型<code>T</code>の値を比較したいので、値が順序付け可能な型のみしか使用できないのです。比較を可能にするために、
 標準ライブラリには型に実装できる<code>std::cmp::PartialOrd</code>トレイトがあります(このトレイトについて詳しくは付録Cを参照されたし)。
@@ -11770,7 +11770,7 @@ fn main() {
 <!-- We can also define structs to use a generic type parameter in one or more -->
 <!-- fields using the `<>` syntax. Listing 10-6 shows how to define a `Point<T>` -->
 <!-- struct to hold `x` and `y` coordinate values of any type. -->
-<p>また、構造体を定義して<code>&lt;&gt;</code>記法で1つ以上のフィールドにジェネリックな型引数を使用することもできます。
+<p>構造体を定義して<code>&lt;&gt;</code>記法で1つ以上のフィールドにジェネリックな型引数を使用することもできます。
 リスト10-6は、<code>Point&lt;T&gt;</code>構造体を定義してあらゆる型の<code>x</code>と<code>y</code>座標を保持する方法を示しています。</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
@@ -11793,13 +11793,13 @@ fn main() {
 <!-- type in the struct definition where we would otherwise specify concrete data -->
 <!-- types. -->
 <p>構造体定義でジェネリクスを使用する記法は、関数定義のものと似ています。まず、山カッコ内に型引数の名前を構造体名の直後に宣言します。
-そして、そうしていなければ具体的なデータ型を記述する構造体定義の箇所にジェネリックな型を使用できます。</p>
+そうすると、本来具体的なデータ型を記述する構造体定義の箇所に、ジェネリックな型を使用できます。</p>
 <!-- Note that because we’ve used only one generic type to define `Point<T>`, this -->
 <!-- definition says that the `Point<T>` struct is generic over some type `T`, and -->
 <!-- the fields `x` and `y` are *both* that same type, whatever that type may be. If -->
 <!-- we create an instance of a `Point<T>` that has values of different types, as in -->
 <!-- Listing 10-7, our code won’t compile. -->
-<p>1つのジェネリックな型だけを使用して<code>Point&lt;T&gt;</code>を定義したので、この定義は、<code>Point&lt;T&gt;</code>構造体がなんらかの型<code>T</code>に関して、
+<p>ジェネリックな型を1つだけ使用して<code>Point&lt;T&gt;</code>を定義したので、この定義は、<code>Point&lt;T&gt;</code>構造体がなんらかの型<code>T</code>に関して、
 ジェネリックであると述べていて、その型がなんであれ、<code>x</code>と<code>y</code>のフィールドは<em>両方</em>その同じ型になっていることに注意してください。
 リスト10-7のように、異なる型の値のある<code>Point&lt;T&gt;</code>のインスタンスを生成すれば、コードはコンパイルできません。</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
@@ -11859,7 +11859,7 @@ fn main() {
 <!-- type parameters in a definition as you want, but using more than a few makes -->
 <!-- your code hard to read. When you need lots of generic types in your code, it -->
 <!-- could indicate that your code needs restructuring into smaller pieces. -->
-<p>もう、示された<code>Point</code>インスタンスは全部許可されます！所望の数だけ定義でジェネリックな型引数を使用できますが、
+<p>これで、示された<code>Point</code>インスタンスは全部使用可能です！所望の数だけ定義でジェネリックな型引数を使用できますが、
 数個以上使用すると、コードが読みづらくなります。コードで多くのジェネリックな型が必要な時は、
 コードの小分けが必要なサインかもしれません。</p>
 <!-- ### In Enum Definitions -->
@@ -11868,7 +11868,7 @@ fn main() {
 <!-- variants. Let’s take another look at the `Option<T>` enum that the standard -->
 <!-- library provides, which we used in Chapter 6: -->
 <p>構造体のように、列挙子にジェネリックなデータ型を保持するenumを定義することができます。
-標準ライブラリが提供している<code>Option&lt;T&gt;</code> enumに別の見方をしましょう。このenumは第6章で使用しました:</p>
+標準ライブラリが提供している<code>Option&lt;T&gt;</code> enumをもう一度見ましょう。このenumは第6章で使用しました:</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
@@ -11907,8 +11907,8 @@ enum Result&lt;T, E&gt; {
 <!-- the file was opened successfully and `E` was filled in with the type -->
 <!-- `std::io::Error` when there were problems opening the file. -->
 <p><code>Result</code> enumは2つの型<code>T</code>、<code>E</code>に関してジェネリックで、2つの列挙子があります: 型<code>T</code>の値を保持する<code>Ok</code>と、
-型<code>E</code>の値を保持する<code>Err</code>です。この定義により、<code>Result</code> enumを成功する(なんらかの型<code>T</code>の値を返す)か、
-失敗する(なんらかの型<code>E</code>のエラーを返す)可能性のある処理があるあらゆる箇所に使用するのが便利になります。
+型<code>E</code>の値を保持する<code>Err</code>です。この定義により、<code>Result</code> enumを、成功する(なんらかの型<code>T</code>の値を返す)か、
+失敗する(なんらかの型<code>E</code>のエラーを返す)可能性のある処理がある、あらゆる箇所に使用するのが便利になります。
 事実、ファイルを開くのに成功した時に<code>T</code>に型<code>std::fs::File</code>が入り、ファイルを開く際に問題があった時に<code>E</code>に型<code>std::io::Error</code>が入ったものが、
 リスト9-3でファイルを開くのに使用したものです。</p>
 <!-- When you recognize situations in your code with multiple struct or enum -->
@@ -11953,13 +11953,13 @@ fn main() {
 <!-- that we’re implementing methods on the type `Point<T>`. By declaring `T` as a -->
 <!-- generic type after `impl`, Rust can identify that the type in the angle -->
 <!-- brackets in `Point` is a generic type rather than a concrete type. -->
-<p>型<code>Point&lt;T&gt;</code>にメソッドを実装していると指定するために<code>T</code>を使用できるよう<code>impl</code>の直後に宣言しなければならないことに注意してください。
+<p><code>impl</code>の直後に<code>T</code>を宣言しなければならないことに注意してください。こうすることで、型<code>Point&lt;T&gt;</code>にメソッドを実装していることを指定するために、<code>T</code>を使用することができます。
 <code>impl</code>の後に<code>T</code>をジェネリックな型として宣言することで、コンパイラは、<code>Point</code>の山カッコ内の型が、
 具体的な型ではなくジェネリックな型であることを認識できるのです。</p>
 <!-- We could, for example, implement methods only on `Point<f32>` instances rather -->
 <!-- than on `Point<T>` instances with any generic type. In Listing 10-10 we use the -->
 <!-- concrete type `f32`, meaning we don’t declare any types after `impl`. -->
-<p>例えば、あらゆるジェネリックな型とともに<code>Point&lt;T&gt;</code>インスタンスではなく、<code>Point&lt;f32&gt;</code>だけにメソッドを実装することもできるでしょう。
+<p>例えば、ジェネリックな型を持つ<code>Point&lt;T&gt;</code>インスタンスではなく、<code>Point&lt;f32&gt;</code>だけにメソッドを実装することもできるでしょう。
 リスト10-10では、具体的な型<code>f32</code>を使用しています。つまり、<code>impl</code>の後に型を宣言しません。</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
@@ -12052,14 +12052,13 @@ fn main() {
 <!-- generic type parameters. The good news is that Rust implements generics in such -->
 <!-- a way that your code doesn’t run any slower using generic types than it would -->
 <!-- with concrete types. -->
-<p>ジェネリックな型引数を使用すると、実行時にコストが発生するかあなたは不思議に思っている可能性があります。
-コンパイラが、ジェネリクスを具体的な型がある時よりもジェネリックな型を使用したコードを実行するのが遅くならないように実装しているのは、
-嬉しいお知らせです。</p>
+<p>ジェネリックな型引数を使用すると、実行時にコストが発生するのかな、と思うかもしれません。
+嬉しいことにRustでは、ジェネリクスを、具体的な型があるコードよりもジェネリックな型を使用したコードを実行するのが遅くならないように実装しています。</p>
 <!-- Rust accomplishes this by performing monomorphization of the code that is using -->
 <!-- generics at compile time. *Monomorphization* is the process of turning generic -->
 <!-- code into specific code by filling in the concrete types that are used when -->
 <!-- compiled. -->
-<p>コンパイラはこれをジェネリクスを使用しているコードの単相化をコンパイル時に行うことで達成しています。
+<p>コンパイラはこれを、ジェネリクスを使用しているコードの単相化をコンパイル時に行うことで達成しています。
 <em>単相化</em>(monomorphization)は、コンパイル時に使用されている具体的な型を入れることで、
 ジェネリックなコードを特定のコードに変換する過程のことです。</p>
 <!-- In this process, the compiler does the opposite of the steps we used to create -->
