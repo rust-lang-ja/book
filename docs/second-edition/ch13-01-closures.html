@@ -260,13 +260,13 @@ fn simulated_expensive_calculation(intensity: u32) -&gt; u32 {
 #
 fn generate_workout(intensity: u32, random_number: u32) {
     if intensity &lt; 25 {
-        
+
         println!(
             // 今日は{}回腕立て伏せをしてください！
             &quot;Today, do {} pushups!&quot;,
             simulated_expensive_calculation(intensity)
         );
-        
+
         println!(
             // 次に、{}回腹筋をしてください！
             &quot;Next, do {} situps!&quot;,
@@ -666,13 +666,12 @@ let n = example_closure(5);
 <p><code>Fn</code>トレイトは、標準ライブラリで用意されています。全てのクロージャは、そのトレイトのどれかを実装しています:
 <code>Fn</code>、<code>FnMut</code>または、<code>FnOnce</code>です。「クロージャで環境をキャプチャする」節で、これらのトレイト間の差異を議論します;
 この例では、<code>Fn</code>トレイトを使えます。</p>
-<!-- 2行目中盤は一見、mustとhave toが重なっているように見えるが、must have [to ...]という構造と思われる -->
 <!-- We add types to the `Fn` trait bound to represent the types of the parameters -->
 <!-- and return values the closures must have to match this trait bound. In this -->
 <!-- case, our closure has a parameter of type `u32` and returns a `u32`, so the -->
 <!-- trait bound we specify is `Fn(u32) -> u32`. -->
-<p><code>Fn</code>トレイト境界への型を追加して、クロージャがこのトレイト境界を合致させるために持っていなければならない引数と戻り値の型を表します。
-今回の場合、クロージャは、引数の型が<code>u32</code>で、<code>u32</code>を返すので、指定するトレイト境界は、<code>Fn(u32) -&gt; u32</code>です。</p>
+<p><code>Fn</code>トレイト境界にいくつかの型を追加することで、このトレイト境界に合致するクロージャが持つべき引数と戻り値の型を示します。
+今回のクロージャは<code>u32</code>型の引数を一つ取り、<code>u32</code>を返すので、指定するトレイト境界は<code>Fn(u32) -&gt; u32</code>になります。</p>
 <!-- Listing 13-9 shows the definition of the `Cacher` struct that holds a closure -->
 <!-- and an optional result value. -->
 <p>リスト13-9は、クロージャとオプションの結果値を保持する<code>Cacher</code>構造体の定義を示しています。</p>
@@ -696,7 +695,7 @@ struct Cacher&lt;T&gt;
 <!-- closure we want to store in the `calculation` field must have one `u32` -->
 <!-- parameter (specified within the parentheses after `Fn`) and must return a -->
 <!-- `u32` (specified after the `->`). -->
-<p><code>Cacher</code>構造体には、ジェネリックな型<code>T</code>の<code>calculation</code>フィールドがあります。<code>T</code>に関するトレイト境界は、
+<p><code>Cacher</code>構造体は、ジェネリックな型<code>T</code>の<code>calculation</code>フィールドを持ちます。<code>T</code>のトレイト境界は、
 <code>Fn</code>トレイトを使うことでクロージャであると指定しています。<code>calculation</code>フィールドに保存したいクロージャは全て、
 1つの<code>u32</code>引数(<code>Fn</code>の後の括弧内で指定されている)を取り、<code>u32</code>(<code>-&gt;</code>の後に指定されている)を返さなければなりません。</p>
 <!-- > Note: Functions implement all three of the `Fn` traits too. If what we want -->
@@ -766,7 +765,7 @@ impl&lt;T&gt; Cacher&lt;T&gt;
 <!-- returns a `Cacher` instance that holds the closure specified in the -->
 <!-- `calculation` field and a `None` value in the `value` field, because we haven’t -->
 <!-- executed the closure yet. -->
-<p><code>Cacher::new</code>関数は、ジェネリックな引数の<code>T</code>を取り、これは、<code>Cacher</code>構造体と同じトレイト境界を持つと定義しました。
+<p><code>Cacher::new</code>関数はジェネリックな引数の<code>T</code>を取り、<code>Cacher</code>構造体と同じトレイト境界を持つよう定義しました。
 それから<code>calculation</code>フィールドに指定されたクロージャと、
 <code>value</code>フィールドに<code>None</code>値を保持する<code>Cacher</code>インスタンスを<code>Cacher::new</code>は返します。
 まだクロージャを実行していないからですね。</p>

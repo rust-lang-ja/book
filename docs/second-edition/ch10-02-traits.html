@@ -463,8 +463,8 @@ println!(&quot;1 new tweet: {}&quot;, tweet.summarize());
 <!-- the `Summary` trait: -->
 <p>例として、リスト10-13で、<code>Summary</code>トレイトを型<code>NewsArticle</code>と<code>Tweet</code>に実装しました。
 引数<code>item</code>に対して<code>summarize</code>メソッドを呼び出す関数<code>notify</code>を定義でき、この引数はジェネリックな型<code>T</code>です。
-ジェネリックな型<code>T</code>がメソッド<code>summarize</code>を実装しないというエラーを出さずに<code>item</code>に<code>summarize</code>を呼び出せるために、
-<code>T</code>に対してトレイト境界を使用して<code>item</code>は、<code>Summary</code>トレイトを実装する型でなければならないと指定できます:</p>
+<code>item</code>の<code>summarize</code>を呼ぶときにジェネリックな型<code>T</code>がメソッド<code>summarize</code>を実装してないというエラーが出ないように、
+<code>T</code>のトレイト境界を使って<code>item</code>が<code>Summary</code>トレイトを実装する型でなければならないと指定できます。</p>
 <pre><code class="language-rust ignore">pub fn notify&lt;T: Summary&gt;(item: T) {
     // 新ニュース！ {}
     println!(&quot;Breaking news! {}&quot;, item.summarize());
@@ -475,7 +475,7 @@ println!(&quot;1 new tweet: {}&quot;, tweet.summarize());
 <!-- call `notify` and pass in any instance of `NewsArticle` or `Tweet`. Code that -->
 <!-- calls the function with any other type, like a `String` or an `i32`, won’t -->
 <!-- compile, because those types don’t implement `Summary`. -->
-<p>トレイト境界をジェネリックな型引数宣言とともにコロンの後、山カッコ内に配置しています。<code>T</code>に対するトレイト境界のため、
+<p>トレイト境界をジェネリックな型引数宣言とともにコロンの後、山カッコ内に配置しています。<code>T</code>に付けられたトレイト境界のため、
 <code>notify</code>を呼び出して<code>NewsArticle</code>か<code>Tweet</code>のどんなインスタンスも渡すことができます。
 あらゆる他の型、<code>String</code>や<code>i32</code>などでこの関数を呼び出すコードは、型が<code>Summary</code>を実装しないので、
 コンパイルできません。</p>
@@ -483,7 +483,7 @@ println!(&quot;1 new tweet: {}&quot;, tweet.summarize());
 <!-- For example, to use display formatting on the type `T` in a function as well as -->
 <!-- the `summarize` method, we can use `T: Summary + Display` to say `T` can be any -->
 <!-- type that implements `Summary` and `Display`. -->
-<p><code>+</code>記法でジェネリックな型に対して複数のトレイト境界を指定できます。例えば、関数で<code>T</code>に対してフォーマット表示と、
+<p><code>+</code>記法でジェネリックな型に複数のトレイト境界を指定できます。例えば、関数で<code>T</code>に対してフォーマット表示と、
 <code>summarize</code>メソッドを使用するには、<code>T: Summary + Display</code>を使用して、<code>T</code>は<code>Summary</code>と<code>Display</code>を実装するどんな型にもなると宣言できます。</p>
 <!-- However, there are downsides to using too many trait bounds. Each generic has -->
 <!-- its own trait bounds, so functions with multiple generic type parameters can -->
@@ -625,7 +625,7 @@ fn main() {
 <!-- data like `String`, and heap allocations can be slow if we’re working with -->
 <!-- large amounts of data. -->
 <p>もし<code>largest</code>関数を<code>Copy</code>を実装する型だけに制限したくなかったら、<code>Copy</code>ではなく、
-<code>T</code>が<code>Clone</code>というトレイト境界を含むと指定することもできます。そうしたら、
+<code>T</code>が<code>Clone</code>というトレイト境界を持つと指定することもできます。そうしたら、
 <code>largest</code>関数に所有権が欲しい時にスライスの各値をクローンできます。<code>clone</code>関数を使用するということは、
 <code>String</code>のようなヒープデータを所有する型の場合にもっとヒープ確保が発生する可能性があることを意味し、
 大きなデータを取り扱っていたら、ヒープ確保は遅いこともあります。</p>
@@ -646,7 +646,7 @@ fn main() {
 <!-- `new` function. But `Pair<T>` only implements the `cmp_display` method if its -->
 <!-- inner type `T` implements the `PartialOrd` trait that enables comparison *and* -->
 <!-- the `Display` trait that enables printing. -->
-<p><code>impl</code>ブロックでジェネリックな型引数を使用するトレイト境界を活用することで、
+<p>ジェネリックな型引数を持つ<code>impl</code>ブロックにトレイト境界を与えることで、
 特定のトレイトを実装する型に対するメソッド実装を条件分けできます。例えば、
 リスト10-16の型<code>Pair&lt;T&gt;</code>は、常に<code>new</code>関数を実装します。しかし、<code>Pair&lt;T&gt;</code>は、
 内部の型<code>T</code>が比較を可能にする<code>PartialOrd</code>トレイト<em>と</em>出力を可能にする<code>Display</code>トレイトを実装している時のみ、
