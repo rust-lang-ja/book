@@ -133,7 +133,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <!-- ## Reference Cycles Can Leak Memory -->
+                        <!-- -*- coding:utf-8-unix -*- -->
+<!-- ## Reference Cycles Can Leak Memory -->
 <a class="header" href="ch15-06-reference-cycles.html#a循環参照はメモリをリークすることもある" id="a循環参照はメモリをリークすることもある"><h2>循環参照は、メモリをリークすることもある</h2></a>
 <!-- Rust’s memory safety guarantees make it difficult, but not impossible, to -->
 <!-- accidentally create memory that is never cleaned up (known as a *memory leak*). -->
@@ -705,6 +706,9 @@ fn main() {
 <!-- information. -->
 <p>この章で興味をそそられ、独自のスマートポインタを実装したくなったら、もっと役に立つ情報を求めて、
 <a href="https://doc.rust-lang.org/stable/nomicon/">“The Rustonomicon”</a>をチェックしてください。</p>
+<blockquote>
+<p>訳注: 日本語版のThe Rustonomiconは<a href="https://doc.rust-jp.rs/rust-nomicon-ja/index.html">こちら</a>です。</p>
+</blockquote>
 <!-- Next, we’ll talk about concurrency in Rust. You’ll even learn about a few new -->
 <!-- smart pointers. -->
 <p>次は、Rustでの並行性について語ります。もういくつか新しいスマートポインタについてさえも学ぶでしょう。</p>

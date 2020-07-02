@@ -191,6 +191,7 @@ Rustを使うことで1つの領域から他の領域へと使い回せる技術
 <ul>
 <li>ニコラス・マットサキス(Nicholas Matsakis)とアーロン・チューロン(Aaron Turon)</li>
 </ul>
+<!-- -*- coding:utf-8-unix -*- -->
 <!-- # Introduction -->
 <a class="header" href="print.html#a導入" id="a導入"><h1>導入</h1></a>
 <!-- > Note: This edition of the book is the same as [The Rust Programming -->
@@ -429,6 +430,9 @@ Rustの一面を学ぶでしょう。プロジェクトの章では、それま�
 <!-- The source files from which this book is generated can be found on -->
 <!-- [GitHub][book]. -->
 <p>この本が生成されるソースファイルは、<a href="https://github.com/rust-lang/book/tree/master/second-edition/src">GitHub</a>で見つかります。</p>
+<blockquote>
+<p>訳注: 日本語版は<a href="https://github.com/rust-lang-ja/book-ja">こちら</a>です。</p>
+</blockquote>
 <!-- # Getting Started -->
 <a class="header" href="print.html#a事始め" id="a事始め"><h1>事始め</h1></a>
 <!-- Let’s start your Rust journey! There’s a lot to learn, but every journey starts -->
@@ -8958,6 +8962,7 @@ Rustのプログラムにおいて、非常に頻繁に使用される3つのコ
 <!-- We’ll discuss how to create and update vectors, strings, and hash maps, as well -->
 <!-- as what makes each special. -->
 <p>ベクタ型、文字列、ハッシュマップの生成と更新方法や、各々が特別な点について議論していきましょう。</p>
+<!-- -*- coding:utf-8-unix -*- -->
 <!-- ## Storing Lists of Values with Vectors -->
 <a class="header" href="print.html#aベクタで一連の値を保持する" id="aベクタで一連の値を保持する"><h2>ベクタで一連の値を保持する</h2></a>
 <!-- The first collection type we’ll look at is `Vec<T>`, also known as a *vector*. -->
@@ -9202,6 +9207,9 @@ v.push(6);
 <!-- > Rustonomicon” at https://doc.rust-lang.org/stable/nomicon/vec.html. -->
 <blockquote>
 <p>注釈: <code>Vec&lt;T&gt;</code>の実装に関する詳細については、<a href="https://doc.rust-lang.org/stable/nomicon/vec.html">“The Rustonomicon”</a>を参照してください。</p>
+</blockquote>
+<blockquote>
+<p>訳注: 日本語版のThe Rustonomiconは<a href="https://doc.rust-jp.rs/rust-nomicon-ja/vec.html">こちら</a>です。</p>
 </blockquote>
 <!-- ### Iterating Over the Values in a Vector -->
 <a class="header" href="print.html#aベクタの値を走査する" id="aベクタの値を走査する"><h3>ベクタの値を走査する</h3></a>
@@ -22375,6 +22383,7 @@ c after = Cons(RefCell { value: 10 }, Cons(RefCell { value: 15 }, Nil))
 値は<code>Cell&lt;T&gt;</code>の内部や外部へコピーされる点を除き似ています。また<code>Mutex&lt;T&gt;</code>もあり、
 これはスレッド間で使用するのが安全な内部可変性を提供します; 第16章でその使いみちについて議論しましょう。
 これらの型の違いをより詳しく知るには、標準ライブラリのドキュメンテーションをチェックしてください。</p>
+<!-- -*- coding:utf-8-unix -*- -->
 <!-- ## Reference Cycles Can Leak Memory -->
 <a class="header" href="print.html#a循環参照はメモリをリークすることもある" id="a循環参照はメモリをリークすることもある"><h2>循環参照は、メモリをリークすることもある</h2></a>
 <!-- Rust’s memory safety guarantees make it difficult, but not impossible, to -->
@@ -22947,6 +22956,9 @@ fn main() {
 <!-- information. -->
 <p>この章で興味をそそられ、独自のスマートポインタを実装したくなったら、もっと役に立つ情報を求めて、
 <a href="https://doc.rust-lang.org/stable/nomicon/">“The Rustonomicon”</a>をチェックしてください。</p>
+<blockquote>
+<p>訳注: 日本語版のThe Rustonomiconは<a href="https://doc.rust-jp.rs/rust-nomicon-ja/index.html">こちら</a>です。</p>
+</blockquote>
 <!-- Next, we’ll talk about concurrency in Rust. You’ll even learn about a few new -->
 <!-- smart pointers. -->
 <p>次は、Rustでの並行性について語ります。もういくつか新しいスマートポインタについてさえも学ぶでしょう。</p>
@@ -24482,6 +24494,9 @@ unsafeなRustコードを使用することについては第19章で語りま�
 <code>Send</code>と<code>Sync</code>ではない部品からなる新しい並行な型を構成するには、安全性保証を保持するために、
 注意深い思考が必要になるということです。<a href="https://doc.rust-lang.org/stable/nomicon/">The Rustonomicon</a>には、
 これらの保証とそれを保持する方法についての情報がより多くあります。</p>
+<blockquote>
+<p>訳注: 日本語版のThe Rustonomiconは<a href="https://doc.rust-jp.rs/rust-nomicon-ja/index.html">こちら</a>です。</p>
+</blockquote>
 <!-- ## Summary -->
 <a class="header" href="print.html#aまとめ-15" id="aまとめ-15"><h2>まとめ</h2></a>
 <!-- This isn’t the last you’ll see of concurrency in this book: the project in -->
