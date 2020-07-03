@@ -663,7 +663,7 @@ let n = example_closure(5);
 <!-- one of the traits: `Fn`, `FnMut`, or `FnOnce`. We’ll discuss the -->
 <!-- difference between these traits in the "Capturing the Environment with -->
 <!-- Closures" section; in this example, we can use the `Fn` trait. -->
-<p><code>Fn</code>トレイトは、標準ライブラリで用意されています。全てのクロージャは、そのトレイトのどれかを実装しています:
+<p><code>Fn</code>トレイトは、標準ライブラリで用意されています。全てのクロージャは、以下のいずれかのトレイトを実装しています:
 <code>Fn</code>、<code>FnMut</code>または、<code>FnOnce</code>です。「クロージャで環境をキャプチャする」節で、これらのトレイト間の差異を議論します;
 この例では、<code>Fn</code>トレイトを使えます。</p>
 <!-- We add types to the `Fn` trait bound to represent the types of the parameters -->
@@ -703,7 +703,7 @@ struct Cacher&lt;T&gt;
 <!-- > function rather than a closure where we need something that implements an `Fn` -->
 <!-- > trait. -->
 <blockquote>
-<p>注釈: 関数も3つの<code>Fn</code>トレイト全部を実装します。したいことに環境から値をキャプチャすることが必要ないなら、
+<p>注釈: 関数も3つの<code>Fn</code>トレイト全部を実装します。もし環境から値をキャプチャする必要がなければ、
 <code>Fn</code>トレイトを実装する何かが必要になるクロージャではなく、関数を使用できます。</p>
 </blockquote>
 <!-- The `value` field is of type `Option<u32>`. Before we execute the closure, -->

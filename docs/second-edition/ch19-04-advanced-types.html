@@ -331,8 +331,8 @@ pub trait Write {
 <!-- *empty type* because it has no values. We prefer to call it the *never type* -->
 <!-- because it stands in the place of the return type when a function will never -->
 <!-- return. Here is an example: -->
-<p>Rustには、型理論用語で値がないため、空型として知られる<code>!</code>という特別な型があります。私たちは、
-関数が絶対に返らない時に戻り値の型の場所に立つので、<em>never type</em>(<code>訳注</code>: 日本語にはできないので、never型と呼ぶしかないか)と呼ぶのが好きです。
+<p>Rustには、<code>!</code>という名前の特別な型があります。それは型理論の専門用語では <em>Empty型</em> と呼ばれ値なしを表します。私たちは、
+関数が値を返すことが決して (never) ない時に戻り値の型を記す場所に使われるので、<em>never type</em>(<code>訳注</code>: 日本語にはできないので、never型と呼ぶしかないか)と呼ぶのが好きです。
 こちらが例です:</p>
 <pre><code class="language-rust ignore">fn bar() -&gt; ! {
     // --snip--
@@ -342,11 +342,11 @@ pub trait Write {
 <!-- never are called *diverging functions*. We can’t create values of the type `!` -->
 <!-- so `bar` can never possibly return. -->
 <p>このコードは、「関数<code>bar</code>はneverを返す」と解読します。neverを返す関数は、<em>発散する関数</em>(diverging function)と呼ばれます。
-型<code>!</code>の値は生成できないので、<code>bar</code>が返ることは絶対にあり得ません。</p>
+型<code>!</code>の値は生成できないので、<code>bar</code>からリターンする（呼び出し元に制御を戻す）ことは決してできません。</p>
 <!-- But what use is a type you can never create values for? Recall the code from -->
 <!-- Listing 2-5; we’ve reproduced part of it here in Listing 19-34. -->
 <p>ですが、値を絶対に生成できない型をどう使用するのでしょうか？リスト2-5のコードを思い出してください;
-リスト19-34に一部を再現しました。</p>
+リスト19-34に一部を再掲します。</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
@@ -440,7 +440,7 @@ loop {
 <!-- as *DSTs* or *unsized types*, these types let us write code using values whose -->
 <!-- size we can know only at runtime. -->
 <p>コンパイラが特定の型の値1つにどれくらいのスペースのメモリを確保するのかなどの特定の詳細を知る必要があるために、
-型システムには混乱することもある秘密の場所があります: <em>動的サイズ付け型</em>の概念です。時として<em>DST</em>や<em>サイズなし型</em>とも称され、
+Rustの型システムには混乱を招きやすい細かな仕様があります: <em>動的サイズ付け型</em>の概念です。時として<em>DST</em>や<em>サイズなし型</em>とも称され、
 これらの型により、実行時にしかサイズを知ることのできない値を使用するコードを書かせてくれます。</p>
 <!-- Let’s dig into the details of a dynamically sized type called `str`, which -->
 <!-- we’ve been using throughout the book. That’s right, not `&str`, but `str` on -->

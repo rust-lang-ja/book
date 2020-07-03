@@ -4603,7 +4603,7 @@ println!(&quot;x = {}, y = {}&quot;, x, y);
                                     // i32はCopyなので、この後にxを使っても
                                     // 大丈夫
 
-} // ここでxがスコープを抜け、sも。だけど、sの値はムーブされてるので、何も特別なことはない。
+} // ここでxがスコープを抜け、sもスコープを抜ける。ただし、sの値はムーブされているので、何も特別なことは起こらない。
   //
 
 fn takes_ownership(some_string: String) { // some_stringがスコープに入る。
@@ -15133,8 +15133,8 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 <!-- adds more result lines to this integration test file’s section. Each -->
 <!-- integration test file has its own section, so if we add more files in the -->
 <!-- *tests* directory, there will be more integration test sections. -->
-<p>単体テスト関数を追加すると、単体テスト区域のテスト結果の行が増えることに似て、
-作成した結合テストファイルにもっとテスト関数を追加すると、そのファイルの区域に行が増えることになります。
+<p>単体テスト関数を追加することで単体テスト区域のテスト結果の行が増えたように、
+作成した結合テストファイルにテスト関数を追加することでそのファイルの区域に結果の行が増えることになります。
 結合テストファイルはそれぞれ独自の区域があるため、<em>tests</em>ディレクトリにさらにファイルを追加すれば、
 結合テストの区域が増えることになるでしょう。</p>
 <!-- We can still run a particular integration test function by specifying the test -->
@@ -16964,8 +16964,7 @@ Trust me.&quot;;
 追加直前の<code>search_case_insensitive</code>関数では、&quot;rUsT&quot;というクエリは、
 両方ともクエリとは大文字小文字が異なるのに、大文字Rの&quot;Rust:&quot;を含む行と、
 <code>“Trust me.”</code>という行にもマッチするはずです。これが失敗するテストであり、まだ<code>search_case_insensitive</code>関数を定義していないので、
-コンパイルは失敗するでしょう。リスト12-16の<code>search</code>関数で行ったように空のベクタを常に返す実装の骨格を追加して、
-ご自由にテストがコンパイルされ、失敗する様を確認してください。</p>
+コンパイルは失敗するでしょう。リスト12-16の<code>search</code>関数で行ったのと同様に空のベクタを常に返すような仮実装を追加し、テストがコンパイルされるものの、失敗する様をご自由に確認してください。</p>
 <!-- ### Implementing the `search_case_insensitive` Function -->
 <a class="header" href="print.html#search_case_insensitive関数を実装する" id="search_case_insensitive関数を実装する"><h3><code>search_case_insensitive</code>関数を実装する</h3></a>
 <!-- The `search_case_insensitive` function, shown in Listing 12-21, will be almost -->
@@ -17921,7 +17920,7 @@ let n = example_closure(5);
 <!-- one of the traits: `Fn`, `FnMut`, or `FnOnce`. We’ll discuss the -->
 <!-- difference between these traits in the "Capturing the Environment with -->
 <!-- Closures" section; in this example, we can use the `Fn` trait. -->
-<p><code>Fn</code>トレイトは、標準ライブラリで用意されています。全てのクロージャは、そのトレイトのどれかを実装しています:
+<p><code>Fn</code>トレイトは、標準ライブラリで用意されています。全てのクロージャは、以下のいずれかのトレイトを実装しています:
 <code>Fn</code>、<code>FnMut</code>または、<code>FnOnce</code>です。「クロージャで環境をキャプチャする」節で、これらのトレイト間の差異を議論します;
 この例では、<code>Fn</code>トレイトを使えます。</p>
 <!-- We add types to the `Fn` trait bound to represent the types of the parameters -->
@@ -17961,7 +17960,7 @@ struct Cacher&lt;T&gt;
 <!-- > function rather than a closure where we need something that implements an `Fn` -->
 <!-- > trait. -->
 <blockquote>
-<p>注釈: 関数も3つの<code>Fn</code>トレイト全部を実装します。したいことに環境から値をキャプチャすることが必要ないなら、
+<p>注釈: 関数も3つの<code>Fn</code>トレイト全部を実装します。もし環境から値をキャプチャする必要がなければ、
 <code>Fn</code>トレイトを実装する何かが必要になるクロージャではなく、関数を使用できます。</p>
 </blockquote>
 <!-- The `value` field is of type `Option<u32>`. Before we execute the closure, -->
@@ -19128,8 +19127,7 @@ impl Config {
 <a class="header" href="print.html#aイテレータアダプタでコードをより明確にする" id="aイテレータアダプタでコードをより明確にする"><h3>イテレータアダプタでコードをより明確にする</h3></a>
 <!-- We can also take advantage of iterators in the `search` function in our I/O -->
 <!-- project, which is reproduced here in Listing 13-28 as it was in Listing 12-19: -->
-<p>入出力プロジェクトの<code>search</code>関数でも、イテレータを活用することができ、その関数は、
-リスト12-19のように、ここリスト13-28に再現しました。</p>
+<p>入出力プロジェクトの<code>search</code>関数でも、イテレータを活用することができます。その関数はリスト12-19に示していますが、以下のリスト13-28に再掲します。</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
 <pre><code class="language-rust ignore">pub fn search&lt;'a&gt;(query: &amp;str, contents: &amp;'a str) -&gt; Vec&lt;&amp;'a str&gt; {
@@ -28609,7 +28607,7 @@ Rustコンパイラのエラーメッセージは、これらの参照にライ�
 <!-- `Context`, uses a `Parser` to parse that context, and returns what `parse` -->
 <!-- returns. This code doesn’t quite work. -->
 <p>次にリスト19-14では、<code>Context</code>のインスタンスを1つ取り、<code>Parser</code>を使ってその文脈をパースし、
-<code>parse</code>が返すものを返す関数を追加します。このコードはあまり動きません。</p>
+<code>parse</code>が返すものを返す関数を追加します。このコードは期待通りに動きません。</p>
 <!-- <span class="filename">Filename: src/lib.rs</span> -->
 <p><span class="filename">ファイル名: src/lib.rs</span></p>
 <pre><code class="language-rust ignore">fn parse_context(context: Context) -&gt; Result&lt;(), &amp;str&gt; {
@@ -29958,8 +29956,8 @@ pub trait Write {
 <!-- *empty type* because it has no values. We prefer to call it the *never type* -->
 <!-- because it stands in the place of the return type when a function will never -->
 <!-- return. Here is an example: -->
-<p>Rustには、型理論用語で値がないため、空型として知られる<code>!</code>という特別な型があります。私たちは、
-関数が絶対に返らない時に戻り値の型の場所に立つので、<em>never type</em>(<code>訳注</code>: 日本語にはできないので、never型と呼ぶしかないか)と呼ぶのが好きです。
+<p>Rustには、<code>!</code>という名前の特別な型があります。それは型理論の専門用語では <em>Empty型</em> と呼ばれ値なしを表します。私たちは、
+関数が値を返すことが決して (never) ない時に戻り値の型を記す場所に使われるので、<em>never type</em>(<code>訳注</code>: 日本語にはできないので、never型と呼ぶしかないか)と呼ぶのが好きです。
 こちらが例です:</p>
 <pre><code class="language-rust ignore">fn bar() -&gt; ! {
     // --snip--
@@ -29969,11 +29967,11 @@ pub trait Write {
 <!-- never are called *diverging functions*. We can’t create values of the type `!` -->
 <!-- so `bar` can never possibly return. -->
 <p>このコードは、「関数<code>bar</code>はneverを返す」と解読します。neverを返す関数は、<em>発散する関数</em>(diverging function)と呼ばれます。
-型<code>!</code>の値は生成できないので、<code>bar</code>が返ることは絶対にあり得ません。</p>
+型<code>!</code>の値は生成できないので、<code>bar</code>からリターンする（呼び出し元に制御を戻す）ことは決してできません。</p>
 <!-- But what use is a type you can never create values for? Recall the code from -->
 <!-- Listing 2-5; we’ve reproduced part of it here in Listing 19-34. -->
 <p>ですが、値を絶対に生成できない型をどう使用するのでしょうか？リスト2-5のコードを思い出してください;
-リスト19-34に一部を再現しました。</p>
+リスト19-34に一部を再掲します。</p>
 <pre><pre class="playpen"><code class="language-rust">
 # #![allow(unused_variables)]
 #fn main() {
@@ -30067,7 +30065,7 @@ loop {
 <!-- as *DSTs* or *unsized types*, these types let us write code using values whose -->
 <!-- size we can know only at runtime. -->
 <p>コンパイラが特定の型の値1つにどれくらいのスペースのメモリを確保するのかなどの特定の詳細を知る必要があるために、
-型システムには混乱することもある秘密の場所があります: <em>動的サイズ付け型</em>の概念です。時として<em>DST</em>や<em>サイズなし型</em>とも称され、
+Rustの型システムには混乱を招きやすい細かな仕様があります: <em>動的サイズ付け型</em>の概念です。時として<em>DST</em>や<em>サイズなし型</em>とも称され、
 これらの型により、実行時にしかサイズを知ることのできない値を使用するコードを書かせてくれます。</p>
 <!-- Let’s dig into the details of a dynamically sized type called `str`, which -->
 <!-- we’ve been using throughout the book. That’s right, not `&str`, but `str` on -->
@@ -30423,7 +30421,7 @@ $ cd hello
 <!-- listen at the address `127.0.0.1:7878` for incoming TCP streams. When it gets -->
 <!-- an incoming stream, it will print `Connection established!`. -->
 <p>さて、リスト20-1のコードを<em>src/main.rs</em>に入力して始めてください。このコードは、
-やってくるTCPストリームを求めて<code>127.0.0.1:7878</code>というアドレスをリッスンします。
+TCPストリームを受信するため<code>127.0.0.1:7878</code>というアドレスをリッスンします。
 入力ストリームを得ると、<code>Connection established!</code>と出力します。</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
 <p><span class="filename">ファイル名: src/main.rs</span></p>
@@ -30618,7 +30616,7 @@ fn handle_connection(mut stream: TcpStream) {
 <p>2番目にバッファーのバイトを文字列に変換し、その文字列を出力します。<code>String::from_utf8_lossy</code>関数は、
 <code>&amp;[u8]</code>を取り、<code>String</code>を生成します。名前の“lossy”の箇所は、無効なUTF-8シーケンスを目の当たりにした際のこの関数の振る舞いを示唆しています:
 無効なシーケンスを<code>�</code>、<code>U+FFFD REPLACEMENT CHARACTER</code>で置き換えます。
-置き換え文字をリクエストデータによって埋められたバッファーの文字の箇所に目撃する可能性があります。</p>
+リクエストデータによって埋められなかったバッファーの部分(<code>訳注</code> バッファーとして512バイトの領域を用意しているが、リクエストデータは512バイト存在しないことがほとんどなので変数 <code>buffer</code> の後ろ部分が埋められないまま放置されることを意図していると思われる) が置き換え文字になって表示されるのをみるでしょう。</p>
 <!-- Let’s try this code! Start the program and make a request in a web browser -->
 <!-- again. Note that we’ll still get an error page in the browser, but our -->
 <!-- program’s output in the terminal will now look similar to this: -->
@@ -32241,8 +32239,8 @@ std::ops::FnOnce() + std::marker::Sendのサイズを静的に決定できませ
 <!-- improved, but in the future, the code in Listing 20-20 should work just fine. -->
 <!-- People just like you are working to fix this and other issues! After you’ve -->
 <!-- finished this book, we would love for you to join in. -->
-<p>Rustは、コンパイラが改善できる箇所ではまだ、発展途上にありますが、将来的にリスト20-20のコードは、
-ただ単純にうまく動くはずです。まさしくあなたのような方がこれや他の問題を修正するのに取り掛かっています！この本を完了したら、
+<p>Rustはまだコンパイラの改善途上にあり、リスト20-20のコードは、
+将来的にうまく動くようになるべきです。まさしくあなたのような方がこれや他の問題を修正しています！この本を完了したら、
 是非ともあなたにも参加していただきたいです。</p>
 <!-- But for now, let’s work around this problem using a handy trick. We can tell -->
 <!-- Rust explicitly that in this case we can take ownership of the value inside the -->
