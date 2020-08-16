@@ -352,7 +352,7 @@ fn parse_config(args: &amp;[String]) -&gt; Config {
 <!-- the argument values and is only letting the `parse_config` function borrow -->
 <!-- them, which means we’d violate Rust’s borrowing rules if `Config` tried to take -->
 <!-- ownership of the values in `args`. -->
-<p><code>query</code>と<code>filenmae</code>というフィールドを持つよう定義された<code>Config</code>という構造体を追加しました。
+<p><code>query</code>と<code>filename</code>というフィールドを持つよう定義された<code>Config</code>という構造体を追加しました。
 <code>parse_config</code>のシグニチャは、これで<code>Config</code>値を返すと示すようになりました。<code>parse_config</code>の本体では、
 以前は<code>args</code>の<code>String</code>値を参照する文字列スライスを返していましたが、
 今では所有する<code>String</code>値を含むように<code>Config</code>を定義しています。<code>main</code>の<code>args</code>変数は引数値の所有者であり、

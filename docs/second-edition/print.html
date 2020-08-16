@@ -15907,7 +15907,7 @@ fn parse_config(args: &amp;[String]) -&gt; Config {
 <!-- the argument values and is only letting the `parse_config` function borrow -->
 <!-- them, which means we’d violate Rust’s borrowing rules if `Config` tried to take -->
 <!-- ownership of the values in `args`. -->
-<p><code>query</code>と<code>filenmae</code>というフィールドを持つよう定義された<code>Config</code>という構造体を追加しました。
+<p><code>query</code>と<code>filename</code>というフィールドを持つよう定義された<code>Config</code>という構造体を追加しました。
 <code>parse_config</code>のシグニチャは、これで<code>Config</code>値を返すと示すようになりました。<code>parse_config</code>の本体では、
 以前は<code>args</code>の<code>String</code>値を参照する文字列スライスを返していましたが、
 今では所有する<code>String</code>値を含むように<code>Config</code>を定義しています。<code>main</code>の<code>args</code>変数は引数値の所有者であり、
@@ -30568,7 +30568,7 @@ fn main() {
 }
 
 fn handle_connection(mut stream: TcpStream) {
-    let mut buffer = [0; 512];
+    let mut buffer = [0; 1024];
 
     stream.read(&amp;mut buffer).unwrap();
 
@@ -30597,13 +30597,13 @@ fn handle_connection(mut stream: TcpStream) {
 <code>mut</code>にする必要があるのです; 普通、「読み取り」に可変化は必要ないと考えてしまいますが、この場合、<code>mut</code>キーワードが必要です。</p>
 <!-- Next, we need to actually read from the stream. We do this in two steps: first, -->
 <!-- we declare a `buffer` on the stack to hold the data that is read in. We’ve made -->
-<!-- the buffer 512 bytes in size, which is big enough to hold the data of a basic -->
+<!-- the buffer 1024 bytes in size, which is big enough to hold the data of a basic -->
 <!-- request and sufficient for our purposes in this chapter. If we wanted to handle -->
 <!-- requests of an arbitrary size, buffer management would need to be more -->
 <!-- complicated; we’ll keep it simple for now. We pass the buffer to `stream.read`, -->
 <!-- which will read bytes from the `TcpStream` and put them in the buffer. -->
 <p>次に、実際にストリームから読み取る必要があります。これを2つの手順で行います: まず、
-スタックに読み取ったデータを保持する<code>buffer</code>を宣言します。バッファーのサイズは512バイトにしました。
+スタックに読み取ったデータを保持する<code>buffer</code>を宣言します。バッファーのサイズは1024バイトにしました。
 これは、基本的なリクエストには十分な大きさでこの章の目的には必要十分です。任意のサイズのリクエストを扱いたければ、
 バッファーの管理はもっと複雑にする必要があります; 今は、単純に保っておきます。このバッファーを<code>stream.read</code>に渡し、
 これが<code>TcpStream</code>からバイトを読み取ってバッファーに置きます。</p>
@@ -30616,7 +30616,7 @@ fn handle_connection(mut stream: TcpStream) {
 <p>2番目にバッファーのバイトを文字列に変換し、その文字列を出力します。<code>String::from_utf8_lossy</code>関数は、
 <code>&amp;[u8]</code>を取り、<code>String</code>を生成します。名前の“lossy”の箇所は、無効なUTF-8シーケンスを目の当たりにした際のこの関数の振る舞いを示唆しています:
 無効なシーケンスを<code>�</code>、<code>U+FFFD REPLACEMENT CHARACTER</code>で置き換えます。
-リクエストデータによって埋められなかったバッファーの部分(<code>訳注</code> バッファーとして512バイトの領域を用意しているが、リクエストデータは512バイト存在しないことがほとんどなので変数 <code>buffer</code> の後ろ部分が埋められないまま放置されることを意図していると思われる) が置き換え文字になって表示されるのをみるでしょう。</p>
+リクエストデータによって埋められなかったバッファーの部分(<code>訳注</code> バッファーとして1024バイトの領域を用意しているが、リクエストデータは1024バイト存在しないことがほとんどなので変数 <code>buffer</code> の後ろ部分が埋められないまま放置されることを意図していると思われる) は、置換文字が表示される場合があります。</p>
 <!-- Let’s try this code! Start the program and make a request in a web browser -->
 <!-- again. Note that we’ll still get an error page in the browser, but our -->
 <!-- program’s output in the terminal will now look similar to this: -->
@@ -30734,7 +30734,7 @@ CRLFシーケンスの後には、任意のヘッダ、別のCRLFシーケンス
 # use std::io::prelude::*;
 # use std::net::TcpStream;
 fn handle_connection(mut stream: TcpStream) {
-    let mut buffer = [0; 512];
+    let mut buffer = [0; 1024];
 
     stream.read(&amp;mut buffer).unwrap();
 
@@ -30816,7 +30816,7 @@ use std::fs::File;
 // --snip--
 
 fn handle_connection(mut stream: TcpStream) {
-    let mut buffer = [0; 512];
+    let mut buffer = [0; 1024];
     stream.read(&amp;mut buffer).unwrap();
 
     let mut file = File::open(&quot;hello.html&quot;).unwrap();
@@ -30881,7 +30881,7 @@ HTMLが描画されるのが確認できるはずです！</p>
 // --snip--
 
 fn handle_connection(mut stream: TcpStream) {
-    let mut buffer = [0; 512];
+    let mut buffer = [0; 1024];
     stream.read(&amp;mut buffer).unwrap();
 
     let get = b&quot;GET / HTTP/1.1\r\n&quot;;
@@ -31021,7 +31021,7 @@ fn handle_connection(mut stream: TcpStream) {
 // --snip--
 
 fn handle_connection(mut stream: TcpStream) {
-#     let mut buffer = [0; 512];
+#     let mut buffer = [0; 1024];
 #     stream.read(&amp;mut buffer).unwrap();
 #
 #     let get = b&quot;GET / HTTP/1.1\r\n&quot;;
@@ -31110,7 +31110,7 @@ use std::time::Duration;
 // --snip--
 
 fn handle_connection(mut stream: TcpStream) {
-#     let mut buffer = [0; 512];
+#     let mut buffer = [0; 1024];
 #     stream.read(&amp;mut buffer).unwrap();
     // --snip--
 
@@ -32883,7 +32883,7 @@ fn main() {
 }
 
 fn handle_connection(mut stream: TcpStream) {
-    let mut buffer = [0; 512];
+    let mut buffer = [0; 1024];
     stream.read(&amp;mut buffer).unwrap();
 
     let get = b&quot;GET / HTTP/1.1\r\n&quot;;
