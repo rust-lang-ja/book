@@ -18,9 +18,11 @@ jobs:
             chmod 700 ~/.ssh
             ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
             git clone git@github.com:rust-lang-ja/book-ja.git book
-            cd book
-            git checkout second-edition-ja
           working_directory: ~/trpl2
+      - run:
+          name: Checking out a branch on TRPL2
+          command: git checkout second-edition-ja
+          working_directory: ~/trpl2/book
       - run:
           name: Removing blank lines and HTML comments from SUMMARY.md
           command: sed -i '/^$/d; /<!--.*-->/d' SUMMARY.md
