@@ -8,15 +8,13 @@ jobs:
       - image: quay.io/rust-lang-ja/circleci:trpl2
     parallelism: 1
     steps:
+      - checkout
       - run: rustc --version --verbose
       - run: cargo --version --verbose
       - run: mdbook --version
       - run:
           name: Cloning TRPL2
           command: |
-            mkdir ~/.ssh
-            chmod 700 ~/.ssh
-            ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
             git clone git@github.com:rust-lang-ja/book-ja.git book
           working_directory: ~/trpl2
       - run:
@@ -40,6 +38,15 @@ jobs:
           command: |
             mdbook clean || true
             mdbook build
+          working_directory: ~/trpl2/book/second-edition
+      - run:
+          name: Updating hyperlinks to the latest book
+          command: |
+            TOOL_DIR=./tools/book-ja-links
+            $TOOL_DIR/update-links.sh ~/trpl2/book/second-edition/book $TOOL_DIR/links.csv
+      - run:
+          name: Copying the HTML files to the persistent directory
+          command: |
             mkdir -p /tmp/trpl2
             cp -rp book /tmp/trpl2/second-edition
           working_directory: ~/trpl2/book/second-edition
