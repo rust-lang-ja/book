@@ -40,13 +40,13 @@ jobs:
           command: |
             mdbook clean || true
             mdbook build
-            working_directory: ~/trpl2/book/second-edition
+          working_directory: ~/trpl2/book/second-edition
       - run:
           name: Updating hyperlinks to the latest book
           command: |
             TOOL_DIR=~/trpl2/tools/book-ja-links
             $TOOL_DIR/update-links.sh book $TOOL_DIR/links.csv
-            working_directory: ~/trpl2/book/second-edition
+          working_directory: ~/trpl2/book/second-edition
       - run:
           name: Copying the HTML files to the persistent directory
           command: |
