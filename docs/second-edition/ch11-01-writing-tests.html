@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## How to Write Tests -->
-<a class="header" href="ch11-01-writing-tests.html#aテストの記述法" id="aテストの記述法"><h2>テストの記述法</h2></a>
+<a class="header" href="#aテストの記述法" id="aテストの記述法"><h2>テストの記述法</h2></a>
 <!-- Tests are Rust functions that verify that the non-test code is functioning in -->
 <!-- the expected manner. The bodies of test functions typically perform these three -->
 <!-- actions: -->
@@ -162,7 +162,7 @@
 <p>Rustが、特にこれらの動作を行うテストを書くために用意している機能を見ていきましょう。
 これには、<code>test</code>属性、いくつかのマクロ、<code>should_panic</code>属性が含まれます。</p>
 <!-- ### The Anatomy of a Test Function -->
-<a class="header" href="ch11-01-writing-tests.html#aテスト関数の解剖" id="aテスト関数の解剖"><h2>テスト関数の解剖</h2></a>
+<a class="header" href="#aテスト関数の解剖" id="aテスト関数の解剖"><h2>テスト関数の解剖</h2></a>
 <!-- At its simplest, a test in Rust is a function that’s annotated with the `test` -->
 <!-- attribute. Attributes are metadata about pieces of Rust code; one example is -->
 <!-- the `derive` attribute we used with structs in Chapter 5. To change a function -->
@@ -387,7 +387,7 @@ error: test failed
 <!-- let’s look at some macros other than `panic!` that are useful in tests. -->
 <p>異なる筋書きでのテスト結果がどんな風になるか見てきたので、テストを行う際に有用になる<code>panic!</code>以外のマクロに目を向けましょう。</p>
 <!-- ### Checking Results with the `assert!` Macro -->
-<a class="header" href="ch11-01-writing-tests.html#assertマクロで結果を確認する" id="assertマクロで結果を確認する"><h3><code>assert!</code>マクロで結果を確認する</h3></a>
+<a class="header" href="#assertマクロで結果を確認する" id="assertマクロで結果を確認する"><h3><code>assert!</code>マクロで結果を確認する</h3></a>
 <!-- The `assert!` macro, provided by the standard library, is useful when you want -->
 <!-- to ensure that some condition in a test evaluates to `true`. We give the -->
 <!-- `assert!` macro an argument that evaluates to a Boolean. If the value is -->
@@ -552,7 +552,7 @@ test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 <p>テストによりバグが捕捉されました！<code>larger.length</code>が8、<code>smaller.length</code>が5なので、
 <code>can_hold</code>内の長さの比較が今は<code>false</code>を返すようになったのです: 8は5より小さくないですからね。</p>
 <!-- ### Testing Equality with the `assert_eq!` and `assert_ne!` Macros -->
-<a class="header" href="ch11-01-writing-tests.html#assert_eqとassert_neマクロで等値性をテストする" id="assert_eqとassert_neマクロで等値性をテストする"><h3><code>assert_eq!</code>と<code>assert_ne!</code>マクロで等値性をテストする</h3></a>
+<a class="header" href="#assert_eqとassert_neマクロで等値性をテストする" id="assert_eqとassert_neマクロで等値性をテストする"><h3><code>assert_eq!</code>と<code>assert_ne!</code>マクロで等値性をテストする</h3></a>
 <!-- A common way to test functionality is to compare the result of the code under -->
 <!-- test to the value we expect the code to return to make sure they’re equal. We -->
 <!-- could do this using the `assert!` macro and passing it an expression using the -->
@@ -691,7 +691,7 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 これは通常、構造体やenum定義に<code>#[derive(PartialEq, Debug)]</code>という注釈を追加するくらい単純になります。
 これらや他の導出可能なトレイトに関する詳細については、付録Cをご覧ください。</p>
 <!-- ### Adding Custom Failure Messages -->
-<a class="header" href="ch11-01-writing-tests.html#aカスタムの失敗メッセージを追加する" id="aカスタムの失敗メッセージを追加する"><h3>カスタムの失敗メッセージを追加する</h3></a>
+<a class="header" href="#aカスタムの失敗メッセージを追加する" id="aカスタムの失敗メッセージを追加する"><h3>カスタムの失敗メッセージを追加する</h3></a>
 <!-- We can also add a custom message to be printed with the failure message as -->
 <!-- optional arguments to the `assert!`, `assert_eq!`, and `assert_ne!` macros. Any -->
 <!-- arguments specified after the one required argument to `assert!` or the two -->
@@ -793,7 +793,7 @@ note: Run with `RUST_BACKTRACE=1` for a backtrace.
 <p>実際に得られた値がテスト出力に見られ、起こると想定していたものではなく、
 起こったものをデバッグするのに役に立ちます。</p>
 <!-- ### Checking for Panics with `should_panic` -->
-<a class="header" href="ch11-01-writing-tests.html#should_panicでパニックを確認する" id="should_panicでパニックを確認する"><h3><code>should_panic</code>でパニックを確認する</h3></a>
+<a class="header" href="#should_panicでパニックを確認する" id="should_panicでパニックを確認する"><h3><code>should_panic</code>でパニックを確認する</h3></a>
 <!-- In addition to checking that our code returns the correct values we expect, -->
 <!-- it’s also important to check that our code handles error conditions as we -->
 <!-- expect. For example, consider the `Guess` type that we created in Chapter 9, -->

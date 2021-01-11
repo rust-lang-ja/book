@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Controlling Visibility with `pub` -->
-<a class="header" href="ch07-02-controlling-visibility-with-pub.html#pubで公開するか制御する" id="pubで公開するか制御する"><h2><code>pub</code>で公開するか制御する</h2></a>
+<a class="header" href="#pubで公開するか制御する" id="pubで公開するか制御する"><h2><code>pub</code>で公開するか制御する</h2></a>
 <!-- We resolved the error messages shown in Listing 7-5 by moving the `network` and -->
 <!-- `network::server` code into the *src/network/mod.rs* and -->
 <!-- *src/network/server.rs* files, respectively. At that point, `cargo build` was -->
@@ -263,7 +263,7 @@ Rustの文脈において、<em>公開</em>とか<em>非公開</em>という概�
 関数が「使用されている」という架空の外部使用の可能性を考慮してくれます。それ故に、関数が公開とマークされれば、
 コンパイラはそれが自分のプログラムで使用されるべきという要求をなくし、その関数が未使用という警告も止めるのです。</p>
 <!-- ### Making a Function Public -->
-<a class="header" href="ch07-02-controlling-visibility-with-pub.html#a関数を公開にする" id="a関数を公開にする"><h3>関数を公開にする</h3></a>
+<a class="header" href="#a関数を公開にする" id="a関数を公開にする"><h3>関数を公開にする</h3></a>
 <!-- To tell Rust to make a function public, we add the `pub` keyword to the start -->
 <!-- of the declaration. We’ll focus on fixing the warning that indicates -->
 <!-- `client::connect` has gone unused for now, as well as the `` module `client` is -->
@@ -392,7 +392,7 @@ pub mod network;
 <!-- Only one warning is left-try to fix this one on your own! -->
 <p>残る警告は1つなので、自分で解消してみてください！</p>
 <!-- ### Privacy Rules -->
-<a class="header" href="ch07-02-controlling-visibility-with-pub.html#aプライバシー規則" id="aプライバシー規則"><h3>プライバシー規則</h3></a>
+<a class="header" href="#aプライバシー規則" id="aプライバシー規則"><h3>プライバシー規則</h3></a>
 <!-- Overall, these are the rules for item visibility: -->
 <p>まとめると、要素の公開性は以下のようなルールになります:</p>
 <!-- - If an item is public, it can be accessed through any of its parent modules. -->
@@ -403,7 +403,7 @@ pub mod network;
 <li>要素が非公開なら、直接の親モジュールとその親の子モジュールのみアクセスできます。</li>
 </ul>
 <!-- ### Privacy Examples -->
-<a class="header" href="ch07-02-controlling-visibility-with-pub.html#aプライバシー例" id="aプライバシー例"><h3>プライバシー例</h3></a>
+<a class="header" href="#aプライバシー例" id="aプライバシー例"><h3>プライバシー例</h3></a>
 <!-- Let’s look at a few more privacy examples to get some practice. Create a new -->
 <!-- library project and enter the code in Listing 7-6 into your new project’s -->
 <!-- *src/lib.rs*. -->
@@ -439,7 +439,7 @@ fn try_me() {
 <p>このコードをコンパイルする前に、<code>try_me</code>関数のどの行がエラーになるか当ててみてください。
 それからコンパイルを試して、合ってたかどうか確かめ、エラーの議論を求めて読み進めてください！</p>
 <!-- #### Looking at the Errors -->
-<a class="header" href="ch07-02-controlling-visibility-with-pub.html#aエラーを確かめる" id="aエラーを確かめる"><h4>エラーを確かめる</h4></a>
+<a class="header" href="#aエラーを確かめる" id="aエラーを確かめる"><h4>エラーを確かめる</h4></a>
 <!-- The `try_me` function is in the root module of our project. The module named -->
 <!-- `outermost` is private, but the second privacy rule states that the `try_me` -->
 <!-- function is allowed to access the `outermost` module because `outermost` is in -->
@@ -468,7 +468,7 @@ fn try_me() {
 <p><code>inside</code>という名前のモジュールは非公開で子モジュールを持たないので、現在のモジュールである<code>outermost</code>からのみアクセスできます。
 つまり、<code>try_me</code>関数は、<code>outermost::inside::inner_function</code>も<code>outermost::inside::secret_function</code>も呼び出すことを許されないのです。</p>
 <!-- #### Fixing the Errors -->
-<a class="header" href="ch07-02-controlling-visibility-with-pub.html#aエラーを修正する" id="aエラーを修正する"><h4>エラーを修正する</h4></a>
+<a class="header" href="#aエラーを修正する" id="aエラーを修正する"><h4>エラーを修正する</h4></a>
 <!-- Here are some suggestions for changing the code in an attempt to fix the -->
 <!-- errors. Make a guess as to whether it will fix the errors before you try each -->
 <!-- one. Then compile the code to see whether or not you’re right, using the -->

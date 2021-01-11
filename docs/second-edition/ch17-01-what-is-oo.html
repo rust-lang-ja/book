@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Characteristics of Object-Oriented Languages -->
-<a class="header" href="ch17-01-what-is-oo.html#aオブジェクト指向言語の特徴" id="aオブジェクト指向言語の特徴"><h2>オブジェクト指向言語の特徴</h2></a>
+<a class="header" href="#aオブジェクト指向言語の特徴" id="aオブジェクト指向言語の特徴"><h2>オブジェクト指向言語の特徴</h2></a>
 <!-- There is no consensus in the programming community about what features a -->
 <!-- language must have to be considered object oriented. Rust is influenced by many -->
 <!-- programming paradigms, including OOP; for example, we explored the features -->
@@ -156,7 +156,7 @@ RustはOOPを含めた多くのプログラミングパラダイムに影響を�
 OOP言語は特定の一般的な特徴を共有しています。具体的には、オブジェクトやカプセル化、
 継承などです。それらの個々の特徴が意味するものとRustがサポートしているかを見ましょう。</p>
 <!-- ### Objects Contain Data and Behavior -->
-<a class="header" href="ch17-01-what-is-oo.html#aオブジェクトはデータと振る舞いを含む" id="aオブジェクトはデータと振る舞いを含む"><h3>オブジェクトは、データと振る舞いを含む</h3></a>
+<a class="header" href="#aオブジェクトはデータと振る舞いを含む" id="aオブジェクトはデータと振る舞いを含む"><h3>オブジェクトは、データと振る舞いを含む</h3></a>
 <!-- The book *Design Patterns: Elements of Reusable Object-Oriented Software* by -->
 <!-- Enoch Gamma, Richard Helm, Ralph Johnson, and John Vlissides (Addison-Wasley -->
 <!-- Professional, 1994) colloquially referred to as *The Gang of Four book*, is a -->
@@ -182,7 +182,7 @@ OOP言語は特定の一般的な特徴を共有しています。具体的に�
 <code>impl</code>ブロックが構造体とenumにメソッドを提供します。メソッドのある構造体とenumは、
 オブジェクトとは呼ばれないものの、GoFのオブジェクト定義によると、同じ機能を提供します。</p>
 <!-- ### Encapsulation that Hides Implementation Details -->
-<a class="header" href="ch17-01-what-is-oo.html#aカプセル化は実装詳細を隠蔽する" id="aカプセル化は実装詳細を隠蔽する"><h3>カプセル化は、実装詳細を隠蔽する</h3></a>
+<a class="header" href="#aカプセル化は実装詳細を隠蔽する" id="aカプセル化は実装詳細を隠蔽する"><h3>カプセル化は、実装詳細を隠蔽する</h3></a>
 <!-- Another aspect commonly associated with OOP is the idea of *encapsulation*, -->
 <!-- which means that the implementation details of an object aren’t accessible to -->
 <!-- code using that object. Therefore, the only way to interact with an object is -->
@@ -311,7 +311,7 @@ impl AveragedCollection {
 <p>カプセル化が、言語がオブジェクト指向と考えられるのに必要な側面ならば、Rustはその条件を満たしています。
 コードの異なる部分で<code>pub</code>を使用するかしないかという選択肢のおかげで、実装詳細をカプセル化することが可能になります。</p>
 <!-- ### Inheritance as a Type System and as Code Sharing -->
-<a class="header" href="ch17-01-what-is-oo.html#a型システムおよびコード共有としての継承" id="a型システムおよびコード共有としての継承"><h3>型システム、およびコード共有としての継承</h3></a>
+<a class="header" href="#a型システムおよびコード共有としての継承" id="a型システムおよびコード共有としての継承"><h3>型システム、およびコード共有としての継承</h3></a>
 <!-- *Inheritance* is a mechanism whereby an object can inherit from another -->
 <!-- object’s definition, thus gaining the parent object’s data and behavior without -->
 <!-- you having to define them again. -->
@@ -362,7 +362,7 @@ Rustコードを共有でき、これは、リスト10-14で<code>Summary</code>
 <!-- > trait bounds to impose constraints on what those types must provide. This is -->
 <!-- > sometimes called *bounded parametric polymorphism*. -->
 <blockquote>
-<a class="header" href="ch17-01-what-is-oo.html#a多相性" id="a多相性"><h3>多相性</h3></a>
+<a class="header" href="#a多相性" id="a多相性"><h3>多相性</h3></a>
 <p>多くの人にとって、多相性は、継承の同義語です。ですが、実際には複数の型のデータを取り扱えるコードを指すより一般的な概念です。
 継承について言えば、それらの型は一般的にはサブクラスです。</p>
 <p>Rustは代わりにジェネリクスを使用して様々な可能性のある型を抽象化し、トレイト境界を使用してそれらの型が提供するものに制約を課します。

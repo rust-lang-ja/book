@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Closures: Anonymous Functions that Can Capture Their Environment -->
-<a class="header" href="ch13-01-closures.html#aクロージャ-環境をキャプチャできる匿名関数" id="aクロージャ-環境をキャプチャできる匿名関数"><h2>クロージャ: 環境をキャプチャできる匿名関数</h2></a>
+<a class="header" href="#aクロージャ-環境をキャプチャできる匿名関数" id="aクロージャ-環境をキャプチャできる匿名関数"><h2>クロージャ: 環境をキャプチャできる匿名関数</h2></a>
 <!-- Rust’s closures are anonymous functions you can save in a variable or pass as -->
 <!-- arguments to other functions. You can create the closure in one place and then -->
 <!-- call the closure to evaluate it in a different context. Unlike functions, -->
@@ -154,7 +154,7 @@
 関数と異なり、呼び出されたスコープの値をクロージャは、キャプチャすることができます。
 これらのクロージャの機能がコードの再利用や、動作のカスタマイズを行わせてくれる方法を模擬しましょう。</p>
 <!-- ### Creating an Abstraction of Behavior with Closures -->
-<a class="header" href="ch13-01-closures.html#aクロージャで動作の抽象化を行う" id="aクロージャで動作の抽象化を行う"><h3>クロージャで動作の抽象化を行う</h3></a>
+<a class="header" href="#aクロージャで動作の抽象化を行う" id="aクロージャで動作の抽象化を行う"><h3>クロージャで動作の抽象化を行う</h3></a>
 <!-- Let’s work on an example of a situation in which it’s useful to store a closure -->
 <!-- to be executed later. Along the way, we’ll talk about the syntax of closures, -->
 <!-- type inference, and traits. -->
@@ -337,7 +337,7 @@ fn generate_workout(intensity: u32, random_number: u32) {
 この関数を現時点で呼んでいるところを切り捨てたくもあります。要するに、結果が必要なければ関数を呼び出したくなく、
 それでも1回だけ呼び出したいのです。</p>
 <!-- #### Refactoring Using Functions -->
-<a class="header" href="ch13-01-closures.html#a関数でリファクタリング" id="a関数でリファクタリング"><h4>関数でリファクタリング</h4></a>
+<a class="header" href="#a関数でリファクタリング" id="a関数でリファクタリング"><h4>関数でリファクタリング</h4></a>
 <!-- We could restructure the workout program in many ways. First, we’ll try -->
 <!-- extracting the duplicated call to the `simulated_expensive_calculation` -->
 <!-- function into a variable, as shown in Listing 13-4. -->
@@ -400,7 +400,7 @@ fn generate_workout(intensity: u32, random_number: u32) {
 <p>プログラムの1箇所でコードを定義したいですが、結果が本当に必要なところでだけコードを<em>実行</em>します。
 これは、クロージャのユースケースです！</p>
 <!-- #### Refactoring with Closures to Store Code -->
-<a class="header" href="ch13-01-closures.html#aクロージャでリファクタリングしてコードを保存する" id="aクロージャでリファクタリングしてコードを保存する"><h4>クロージャでリファクタリングして、コードを保存する</h4></a>
+<a class="header" href="#aクロージャでリファクタリングしてコードを保存する" id="aクロージャでリファクタリングしてコードを保存する"><h4>クロージャでリファクタリングして、コードを保存する</h4></a>
 <!-- Instead of always calling the `simulated_expensive_calculation` function before -->
 <!-- the `if` blocks, we can define a closure and store the *closure* in a variable -->
 <!-- rather than storing the result of the function call, as shown in Listing 13-5. -->
@@ -522,7 +522,7 @@ fn generate_workout(intensity: u32, random_number: u32) {
 クロージャは他の解決法も用意してくれます。その解決策については、もう少し先で語りましょう。でもまずは、
 クロージャ定義に型注釈がない理由とクロージャに関わるトレイトについて話しましょう。</p>
 <!-- ### Closure Type Inference and Annotation -->
-<a class="header" href="ch13-01-closures.html#aクロージャの型推論と注釈" id="aクロージャの型推論と注釈"><h3>クロージャの型推論と注釈</h3></a>
+<a class="header" href="#aクロージャの型推論と注釈" id="aクロージャの型推論と注釈"><h3>クロージャの型推論と注釈</h3></a>
 <!-- Closures don’t require you to annotate the types of the parameters or the -->
 <!-- return value like `fn` functions do. Type annotations are required on functions -->
 <!-- because they’re part of an explicit interface exposed to your users. Defining -->
@@ -635,7 +635,7 @@ let n = example_closure(5);
 そして、その型が<code>example_closure</code>のクロージャに閉じ込められ、同じクロージャを異なる型で使用しようとすると、
 型エラーが出るのです。</p>
 <!-- ### Storing Closures Using Generic Parameters and the `Fn` Traits -->
-<a class="header" href="ch13-01-closures.html#aジェネリック引数とfnトレイトを使用してクロージャを保存する" id="aジェネリック引数とfnトレイトを使用してクロージャを保存する"><h3>ジェネリック引数と<code>Fn</code>トレイトを使用してクロージャを保存する</h3></a>
+<a class="header" href="#aジェネリック引数とfnトレイトを使用してクロージャを保存する" id="aジェネリック引数とfnトレイトを使用してクロージャを保存する"><h3>ジェネリック引数と<code>Fn</code>トレイトを使用してクロージャを保存する</h3></a>
 <!-- Let’s return to our workout generation app. In Listing 13-6, our code was still -->
 <!-- calling the expensive calculation closure more times than it needed to. One -->
 <!-- option to solve this issue is to save the result of the expensive closure in a -->
@@ -882,7 +882,7 @@ fn generate_workout(intensity: u32, random_number: u32) {
 必要以上に重い計算を呼び出さないことを保証するのに必要なロジックの面倒を<code>Cacher</code>は見るので、
 <code>generate_workout</code>はビジネスロジックに集中できるのです。</p>
 <!-- ### Limitations of the `Cacher` Implementation -->
-<a class="header" href="ch13-01-closures.html#cacher実装の限界" id="cacher実装の限界"><h3><code>Cacher</code>実装の限界</h3></a>
+<a class="header" href="#cacher実装の限界" id="cacher実装の限界"><h3><code>Cacher</code>実装の限界</h3></a>
 <!-- Caching values is a generally useful behavior that we might want to use in -->
 <!-- other parts of our code with different closures. However, there are two -->
 <!-- problems with the current implementation of `Cacher` that would make reusing it -->
@@ -945,7 +945,7 @@ fn call_with_different_values() {
 例えば、文字列スライスを取り、<code>usize</code>を返すクロージャの結果をキャッシュしたくなるかもしれません。
 この問題を修正するには、<code>Cacher</code>機能の柔軟性を向上させるためによりジェネリックな引数を導入してみてください。</p>
 <!-- ### Capturing the Environment with Closures -->
-<a class="header" href="ch13-01-closures.html#aクロージャで環境をキャプチャする" id="aクロージャで環境をキャプチャする"><h3>クロージャで環境をキャプチャする</h3></a>
+<a class="header" href="#aクロージャで環境をキャプチャする" id="aクロージャで環境をキャプチャする"><h3>クロージャで環境をキャプチャする</h3></a>
 <!-- In the workout generator example, we only used closures as inline anonymous -->
 <!-- functions. However, closures have an additional capability that functions don’t -->
 <!-- have: they can capture their environment and access variables from the scope in -->

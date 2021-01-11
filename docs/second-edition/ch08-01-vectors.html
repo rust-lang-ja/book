@@ -143,7 +143,7 @@
                     <main>
                         <!-- -*- coding:utf-8-unix -*- -->
 <!-- ## Storing Lists of Values with Vectors -->
-<a class="header" href="ch08-01-vectors.html#aベクタで一連の値を保持する" id="aベクタで一連の値を保持する"><h2>ベクタで一連の値を保持する</h2></a>
+<a class="header" href="#aベクタで一連の値を保持する" id="aベクタで一連の値を保持する"><h2>ベクタで一連の値を保持する</h2></a>
 <!-- The first collection type we’ll look at is `Vec<T>`, also known as a *vector*. -->
 <!-- Vectors allow us to store more than one value in a single data structure that -->
 <!-- puts all the values next to each other in memory. Vectors can only store values -->
@@ -154,7 +154,7 @@
 ベクタには、同じ型の値しか保持できません。要素のリストがある場合に有用です。
 例えば、テキストファイルの各行とか、ショッピングカートのアイテムの価格などです。</p>
 <!-- ### Creating a New Vector -->
-<a class="header" href="ch08-01-vectors.html#a新しいベクタを生成する" id="a新しいベクタを生成する"><h3>新しいベクタを生成する</h3></a>
+<a class="header" href="#a新しいベクタを生成する" id="a新しいベクタを生成する"><h3>新しいベクタを生成する</h3></a>
 <!-- To create a new, empty vector, we can call the `Vec::new` function, as shown in -->
 <!-- Listing 8-1. -->
 <p>新しい空のベクタを作るには、リスト8-1に示されたように、<code>Vec::new</code>関数を呼べばよいです。</p>
@@ -204,7 +204,7 @@ let v = vec![1, 2, 3];
 <p>初期値の<code>i32</code>値を与えたので、コンパイラは、<code>v</code>の型が<code>Vec&lt;i32&gt;</code>であると推論でき、型注釈は必要なくなりました。
 次は、ベクタを変更する方法を見ましょう。</p>
 <!-- ### Updating a Vector -->
-<a class="header" href="ch08-01-vectors.html#aベクタを更新する" id="aベクタを更新する"><h3>ベクタを更新する</h3></a>
+<a class="header" href="#aベクタを更新する" id="aベクタを更新する"><h3>ベクタを更新する</h3></a>
 <!-- To create a vector and then add elements to it, we can use the `push` method, -->
 <!-- as shown in Listing 8-3. -->
 <p>ベクタを生成し、それから要素を追加するには、リスト8-3に示したように、<code>push</code>メソッドを使用できます。</p>
@@ -229,7 +229,7 @@ v.push(8);
 中に配置する数値は全て<code>i32</code>型であり、コンパイラはこのことをデータから推論するので、
 <code>Vec&lt;i32&gt;</code>という注釈は必要なくなります。</p>
 <!-- ### Dropping a Vector Drops Its Elements -->
-<a class="header" href="ch08-01-vectors.html#aベクタをドロップすれば要素もドロップする" id="aベクタをドロップすれば要素もドロップする"><h3>ベクタをドロップすれば、要素もドロップする</h3></a>
+<a class="header" href="#aベクタをドロップすれば要素もドロップする" id="aベクタをドロップすれば要素もドロップする"><h3>ベクタをドロップすれば、要素もドロップする</h3></a>
 <!-- Like any other `struct`, a vector is freed when it goes out of scope, as -->
 <!-- annotated in Listing 8-4. -->
 <p>他のあらゆる<code>構造体</code>同様、ベクタもスコープを抜ければ、解放されます。リスト8-4に注釈したようにですね。</p>
@@ -260,7 +260,7 @@ v.push(8);
 片付けられるということです。これは一見単純な点に見えるかもしれませんが、ベクタの要素への参照を導入した途端、
 もうちょっと複雑になる可能性を秘めています。次は、それに挑んでいきましょう！</p>
 <!-- ### Reading Elements of Vectors -->
-<a class="header" href="ch08-01-vectors.html#aベクタの要素を読む" id="aベクタの要素を読む"><h3>ベクタの要素を読む</h3></a>
+<a class="header" href="#aベクタの要素を読む" id="aベクタの要素を読む"><h3>ベクタの要素を読む</h3></a>
 <!-- Now that you know how to create, update, and destroy vectors, knowing how to -->
 <!-- read their contents is a good next step. There are two ways to reference a -->
 <!-- value stored in a vector. In the examples, we’ve annotated the types of the -->
@@ -395,7 +395,7 @@ println!(&quot;The first element is: {}&quot;, first);
 <p>訳注: 日本語版のThe Rustonomiconは<a href="https://doc.rust-jp.rs/rust-nomicon-ja/vec.html">こちら</a>です。</p>
 </blockquote>
 <!-- ### Iterating Over the Values in a Vector -->
-<a class="header" href="ch08-01-vectors.html#aベクタの値を走査する" id="aベクタの値を走査する"><h3>ベクタの値を走査する</h3></a>
+<a class="header" href="#aベクタの値を走査する" id="aベクタの値を走査する"><h3>ベクタの値を走査する</h3></a>
 <!-- If we want to access each element in a vector in turn, we can iterate through -->
 <!-- all of the elements rather than use indexes to access one at a time. Listing -->
 <!-- 8-8 shows how to use a `for` loop to get immutable references to each element -->
@@ -435,7 +435,7 @@ for i in &amp;mut v {
 <p>可変参照が参照している値を変更するには、<code>+=</code>演算子を使用する前に、
 参照外し演算子(<code>*</code>)を使用して<code>i</code>の値に辿り着かないといけません。</p>
 <!-- ### Using an Enum to Store Multiple Types -->
-<a class="header" href="ch08-01-vectors.html#enumを使って複数の型を保持する" id="enumを使って複数の型を保持する"><h3>Enumを使って複数の型を保持する</h3></a>
+<a class="header" href="#enumを使って複数の型を保持する" id="enumを使って複数の型を保持する"><h3>Enumを使って複数の型を保持する</h3></a>
 <!-- At the beginning of this chapter, we said that vectors can only store values -->
 <!-- that are the same type. This can be inconvenient; there are definitely use -->
 <!-- cases for needing to store a list of items of different types. Fortunately, the -->

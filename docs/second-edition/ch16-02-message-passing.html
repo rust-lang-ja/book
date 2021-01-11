@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Using Message Passing to Transfer Data Between Threads -->
-<a class="header" href="ch16-02-message-passing.html#aメッセージ受け渡しを使ってスレッド間でデータを転送する" id="aメッセージ受け渡しを使ってスレッド間でデータを転送する"><h2>メッセージ受け渡しを使ってスレッド間でデータを転送する</h2></a>
+<a class="header" href="#aメッセージ受け渡しを使ってスレッド間でデータを転送する" id="aメッセージ受け渡しを使ってスレッド間でデータを転送する"><h2>メッセージ受け渡しを使ってスレッド間でデータを転送する</h2></a>
 <!-- One increasingly popular approach to ensuring safe concurrency is *message -->
 <!-- passing*, where threads or actors communicate by sending each other messages -->
 <!-- containing data. Here’s the idea in a slogan from [the Go language -->
@@ -334,7 +334,7 @@ fn main() {
 <!-- Perfect! -->
 <p>完璧です！</p>
 <!-- ### Channels and Ownership Transference -->
-<a class="header" href="ch16-02-message-passing.html#aチャンネルと所有権の転送" id="aチャンネルと所有権の転送"><h3>チャンネルと所有権の転送</h3></a>
+<a class="header" href="#aチャンネルと所有権の転送" id="aチャンネルと所有権の転送"><h3>チャンネルと所有権の転送</h3></a>
 <!-- The ownership rules play a vital role in message sending because they help you -->
 <!-- write safe, concurrent code. Preventing errors in concurrent programming is the -->
 <!-- advantage of thinking about ownership throughout your Rust program. Let's do -->
@@ -398,7 +398,7 @@ not implement the `Copy` trait
 値がムーブされると、受信側が所有権を得るのです。これにより、送信後に誤って再度値を使用するのを防いでくれます;
 所有権システムが、万事問題ないことを確認してくれます。</p>
 <!-- ### Sending Multiple Values and Seeing the Receiver Waiting -->
-<a class="header" href="ch16-02-message-passing.html#a複数の値を送信し受信側が待機するのを確かめる" id="a複数の値を送信し受信側が待機するのを確かめる"><h3>複数の値を送信し、受信側が待機するのを確かめる</h3></a>
+<a class="header" href="#a複数の値を送信し受信側が待機するのを確かめる" id="a複数の値を送信し受信側が待機するのを確かめる"><h3>複数の値を送信し、受信側が待機するのを確かめる</h3></a>
 <!-- The code in Listing 16-8 compiled and ran, but it didn’t clearly show us that -->
 <!-- two separate threads were talking to each other over the channel. In Listing -->
 <!-- 16-10 we’ve made some modifications that will prove the code in Listing 16-8 is -->
@@ -466,7 +466,7 @@ Got: thread
 <p>メインスレッドの<code>for</code>ループには停止したり、遅れせたりするコードは何もないので、
 メインスレッドが立ち上げたスレッドから値を受け取るのを待機していることがわかります。</p>
 <!-- ### Creating Multiple Producers by Cloning the Transmitter -->
-<a class="header" href="ch16-02-message-passing.html#a転送機をクローンして複数の生成器を作成する" id="a転送機をクローンして複数の生成器を作成する"><h3>転送機をクローンして複数の生成器を作成する</h3></a>
+<a class="header" href="#a転送機をクローンして複数の生成器を作成する" id="a転送機をクローンして複数の生成器を作成する"><h3>転送機をクローンして複数の生成器を作成する</h3></a>
 <!-- Earlier we mentioned that `mpsc` was an acronym for *multiple producer, -->
 <!-- single consumer*. Let’s put `mpsc` to use and expand the code in Listing 16-10 -->
 <!-- to create multiple threads that all send values to the same receiver. We can do -->

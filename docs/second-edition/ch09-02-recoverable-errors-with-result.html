@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Recoverable Errors with `Result` -->
-<a class="header" href="ch09-02-recoverable-errors-with-result.html#resultで回復可能なエラー" id="resultで回復可能なエラー"><h2><code>Result</code>で回復可能なエラー</h2></a>
+<a class="header" href="#resultで回復可能なエラー" id="resultで回復可能なエラー"><h2><code>Result</code>で回復可能なエラー</h2></a>
 <!-- Most errors aren’t serious enough to require the program to stop entirely. -->
 <!-- Sometimes, when a function fails, it’s for a reason that we can easily -->
 <!-- interpret and respond to. For example, if you try to open a file and that -->
@@ -295,7 +295,7 @@ Os { code: 2, message: &quot;そのような名前のファイルまたはディ
 <!-- As usual, this output tells us exactly what has gone wrong. -->
 <p>通常通り、この出力は、一体何がおかしくなったのかを物語っています。</p>
 <!-- ### Matching on Different Errors -->
-<a class="header" href="ch09-02-recoverable-errors-with-result.html#a色々なエラーにマッチする" id="a色々なエラーにマッチする"><h3>色々なエラーにマッチする</h3></a>
+<a class="header" href="#a色々なエラーにマッチする" id="a色々なエラーにマッチする"><h3>色々なエラーにマッチする</h3></a>
 <!-- The code in Listing 9-4 will `panic!` no matter why `File::open` failed. What -->
 <!-- we want to do instead is take different actions for different failure reasons: -->
 <!-- if `File::open` failed because the file doesn’t exist, we want to create the -->
@@ -384,7 +384,7 @@ fn main() {
 内部にも<code>match</code>式を追加する必要があるのです。ファイルが開けないなら、異なるエラーメッセージが出力されるでしょう。
 外側の<code>match</code>の最後のアームは同じままなので、ファイルが存在しないエラー以外ならプログラムはパニックします。</p>
 <!-- ### Shortcuts for Panic on Error: `unwrap` and `expect` -->
-<a class="header" href="ch09-02-recoverable-errors-with-result.html#aエラー時にパニックするショートカット-unwrapとexpect" id="aエラー時にパニックするショートカット-unwrapとexpect"><h3>エラー時にパニックするショートカット: <code>unwrap</code>と<code>expect</code></h3></a>
+<a class="header" href="#aエラー時にパニックするショートカット-unwrapとexpect" id="aエラー時にパニックするショートカット-unwrapとexpect"><h3>エラー時にパニックするショートカット: <code>unwrap</code>と<code>expect</code></h3></a>
 <!-- Using `match` works well enough, but it can be a bit verbose and doesn’t always -->
 <!-- communicate intent well. The `Result<T, E>` type has many helper methods -->
 <!-- defined on it to do various tasks. One of those methods, called `unwrap`, is a -->
@@ -451,7 +451,7 @@ fn main() {
 ズバリどの<code>unwrap</code>がパニックを引き起こしているのか理解するのは、より時間がかかる可能性があります。
 パニックする<code>unwrap</code>呼び出しは全て、同じメッセージを出力するからです。</p>
 <!-- ### Propagating Errors -->
-<a class="header" href="ch09-02-recoverable-errors-with-result.html#aエラーを委譲する" id="aエラーを委譲する"><h3>エラーを委譲する</h3></a>
+<a class="header" href="#aエラーを委譲する" id="aエラーを委譲する"><h3>エラーを委譲する</h3></a>
 <!-- When you’re writing a function whose implementation calls something that might -->
 <!-- fail, instead of handling the error within this function, you can return the -->
 <!-- error to the calling code so that it can decide what to do. This is known as -->
@@ -559,7 +559,7 @@ fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {
 <!-- question mark operator `?` to make this easier. -->
 <p>Rustにおいて、この種のエラー委譲は非常に一般的なので、Rustにはこれをしやすくする<code>?</code>演算子が用意されています。</p>
 <!-- #### A Shortcut for Propagating Errors: the `?` operator -->
-<a class="header" href="ch09-02-recoverable-errors-with-result.html#aエラー委譲のショートカット-演算子" id="aエラー委譲のショートカット-演算子"><h4>エラー委譲のショートカット: <code>?</code>演算子</h4></a>
+<a class="header" href="#aエラー委譲のショートカット-演算子" id="aエラー委譲のショートカット-演算子"><h4>エラー委譲のショートカット: <code>?</code>演算子</h4></a>
 <!-- Listing 9-7 shows an implementation of `read_username_from_file` that has the -->
 <!-- same functionality as it had in Listing 9-6, but this implementation uses the -->
 <!-- `?` operator: -->
@@ -658,7 +658,7 @@ fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {
 エラーを返すというよりもそれでも、<code>s</code>にユーザ名を含む<code>Ok</code>値を返します。機能もまたリスト9-6及び、9-7と同じです;
 ただ単に異なるバージョンのよりエルゴノミックな書き方なのです。</p>
 <!-- #### `?` Operator Can Only Be Used in Functions That Return `Result` -->
-<a class="header" href="ch09-02-recoverable-errors-with-result.html#a演算子はresultを返す関数でしか使用できない" id="a演算子はresultを返す関数でしか使用できない"><h4><code>?</code>演算子は、<code>Result</code>を返す関数でしか使用できない</h4></a>
+<a class="header" href="#a演算子はresultを返す関数でしか使用できない" id="a演算子はresultを返す関数でしか使用できない"><h4><code>?</code>演算子は、<code>Result</code>を返す関数でしか使用できない</h4></a>
 <!-- The `?` operator can only be used in functions that have a return type of -->
 <!-- `Result`, because it is defined to work in the same way as the `match` -->
 <!-- expression we defined in Listing 9-6. The part of the `match` that requires a -->

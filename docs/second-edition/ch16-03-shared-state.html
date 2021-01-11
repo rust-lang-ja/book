@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Shared-State Concurrency -->
-<a class="header" href="ch16-03-shared-state.html#a状態共有並行性" id="a状態共有並行性"><h2>状態共有並行性</h2></a>
+<a class="header" href="#a状態共有並行性" id="a状態共有並行性"><h2>状態共有並行性</h2></a>
 <!-- Message passing is a fine way of handling concurrency, but it’s not the only -->
 <!-- one. Consider this part of the slogan from the Go language documentation again: -->
 <!-- “communicate by sharing memory.” -->
@@ -170,7 +170,7 @@ Go言語ドキュメンテーションのスローガンのこの部分を再び
 Rustの型システムと所有権規則は、この管理を正しく行う大きな助けになります。
 例として、メモリ共有を行うより一般的な並行性の基本型の一つであるミューテックスを見てみましょう。</p>
 <!-- ### Using Mutexes to Allow Access to Data from One Thread at a Time -->
-<a class="header" href="ch16-03-shared-state.html#aミューテックスを使用して一度に1つのスレッドからデータにアクセスすることを許可する" id="aミューテックスを使用して一度に1つのスレッドからデータにアクセスすることを許可する"><h3>ミューテックスを使用して一度に1つのスレッドからデータにアクセスすることを許可する</h3></a>
+<a class="header" href="#aミューテックスを使用して一度に1つのスレッドからデータにアクセスすることを許可する" id="aミューテックスを使用して一度に1つのスレッドからデータにアクセスすることを許可する"><h3>ミューテックスを使用して一度に1つのスレッドからデータにアクセスすることを許可する</h3></a>
 <!-- 1行目、as in,が肝だが、inの後は普通名詞に相当するものが来るはずだが、文になっている -->
 <!-- *Mutex* is an abbreviation for “mutual exclusion,” as in, a mutex allows only -->
 <!-- one thread to access some data at any given time. To access the data in a -->
@@ -213,7 +213,7 @@ Rustの型システムと所有権規則は、この管理を正しく行う大�
 <p>ミューテックスの管理は、正しく行うのに著しく技工を要することがあるので、多くの人がチャンネルに熱狂的になるわけです。
 しかしながら、Rustの型システムと所有権規則のおかげで、ロックとアンロックをおかしくすることはありません。</p>
 <!-- #### The API of `Mutex<T>` -->
-<a class="header" href="ch16-03-shared-state.html#mutextのapi" id="mutextのapi"><h4><code>Mutex&lt;T&gt;</code>のAPI</h4></a>
+<a class="header" href="#mutextのapi" id="mutextのapi"><h4><code>Mutex&lt;T&gt;</code>のAPI</h4></a>
 <!-- As an example of how to use a mutex, let’s start by using a mutex in a -->
 <!-- single-threaded context, as shown in Listing 16-12: -->
 <p>ミューテックスの使用方法の例として、ミューテックスをシングルスレッドの文脈で使うことから始めましょう。
@@ -276,7 +276,7 @@ fn main() {
 <!-- to change the inner `i32` to 6. -->
 <p>ロックをドロップした後、ミューテックスの値を出力し、内部の<code>i32</code>の値を6に変更できたことが確かめられるのです。</p>
 <!-- #### Sharing a `Mutex<T>` Between Multiple Threads -->
-<a class="header" href="ch16-03-shared-state.html#a複数のスレッド間でmutextを共有する" id="a複数のスレッド間でmutextを共有する"><h4>複数のスレッド間で<code>Mutex&lt;T&gt;</code>を共有する</h4></a>
+<a class="header" href="#a複数のスレッド間でmutextを共有する" id="a複数のスレッド間でmutextを共有する"><h4>複数のスレッド間で<code>Mutex&lt;T&gt;</code>を共有する</h4></a>
 <!-- Now, let’s try to share a value between multiple threads using `Mutex<T>`. -->
 <!-- We’ll spin up 10 threads and have them each increment a counter value by 1, so -->
 <!-- the counter goes from 0 to 10. Note that the next few examples will have -->
@@ -448,7 +448,7 @@ error: aborting due to 2 previous errors
 ループの違う繰り返しにある違うスレッドをコンパイラは指し示せないからです。
 第15章で議論した複数所有権メソッドによりコンパイルエラーを修正しましょう。</p>
 <!-- #### Multiple Ownership with Multiple Threads -->
-<a class="header" href="ch16-03-shared-state.html#a複数のスレッドで複数の所有権" id="a複数のスレッドで複数の所有権"><h4>複数のスレッドで複数の所有権</h4></a>
+<a class="header" href="#a複数のスレッドで複数の所有権" id="a複数のスレッドで複数の所有権"><h4>複数のスレッドで複数の所有権</h4></a>
 <!-- In Chapter 15, we gave a value multiple owners by using the smart pointer -->
 <!-- `Rc<T>` to create a reference counted value. Let’s do the same here and see -->
 <!-- what happens. We’ll wrap the `Mutex<T>` in `Rc<T>` in Listing 16-14 and clone -->
@@ -544,7 +544,7 @@ not implemented for `std::rc::Rc&lt;std::sync::Mutex&lt;i32&gt;&gt;`
 これは間違ったカウントにつながる可能性があり、今度はメモリリークや、使用し終わる前に値がドロップされることにつながる可能性のある潜在的なバグです。
 必要なのは、いかにも<code>Rc&lt;T&gt;</code>のようだけれども、参照カウントへの変更をスレッドセーフに行うものです。</p>
 <!-- #### Atomic Reference Counting with `Arc<T>` -->
-<a class="header" href="ch16-03-shared-state.html#arctで原子的な参照カウント" id="arctで原子的な参照カウント"><h4><code>Arc&lt;T&gt;</code>で原子的な参照カウント</h4></a>
+<a class="header" href="#arctで原子的な参照カウント" id="arctで原子的な参照カウント"><h4><code>Arc&lt;T&gt;</code>で原子的な参照カウント</h4></a>
 <!-- Fortunately, `Arc<T>` *is* a type like `Rc<T>` that is safe to use in -->
 <!-- concurrent situations. The *a* stands for *atomic*, meaning it’s an *atomically -->
 <!-- reference counted* type. Atomics are an additional kind of concurrency -->
@@ -616,7 +616,7 @@ fn main() {
 計算を独立した部分に小分けにし、その部分をスレッドに分割し、それから<code>Mutex&lt;T&gt;</code>を使用して、
 各スレッドに最終結果を更新させることができます。</p>
 <!-- ### Similarities Between `RefCell<T>`/`Rc<T>` and `Mutex<T>`/`Arc<T>` -->
-<a class="header" href="ch16-03-shared-state.html#refcelltrctとmutextarctの類似性" id="refcelltrctとmutextarctの類似性"><h3><code>RefCell&lt;T&gt;</code>/<code>Rc&lt;T&gt;</code>と<code>Mutex&lt;T&gt;</code>/<code>Arc&lt;T&gt;</code>の類似性</h3></a>
+<a class="header" href="#refcelltrctとmutextarctの類似性" id="refcelltrctとmutextarctの類似性"><h3><code>RefCell&lt;T&gt;</code>/<code>Rc&lt;T&gt;</code>と<code>Mutex&lt;T&gt;</code>/<code>Arc&lt;T&gt;</code>の類似性</h3></a>
 <!-- You might have noticed that `counter` is immutable but we could get a mutable -->
 <!-- reference to the value inside it; this means `Mutex<T>` provides interior -->
 <!-- mutability, as the `Cell` family does. In the same way we used `RefCell<T>` in -->

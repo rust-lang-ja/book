@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Using Threads to Run Code Simultaneously -->
-<a class="header" href="ch16-01-threads.html#aスレッドを使用してコードを同時に走らせる" id="aスレッドを使用してコードを同時に走らせる"><h2>スレッドを使用してコードを同時に走らせる</h2></a>
+<a class="header" href="#aスレッドを使用してコードを同時に走らせる" id="aスレッドを使用してコードを同時に走らせる"><h2>スレッドを使用してコードを同時に走らせる</h2></a>
 <!-- In most current operating systems, an executed program’s code is run in a -->
 <!-- *process*, and the operating system manages multiple processes at once. Within -->
 <!-- your program, you can also have independent parts that run simultaneously. The -->
@@ -227,7 +227,7 @@ M:Nスレッドの実装をしたクレートもあります。</p>
 <!-- thread-related API provided by the standard library. -->
 <p>今やRustにおけるスレッドを定義したので、標準ライブラリで提供されているスレッド関連のAPIの使用法を探究しましょう。</p>
 <!-- ### Creating a New Thread with `spawn` -->
-<a class="header" href="ch16-01-threads.html#spawnで新規スレッドを生成する" id="spawnで新規スレッドを生成する"><h3><code>spawn</code>で新規スレッドを生成する</h3></a>
+<a class="header" href="#spawnで新規スレッドを生成する" id="spawnで新規スレッドを生成する"><h3><code>spawn</code>で新規スレッドを生成する</h3></a>
 <!-- To create a new thread, we call the `thread::spawn` function and pass it a -->
 <!-- closure (we talked about closures in Chapter 13) containing the code we want to -->
 <!-- run in the new thread. The example in Listing 16-1 prints some text from a main -->
@@ -292,7 +292,7 @@ hi number 5 from the spawned thread!
 <p>このコードを実行してメインスレッドの出力しか目の当たりにできなかったり、オーバーラップがなければ、
 範囲の値を増やしてOSがスレッド切り替えを行う機会を増やしてみてください。</p>
 <!-- ### Waiting for All Threads to Finish Using `join` Handles -->
-<a class="header" href="ch16-01-threads.html#joinハンドルで全スレッドの終了を待つ" id="joinハンドルで全スレッドの終了を待つ"><h3><code>join</code>ハンドルで全スレッドの終了を待つ</h3></a>
+<a class="header" href="#joinハンドルで全スレッドの終了を待つ" id="joinハンドルで全スレッドの終了を待つ"><h3><code>join</code>ハンドルで全スレッドの終了を待つ</h3></a>
 <!-- The code in Listing 16-1 not only stops the spawned thread prematurely most of -->
 <!-- the time due to the main thread ending, but also can’t guarantee that the -->
 <!-- spawned thread will get to run at all. The reason is that there is no guarantee -->
@@ -408,7 +408,7 @@ hi number 4 from the main thread!
 <!-- threads run at the same time. -->
 <p>どこで<code>join</code>を呼ぶかといったほんの些細なことが、スレッドが同時に走るかどうかに影響することもあります。</p>
 <!-- ### Using `move` Closures with Threads -->
-<a class="header" href="ch16-01-threads.html#aスレッドでmoveクロージャを使用する" id="aスレッドでmoveクロージャを使用する"><h3>スレッドで<code>move</code>クロージャを使用する</h3></a>
+<a class="header" href="#aスレッドでmoveクロージャを使用する" id="aスレッドでmoveクロージャを使用する"><h3>スレッドで<code>move</code>クロージャを使用する</h3></a>
 <!-- The `move` closure is often used alongside `thread::spawn` because it allows -->
 <!-- you to use data from one thread in another thread. -->
 <p><code>move</code>クロージャは、<code>thread::spawn</code>とともによく使用されます。

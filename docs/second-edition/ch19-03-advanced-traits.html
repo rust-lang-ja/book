@@ -142,14 +142,14 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Advanced Traits -->
-<a class="header" href="ch19-03-advanced-traits.html#a高度なトレイト" id="a高度なトレイト"><h2>高度なトレイト</h2></a>
+<a class="header" href="#a高度なトレイト" id="a高度なトレイト"><h2>高度なトレイト</h2></a>
 <!-- We first covered traits in the “Traits: Defining Shared Behavior” section of -->
 <!-- Chapter 10, but as with lifetimes, we didn’t discuss the more advanced details. -->
 <!-- Now that you know more about Rust, we can get into the nitty-gritty. -->
 <p>最初にトレイトについて講義したのは、第10章の「トレイト: 共通の振る舞いを定義する」節でしたが、
 ライフタイム同様、より高度な詳細は議論しませんでした。今や、Rustに詳しくなったので、核心に迫れるでしょう。</p>
 <!-- ### Specifying Placeholder Types in Trait Definitions with Associated Types -->
-<a class="header" href="ch19-03-advanced-traits.html#a関連型でトレイト定義においてプレースホルダーの型を指定する" id="a関連型でトレイト定義においてプレースホルダーの型を指定する"><h3>関連型でトレイト定義においてプレースホルダーの型を指定する</h3></a>
+<a class="header" href="#a関連型でトレイト定義においてプレースホルダーの型を指定する" id="a関連型でトレイト定義においてプレースホルダーの型を指定する"><h3>関連型でトレイト定義においてプレースホルダーの型を指定する</h3></a>
 <!-- *Associated types* connect a type placeholder with a trait such that the trait -->
 <!-- method definitions can use these placeholder types in their signatures. The -->
 <!-- implementor of a trait will specify the concrete type to be used in this type’s -->
@@ -252,7 +252,7 @@ pub trait Iterator&lt;T&gt; {
 1つしか<code>impl Iterator for Counter</code>がないからです。<code>Counter</code>に<code>next</code>を呼び出す度に、
 <code>u32</code>値のイテレータが欲しいと指定しなくてもよいわけです。</p>
 <!-- ### Default Generic Type Parameters and Operator Overloading -->
-<a class="header" href="ch19-03-advanced-traits.html#aデフォルトのジェネリック型引数と演算子オーバーロード" id="aデフォルトのジェネリック型引数と演算子オーバーロード"><h3>デフォルトのジェネリック型引数と演算子オーバーロード</h3></a>
+<a class="header" href="#aデフォルトのジェネリック型引数と演算子オーバーロード" id="aデフォルトのジェネリック型引数と演算子オーバーロード"><h3>デフォルトのジェネリック型引数と演算子オーバーロード</h3></a>
 <!-- When we use generic type parameters, we can specify a default concrete type for -->
 <!-- the generic type. This eliminates the need for implementors of the trait to -->
 <!-- specify a concrete type if the default type works. The syntax for specifying a -->
@@ -398,7 +398,7 @@ impl Add&lt;Meters&gt; for Millimeters {
 <p>最初の目的は2番目に似ていますが、逆です: 既存のトレイトに型引数を追加したいなら、既定を与えて、
 既存の実装コードを破壊せずにトレイトの機能を拡張できるのです。</p>
 <!-- ### Fully Qualified Syntax for Disambiguation: Calling Methods with the Same Name -->
-<a class="header" href="ch19-03-advanced-traits.html#a明確化のためのフルパス記法-同じ名前のメソッドを呼ぶ" id="a明確化のためのフルパス記法-同じ名前のメソッドを呼ぶ"><h3>明確化のためのフルパス記法: 同じ名前のメソッドを呼ぶ</h3></a>
+<a class="header" href="#a明確化のためのフルパス記法-同じ名前のメソッドを呼ぶ" id="a明確化のためのフルパス記法-同じ名前のメソッドを呼ぶ"><h3>明確化のためのフルパス記法: 同じ名前のメソッドを呼ぶ</h3></a>
 <!-- Nothing in Rust prevents a trait from having a method with the same name as -->
 <!-- another trait’s method, nor does Rust prevent you from implementing both traits -->
 <!-- on one type. It’s also possible to implement a method directly on the type with -->
@@ -713,7 +713,7 @@ fn main() {
 フルパス記法を使用することもできるでしょうが、プログラムの他の情報からコンパイラが推論できるこの記法のどの部分も省略することが許容されています。
 同じ名前を使用する実装が複数あり、どの実装を呼び出したいかコンパイラが特定するのに助けが必要な場合だけにこのより冗長な記法を使用する必要があるのです。</p>
 <!-- ### Using Supertraits to Require One Trait’s Functionality Within Another Trait -->
-<a class="header" href="ch19-03-advanced-traits.html#aスーパートレイトを使用して別のトレイト内であるトレイトの機能を必要とする" id="aスーパートレイトを使用して別のトレイト内であるトレイトの機能を必要とする"><h3>スーパートレイトを使用して別のトレイト内で、あるトレイトの機能を必要とする</h3></a>
+<a class="header" href="#aスーパートレイトを使用して別のトレイト内であるトレイトの機能を必要とする" id="aスーパートレイトを使用して別のトレイト内であるトレイトの機能を必要とする"><h3>スーパートレイトを使用して別のトレイト内で、あるトレイトの機能を必要とする</h3></a>
 <!-- Sometimes, you might need one trait to use another trait’s functionality. In -->
 <!-- this case, you need to rely on the dependent trait's also being implemented. -->
 <!-- The trait you rely on is a *supertrait* of the trait you’re implementing. -->
@@ -829,7 +829,7 @@ impl fmt::Display for Point {
 <p>そうすれば、<code>Point</code>に<code>OutlinePrint</code>トレイトを実装してもコンパイルは成功し、
 <code>Point</code>インスタンスに対して<code>outline_print</code>を呼び出し、アスタリスクのふちの中に表示することができます。</p>
 <!-- ### Using the Newtype Pattern to Implement External Traits on External Types -->
-<a class="header" href="ch19-03-advanced-traits.html#aニュータイプパターンを使用して外部の型に外部のトレイトを実装する" id="aニュータイプパターンを使用して外部の型に外部のトレイトを実装する"><h3>ニュータイプパターンを使用して外部の型に外部のトレイトを実装する</h3></a>
+<a class="header" href="#aニュータイプパターンを使用して外部の型に外部のトレイトを実装する" id="aニュータイプパターンを使用して外部の型に外部のトレイトを実装する"><h3>ニュータイプパターンを使用して外部の型に外部のトレイトを実装する</h3></a>
 <!-- In Chapter 10 in the “Implementing a Trait on a Type” section, we mentioned the -->
 <!-- orphan rule that states we’re allowed to implement a trait on a type as long as -->
 <!-- either the trait or the type are local to our crate. It’s possible to get -->

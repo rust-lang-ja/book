@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Unrecoverable Errors with `panic!` -->
-<a class="header" href="ch09-01-unrecoverable-errors-with-panic.html#panicで回復不能なエラー" id="panicで回復不能なエラー"><h2><code>panic!</code>で回復不能なエラー</h2></a>
+<a class="header" href="#panicで回復不能なエラー" id="panicで回復不能なエラー"><h2><code>panic!</code>で回復不能なエラー</h2></a>
 <!-- Sometimes, bad things happen in your code, and there’s nothing you can do about -->
 <!-- it. In these cases, Rust has the `panic!` macro. When the `panic!` macro -->
 <!-- executes, your program will print a failure message, unwind and clean up the -->
@@ -170,7 +170,7 @@
 <!-- > panic = 'abort' -->
 <!-- > ``` -->
 <blockquote>
-<a class="header" href="ch09-01-unrecoverable-errors-with-panic.html#aパニックに対してスタックを巻き戻すか異常終了するか" id="aパニックに対してスタックを巻き戻すか異常終了するか"><h3>パニックに対してスタックを巻き戻すか異常終了するか</h3></a>
+<a class="header" href="#aパニックに対してスタックを巻き戻すか異常終了するか" id="aパニックに対してスタックを巻き戻すか異常終了するか"><h3>パニックに対してスタックを巻き戻すか異常終了するか</h3></a>
 <p>標準では、パニックが発生すると、プログラムは<em>巻き戻し</em>を始めます。つまり、言語がスタックを遡り、
 遭遇した各関数のデータを片付けるということです。しかし、この遡りと片付けはすべきことが多くなります。
 対立案は、即座に異常終了し、片付けをせずにプログラムを終了させることです。そうなると、プログラムが使用していたメモリは、
@@ -221,7 +221,7 @@ note: Run with `RUST_BACKTRACE=1` for a backtrace.
 <code>panic!</code>マクロが呼び出されている他人のコードになるでしょう。<code>panic!</code>呼び出しの発生元である関数のバックトレースを使用して、
 問題を起こしている自分のコードの箇所を割り出すことができます。バックトレースがどんなものか、次に議論しましょう。</p>
 <!-- ### Using a `panic!` Backtrace -->
-<a class="header" href="ch09-01-unrecoverable-errors-with-panic.html#panicバックトレースを使用する" id="panicバックトレースを使用する"><h3><code>panic!</code>バックトレースを使用する</h3></a>
+<a class="header" href="#panicバックトレースを使用する" id="panicバックトレースを使用する"><h3><code>panic!</code>バックトレースを使用する</h3></a>
 <!-- Let’s look at another example to see what it’s like when a `panic!` call comes -->
 <!-- from a library because of a bug in our code instead of from our code calling -->
 <!-- the macro directly. Listing 9-1 has some code that attempts to access an -->

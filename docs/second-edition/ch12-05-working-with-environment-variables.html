@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Working with Environment Variables -->
-<a class="header" href="ch12-05-working-with-environment-variables.html#a環境変数を取り扱う" id="a環境変数を取り扱う"><h2>環境変数を取り扱う</h2></a>
+<a class="header" href="#a環境変数を取り扱う" id="a環境変数を取り扱う"><h2>環境変数を取り扱う</h2></a>
 <!-- We’ll improve `minigrep` by adding an extra feature: an option for -->
 <!-- case-insensitive searching that the user can turn on via an environment -->
 <!-- variable. We could make this feature a command line option and require that -->
@@ -154,7 +154,7 @@
 代わりに環境変数を使用します。そうすることでユーザは1回環境変数をセットすれば、そのターミナルセッションの間は、
 大文字小文字無視の検索を行うことができるようになるわけです。</p>
 <!-- ### Writing a Failing Test for the Case-Insensitive `search` Function -->
-<a class="header" href="ch12-05-working-with-environment-variables.html#a大文字小文字を区別しないsearch関数用に失敗するテストを書く" id="a大文字小文字を区別しないsearch関数用に失敗するテストを書く"><h3>大文字小文字を区別しない<code>search</code>関数用に失敗するテストを書く</h3></a>
+<a class="header" href="#a大文字小文字を区別しないsearch関数用に失敗するテストを書く" id="a大文字小文字を区別しないsearch関数用に失敗するテストを書く"><h3>大文字小文字を区別しない<code>search</code>関数用に失敗するテストを書く</h3></a>
 <!-- We want to add a new `search_case_insensitive` function that we’ll call when -->
 <!-- the environment variable is on. We’ll continue to follow the TDD process, so -->
 <!-- the first step is again to write a failing test. We’ll add a new test for the -->
@@ -238,7 +238,7 @@ Trust me.&quot;;
 <code>“Trust me.”</code>という行にもマッチするはずです。これが失敗するテストであり、まだ<code>search_case_insensitive</code>関数を定義していないので、
 コンパイルは失敗するでしょう。リスト12-16の<code>search</code>関数で行ったのと同様に空のベクタを常に返すような仮実装を追加し、テストがコンパイルされるものの、失敗する様をご自由に確認してください。</p>
 <!-- ### Implementing the `search_case_insensitive` Function -->
-<a class="header" href="ch12-05-working-with-environment-variables.html#search_case_insensitive関数を実装する" id="search_case_insensitive関数を実装する"><h3><code>search_case_insensitive</code>関数を実装する</h3></a>
+<a class="header" href="#search_case_insensitive関数を実装する" id="search_case_insensitive関数を実装する"><h3><code>search_case_insensitive</code>関数を実装する</h3></a>
 <!-- The `search_case_insensitive` function, shown in Listing 12-21, will be almost -->
 <!-- the same as the `search` function. The only difference is that we’ll lowercase -->
 <!-- the `query` and each `line` so whatever the case of the input arguments, -->

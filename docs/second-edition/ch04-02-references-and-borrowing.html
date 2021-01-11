@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## References and Borrowing -->
-<a class="header" href="ch04-02-references-and-borrowing.html#a参照と借用" id="a参照と借用"><h2>参照と借用</h2></a>
+<a class="header" href="#a参照と借用" id="a参照と借用"><h2>参照と借用</h2></a>
 <!-- The issue with the tuple code in Listing 4-5 is that we have to return the -->
 <!-- `String` to the calling function so we can still use the `String` after the -->
 <!-- call to `calculate_length`, because the `String` was moved into -->
@@ -273,7 +273,7 @@ fn change(some_string: &amp;String) {
 <!-- allowed to modify something we have a reference to. -->
 <p>変数が標準で不変なのと全く同様に、参照も不変なのです。参照している何かを変更することは叶わないわけです。</p>
 <!-- ### Mutable References -->
-<a class="header" href="ch04-02-references-and-borrowing.html#a可変な参照" id="a可変な参照"><h3>可変な参照</h3></a>
+<a class="header" href="#a可変な参照" id="a可変な参照"><h3>可変な参照</h3></a>
 <!-- We can fix the error in the code from Listing 4-6 with just a small tweak: -->
 <p>一捻り加えるだけでリスト4-6のコードのエラーは解決します:</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
@@ -411,7 +411,7 @@ immutable
 <p>これらのエラーは、時としてイライラするものではありますが、Rustコンパイラがバグの可能性を早期に指摘してくれ(それも実行時ではなくコンパイル時に)、
 問題の発生箇所をズバリ示してくれるのだと覚えておいてください。そうして想定通りにデータが変わらない理由を追いかける必要がなくなります。</p>
 <!-- ### Dangling References -->
-<a class="header" href="ch04-02-references-and-borrowing.html#a宙に浮いた参照" id="a宙に浮いた参照"><h3>宙に浮いた参照</h3></a>
+<a class="header" href="#a宙に浮いた参照" id="a宙に浮いた参照"><h3>宙に浮いた参照</h3></a>
 <!-- In languages with pointers, it’s easy to erroneously create a *dangling -->
 <!-- pointer*, a pointer that references a location in memory that may have been -->
 <!-- given to someone else, by freeing some memory while preserving a pointer to -->
@@ -505,7 +505,7 @@ fn no_dangle() -&gt; String {
 <!-- deallocated. -->
 <p>これは何の問題もなく動きます。所有権はムーブされ、何も解放されることはありません。</p>
 <!-- ### The Rules of References -->
-<a class="header" href="ch04-02-references-and-borrowing.html#a参照の規則" id="a参照の規則"><h3>参照の規則</h3></a>
+<a class="header" href="#a参照の規則" id="a参照の規則"><h3>参照の規則</h3></a>
 <!-- Let’s recap what we’ve discussed about references: -->
 <p>参照について議論したことを再確認しましょう:</p>
 <!-- * At any given time, you can have *either* one mutable reference *or* any -->

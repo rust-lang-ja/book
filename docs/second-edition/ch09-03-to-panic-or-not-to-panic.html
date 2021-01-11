@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## To `panic!` or Not to `panic!` -->
-<a class="header" href="ch09-03-to-panic-or-not-to-panic.html#panicすべきかするまいか" id="panicすべきかするまいか"><h2><code>panic!</code>すべきかするまいか</h2></a>
+<a class="header" href="#panicすべきかするまいか" id="panicすべきかするまいか"><h2><code>panic!</code>すべきかするまいか</h2></a>
 <!-- So how do you decide when you should `panic!` and when you should return -->
 <!-- `Result`? When code panics, there’s no way to recover. You could call `panic!` -->
 <!-- for any error situation, whether there’s a possible way to recover or not, but -->
@@ -172,7 +172,7 @@
 それからコンパイラではありえない失敗だと気づけなくとも、人間なら気づける場面を議論しましょう。
 そして、ライブラリコードでパニックするか決定する方法についての一般的なガイドラインで結論づけましょう。</p>
 <!-- ### Examples, Prototype Code, and Tests -->
-<a class="header" href="ch09-03-to-panic-or-not-to-panic.html#a例プロトタイプコードテスト" id="a例プロトタイプコードテスト"><h3>例、プロトタイプコード、テスト</h3></a>
+<a class="header" href="#a例プロトタイプコードテスト" id="a例プロトタイプコードテスト"><h3>例、プロトタイプコード、テスト</h3></a>
 <!-- When you’re writing an example to illustrate some concept, having robust -->
 <!-- error-handling code in the example as well can make the example less clear. In -->
 <!-- examples, it’s understood that a call to a method like `unwrap` that could -->
@@ -195,7 +195,7 @@
 テスト全体が失敗してほしいでしょう。<code>panic!</code>が、テストが失敗と印づけられる手段なので、
 <code>unwrap</code>や<code>expect</code>の呼び出しはスバリ起こるべきことです。</p>
 <!-- ### Cases in Which You Have More Information Than the Compiler -->
-<a class="header" href="ch09-03-to-panic-or-not-to-panic.html#aコンパイラよりもプログラマがより情報を持っている場合" id="aコンパイラよりもプログラマがより情報を持っている場合"><h3>コンパイラよりもプログラマがより情報を持っている場合</h3></a>
+<a class="header" href="#aコンパイラよりもプログラマがより情報を持っている場合" id="aコンパイラよりもプログラマがより情報を持っている場合"><h3>コンパイラよりもプログラマがより情報を持っている場合</h3></a>
 <!-- It would also be appropriate to call `unwrap` when you have some other logic -->
 <!-- that ensures the `Result` will have an `Ok` value, but the logic isn’t -->
 <!-- something the compiler understands. You’ll still have a `Result` value that you -->
@@ -234,7 +234,7 @@ let home: IpAddr = &quot;127.0.0.1&quot;.parse().unwrap();
 プログラムにハードコードされるのではなく、IPアドレス文字列がユーザ起源でそれ故に<em>確かに</em>失敗する可能性がある場合、
 <code>Result</code>をもっと頑健な方法で処理したほうが絶対にいいでしょう。</p>
 <!-- ### Guidelines for Error Handling -->
-<a class="header" href="ch09-03-to-panic-or-not-to-panic.html#aエラー処理のガイドライン" id="aエラー処理のガイドライン"><h3>エラー処理のガイドライン</h3></a>
+<a class="header" href="#aエラー処理のガイドライン" id="aエラー処理のガイドライン"><h3>エラー処理のガイドライン</h3></a>
 <!-- It’s advisable to have your code panic when it’s possible that your code -->
 <!-- could end up in a bad state. In this context, a *bad state* is when some -->
 <!-- assumption, guarantee, contract, or invariant has been broken, such as when -->
@@ -318,7 +318,7 @@ Rustの型システム(故にコンパイラが行う型精査)を使用して�
 コンパイルが通りもしませんので、その場合を実行時に検査する必要はないわけです。
 別の例は、<code>u32</code>のような符号なし整数を使うことであり、この場合、引数は負には絶対にならないことが確認されます。</p>
 <!-- ### Creating Custom Types for Validation -->
-<a class="header" href="ch09-03-to-panic-or-not-to-panic.html#a検証のために独自の型を作る" id="a検証のために独自の型を作る"><h3>検証のために独自の型を作る</h3></a>
+<a class="header" href="#a検証のために独自の型を作る" id="a検証のために独自の型を作る"><h3>検証のために独自の型を作る</h3></a>
 <!-- Let’s take the idea of using Rust’s type system to ensure we have a valid value -->
 <!-- one step further and look at creating a custom type for validation. Recall the -->
 <!-- guessing game in Chapter 2 in which our code asked the user to guess a number -->
@@ -458,7 +458,7 @@ impl Guess {
 <p>そうしたら、引数を一つ持つか、1から100の範囲の数値のみを返す関数は、シグニチャで<code>u32</code>ではなく、
 <code>Guess</code>を取るか返し、本体内で追加の確認を行う必要はなくなると宣言できるでしょう。</p>
 <!-- ## Summary -->
-<a class="header" href="ch09-03-to-panic-or-not-to-panic.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
+<a class="header" href="#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- Rust’s error handling features are designed to help you write more robust code. -->
 <!-- The `panic!` macro signals that your program is in a state it can’t handle and -->
 <!-- lets you tell the process to stop instead of trying to proceed with invalid or -->

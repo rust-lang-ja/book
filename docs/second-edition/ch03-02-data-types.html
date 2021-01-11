@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Data Types -->
-<a class="header" href="ch03-02-data-types.html#aデータ型" id="aデータ型"><h2>データ型</h2></a>
+<a class="header" href="#aデータ型" id="aデータ型"><h2>データ型</h2></a>
 <!-- Every value in Rust is of a certain *data type*, which tells Rust what kind of -->
 <!-- data is being specified so it knows how to work with that data. We'll look at -->
 <!-- two data type subsets: scalar and compound. -->
@@ -183,7 +183,7 @@ let guess: u32 = &quot;42&quot;.parse().expect(&quot;Not a number!&quot;);    //
 <!-- You’ll see different type annotations for other data types. -->
 <p>他のデータ型についても、様々な型注釈を目にすることになるでしょう。</p>
 <!-- ### Scalar Types -->
-<a class="header" href="ch03-02-data-types.html#aスカラー型" id="aスカラー型"><h3>スカラー型</h3></a>
+<a class="header" href="#aスカラー型" id="aスカラー型"><h3>スカラー型</h3></a>
 <!-- A *scalar* type represents a single value. Rust has four primary scalar types: -->
 <!-- integers, floating-point numbers, Booleans, and characters. You may recognize -->
 <!-- these from other programming languages. Let’s jump into how they work in Rust. -->
@@ -191,7 +191,7 @@ let guess: u32 = &quot;42&quot;.parse().expect(&quot;Not a number!&quot;);    //
 整数、浮動小数点数、論理値、最後に文字です。他のプログラミング言語でも、これらの型を見かけたことはあるでしょう。
 Rustでの動作方法に飛び込みましょう。</p>
 <!-- #### Integer Types -->
-<a class="header" href="ch03-02-data-types.html#a整数型" id="a整数型"><h4>整数型</h4></a>
+<a class="header" href="#a整数型" id="a整数型"><h4>整数型</h4></a>
 <!-- An *integer* is a number without a fractional component. We used one integer -->
 <!-- type in Chapter 2, the `u32` type. This type declaration indicates that the -->
 <!-- value it’s associated with should be an unsigned integer (signed integer types -->
@@ -280,7 +280,7 @@ Rustでの動作方法に飛び込みましょう。</p>
 Rustの基準型は一般的にいい選択肢になります。整数型の基準は<code>i32</code>型です: 64ビットシステム上でも、
 この型が普通最速になります。<code>isize</code>と<code>usize</code>を使う主な状況は、何らかのコレクションにアクセスすることです。</p>
 <!-- #### Floating-Point Types -->
-<a class="header" href="ch03-02-data-types.html#a浮動小数点型" id="a浮動小数点型"><h4>浮動小数点型</h4></a>
+<a class="header" href="#a浮動小数点型" id="a浮動小数点型"><h4>浮動小数点型</h4></a>
 <!-- Rust also has two primitive types for *floating-point numbers*, which are -->
 <!-- numbers with decimal points. Rust’s floating-point types are `f32` and `f64`, -->
 <!-- which are 32 bits and 64 bits in size, respectively. The default type is `f64` -->
@@ -304,7 +304,7 @@ Rustの浮動小数点型は、<code>f32</code>と<code>f64</code>で、それ�
 <p>浮動小数点数は、IEEE-754規格に従って表現されています。<code>f32</code>が単精度浮動小数点数、
 <code>f64</code>が倍精度浮動小数点数です。</p>
 <!-- #### Numeric Operations -->
-<a class="header" href="ch03-02-data-types.html#a数値演算" id="a数値演算"><h4>数値演算</h4></a>
+<a class="header" href="#a数値演算" id="a数値演算"><h4>数値演算</h4></a>
 <!-- Rust supports the usual basic mathematical operations you’d expect for all of the -->
 <!-- number types: addition, subtraction, multiplication, division, and remainder. -->
 <!-- The following code shows how you’d use each one in a `let` statement: -->
@@ -353,7 +353,7 @@ Rustの浮動小数点型は、<code>f32</code>と<code>f64</code>で、それ�
 <p>これらの文の各式は、数学演算子を使用しており、一つの値に評価され、そして、変数に束縛されます。
 付録BにRustで使える演算子の一覧が載っています。</p>
 <!-- #### The Boolean Type -->
-<a class="header" href="ch03-02-data-types.html#a論理値型" id="a論理値型"><h4>論理値型</h4></a>
+<a class="header" href="#a論理値型" id="a論理値型"><h4>論理値型</h4></a>
 <!-- As in most other programming languages, a boolean type in Rust has two possible -->
 <!-- values: `true` and `false`. The boolean type in Rust is specified using `bool`. -->
 <!-- For example: -->
@@ -380,7 +380,7 @@ Rustの論理値型は、<code>bool</code>と指定されます。
 <p>論理値を使う主な手段は、条件式です。例えば、<code>if</code>式などですね。<code>if</code>式のRustでの動作方法については、
 「制御フロー」節で講義します。</p>
 <!-- #### The Character Type -->
-<a class="header" href="ch03-02-data-types.html#a文字型" id="a文字型"><h4>文字型</h4></a>
+<a class="header" href="#a文字型" id="a文字型"><h4>文字型</h4></a>
 <!-- So far we’ve worked only with numbers, but Rust supports letters too. Rust’s -->
 <!-- `char` type is the language’s most primitive alphabetic type, and the following -->
 <!-- code shows one way to use it. (Note that the `char` type is specified with -->
@@ -410,13 +410,13 @@ Rustの論理値型は、<code>bool</code>と指定されます。
 ところが、「文字」は実はユニコードの概念ではないので、文字とは何かという人間としての直観は、
 Rustにおける<code>char</code>値が何かとは合致しない可能性があります。この話題については、第8章の「文字列」で詳しく議論しましょう。</p>
 <!-- ### Compound Types -->
-<a class="header" href="ch03-02-data-types.html#a複合型" id="a複合型"><h3>複合型</h3></a>
+<a class="header" href="#a複合型" id="a複合型"><h3>複合型</h3></a>
 <!-- *Compound types* can group multiple values into one type. Rust has two -->
 <!-- primitive compound types: tuples and arrays. -->
 <p><em>複合型</em>により、複数の値を一つの型にまとめることができます。Rustには、
 2種類の基本的な複合型があります: タプルと配列です。</p>
 <!-- #### The Tuple type -->
-<a class="header" href="ch03-02-data-types.html#aタプル型" id="aタプル型"><h4>タプル型</h4></a>
+<a class="header" href="#aタプル型" id="aタプル型"><h4>タプル型</h4></a>
 <!-- A tuple is a general way of grouping together some number of other values with -->
 <!-- a variety of types into one compound type. -->
 <p>タプルは、複数の型の何らかの値を一つの複合型にまとめ上げる一般的な手段です。</p>
@@ -479,7 +479,7 @@ Rustにおける<code>char</code>値が何かとは合致しない可能性が�
 <p>このプログラムは、新しいタプル<code>x</code>を作成し、添え字アクセスで各要素に対して新しい変数も作成しています。
 多くのプログラミング言語同様、タプルの最初の添え字は0です。</p>
 <!-- #### The Array Type -->
-<a class="header" href="ch03-02-data-types.html#a配列型" id="a配列型"><h4>配列型</h4></a>
+<a class="header" href="#a配列型" id="a配列型"><h4>配列型</h4></a>
 <!-- Another way to have a collection of multiple values is with an *array*. Unlike -->
 <!-- a tuple, every element of an array must have the same type. Arrays in Rust are -->
 <!-- different than arrays in some other languages because arrays in Rust have a -->
@@ -521,7 +521,7 @@ let months = [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quo
               &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;, &quot;December&quot;];
 #}</code></pre></pre>
 <!-- ##### Accessing Array Elements -->
-<a class="header" href="ch03-02-data-types.html#a配列の要素にアクセスする" id="a配列の要素にアクセスする"><h5>配列の要素にアクセスする</h5></a>
+<a class="header" href="#a配列の要素にアクセスする" id="a配列の要素にアクセスする"><h5>配列の要素にアクセスする</h5></a>
 <!-- An array is a single chunk of memory allocated on the stack. You can access -->
 <!-- elements of an array using indexing, like this: -->
 <p>配列は、スタック上に確保される一塊のメモリです。添え字によって、
@@ -541,7 +541,7 @@ let months = [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quo
 <p>この例では、<code>first</code>という名前の変数には<code>1</code>という値が格納されます。配列の<code>[0]</code>番目にある値が、
 それだからですね。<code>second</code>という名前の変数には、配列の<code>[1]</code>番目の値<code>2</code>が格納されます。</p>
 <!-- ##### Invalid Array Element Access -->
-<a class="header" href="ch03-02-data-types.html#a配列要素への無効なアクセス" id="a配列要素への無効なアクセス"><h5>配列要素への無効なアクセス</h5></a>
+<a class="header" href="#a配列要素への無効なアクセス" id="a配列要素への無効なアクセス"><h5>配列要素への無効なアクセス</h5></a>
 <!-- What happens if you try to access an element of an array that is past the end -->
 <!-- of the array? Say you change the example to the following code, which will -->
 <!-- compile but exit with an error when it runs: -->

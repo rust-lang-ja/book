@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Using `Box<T>` to Point to Data on the Heap -->
-<a class="header" href="ch15-01-box.html#aヒープのデータを指すboxtを使用する" id="aヒープのデータを指すboxtを使用する"><h2>ヒープのデータを指す<code>Box&lt;T&gt;</code>を使用する</h2></a>
+<a class="header" href="#aヒープのデータを指すboxtを使用する" id="aヒープのデータを指すboxtを使用する"><h2>ヒープのデータを指す<code>Box&lt;T&gt;</code>を使用する</h2></a>
 <!-- The most straightforward smart pointer is a *box*, whose type is written -->
 <!-- `Box<T>`. Boxes allow you to store data on the heap rather than the stack. What -->
 <!-- remains on the stack is the pointer to the heap data. Refer to Chapter 4 to -->
@@ -185,7 +185,7 @@
 すべてその話題を説明するためだけのものです。
 従って、ここで学ぶのと同じことが第17章においても適用するでしょう！</p>
 <!-- ### Using a `Box<T>` to Store Data on the Heap -->
-<a class="header" href="ch15-01-box.html#boxtを使ってヒープにデータを格納する" id="boxtを使ってヒープにデータを格納する"><h3><code>Box&lt;T&gt;</code>を使ってヒープにデータを格納する</h3></a>
+<a class="header" href="#boxtを使ってヒープにデータを格納する" id="boxtを使ってヒープにデータを格納する"><h3><code>Box&lt;T&gt;</code>を使ってヒープにデータを格納する</h3></a>
 <!-- Before we discuss this use case for `Box<T>`, we’ll cover the syntax and how to -->
 <!-- interact with values stored within a `Box<T>`. -->
 <p><code>Box&lt;T&gt;</code>のこのユースケースを議論する前に、<code>Box&lt;T&gt;</code>の記法と、<code>Box&lt;T&gt;</code>内に格納された値を読み書きする方法について講義しましょう。</p>
@@ -221,7 +221,7 @@
 単独の<code>i32</code>のような値は、既定で格納される場所であるスタックに置くことが、大多数の場合にはより適切です。
 ボックスがなかったら定義することの叶わない型をボックスが定義させてくれる場合を見ましょう。</p>
 <!-- ### Enabling Recursive Types with Boxes -->
-<a class="header" href="ch15-01-box.html#aボックスで再帰的な型を可能にする" id="aボックスで再帰的な型を可能にする"><h3>ボックスで再帰的な型を可能にする</h3></a>
+<a class="header" href="#aボックスで再帰的な型を可能にする" id="aボックスで再帰的な型を可能にする"><h3>ボックスで再帰的な型を可能にする</h3></a>
 <!-- At compile time, Rust needs to know how much space a type takes up. One type -->
 <!-- whose size can’t be known at compile time is a *recursive type*, where a value -->
 <!-- can have as part of itself another value of the same type. Because this nesting -->
@@ -241,7 +241,7 @@
 我々が定義するコンスリストは、再帰を除いて素直です; 故に、これから取り掛かる例の概念は、
 再帰的な型が関わるもっと複雑な場面に遭遇したら必ず役に立つでしょう。</p>
 <!-- #### More Information About the Cons List -->
-<a class="header" href="ch15-01-box.html#aコンスリストについてもっと詳しく" id="aコンスリストについてもっと詳しく"><h4>コンスリストについてもっと詳しく</h4></a>
+<a class="header" href="#aコンスリストについてもっと詳しく" id="aコンスリストについてもっと詳しく"><h4>コンスリストについてもっと詳しく</h4></a>
 <!-- A *cons list* is a data structure that comes from the Lisp programming language -->
 <!-- and its dialects. In Lisp, the `cons` function (short for “construct function”) -->
 <!-- constructs a new pair from its two arguments, which usually are a single value -->
@@ -350,7 +350,7 @@ fn main() {
 自身の別の値を直接保持しているのです。結果として、コンパイラは、<code>List</code>値を格納するのに必要な領域が計算できないのです。
 このエラーが得られた理由を少し噛み砕きましょう。まず、非再帰的な型の値を格納するのに必要な領域をどうコンパイラが決定しているかを見ましょう。</p>
 <!-- #### Computing the Size of a Non-Recursive Type -->
-<a class="header" href="ch15-01-box.html#a非再帰的な型のサイズを計算する" id="a非再帰的な型のサイズを計算する"><h4>非再帰的な型のサイズを計算する</h4></a>
+<a class="header" href="#a非再帰的な型のサイズを計算する" id="a非再帰的な型のサイズを計算する"><h4>非再帰的な型のサイズを計算する</h4></a>
 <!-- Recall the `Message` enum we defined in Listing 6-2 when we discussed enum -->
 <!-- definitions in Chapter 6: -->
 <p>第6章でenum定義を議論した時にリスト6-2で定義した<code>Message</code> enumを思い出してください:</p>
@@ -394,7 +394,7 @@ enum Message {
 <!-- `Cons` variants</span> -->
 <p><span class="caption">図15-1: 無限の<code>Cons</code>列挙子からなる無限の<code>List</code></span></p>
 <!-- #### Using `Box<T>` to Get a Recursive Type with a Known Size -->
-<a class="header" href="ch15-01-box.html#boxtで既知のサイズの再帰的な型を得る" id="boxtで既知のサイズの再帰的な型を得る"><h4><code>Box&lt;T&gt;</code>で既知のサイズの再帰的な型を得る</h4></a>
+<a class="header" href="#boxtで既知のサイズの再帰的な型を得る" id="boxtで既知のサイズの再帰的な型を得る"><h4><code>Box&lt;T&gt;</code>で既知のサイズの再帰的な型を得る</h4></a>
 <!-- Rust can’t figure out how much space to allocate for recursively defined types, -->
 <!-- so the compiler gives the error in Listing 15-4. But the error does include -->
 <!-- this helpful suggestion: -->

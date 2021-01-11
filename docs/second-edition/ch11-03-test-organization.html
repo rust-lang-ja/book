@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Test Organization -->
-<a class="header" href="ch11-03-test-organization.html#aテストの体系化" id="aテストの体系化"><h2>テストの体系化</h2></a>
+<a class="header" href="#aテストの体系化" id="aテストの体系化"><h2>テストの体系化</h2></a>
 <!-- As mentioned at the start of the chapter, testing is a complex discipline, and -->
 <!-- different people use different terminology and organization. The Rust community -->
 <!-- thinks about tests in terms of two main categories: *unit tests* and -->
@@ -160,7 +160,7 @@ Rustのコミュニティでは、テストを2つの大きなカテゴリで捉
 <!-- library are doing what you expect them to, separately and together. -->
 <p>どちらのテストを書くのも、ライブラリの一部が個別かつ共同でしてほしいことをしていることを確認するのに重要なのです。</p>
 <!-- ### Unit Tests -->
-<a class="header" href="ch11-03-test-organization.html#a単体テスト" id="a単体テスト"><h3>単体テスト</h3></a>
+<a class="header" href="#a単体テスト" id="a単体テスト"><h3>単体テスト</h3></a>
 <!-- The purpose of unit tests is to test each unit of code in isolation from the -->
 <!-- rest of the code to quickly pinpoint where code is and isn’t working as -->
 <!-- expected. We put unit tests in the *src* directory in each file with the -->
@@ -173,7 +173,7 @@ Rustのコミュニティでは、テストを2つの大きなカテゴリで捉
 慣習は、各ファイルに<code>tests</code>という名前のモジュールを作り、テスト関数を含ませ、
 そのモジュールを<code>cfg(test)</code>で注釈することです。</p>
 <!-- #### The Tests Module and `#[cfg(test)]` -->
-<a class="header" href="ch11-03-test-organization.html#aテストモジュールとcfgtest" id="aテストモジュールとcfgtest"><h4>テストモジュールと<code>#[cfg(test)]</code></h4></a>
+<a class="header" href="#aテストモジュールとcfgtest" id="aテストモジュールとcfgtest"><h4>テストモジュールと<code>#[cfg(test)]</code></h4></a>
 <!-- The `#[cfg(test)]` annotation on the tests module tells Rust to compile and run -->
 <!-- the test code only when we run `cargo test`, but not when we run `cargo build`. -->
 <!-- This saves compile time when we only want to build the library and saves space -->
@@ -218,7 +218,7 @@ mod tests {
 Cargoがテストコードをコンパイルします。これには、このモジュールに含まれるかもしれないヘルパー関数全ても含まれ、
 <code>#[test]</code>で注釈された関数だけにはなりません。</p>
 <!-- #### Testing Private Functions -->
-<a class="header" href="ch11-03-test-organization.html#a非公開関数をテストする" id="a非公開関数をテストする"><h4>非公開関数をテストする</h4></a>
+<a class="header" href="#a非公開関数をテストする" id="a非公開関数をテストする"><h4>非公開関数をテストする</h4></a>
 <!-- There’s debate within the testing community about whether or not private -->
 <!-- functions should be tested directly, and other languages make it difficult or -->
 <!-- impossible to test private functions. Regardless of which testing ideology you -->
@@ -262,7 +262,7 @@ mod tests {
 <code>tests</code>モジュールもただのモジュールでしかないので、テスト内で<code>internal_adder</code>を普通にインポートし呼び出すことができます。
 非公開関数はテストするべきではないとお考えなら、Rustにはそれを強制するものは何もありません。</p>
 <!-- ### Integration Tests -->
-<a class="header" href="ch11-03-test-organization.html#a結合テスト" id="a結合テスト"><h3>結合テスト</h3></a>
+<a class="header" href="#a結合テスト" id="a結合テスト"><h3>結合テスト</h3></a>
 <!-- In Rust, integration tests are entirely external to your library. They use your -->
 <!-- library in the same way any other code would, which means they can only call -->
 <!-- functions that are part of your library’s public API. Their purpose is to test -->
@@ -277,7 +277,7 @@ mod tests {
 結合したコードのテストの範囲も同様に重要になるのです。結合テストを作成するには、
 まず<em>tests</em>ディレクトリが必要になります。</p>
 <!-- #### The *tests* Directory -->
-<a class="header" href="ch11-03-test-organization.html#testsディレクトリ" id="testsディレクトリ"><h4><em>tests</em>ディレクトリ</h4></a>
+<a class="header" href="#testsディレクトリ" id="testsディレクトリ"><h4><em>tests</em>ディレクトリ</h4></a>
 <!-- We create a *tests* directory at the top level of our project directory, next -->
 <!-- to *src*. Cargo knows to look for integration test files in this directory. We -->
 <!-- can then make as many test files as we want to in this directory, and Cargo -->
@@ -383,7 +383,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 <!-- This command runs only the tests in the *tests/integration_test.rs* file. -->
 <p>このコマンドは、<em>tests/integration_test.rs</em>ファイルにあるテストのみを実行します。</p>
 <!-- #### Submodules in Integration Tests -->
-<a class="header" href="ch11-03-test-organization.html#a結合テスト内のサブモジュール" id="a結合テスト内のサブモジュール"><h4>結合テスト内のサブモジュール</h4></a>
+<a class="header" href="#a結合テスト内のサブモジュール" id="a結合テスト内のサブモジュール"><h4>結合テスト内のサブモジュール</h4></a>
 <!-- As you add more integration tests, you might want to make more than one file in -->
 <!-- the *tests* directory to help organize them; for example, you can group the -->
 <!-- test functions by the functionality they’re testing. As mentioned earlier, each -->
@@ -496,7 +496,7 @@ fn it_adds_two() {
 <p><code>mod common;</code>という宣言は、リスト7-4で模擬したモジュール宣言と同じであることに注意してください。
 それから、テスト関数内で<code>common::setup()</code>関数を呼び出すことができます。</p>
 <!-- #### Integration Tests for Binary Crates -->
-<a class="header" href="ch11-03-test-organization.html#aバイナリクレート用の結合テスト" id="aバイナリクレート用の結合テスト"><h4>バイナリクレート用の結合テスト</h4></a>
+<a class="header" href="#aバイナリクレート用の結合テスト" id="aバイナリクレート用の結合テスト"><h4>バイナリクレート用の結合テスト</h4></a>
 <!-- If our project is a binary crate that only contains a *src/main.rs* file and -->
 <!-- doesn’t have a *src/lib.rs* file, we can’t create integration tests in the -->
 <!-- *tests* directory and use `extern crate` to import functions defined in the -->
@@ -519,7 +519,7 @@ fn it_adds_two() {
 この構造を使用して結合テストは、<code>extern crate</code>を使用して重要な機能を用いることでライブラリクレートをテストすることが<em>できます</em>。
 この重要な機能が動作すれば、<em>src/main.rs</em>ファイルの少量のコードも動作し、その少量のコードはテストする必要がないわけです。</p>
 <!-- ## Summary -->
-<a class="header" href="ch11-03-test-organization.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
+<a class="header" href="#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- Rust’s testing features provide a way to specify how code should function to -->
 <!-- ensure it continues to work as we expect, even as we make changes. Unit tests -->
 <!-- exercise different parts of a library separately and can test private -->

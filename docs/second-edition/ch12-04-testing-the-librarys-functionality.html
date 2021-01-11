@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Developing the Library’s Functionality with Test Driven Development -->
-<a class="header" href="ch12-04-testing-the-librarys-functionality.html#aテスト駆動開発でライブラリの機能を開発する" id="aテスト駆動開発でライブラリの機能を開発する"><h2>テスト駆動開発でライブラリの機能を開発する</h2></a>
+<a class="header" href="#aテスト駆動開発でライブラリの機能を開発する" id="aテスト駆動開発でライブラリの機能を開発する"><h2>テスト駆動開発でライブラリの機能を開発する</h2></a>
 <!-- Now that we’ve extracted the logic into *src/lib.rs* and left the argument -->
 <!-- collecting and error handling in *src/main.rs*, it’s much easier to write tests -->
 <!-- for the core functionality of our code. We can call functions directly with -->
@@ -182,7 +182,7 @@
 <p>実際にクエリ文字列の検索を行う機能の実装をテスト駆動し、クエリに合致する行のリストを生成します。
 この機能を<code>search</code>という関数に追加しましょう。</p>
 <!-- ### Writing a Failing Test -->
-<a class="header" href="ch12-04-testing-the-librarys-functionality.html#a失敗するテストを記述する" id="a失敗するテストを記述する"><h3>失敗するテストを記述する</h3></a>
+<a class="header" href="#a失敗するテストを記述する" id="a失敗するテストを記述する"><h3>失敗するテストを記述する</h3></a>
 <!-- Because we don’t need them anymore, let’s remove the `println!` statements from -->
 <!-- *src/lib.rs* and *src/main.rs* that we used to check the program’s behavior. -->
 <!-- Then, in *src/lib.rs*, we’ll add a `test` module with a test function, as we -->
@@ -338,7 +338,7 @@ error: test failed, to rerun pass '--lib'
 <!-- Great, the test fails, exactly as we expected. Let’s get the test to pass! -->
 <p>素晴らしい。テストは全く想定通りに失敗しています。テストが通るようにしましょう！</p>
 <!-- ### Writing Code to Pass the Test -->
-<a class="header" href="ch12-04-testing-the-librarys-functionality.html#aテストを通過させるコードを書く" id="aテストを通過させるコードを書く"><h3>テストを通過させるコードを書く</h3></a>
+<a class="header" href="#aテストを通過させるコードを書く" id="aテストを通過させるコードを書く"><h3>テストを通過させるコードを書く</h3></a>
 <!-- Currently, our test is failing because we always return an empty vector. To fix -->
 <!-- that and implement `search`, our program needs to follow these steps: -->
 <p>空のベクタを常に返しているために、現状テストは失敗しています。それを修正し、<code>search</code>を実装するには、
@@ -358,7 +358,7 @@ error: test failed, to rerun pass '--lib'
 <!-- Let’s work through each step, starting with iterating through lines. -->
 <p>各行を繰り返す作業から、この手順に順に取り掛かりましょう。</p>
 <!-- #### Iterating Through Lines with the `lines` Method -->
-<a class="header" href="ch12-04-testing-the-librarys-functionality.html#linesメソッドで各行を繰り返す" id="linesメソッドで各行を繰り返す"><h4><code>lines</code>メソッドで各行を繰り返す</h4></a>
+<a class="header" href="#linesメソッドで各行を繰り返す" id="linesメソッドで各行を繰り返す"><h4><code>lines</code>メソッドで各行を繰り返す</h4></a>
 <!-- Rust has a helpful method to handle line-by-line iteration of strings, -->
 <!-- conveniently named `lines`, that works as shown in Listing 12-17. Note this -->
 <!-- won’t compile yet. -->
@@ -384,7 +384,7 @@ error: test failed, to rerun pass '--lib'
 リスト3-5でこのようなイテレータの使用法は見かけたことを思い出してください。
 そこでは、イテレータに<code>for</code>ループを使用してコレクションの各要素に対して何らかのコードを走らせていました。</p>
 <!-- #### Searching Each Line for the Query -->
-<a class="header" href="ch12-04-testing-the-librarys-functionality.html#aクエリを求めて各行を検索する" id="aクエリを求めて各行を検索する"><h4>クエリを求めて各行を検索する</h4></a>
+<a class="header" href="#aクエリを求めて各行を検索する" id="aクエリを求めて各行を検索する"><h4>クエリを求めて各行を検索する</h4></a>
 <!-- Next, we’ll check whether the current line contains our query string. -->
 <!-- Fortunately, strings have a helpful method named `contains` that does this for -->
 <!-- us! Add a call to the `contains` method in the `search` function, as shown in -->
@@ -407,7 +407,7 @@ error: test failed, to rerun pass '--lib'
 <!-- line contains the string in `query`</span> -->
 <p><span class="caption">リスト12-18: 行が<code>query</code>の文字列を含むか確認する機能を追加する</span></p>
 <!-- #### Storing Matching Lines -->
-<a class="header" href="ch12-04-testing-the-librarys-functionality.html#a合致した行を保存する" id="a合致した行を保存する"><h4>合致した行を保存する</h4></a>
+<a class="header" href="#a合致した行を保存する" id="a合致した行を保存する"><h4>合致した行を保存する</h4></a>
 <!-- We also need a way to store the lines that contain our query string. For that, -->
 <!-- we can make a mutable vector before the `for` loop and call the `push` method -->
 <!-- to store a `line` in the vector. After the `for` loop, we return the vector, as -->
@@ -455,7 +455,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 検索関数のコードは悪すぎるわけではありませんが、イテレータの有用な機能の一部を活用していません。
 この例には第13章で再度触れ、そこでは、イテレータをより深く探究し、さらに改善する方法に目を向けます。</p>
 <!-- #### Using the `search` Function in the `run` Function -->
-<a class="header" href="ch12-04-testing-the-librarys-functionality.html#run関数内でsearch関数を使用する" id="run関数内でsearch関数を使用する"><h4><code>run</code>関数内で<code>search</code>関数を使用する</h4></a>
+<a class="header" href="#run関数内でsearch関数を使用する" id="run関数内でsearch関数を使用する"><h4><code>run</code>関数内で<code>search</code>関数を使用する</h4></a>
 <!-- Now that the `search` function is working and tested, we need to call `search` -->
 <!-- from our `run` function. We need to pass the `config.query` value and the -->
 <!-- `contents` that `run` reads from the file to the `search` function. Then `run` -->

@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## `Rc<T>`, the Reference Counted Smart Pointer -->
-<a class="header" href="ch15-04-rc.html#rctは参照カウント方式のスマートポインタ" id="rctは参照カウント方式のスマートポインタ"><h2><code>Rc&lt;T&gt;</code>は、参照カウント方式のスマートポインタ</h2></a>
+<a class="header" href="#rctは参照カウント方式のスマートポインタ" id="rctは参照カウント方式のスマートポインタ"><h2><code>Rc&lt;T&gt;</code>は、参照カウント方式のスマートポインタ</h2></a>
 <!-- In the majority of cases, ownership is clear: you know exactly which variable -->
 <!-- owns a given value. However, there are cases when a single value might have -->
 <!-- multiple owners. For example, in graph data structures, multiple edges might -->
@@ -185,7 +185,7 @@
 <p><code>Rc&lt;T&gt;</code>は、シングルスレッドの筋書きで使用するためだけのものであることに注意してください。
 第16章で並行性について議論する時に、マルチスレッドプログラムで参照カウントをする方法を講義します。</p>
 <!-- ### Using `Rc<T>` to Share Data -->
-<a class="header" href="ch15-04-rc.html#rctでデータを共有する" id="rctでデータを共有する"><h3><code>Rc&lt;T&gt;</code>でデータを共有する</h3></a>
+<a class="header" href="#rctでデータを共有する" id="rctでデータを共有する"><h3><code>Rc&lt;T&gt;</code>でデータを共有する</h3></a>
 <!-- Let’s return to our cons list example in Listing 15-5. Recall that we defined -->
 <!-- it using `Box<T>`. This time, we’ll create two lists that both share ownership -->
 <!-- of a third list. Conceptually, this looks similar to Figure 15-3: -->
@@ -318,7 +318,7 @@ fn main() {
 視覚的にディープコピーをする類のクローンと参照カウントを増やす種類のクローンを区別することができます。
 コード内でパフォーマンスの問題を探す際、ディープコピーのクローンだけを考慮し、<code>Rc::clone</code>の呼び出しを無視できるのです。</p>
 <!-- ### Cloning an `Rc<T>` Increases the Reference Count -->
-<a class="header" href="ch15-04-rc.html#rctをクローンすると参照カウントが増える" id="rctをクローンすると参照カウントが増える"><h3><code>Rc&lt;T&gt;</code>をクローンすると、参照カウントが増える</h3></a>
+<a class="header" href="#rctをクローンすると参照カウントが増える" id="rctをクローンすると参照カウントが増える"><h3><code>Rc&lt;T&gt;</code>をクローンすると、参照カウントが増える</h3></a>
 <!-- Let’s change our working example in Listing 15-18 so we can see the reference -->
 <!-- counts changing as we create and drop references to the `Rc<List>` in `a`. -->
 <p><code>a</code>の<code>Rc&lt;List&gt;</code>への参照を作ったりドロップする毎に参照カウントが変化するのが確かめられるように、

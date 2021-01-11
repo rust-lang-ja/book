@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Generic Data Types -->
-<a class="header" href="ch10-01-syntax.html#aジェネリックなデータ型" id="aジェネリックなデータ型"><h2>ジェネリックなデータ型</h2></a>
+<a class="header" href="#aジェネリックなデータ型" id="aジェネリックなデータ型"><h2>ジェネリックなデータ型</h2></a>
 <!-- We can use generics to create definitions for items like function signatures or -->
 <!-- structs, which we can then use with many different concrete data types. Let’s -->
 <!-- first look at how to define functions, structs, enums, and methods using -->
@@ -152,7 +152,7 @@
 ジェネリクスで関数、構造体、enum、メソッドを定義する方法を見ましょう。それから、
 ジェネリクスがコードのパフォーマンスに与える影響を議論します。</p>
 <!-- ### In Function Definitions -->
-<a class="header" href="ch10-01-syntax.html#a関数定義では" id="a関数定義では"><h3>関数定義では</h3></a>
+<a class="header" href="#a関数定義では" id="a関数定義では"><h3>関数定義では</h3></a>
 <!-- When defining a function that uses generics, we place the generics in the -->
 <!-- signature of the function where we would usually specify the data types of the -->
 <!-- parameters and return value. Doing so makes our code more flexible and provides -->
@@ -304,7 +304,7 @@ fn main() {
 ジェネリックな型が特定のトレイトを持つと指定する方法は「トレイト境界」節で習うでしょうが、
 先にジェネリックな型引数を使用する他の方法を探究しましょう。</p>
 <!-- ### In Struct Definitions -->
-<a class="header" href="ch10-01-syntax.html#a構造体定義では" id="a構造体定義では"><h3>構造体定義では</h3></a>
+<a class="header" href="#a構造体定義では" id="a構造体定義では"><h3>構造体定義では</h3></a>
 <!-- We can also define structs to use a generic type parameter in one or more -->
 <!-- fields using the `<>` syntax. Listing 10-6 shows how to define a `Point<T>` -->
 <!-- struct to hold `x` and `y` coordinate values of any type. -->
@@ -401,7 +401,7 @@ fn main() {
 数個以上使用すると、コードが読みづらくなります。コードで多くのジェネリックな型が必要な時は、
 コードの小分けが必要なサインかもしれません。</p>
 <!-- ### In Enum Definitions -->
-<a class="header" href="ch10-01-syntax.html#enum定義では" id="enum定義では"><h3>enum定義では</h3></a>
+<a class="header" href="#enum定義では" id="enum定義では"><h3>enum定義では</h3></a>
 <!-- As we did with structs, we can define enums to hold generic data types in their -->
 <!-- variants. Let’s take another look at the `Option<T>` enum that the standard -->
 <!-- library provides, which we used in Chapter 6: -->
@@ -455,7 +455,7 @@ enum Result&lt;T, E&gt; {
 <p>自分のコード内で、保持している値の型のみが異なる構造体やenum定義の場面を認識したら、
 代わりにジェネリックな型を使用することで重複を避けることができます。</p>
 <!-- ### In Method Definitions -->
-<a class="header" href="ch10-01-syntax.html#aメソッド定義では" id="aメソッド定義では"><h3>メソッド定義では</h3></a>
+<a class="header" href="#aメソッド定義では" id="aメソッド定義では"><h3>メソッド定義では</h3></a>
 <!-- We can implement methods on structs and enums (as we did in Chapter 5) and use -->
 <!-- generic types in their definitions, too. Listing 10-9 shows the `Point<T>` -->
 <!-- struct we defined in Listing 10-6 with a method named `x` implemented on it. -->
@@ -585,7 +585,7 @@ fn main() {
 ここで、ジェネリックな引数<code>T</code>と<code>U</code>は<code>impl</code>の後に宣言されています。構造体定義にはまるからです。
 ジェネリックな引数<code>V</code>と<code>W</code>は<code>fn mixup</code>の後に宣言されています。何故なら、このメソッドにしか関係ないからです。</p>
 <!-- ### Performance of Code Using Generics -->
-<a class="header" href="ch10-01-syntax.html#aジェネリクスを使用したコードのパフォーマンス" id="aジェネリクスを使用したコードのパフォーマンス"><h3>ジェネリクスを使用したコードのパフォーマンス</h3></a>
+<a class="header" href="#aジェネリクスを使用したコードのパフォーマンス" id="aジェネリクスを使用したコードのパフォーマンス"><h3>ジェネリクスを使用したコードのパフォーマンス</h3></a>
 <!-- You might be wondering whether there is a runtime cost when you’re using -->
 <!-- generic type parameters. The good news is that Rust implements generics in such -->
 <!-- a way that your code doesn’t run any slower using generic types than it would -->

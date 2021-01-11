@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Writing Error Messages to Standard Error Instead of Standard Output -->
-<a class="header" href="ch12-06-writing-to-stderr-instead-of-stdout.html#a標準出力ではなく標準エラーにエラーメッセージを書き込む" id="a標準出力ではなく標準エラーにエラーメッセージを書き込む"><h2>標準出力ではなく標準エラーにエラーメッセージを書き込む</h2></a>
+<a class="header" href="#a標準出力ではなく標準エラーにエラーメッセージを書き込む" id="a標準出力ではなく標準エラーにエラーメッセージを書き込む"><h2>標準出力ではなく標準エラーにエラーメッセージを書き込む</h2></a>
 <!-- At the moment we’re writing all of our output to the terminal using the -->
 <!-- `println!` function. Most terminals provide two kinds of output: *standard -->
 <!-- output* (`stdout`) for general information and *standard error* (`stderr`) -->
@@ -157,7 +157,7 @@
 <!-- have to use something else to print to standard error. -->
 <p><code>println!</code>関数は、標準出力に出力する能力しかないので、標準エラーに出力するには他のものを使用しなければなりません。</p>
 <!-- ### Checking Where Errors Are Written to -->
-<a class="header" href="ch12-06-writing-to-stderr-instead-of-stdout.html#aエラーが書き込まれる場所を確認する" id="aエラーが書き込まれる場所を確認する"><h3>エラーが書き込まれる場所を確認する</h3></a>
+<a class="header" href="#aエラーが書き込まれる場所を確認する" id="aエラーが書き込まれる場所を確認する"><h3>エラーが書き込まれる場所を確認する</h3></a>
 <!-- First, let’s observe how the content printed by `minigrep` is currently being -->
 <!-- written to standard output, including any error messages we want to write to -->
 <!-- standard error instead. We’ll do that by redirecting the standard output stream -->
@@ -198,7 +198,7 @@
 <p>そうです。エラーメッセージは標準出力に出力されているのです。このようなエラーメッセージは標準エラーに出力され、
 成功した状態のデータのみがファイルに残ると遥かに有用です。それを変更します。</p>
 <!-- ### Printing Errors to Standard Error -->
-<a class="header" href="ch12-06-writing-to-stderr-instead-of-stdout.html#aエラーを標準エラーに出力する" id="aエラーを標準エラーに出力する"><h3>エラーを標準エラーに出力する</h3></a>
+<a class="header" href="#aエラーを標準エラーに出力する" id="aエラーを標準エラーに出力する"><h3>エラーを標準エラーに出力する</h3></a>
 <!-- We’ll use the code in Listing 12-24 to change how error messages are printed. -->
 <!-- Because of the refactoring we did earlier in this chapter, all the code that -->
 <!-- prints error messages is in one function, `main`. The standard library provides -->
@@ -256,7 +256,7 @@ How dreary to be somebody!
 <!-- and standard error for error output as appropriate. -->
 <p>これは、もう成功した出力には標準出力を、エラー出力には標準エラーを適切に使用していることをデモしています。</p>
 <!-- ## Summary -->
-<a class="header" href="ch12-06-writing-to-stderr-instead-of-stdout.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
+<a class="header" href="#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- This chapter recapped some of the major concepts you’ve learned so far and -->
 <!-- covered how to perform common I/O operations in Rust. By using command line -->
 <!-- arguments, files, environment variables, and the `eprintln!` macro for printing -->

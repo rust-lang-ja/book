@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## `mod` and the Filesystem -->
-<a class="header" href="ch07-01-mod-and-the-filesystem.html#modとファイルシステム" id="modとファイルシステム"><h2><code>mod</code>とファイルシステム</h2></a>
+<a class="header" href="#modとファイルシステム" id="modとファイルシステム"><h2><code>mod</code>とファイルシステム</h2></a>
 <!-- We’ll start our module example by making a new project with Cargo, but instead -->
 <!-- of creating a binary crate, we’ll make a library crate: a project that other -->
 <!-- people can pull into their projects as a dependency. For example, the `rand` -->
@@ -197,7 +197,7 @@ mod tests {
 <!-- suitable in a variety of situations, depending on the intent of the code. -->
 <p>コードの意図によって、いろんなシチュエーションで最適になるライブラリコードを体系化する別のオプションをお目にかけます。</p>
 <!-- ### Module Definitions -->
-<a class="header" href="ch07-01-mod-and-the-filesystem.html#aモジュール定義" id="aモジュール定義"><h3>モジュール定義</h3></a>
+<a class="header" href="#aモジュール定義" id="aモジュール定義"><h3>モジュール定義</h3></a>
 <!-- For our `communicator` networking library, we’ll first define a module named -->
 <!-- `network` that contains the definition of a function called `connect`. Every -->
 <!-- module definition in Rust starts with the `mod` keyword. Add this code to the -->
@@ -329,7 +329,7 @@ mod network {
 こちらで示したテクニックを使用して、並列したモジュールや、ネストしたモジュールなど、どんな構造のモジュールでも、
 作成してください。</p>
 <!-- ### Moving Modules to Other Files -->
-<a class="header" href="ch07-01-mod-and-the-filesystem.html#aモジュールを別ファイルに移す" id="aモジュールを別ファイルに移す"><h3>モジュールを別ファイルに移す</h3></a>
+<a class="header" href="#aモジュールを別ファイルに移す" id="aモジュールを別ファイルに移す"><h3>モジュールを別ファイルに移す</h3></a>
 <!-- Modules form a hierarchical structure, much like another structure in computing -->
 <!-- that you’re used to: filesystems! We can use Rust’s module system along with -->
 <!-- multiple files to split up Rust projects so not everything lives in -->
@@ -664,7 +664,7 @@ $ mv src/server.rs src/network
 <code>network::client</code>というサブモジュールは専用の<code>src/network/client.rs</code>ファイルを持てるわけです。
 これで、頂点にある<em>src/client.rs</em>は間違いなく、<code>client</code>モジュールに属するコードになるわけです。</p>
 <!-- ### Rules of Module Filesystems -->
-<a class="header" href="ch07-01-mod-and-the-filesystem.html#aモジュールファイルシステムの規則" id="aモジュールファイルシステムの規則"><h3>モジュールファイルシステムの規則</h3></a>
+<a class="header" href="#aモジュールファイルシステムの規則" id="aモジュールファイルシステムの規則"><h3>モジュールファイルシステムの規則</h3></a>
 <!-- Let’s summarize the rules of modules with regard to files: -->
 <p>ファイルに関するモジュール規則をまとめましょう:</p>
 <!-- * If a module named `foo` has no submodules, you should put the declarations -->

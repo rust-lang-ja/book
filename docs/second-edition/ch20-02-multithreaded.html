@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Turning Our Single-Threaded Server into a Multithreaded Server -->
-<a class="header" href="ch20-02-multithreaded.html#aシングルスレッドサーバをマルチスレッド化する" id="aシングルスレッドサーバをマルチスレッド化する"><h2>シングルスレッドサーバをマルチスレッド化する</h2></a>
+<a class="header" href="#aシングルスレッドサーバをマルチスレッド化する" id="aシングルスレッドサーバをマルチスレッド化する"><h2>シングルスレッドサーバをマルチスレッド化する</h2></a>
 <!-- Right now, the server will process each request in turn, meaning it won’t -->
 <!-- process a second connection until the first is finished processing. If the -->
 <!-- server received more and more requests, this serial execution would be less and -->
@@ -156,7 +156,7 @@
 続くリクエストは長いリクエストが完了するまで待たなければならなくなるでしょう。これを修正する必要がありますが、
 まずは、実際に問題が起こっているところを見ます。</p>
 <!-- ### Simulating a Slow Request in the Current Server Implementation -->
-<a class="header" href="ch20-02-multithreaded.html#a現在のサーバの実装で遅いリクエストをシミュレーションする" id="a現在のサーバの実装で遅いリクエストをシミュレーションする"><h3>現在のサーバの実装で遅いリクエストをシミュレーションする</h3></a>
+<a class="header" href="#a現在のサーバの実装で遅いリクエストをシミュレーションする" id="a現在のサーバの実装で遅いリクエストをシミュレーションする"><h3>現在のサーバの実装で遅いリクエストをシミュレーションする</h3></a>
 <!-- We’ll look at how a slow-processing request can affect other requests made to -->
 <!-- our current server implementation. Listing 20-10 implements handling a request -->
 <!-- to */sleep* with a simulated slow response that will cause the server to sleep -->
@@ -224,7 +224,7 @@ fn handle_connection(mut stream: TcpStream) {
 <p>より多くのリクエストが遅いリクエストの背後に回ってしまうのを回避するようWebサーバが動く方法を変える方法は複数あります;
 これから実装するのは、スレッドプールです。</p>
 <!-- ### Improving Throughput with a Thread Pool -->
-<a class="header" href="ch20-02-multithreaded.html#aスレッドプールでスループットを向上させる" id="aスレッドプールでスループットを向上させる"><h3>スレッドプールでスループットを向上させる</h3></a>
+<a class="header" href="#aスレッドプールでスループットを向上させる" id="aスレッドプールでスループットを向上させる"><h3>スレッドプールでスループットを向上させる</h3></a>
 <!-- A *thread pool* is a group of spawned threads that are waiting and ready to -->
 <!-- handle a task. When the program receives a new task, it assigns one of the -->
 <!-- threads in the pool to the task, and that thread will process the task. The -->
@@ -285,7 +285,7 @@ Rustで実装を試みることができます; Rustのような低レベル言�
 <p>第12章のプロジェクトでTDDを使用したように、ここではCompiler Driven Development(コンパイラ駆動開発)を使用します。
 欲しい関数を呼び出すコードを書き、それからコンパイラの出すエラーを見てコードが動くように次に何を変更すべきかを決定します。</p>
 <!-- #### Code Structure If We Could Spawn a Thread for Each Request -->
-<a class="header" href="ch20-02-multithreaded.html#a各リクエストに対してスレッドを立ち上げられる場合のコードの構造" id="a各リクエストに対してスレッドを立ち上げられる場合のコードの構造"><h4>各リクエストに対してスレッドを立ち上げられる場合のコードの構造</h4></a>
+<a class="header" href="#a各リクエストに対してスレッドを立ち上げられる場合のコードの構造" id="a各リクエストに対してスレッドを立ち上げられる場合のコードの構造"><h4>各リクエストに対してスレッドを立ち上げられる場合のコードの構造</h4></a>
 <!-- First, let’s explore how our code might look if it did create a new thread for -->
 <!-- every connection. As mentioned earlier, this isn’t our final plan due to the -->
 <!-- problems with potentially spawning an unlimited number of threads, but it is a -->
@@ -328,7 +328,7 @@ fn main() {
 確かに <em>/</em> へのリクエストは、<em>/sleep</em>が完了するのを待機しなくても済むことがわかるでしょう。
 ですが、前述したように、無制限にスレッドを生成することになるので、これは最終的にシステムを参らせてしまうでしょう。</p>
 <!-- #### Creating a Similar Interface for a Finite Number of Threads -->
-<a class="header" href="ch20-02-multithreaded.html#a有限数のスレッド用に似たインターフェイスを作成する" id="a有限数のスレッド用に似たインターフェイスを作成する"><h4>有限数のスレッド用に似たインターフェイスを作成する</h4></a>
+<a class="header" href="#a有限数のスレッド用に似たインターフェイスを作成する" id="a有限数のスレッド用に似たインターフェイスを作成する"><h4>有限数のスレッド用に似たインターフェイスを作成する</h4></a>
 <!-- We want our thread pool to work in a similar, familiar way so switching from -->
 <!-- threads to a thread pool doesn’t require large changes to the code that uses -->
 <!-- our API. Listing 20-12 shows the hypothetical interface for a `ThreadPool` -->
@@ -377,7 +377,7 @@ fn main() {
 これはクロージャを取り、実行するためにプール内のスレッドに与えます。このコードはまだコンパイルできませんが、
 コンパイラがどう修正したらいいかガイドできるように試してみます。</p>
 <!-- #### Building the `ThreadPool` Struct Using Compiler Driven Development -->
-<a class="header" href="ch20-02-multithreaded.html#aコンパイラ駆動開発でthreadpool構造体を構築する" id="aコンパイラ駆動開発でthreadpool構造体を構築する"><h4>コンパイラ駆動開発で<code>ThreadPool</code>構造体を構築する</h4></a>
+<a class="header" href="#aコンパイラ駆動開発でthreadpool構造体を構築する" id="aコンパイラ駆動開発でthreadpool構造体を構築する"><h4>コンパイラ駆動開発で<code>ThreadPool</code>構造体を構築する</h4></a>
 <!-- Make the changes in Listing 20-12 to *src/main.rs*, and then let’s use the -->
 <!-- compiler errors from `cargo check` to drive our development. Here is the first -->
 <!-- error we get: -->
@@ -606,7 +606,7 @@ warning: unused variable: `f`
 ここが単体テストを書き始めて、コードがコンパイルでき、<em>かつ</em>欲しい振る舞いを保持していることを確認するのに良い機会でしょう。</p>
 </blockquote>
 <!-- #### Validating the Number of Threads in `new` -->
-<a class="header" href="ch20-02-multithreaded.html#newでスレッド数を検査する" id="newでスレッド数を検査する"><h4><code>new</code>でスレッド数を検査する</h4></a>
+<a class="header" href="#newでスレッド数を検査する" id="newでスレッド数を検査する"><h4><code>new</code>でスレッド数を検査する</h4></a>
 <!-- We’ll continue to get warnings because we aren’t doing anything with the -->
 <!-- parameters to `new` and `execute`. Let’s implement the bodies of these -->
 <!-- functions with the behavior we want. To start, let’s think about `new`. Earlier -->
@@ -677,7 +677,7 @@ impl ThreadPool {
 <pre><code class="language-rust ignore">pub fn new(size: usize) -&gt; Result&lt;ThreadPool, PoolCreationError&gt; {
 </code></pre>
 <!-- #### Creating Space to Store the Threads -->
-<a class="header" href="ch20-02-multithreaded.html#aスレッドを格納するスペースを生成する" id="aスレッドを格納するスペースを生成する"><h4>スレッドを格納するスペースを生成する</h4></a>
+<a class="header" href="#aスレッドを格納するスペースを生成する" id="aスレッドを格納するスペースを生成する"><h4>スレッドを格納するスペースを生成する</h4></a>
 <!-- Now that we have a way to know we have a valid number of threads to store in -->
 <!-- the pool, we can create those threads and store them in the `ThreadPool` struct -->
 <!-- before returning it. But how do we “store” a thread? Let’s take another look at -->
@@ -756,7 +756,7 @@ impl ThreadPool {
 <!-- succeed. -->
 <p>再び<code>cargo check</code>を実行すると、もういくつか警告が出るものの、成功するはずです。</p>
 <!-- #### A `Worker` Struct Responsible for Sending Code from the `ThreadPool` to a Thread -->
-<a class="header" href="ch20-02-multithreaded.html#threadpoolからスレッドにコードを送信する責任を負うworker構造体" id="threadpoolからスレッドにコードを送信する責任を負うworker構造体"><h4><code>ThreadPool</code>からスレッドにコードを送信する責任を負う<code>Worker</code>構造体</h4></a>
+<a class="header" href="#threadpoolからスレッドにコードを送信する責任を負うworker構造体" id="threadpoolからスレッドにコードを送信する責任を負うworker構造体"><h4><code>ThreadPool</code>からスレッドにコードを送信する責任を負う<code>Worker</code>構造体</h4></a>
 <!-- We left a comment in the `for` loop in Listing 20-14 regarding the creation of -->
 <!-- threads. Here, we’ll look at how we actually create threads. The standard -->
 <!-- library provides `thread::spawn` as a way to create threads, and -->
@@ -881,7 +881,7 @@ impl Worker {
 <p>このコードはコンパイルでき、<code>ThreadPool::new</code>への引数として指定した数の<code>Worker</code>インスタンスを格納します。
 ですが<em>それでも</em>、<code>execute</code>で得るクロージャを処理してはいません。次は、それをする方法に目を向けましょう。</p>
 <!-- #### Sending Requests to Threads via Channels -->
-<a class="header" href="ch20-02-multithreaded.html#aチャンネル経由でスレッドにリクエストを送信する" id="aチャンネル経由でスレッドにリクエストを送信する"><h4>チャンネル経由でスレッドにリクエストを送信する</h4></a>
+<a class="header" href="#aチャンネル経由でスレッドにリクエストを送信する" id="aチャンネル経由でスレッドにリクエストを送信する"><h4>チャンネル経由でスレッドにリクエストを送信する</h4></a>
 <!-- Now we’ll tackle the problem that the closures given to `thread::spawn` do -->
 <!-- absolutely nothing. Currently, we get the closure we want to execute in the -->
 <!-- `execute` method. But we need to give `thread::spawn` a closure to run when we -->
@@ -1145,7 +1145,7 @@ impl Worker {
 <!-- With these changes, the code compiles! We’re getting there! -->
 <p>これらの変更でコードはコンパイルできます！ゴールはもうすぐそこです！</p>
 <!-- #### Implementing the `execute` Method -->
-<a class="header" href="ch20-02-multithreaded.html#executeメソッドを実装する" id="executeメソッドを実装する"><h4><code>execute</code>メソッドを実装する</h4></a>
+<a class="header" href="#executeメソッドを実装する" id="executeメソッドを実装する"><h4><code>execute</code>メソッドを実装する</h4></a>
 <!-- Let’s finally implement the `execute` method on `ThreadPool`. We’ll also change -->
 <!-- `Job` from a struct to a type alias for a trait object that holds the type of -->
 <!-- closure that `execute` receives. As discussed in the “Creating Type Synonyms -->

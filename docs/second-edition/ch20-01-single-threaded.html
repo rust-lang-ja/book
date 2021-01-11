@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Building a Single-Threaded Web Server -->
-<a class="header" href="ch20-01-single-threaded.html#aシングルスレッドのwebサーバを構築する" id="aシングルスレッドのwebサーバを構築する"><h2>シングルスレッドのWebサーバを構築する</h2></a>
+<a class="header" href="#aシングルスレッドのwebサーバを構築する" id="aシングルスレッドのwebサーバを構築する"><h2>シングルスレッドのWebサーバを構築する</h2></a>
 <!-- We’ll start by getting a single-threaded web server working. Before we begin, -->
 <!-- let’s look at a quick overview of the protocols involved in building web -->
 <!-- servers. The details of these protocols are beyond the scope of this book, but -->
@@ -171,7 +171,7 @@
 技術的にはHTTPを他のプロトコルとともに使用することができますが、過半数の場合、HTTPはTCPの上にデータを送信します。
 TCPとHTTPのリクエストとレスポンスの生のバイトを取り扱います。</p>
 <!-- ### Listening to the TCP Connection -->
-<a class="header" href="ch20-01-single-threaded.html#tcp接続をリッスンする" id="tcp接続をリッスンする"><h3>TCP接続をリッスンする</h3></a>
+<a class="header" href="#tcp接続をリッスンする" id="tcp接続をリッスンする"><h3>TCP接続をリッスンする</h3></a>
 <!-- Our web server needs to listen to a TCP connection, so that’s the first part -->
 <!-- we’ll work on. The standard library offers a `std::net` module that lets us do -->
 <!-- this. Let’s make a new project in the usual fashion: -->
@@ -305,7 +305,7 @@ Connection established!
 プログラムを止めることを忘れないでください。そして、一連のコード変更を行った後に<code>cargo run</code>を再起動し、
 最新のコードを実行していることを確かめてください。</p>
 <!-- ### Reading the Request -->
-<a class="header" href="ch20-01-single-threaded.html#aリクエストを読み取る" id="aリクエストを読み取る"><h3>リクエストを読み取る</h3></a>
+<a class="header" href="#aリクエストを読み取る" id="aリクエストを読み取る"><h3>リクエストを読み取る</h3></a>
 <!-- Let’s implement the functionality to read the request from the browser! To -->
 <!-- separate the concerns of first getting a connection and then taking some action -->
 <!-- with the connection, we’ll start a new function for processing connections. In -->
@@ -414,7 +414,7 @@ Upgrade-Insecure-Requests: 1
 <!-- our program. -->
 <p>このリクエストデータを噛み砕いて、ブラウザが我々のプログラムに何を要求しているかを理解しましょう。</p>
 <!-- ### A Closer Look at an HTTP Request -->
-<a class="header" href="ch20-01-single-threaded.html#httpリクエストを詳しく見る" id="httpリクエストを詳しく見る"><h3>HTTPリクエストを詳しく見る</h3></a>
+<a class="header" href="#httpリクエストを詳しく見る" id="httpリクエストを詳しく見る"><h3>HTTPリクエストを詳しく見る</h3></a>
 <!-- HTTP is a text-based protocol, and a request takes this format: -->
 <p>HTTPはテキストベースのプロトコルで、1つの要求はこのようなフォーマットに則っています:</p>
 <pre><code class="language-text">Method Request-URI HTTP-Version CRLF
@@ -462,7 +462,7 @@ CRLFにより、リクエスト行がリクエストデータの残りと区別�
 <!-- Now that we know what the browser is asking for, let’s send back some data! -->
 <p>さて、ブラウザが要求しているものがわかったので、何かデータを返しましょう！</p>
 <!-- ### Writing a Response -->
-<a class="header" href="ch20-01-single-threaded.html#aレスポンスを記述する" id="aレスポンスを記述する"><h3>レスポンスを記述する</h3></a>
+<a class="header" href="#aレスポンスを記述する" id="aレスポンスを記述する"><h3>レスポンスを記述する</h3></a>
 <!-- Now we’ll implement sending data in response to a client request. Responses -->
 <!-- have the following format: -->
 <p>さて、クライアントのリクエストに対する返答としてデータの送信を実装します。レスポンスは、以下のようなフォーマットです:</p>
@@ -536,7 +536,7 @@ fn handle_connection(mut stream: TcpStream) {
 Cargoからの出力以外には何も出力はありません。Webブラウザで<em>127.0.0.1:7878</em>をロードすると、
 エラーではなく空のページが得られるはずです。HTTPリクエストとレスポンスを手で実装したばかりなのです！</p>
 <!-- ### Returning Real HTML -->
-<a class="header" href="ch20-01-single-threaded.html#a本物のhtmlを返す" id="a本物のhtmlを返す"><h3>本物のHTMLを返す</h3></a>
+<a class="header" href="#a本物のhtmlを返す" id="a本物のhtmlを返す"><h3>本物のHTMLを返す</h3></a>
 <!-- Let’s implement the functionality for returning more than a blank page. Create -->
 <!-- a new file, *hello.html*, in the root of your project directory, not in the -->
 <!-- *src* directory. You can input any HTML you want; Listing 20-4 shows one -->
@@ -621,7 +621,7 @@ HTMLが描画されるのが確認できるはずです！</p>
 この同じHTMLレスポンスが得られるということです。我々のサーバはかなり限定的で、多くのWebサーバとは異なっています。
 リクエストに基づいてレスポンスをカスタマイズし、<em>/</em> への合法なリクエストに対してのみHTMLファイルを送り返したいです。</p>
 <!-- ### Validating the Request and Selectively Responding -->
-<a class="header" href="ch20-01-single-threaded.html#aリクエストにバリデーションをかけ選択的にレスポンスを返す" id="aリクエストにバリデーションをかけ選択的にレスポンスを返す"><h3>リクエストにバリデーションをかけ、選択的にレスポンスを返す</h3></a>
+<a class="header" href="#aリクエストにバリデーションをかけ選択的にレスポンスを返す" id="aリクエストにバリデーションをかけ選択的にレスポンスを返す"><h3>リクエストにバリデーションをかけ、選択的にレスポンスを返す</h3></a>
 <!-- Right now, our web server will return the HTML in the file no matter what the -->
 <!-- client requested. Let’s add functionality to check that the browser is -->
 <!-- requesting */* before returning the HTML file and return an error if the -->
@@ -761,7 +761,7 @@ fn handle_connection(mut stream: TcpStream) {
 <p>これらの変更とともに、もう一度サーバを実行してください。<em>127.0.0.1:7878</em>を要求すると、
 <em>hello.html</em>の中身が返り、<em>127.0.0.1:7878/foo</em>などの他のリクエストには<em>404.html</em>からのエラーHTMLが返るはずです。</p>
 <!-- ### A Touch of Refactoring -->
-<a class="header" href="ch20-01-single-threaded.html#aリファクタリングの触り" id="aリファクタリングの触り"><h3>リファクタリングの触り</h3></a>
+<a class="header" href="#aリファクタリングの触り" id="aリファクタリングの触り"><h3>リファクタリングの触り</h3></a>
 <!-- At the moment the `if` and `else` blocks have a lot of repetition: they’re both -->
 <!-- reading files and writing the contents of the files to the stream. The only -->
 <!-- differences are the status line and the filename. Let’s make the code more -->

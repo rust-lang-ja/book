@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Improving Our I/O Project -->
-<a class="header" href="ch13-03-improving-our-io-project.html#a入出力プロジェクトを改善する" id="a入出力プロジェクトを改善する"><h2>入出力プロジェクトを改善する</h2></a>
+<a class="header" href="#a入出力プロジェクトを改善する" id="a入出力プロジェクトを改善する"><h2>入出力プロジェクトを改善する</h2></a>
 <!-- ここでは、withを条件のように訳している。(今まではなかったのに、)今はある状態で -> ...があればという意訳である -->
 <!-- やはりwithは状態を表すだけなので、強すぎる気がしなくもない -->
 <!-- With this new knowledge about iterators, we can improve the I/O project in -->
@@ -152,7 +152,7 @@
 <p>このイテレータに関する新しい知識があれば、イテレータを使用してコードのいろんな場所をより明確で簡潔にすることで、
 第12章の入出力プロジェクトを改善することができます。イテレータが<code>Config::new</code>関数と<code>search</code>関数の実装を改善する方法に目を向けましょう。</p>
 <!-- ### Removing a `clone` Using an Iterator -->
-<a class="header" href="ch13-03-improving-our-io-project.html#aイテレータを使用してcloneを取り除く" id="aイテレータを使用してcloneを取り除く"><h3>イテレータを使用して<code>clone</code>を取り除く</h3></a>
+<a class="header" href="#aイテレータを使用してcloneを取り除く" id="aイテレータを使用してcloneを取り除く"><h3>イテレータを使用して<code>clone</code>を取り除く</h3></a>
 <!-- In Listing 12-6, we added code that took a slice of `String` values and created -->
 <!-- an instance of the `Config` struct by indexing into the slice and cloning the -->
 <!-- values, allowing the `Config` struct to own those values. In Listing 13-24, -->
@@ -208,7 +208,7 @@
 <p>ひとたび、<code>Config::new</code>がイテレータの所有権を奪い、借用する添え字アクセス処理をやめたら、
 <code>clone</code>を呼び出して新しくメモリ確保するのではなく、イテレータからの<code>String</code>値を<code>Config</code>にムーブできます。</p>
 <!-- #### Using the Returned Iterator Directly -->
-<a class="header" href="ch13-03-improving-our-io-project.html#a返却されるイテレータを直接使う" id="a返却されるイテレータを直接使う"><h4>返却されるイテレータを直接使う</h4></a>
+<a class="header" href="#a返却されるイテレータを直接使う" id="a返却されるイテレータを直接使う"><h4>返却されるイテレータを直接使う</h4></a>
 <!-- Open your I/O project’s *src/main.rs* file, which should look like this: -->
 <p>入出力プロジェクトの<em>src/main.rs</em>ファイルを開いてください。こんな見た目のはずです:</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
@@ -276,7 +276,7 @@
 <code>std::env::Args</code>になりました。<code>args</code>の所有権を奪い、繰り返しを行うことで<code>args</code>を可変化する予定なので、
 <code>args</code>引数の仕様に<code>mut</code>キーワードを追記でき、可変にします。</p>
 <!-- #### Using `Iterator` Trait Methods Instead of Indexing -->
-<a class="header" href="ch13-03-improving-our-io-project.html#a添え字の代わりにiteratorトレイトのメソッドを使用する" id="a添え字の代わりにiteratorトレイトのメソッドを使用する"><h4>添え字の代わりに<code>Iterator</code>トレイトのメソッドを使用する</h4></a>
+<a class="header" href="#a添え字の代わりにiteratorトレイトのメソッドを使用する" id="a添え字の代わりにiteratorトレイトのメソッドを使用する"><h4>添え字の代わりに<code>Iterator</code>トレイトのメソッドを使用する</h4></a>
 <!-- Next, we’ll fix the body of `Config::new`. The standard library documentation -->
 <!-- also mentions that `std::env::Args` implements the `Iterator` trait, so we know -->
 <!-- we can call the `next` method on it! Listing 13-27 updates the code from -->
@@ -335,7 +335,7 @@ impl Config {
 <code>match</code>を使用してその値を抜き出します。<code>None</code>を返したら、十分な引数が与えられなかったということなので、
 <code>Err</code>値で早期リターンします。<code>filename</code>値に対しても同じことをします。</p>
 <!-- ### Making Code Clearer with Iterator Adaptors -->
-<a class="header" href="ch13-03-improving-our-io-project.html#aイテレータアダプタでコードをより明確にする" id="aイテレータアダプタでコードをより明確にする"><h3>イテレータアダプタでコードをより明確にする</h3></a>
+<a class="header" href="#aイテレータアダプタでコードをより明確にする" id="aイテレータアダプタでコードをより明確にする"><h3>イテレータアダプタでコードをより明確にする</h3></a>
 <!-- We can also take advantage of iterators in the `search` function in our I/O -->
 <!-- project, which is reproduced here in Listing 13-28 as it was in Listing 12-19: -->
 <p>入出力プロジェクトの<code>search</code>関数でも、イテレータを活用することができます。その関数はリスト12-19に示していますが、以下のリスト13-28に再掲します。</p>

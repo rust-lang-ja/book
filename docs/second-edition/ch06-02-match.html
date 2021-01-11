@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## The `match` Control Flow Operator -->
-<a class="header" href="ch06-02-match.html#matchフロー制御演算子" id="matchフロー制御演算子"><h2><code>match</code>フロー制御演算子</h2></a>
+<a class="header" href="#matchフロー制御演算子" id="matchフロー制御演算子"><h2><code>match</code>フロー制御演算子</h2></a>
 <!-- Rust has an extremely powerful control flow operator called `match` that allows -->
 <!-- us to compare a value against a series of patterns and then execute code based -->
 <!-- on which pattern matches. Patterns can be made up of literal values, variable -->
@@ -251,7 +251,7 @@ fn value_in_cents(coin: Coin) -&gt; u32 {
 }
 #}</code></pre></pre>
 <!-- ### Patterns that Bind to Values -->
-<a class="header" href="ch06-02-match.html#a値に束縛されるパターン" id="a値に束縛されるパターン"><h3>値に束縛されるパターン</h3></a>
+<a class="header" href="#a値に束縛されるパターン" id="a値に束縛されるパターン"><h3>値に束縛されるパターン</h3></a>
 <!-- Another useful feature of match arms is that they can bind to parts of the -->
 <!-- values that match the pattern. This is how we can extract values out of enum -->
 <!-- variants. -->
@@ -355,7 +355,7 @@ fn value_in_cents(coin: Coin) -&gt; u32 {
 <code>UsState::Alaska</code>という値です。そして、<code>println!</code>式でその束縛を使用することができ、
 そのため、<code>Coin</code> enumの列挙子から<code>Quarter</code>に対する中身のstateの値を取得できたわけです。</p>
 <!-- ### Matching with `Option<T>` -->
-<a class="header" href="ch06-02-match.html#optiontとのマッチ" id="optiontとのマッチ"><h3><code>Option&lt;T&gt;</code>とのマッチ</h3></a>
+<a class="header" href="#optiontとのマッチ" id="optiontとのマッチ"><h3><code>Option&lt;T&gt;</code>とのマッチ</h3></a>
 <!-- In the previous section we wanted to get the inner `T` value out of the `Some` -->
 <!-- case when using `Option<T>`; we can also handle `Option<T>` using `match` as we -->
 <!-- did with the `Coin` enum! Instead of comparing coins, we’ll compare the -->
@@ -431,7 +431,7 @@ enumに対し<code>match</code>し、内部のデータに変数を束縛させ�
 一旦慣れてしまえば、全ての言語にあってほしいと願うことになるでしょう。一貫してユーザのお気に入りなのです。</p>
 <!-- ### Matches Are Exhaustive -->
 <!-- いい単語を探したい(Exhaustive) -->
-<a class="header" href="ch06-02-match.html#aマッチは包括的" id="aマッチは包括的"><h3>マッチは包括的</h3></a>
+<a class="header" href="#aマッチは包括的" id="aマッチは包括的"><h3>マッチは包括的</h3></a>
 <!-- There’s one other aspect of `match` we need to discuss. Consider this version -->
 <!-- of our `plus_one` function that has a bug and won't compile: -->
 <p>もう一つ議論する必要のある<code>match</code>の観点があります。一点バグがありコンパイルできないこんなバージョンの<code>plus_one</code>関数を考えてください:</p>
@@ -465,7 +465,7 @@ Rustにおけるマッチは、<em>包括的</em>です: 全てのあらゆる�
 nullになるかもしれないのに値があると思い込まないよう、すなわち前に議論した10億ドルの失敗を犯さないよう、
 コンパイラが保護してくれるわけです。</p>
 <!-- ### The `_` Placeholder -->
-<a class="header" href="ch06-02-match.html#a_というプレースホルダー" id="a_というプレースホルダー"><h3><code>_</code>というプレースホルダー</h3></a>
+<a class="header" href="#a_というプレースホルダー" id="a_というプレースホルダー"><h3><code>_</code>というプレースホルダー</h3></a>
 <!-- Rust also has a pattern we can use when we don’t want to list all possible -->
 <!-- values. For example, a `u8` can have valid values of 0 through 255. If we only -->
 <!-- care about the values 1, 3, 5, and 7, we don’t want to have to list out 0, 2, -->

@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Advanced Types -->
-<a class="header" href="ch19-04-advanced-types.html#a高度な型" id="a高度な型"><h2>高度な型</h2></a>
+<a class="header" href="#a高度な型" id="a高度な型"><h2>高度な型</h2></a>
 <!-- The Rust type system has some features that we’ve mentioned in this book but -->
 <!-- haven’t yet discussed. We’ll start by discussing newtypes in general as we -->
 <!-- examine why newtypes are useful as types. Then we’ll move on to type aliases, a -->
@@ -157,7 +157,7 @@
 <p>注釈: 次の節は、前節「外部の型に外部のトレイトを実装するニュータイプパターン」を読了済みであることを前提にしています。</p>
 </blockquote>
 <!-- ### Using the Newtype Pattern for Type Safety and Abstraction -->
-<a class="header" href="ch19-04-advanced-types.html#a型安全性と抽象化を求めてニュータイプパターンを使用する" id="a型安全性と抽象化を求めてニュータイプパターンを使用する"><h3>型安全性と抽象化を求めてニュータイプパターンを使用する</h3></a>
+<a class="header" href="#a型安全性と抽象化を求めてニュータイプパターンを使用する" id="a型安全性と抽象化を求めてニュータイプパターンを使用する"><h3>型安全性と抽象化を求めてニュータイプパターンを使用する</h3></a>
 <!-- The newtype pattern is useful for tasks beyond those we’ve discussed so far, -->
 <!-- including statically enforcing that values are never confused and indicating -->
 <!-- the units of a value. You saw an example of using newtypes to indicate units in -->
@@ -190,7 +190,7 @@
 ニュータイプパターンは、カプセル化を実現して実装の詳細を隠匿する軽い方法であり、
 実装の詳細を隠匿することは、第17章の「カプセル化は実装詳細を隠蔽する」節で議論しましたね。</p>
 <!-- ### Creating Type Synonyms with Type Aliases -->
-<a class="header" href="ch19-04-advanced-types.html#a型エイリアスで型同義語を生成する" id="a型エイリアスで型同義語を生成する"><h3>型エイリアスで型同義語を生成する</h3></a>
+<a class="header" href="#a型エイリアスで型同義語を生成する" id="a型エイリアスで型同義語を生成する"><h3>型エイリアスで型同義語を生成する</h3></a>
 <!-- Along with the newtype pattern, Rust provides the ability to declare a *type -->
 <!-- alias* to give an existing type another name. For this we use the `type` -->
 <!-- keyword. For example, we can create the alias `Kilometers` to `i32` like so: -->
@@ -333,7 +333,7 @@ pub trait Write {
 別名なので、ただの<code>Result&lt;T, E&gt;</code>であり、要するに<code>Result&lt;T, E&gt;</code>に対して動くメソッドはなんでも使えるし、
 <code>?</code>演算子のような特殊な記法も使えます。</p>
 <!-- ### The Never Type that Never Returns -->
-<a class="header" href="ch19-04-advanced-types.html#never型は絶対に返らない" id="never型は絶対に返らない"><h3>never型は絶対に返らない</h3></a>
+<a class="header" href="#never型は絶対に返らない" id="never型は絶対に返らない"><h3>never型は絶対に返らない</h3></a>
 <!-- to stand inで「代役を務める」という意味だが、ここではあえて直訳にした -->
 <!-- Rust has a special type named `!` that’s known in type theory lingo as the -->
 <!-- *empty type* because it has no values. We prefer to call it the *never type* -->
@@ -441,7 +441,7 @@ loop {
 <p>ここで、ループは終わりませんので、<code>!</code>が式の値です。ところが、<code>break</code>を含んでいたら、これは真実にはならないでしょう。
 <code>break</code>に到達した際にループが終了してしまうからです。</p>
 <!-- ### Dynamically Sized Types and the `Sized` Trait -->
-<a class="header" href="ch19-04-advanced-types.html#a動的サイズ付け型とsizedトレイト" id="a動的サイズ付け型とsizedトレイト"><h3>動的サイズ付け型と<code>Sized</code>トレイト</h3></a>
+<a class="header" href="#a動的サイズ付け型とsizedトレイト" id="a動的サイズ付け型とsizedトレイト"><h3>動的サイズ付け型と<code>Sized</code>トレイト</h3></a>
 <!-- Due to Rust’s need to know certain details, such as how much space to allocate -->
 <!-- for a value of a particular type, there is a corner of its type system that can -->
 <!-- be confusing: the concept of *dynamically sized types*. Sometimes referred to -->

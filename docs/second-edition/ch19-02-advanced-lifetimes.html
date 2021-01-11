@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Advanced Lifetimes -->
-<a class="header" href="ch19-02-advanced-lifetimes.html#a高度なライフタイム" id="a高度なライフタイム"><h2>高度なライフタイム</h2></a>
+<a class="header" href="#a高度なライフタイム" id="a高度なライフタイム"><h2>高度なライフタイム</h2></a>
 <!-- In Chapter 10 in the “Validating References with Lifetimes” section, you -->
 <!-- learned how to annotate references with lifetime parameters to tell Rust how -->
 <!-- lifetimes of different references relate. You saw how every reference has a -->
@@ -162,7 +162,7 @@
 <li>トレイトオブジェクトのライフタイムの推論: コンパイラにトレイトオブジェクトのライフタイムを推論させることと指定する必要があるタイミング</li>
 </ul>
 <!-- ### Ensuring One Lifetime Outlives Another with Lifetime Subtyping -->
-<a class="header" href="ch19-02-advanced-lifetimes.html#aライフタイムサブタイピングによりあるライフタイムが他よりも長生きすることを保証する" id="aライフタイムサブタイピングによりあるライフタイムが他よりも長生きすることを保証する"><h3>ライフタイム・サブタイピングにより、あるライフタイムが他よりも長生きすることを保証する</h3></a>
+<a class="header" href="#aライフタイムサブタイピングによりあるライフタイムが他よりも長生きすることを保証する" id="aライフタイムサブタイピングによりあるライフタイムが他よりも長生きすることを保証する"><h3>ライフタイム・サブタイピングにより、あるライフタイムが他よりも長生きすることを保証する</h3></a>
 <!-- *Lifetime subtyping* specifies that one lifetime should outlive another -->
 <!-- lifetime. To explore lifetime subtyping, imagine we want to write a parser. -->
 <!-- We’ll use a structure called `Context` that holds a reference to the string -->
@@ -492,7 +492,7 @@ struct Parser&lt;'c, 's: 'c&gt; {
 <p>非常に長くぐにゃぐにゃした例でしたが、この章の冒頭で触れたように、Rustの高度な機能は、非常に限定的です。
 この例で解説した記法は、あまり必要になりませんが、そのような場面では、何かを参照し、それに必要なライフタイムを与える方法を知っているでしょう。</p>
 <!-- ### Lifetime Bounds on References to Generic Types -->
-<a class="header" href="ch19-02-advanced-lifetimes.html#aジェネリックな型への参照に対するライフタイム境界" id="aジェネリックな型への参照に対するライフタイム境界"><h3>ジェネリックな型への参照に対するライフタイム境界</h3></a>
+<a class="header" href="#aジェネリックな型への参照に対するライフタイム境界" id="aジェネリックな型への参照に対するライフタイム境界"><h3>ジェネリックな型への参照に対するライフタイム境界</h3></a>
 <!-- In the “Trait Bounds” section in Chapter 10, we discussed using trait bounds on -->
 <!-- generic types. We can also add lifetime parameters as constraints on generic -->
 <!-- types; these are called *lifetime bounds*. Lifetime bounds help Rust verify -->
@@ -592,7 +592,7 @@ struct StaticRef&lt;T: 'static&gt;(&amp;'static T);
 参照が十分長生きしないと心配することに関しては、参照が何もない型と永久に生きる参照がある型を現実的に区別できません:
 どちらも、参照が参照先のライフタイムよりも短いか決定することに関しては同じです。</p>
 <!-- ### Inference of Trait Object Lifetimes -->
-<a class="header" href="ch19-02-advanced-lifetimes.html#aトレイトオブジェクトライフタイムの推論" id="aトレイトオブジェクトライフタイムの推論"><h3>トレイトオブジェクトライフタイムの推論</h3></a>
+<a class="header" href="#aトレイトオブジェクトライフタイムの推論" id="aトレイトオブジェクトライフタイムの推論"><h3>トレイトオブジェクトライフタイムの推論</h3></a>
 <!-- In Chapter 17 in the “Using Trait Objects that Allow for Values of Different -->
 <!-- Types” section, we discussed trait objects, consisting of a trait behind a -->
 <!-- reference, that allow us to use dynamic dispatch. We haven’t yet discussed what -->

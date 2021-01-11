@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Traits: Defining Shared Behavior -->
-<a class="header" href="ch10-02-traits.html#aトレイト-共通の振る舞いを定義する" id="aトレイト-共通の振る舞いを定義する"><h2>トレイト: 共通の振る舞いを定義する</h2></a>
+<a class="header" href="#aトレイト-共通の振る舞いを定義する" id="aトレイト-共通の振る舞いを定義する"><h2>トレイト: 共通の振る舞いを定義する</h2></a>
 <!-- A *trait* tells the Rust compiler about functionality a particular type has and -->
 <!-- can share with other types. We can use traits to define shared behavior in an -->
 <!-- abstract way. We can use trait bounds to specify that a generic can be any type -->
@@ -156,7 +156,7 @@
 <p>注釈: 違いはあるものの、トレイトは他の言語でよくインターフェイスと呼ばれる機能に類似しています。</p>
 </blockquote>
 <!-- ### Defining a Trait -->
-<a class="header" href="ch10-02-traits.html#aトレイトを定義する" id="aトレイトを定義する"><h3>トレイトを定義する</h3></a>
+<a class="header" href="#aトレイトを定義する" id="aトレイトを定義する"><h3>トレイトを定義する</h3></a>
 <!-- A type’s behavior consists of the methods we can call on that type. Different -->
 <!-- types share the same behavior if we can call the same methods on all of those -->
 <!-- types. Trait definitions are a way to group method signatures together to -->
@@ -211,7 +211,7 @@ pub trait Summary {
 <p>トレイトには、本体に複数のメソッドを含むことができます: メソッドシグニチャは行ごとに列挙され、
 各行はセミコロンで終止します。</p>
 <!-- ### Implementing a Trait on a Type -->
-<a class="header" href="ch10-02-traits.html#aトレイトを型に実装する" id="aトレイトを型に実装する"><h3>トレイトを型に実装する</h3></a>
+<a class="header" href="#aトレイトを型に実装する" id="aトレイトを型に実装する"><h3>トレイトを型に実装する</h3></a>
 <!-- Now that we’ve defined the desired behavior using the `Summary` trait, we can -->
 <!-- implement it on the types in our media aggregator. Listing 10-13 shows an -->
 <!-- implementation of the `Summary` trait on the `NewsArticle` struct that uses the -->
@@ -335,7 +335,7 @@ println!(&quot;1 new tweet: {}&quot;, tweet.summarize());
 その逆が起きないことを保証してくれます。この規則がなければ、2つのクレートが同じ型に対して同じトレイトを実装できてしまい、
 コンパイラはどちらの実装を使うべきかわからなくなってしまうでしょう。</p>
 <!-- ### Default Implementations -->
-<a class="header" href="ch10-02-traits.html#aデフォルト実装" id="aデフォルト実装"><h3>デフォルト実装</h3></a>
+<a class="header" href="#aデフォルト実装" id="aデフォルト実装"><h3>デフォルト実装</h3></a>
 <!-- Sometimes it’s useful to have default behavior for some or all of the methods -->
 <!-- in a trait instead of requiring implementations for all methods on every type. -->
 <!-- Then, as we implement the trait on a particular type, we can keep or override -->
@@ -455,7 +455,7 @@ println!(&quot;1 new tweet: {}&quot;, tweet.summarize());
 <!-- overriding implementation of that same method. -->
 <p>同じメソッドのオーバーライドした実装からは、デフォルト実装を呼び出すことができないことに注意してください。</p>
 <!-- ### Trait Bounds -->
-<a class="header" href="ch10-02-traits.html#aトレイト境界" id="aトレイト境界"><h3>トレイト境界</h3></a>
+<a class="header" href="#aトレイト境界" id="aトレイト境界"><h3>トレイト境界</h3></a>
 <!-- Now that you know how to define traits and implement those traits on types, we -->
 <!-- can explore how to use traits with generic type parameters. We can use *trait -->
 <!-- bounds* to constrain generic types to ensure the type will be limited to those -->
@@ -517,7 +517,7 @@ println!(&quot;1 new tweet: {}&quot;, tweet.summarize());
 <!-- without lots of trait bounds. -->
 <p>この関数シグニチャは、多くのトレイト境界のない関数のように、関数名、引数リスト、戻り値の型が一緒になって近いという点でごちゃごちゃしていません。</p>
 <!-- ### Fixing the `largest` Function with Trait Bounds -->
-<a class="header" href="ch10-02-traits.html#aトレイト境界でlargest関数を修正する" id="aトレイト境界でlargest関数を修正する"><h3>トレイト境界で<code>largest</code>関数を修正する</h3></a>
+<a class="header" href="#aトレイト境界でlargest関数を修正する" id="aトレイト境界でlargest関数を修正する"><h3>トレイト境界で<code>largest</code>関数を修正する</h3></a>
 <!-- Now that you know how to specify the behavior you want to use using the generic -->
 <!-- type parameter’s bounds, let’s return to Listing 10-5 to fix the definition of -->
 <!-- the `largest` function that uses a generic type parameter! Last time we tried -->
@@ -647,7 +647,7 @@ fn main() {
 <code>Clone</code>か<code>Copy</code>トレイト境界は必要なくなり、ヒープ確保も避けられるでしょう。
 試しにこれらの対立的な解決策もご自身で実装してみてください！</p>
 <!-- ### Using Trait Bounds to Conditionally Implement Methods -->
-<a class="header" href="ch10-02-traits.html#aトレイト境界を使用してメソッド実装を条件分けする" id="aトレイト境界を使用してメソッド実装を条件分けする"><h3>トレイト境界を使用して、メソッド実装を条件分けする</h3></a>
+<a class="header" href="#aトレイト境界を使用してメソッド実装を条件分けする" id="aトレイト境界を使用してメソッド実装を条件分けする"><h3>トレイト境界を使用して、メソッド実装を条件分けする</h3></a>
 <!-- By using a trait bound with an `impl` block that uses generic type parameters, -->
 <!-- we can implement methods conditionally for types that implement the specified -->
 <!-- traits. For example, the type `Pair<T>` in Listing 10-16 always implements the -->

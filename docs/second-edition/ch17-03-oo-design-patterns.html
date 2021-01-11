@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Implementing an Object-Oriented Design Pattern -->
-<a class="header" href="ch17-03-oo-design-patterns.html#aオブジェクト指向デザインパターンを実装する" id="aオブジェクト指向デザインパターンを実装する"><h2>オブジェクト指向デザインパターンを実装する</h2></a>
+<a class="header" href="#aオブジェクト指向デザインパターンを実装する" id="aオブジェクト指向デザインパターンを実装する"><h2>オブジェクト指向デザインパターンを実装する</h2></a>
 <!-- The *state pattern* is an object-oriented design pattern. The crux of the -->
 <!-- pattern is that a value has some internal state, which is represented by a set -->
 <!-- of *state objects*, and the value’s behavior changes based on the internal -->
@@ -246,7 +246,7 @@ fn main() {
 状態の変化を直接管理する必要はありません。また、ユーザは、
 査読前に記事を公開するなど状態を誤ることはありません。</p>
 <!-- ### Defining `Post` and Creating a New Instance in the Draft State -->
-<a class="header" href="ch17-03-oo-design-patterns.html#postを定義し草稿状態で新しいインスタンスを生成する" id="postを定義し草稿状態で新しいインスタンスを生成する"><h3><code>Post</code>を定義し、草稿状態で新しいインスタンスを生成する</h3></a>
+<a class="header" href="#postを定義し草稿状態で新しいインスタンスを生成する" id="postを定義し草稿状態で新しいインスタンスを生成する"><h3><code>Post</code>を定義し、草稿状態で新しいインスタンスを生成する</h3></a>
 <!-- Let’s get started on the implementation of the library! We know we need a -->
 <!-- public `Post` struct that holds some content, so we’ll start with the -->
 <!-- definition of the struct and an associated public `new` function to create an -->
@@ -306,7 +306,7 @@ impl State for Draft {}
 新しい<code>Post</code>を作る度に、草稿から始まることが保証されます。<code>Post</code>の<code>state</code>フィールドは非公開なので、
 <code>Post</code>を他の状態で作成する方法はないのです！<code>Post::new</code>関数では、<code>content</code>フィールドを新しい空の<code>String</code>にセットしています。</p>
 <!-- ### Storing the Text of the Post Content -->
-<a class="header" href="ch17-03-oo-design-patterns.html#a記事の内容のテキストを格納する" id="a記事の内容のテキストを格納する"><h3>記事の内容のテキストを格納する</h3></a>
+<a class="header" href="#a記事の内容のテキストを格納する" id="a記事の内容のテキストを格納する"><h3>記事の内容のテキストを格納する</h3></a>
 <!-- Listing 17-11 showed that we want to be able to call a method named -->
 <!-- `add_text` and pass it a `&str` that is then added to the text content of the -->
 <!-- blog post. We implement this as a method rather than exposing the `content` -->
@@ -349,7 +349,7 @@ impl Post {
 この振る舞いは、記事の状態によらないので、ステートパターンの一部ではありません。<code>add_text</code>メソッドは、
 <code>state</code>フィールドと全く相互作用しませんが、サポートしたい振る舞いの一部ではあります。</p>
 <!-- ### Ensuring the Content of a Draft Post Is Empty -->
-<a class="header" href="ch17-03-oo-design-patterns.html#a草稿の記事の内容は空であることを保証する" id="a草稿の記事の内容は空であることを保証する"><h3>草稿の記事の内容は空であることを保証する</h3></a>
+<a class="header" href="#a草稿の記事の内容は空であることを保証する" id="a草稿の記事の内容は空であることを保証する"><h3>草稿の記事の内容は空であることを保証する</h3></a>
 <!-- Even after we’ve called `add_text` and added some content to our post, we still -->
 <!-- want the `content` method to return an empty string slice because the post is -->
 <!-- still in the draft state, as shown on line 8 of Listing 17-11. For now, let’s -->
@@ -389,7 +389,7 @@ impl Post {
 <!-- [Requesting a Review of the Post] Changes ... ともRequesting that [a Review ...]とも読める。どちらがふさわしいだろうか -->
 <!-- 次の1行目にrequest a review of a post, whichとあるので、前者で訳しておく。 -->
 <!-- ### Requesting a Review of the Post Changes Its State -->
-<a class="header" href="ch17-03-oo-design-patterns.html#a記事の査読を要求すると状態が変化する" id="a記事の査読を要求すると状態が変化する"><h3>記事の査読を要求すると、状態が変化する</h3></a>
+<a class="header" href="#a記事の査読を要求すると状態が変化する" id="a記事の査読を要求すると状態が変化する"><h3>記事の査読を要求すると、状態が変化する</h3></a>
 <!-- Next, we need to add functionality to request a review of a post, which should -->
 <!-- change its state from `Draft` to `PendingReview`. Listing 17-15 shows this code: -->
 <p>次に、記事の査読を要求する機能を追加する必要があり、これをすると、状態が<code>Draft</code>から<code>PendingReview</code>に変わるはずです。
@@ -497,7 +497,7 @@ impl State for PendingReview {
 これで<code>Post</code>は<code>PendingReview</code>と<code>Draft</code>状態になり得ますが、<code>PendingReview</code>状態でも、
 同じ振る舞いが欲しいです。もうリスト17-11は11行目まで動くようになりました！</p>
 <!-- ### Adding the `approve` Method that Changes the Behavior of `content` -->
-<a class="header" href="ch17-03-oo-design-patterns.html#contentの振る舞いを変化させるapproveメソッドを追加する" id="contentの振る舞いを変化させるapproveメソッドを追加する"><h3><code>content</code>の振る舞いを変化させる<code>approve</code>メソッドを追加する</h3></a>
+<a class="header" href="#contentの振る舞いを変化させるapproveメソッドを追加する" id="contentの振る舞いを変化させるapproveメソッドを追加する"><h3><code>content</code>の振る舞いを変化させる<code>approve</code>メソッドを追加する</h3></a>
 <!-- The `approve` method will be similar to the `request_review` method: it will -->
 <!-- set `state` to the value that the current state says it should have when that -->
 <!-- state is approved, as shown in Listing 17-16: -->
@@ -694,7 +694,7 @@ impl State for Published {
 <p>出来上がりました。要するに、リスト17-11はもう動くようになったのです！ブログ記事ワークフローの規則でステートパターンを実装しました。
 その規則に関連するロジックは、<code>Post</code>中に散乱するのではなく、ステートオブジェクトに息づいています。</p>
 <!-- ### Trade-offs of the State Pattern -->
-<a class="header" href="ch17-03-oo-design-patterns.html#aステートパターンの代償" id="aステートパターンの代償"><h3>ステートパターンの代償</h3></a>
+<a class="header" href="#aステートパターンの代償" id="aステートパターンの代償"><h3>ステートパターンの代償</h3></a>
 <!-- The wayで「・・・の仕方によれば」という意味になるらしい -->
 <!-- We’ve shown that Rust is capable of implementing the object-oriented state -->
 <!-- pattern to encapsulate the different kinds of behavior a post should have in -->
@@ -780,7 +780,7 @@ Rustにあることを示してきました。<code>Post</code>のメソッド�
 <p>オブジェクト指向言語で定義されている通り忠実にステートパターンを実装することで、
 Rustの強みをできるだけ発揮していません。<code>blog</code>クレートに対して行える無効な状態と遷移をコンパイルエラーにできる変更に目を向けましょう。</p>
 <!-- #### Encoding States and Behavior as Types -->
-<a class="header" href="ch17-03-oo-design-patterns.html#a状態と振る舞いを型としてコード化する" id="a状態と振る舞いを型としてコード化する"><h4>状態と振る舞いを型としてコード化する</h4></a>
+<a class="header" href="#a状態と振る舞いを型としてコード化する" id="a状態と振る舞いを型としてコード化する"><h4>状態と振る舞いを型としてコード化する</h4></a>
 <!-- We’ll show you how to rethink the state pattern to get a different set of -->
 <!-- trade-offs. Rather than encapsulating the states and transitions completely so -->
 <!-- outside code has no knowledge of them, we’ll encode the states into different -->
@@ -874,7 +874,7 @@ impl DraftPost {
 従って、これでプログラムは、全ての記事が草稿記事から始まり、草稿記事は表示できる内容がないことを保証します。
 この制限をかいくぐる試みは、全てコンパイルエラーに落ち着くでしょう。</p>
 <!-- #### Implementing Transitions as Transformations into Different Types -->
-<a class="header" href="ch17-03-oo-design-patterns.html#a遷移を異なる型への変形として実装する" id="a遷移を異なる型への変形として実装する"><h4>遷移を異なる型への変形として実装する</h4></a>
+<a class="header" href="#a遷移を異なる型への変形として実装する" id="a遷移を異なる型への変形として実装する"><h4>遷移を異なる型への変形として実装する</h4></a>
 <!-- 1行目the rule thatは同格で訳しているが、the rule that a draft post has (the rule) to be...でも意味は通りそう -->
 <!-- So how do we get a published post? We want to enforce the rule that a draft -->
 <!-- post has to be reviewed and approved before it can be published. A post in the -->
@@ -1013,7 +1013,7 @@ Rustでは利用可能なことを確かめました。これらのパターン�
 コンパイル時に一部のバグを回避できるなどの利益が得られることもあります。オブジェクト指向のパターンは、
 オブジェクト指向言語にはない所有権などの特定の機能によりRustでは、必ずしも最善の解決策ではないでしょう。</p>
 <!-- ## Summary -->
-<a class="header" href="ch17-03-oo-design-patterns.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
+<a class="header" href="#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- No matter whether or not you think Rust is an object-oriented language after -->
 <!-- reading this chapter, you now know that you can use trait objects to get some -->
 <!-- object-oriented features in Rust. Dynamic dispatch can give your code some -->

@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Cargo Workspaces -->
-<a class="header" href="ch14-03-cargo-workspaces.html#cargoのワークスペース" id="cargoのワークスペース"><h2>Cargoのワークスペース</h2></a>
+<a class="header" href="#cargoのワークスペース" id="cargoのワークスペース"><h2>Cargoのワークスペース</h2></a>
 <!-- In Chapter 12, we built a package that included a binary crate and a library -->
 <!-- crate. As your project develops, you might find that the library crate -->
 <!-- continues to get bigger and you want to split up your package further into -->
@@ -153,7 +153,7 @@
 ライブラリクレートの肥大化が続き、その上で複数のライブラリクレートにパッケージを分割したくなることでしょう。
 この場面において、Cargoは<em>ワークスペース</em>という協調して開発された関連のある複数のパッケージを管理するのに役立つ機能を提供しています。</p>
 <!-- ### Creating a Workspace -->
-<a class="header" href="ch14-03-cargo-workspaces.html#aワークスペースを生成する" id="aワークスペースを生成する"><h3>ワークスペースを生成する</h3></a>
+<a class="header" href="#aワークスペースを生成する" id="aワークスペースを生成する"><h3>ワークスペースを生成する</h3></a>
 <!-- A *workspace* is a set of packages that share the same *Cargo.lock* and output -->
 <!-- directory. Let’s make a project using a workspace-we'll use trivial code so we -->
 <!-- can concentrate on the structure of the workspace. There are multiple ways to -->
@@ -226,7 +226,7 @@ members = [
 <em>target</em>ディレクトリに生成物がある状態にしなければならないでしょう。一つの<em>target</em>ディレクトリを共有することで、
 クレートは不必要な再ビルドを回避できるのです。</p>
 <!-- ### Creating the Second Crate in the Workspace -->
-<a class="header" href="ch14-03-cargo-workspaces.html#aワークスペース内に2番目のクレートを作成する" id="aワークスペース内に2番目のクレートを作成する"><h3>ワークスペース内に2番目のクレートを作成する</h3></a>
+<a class="header" href="#aワークスペース内に2番目のクレートを作成する" id="aワークスペース内に2番目のクレートを作成する"><h3>ワークスペース内に2番目のクレートを作成する</h3></a>
 <!-- Next, let’s create another member crate in the workspace and call it `add-one`. -->
 <!-- Change the top-level *Cargo.toml* to specify the *add-one* path in the -->
 <!-- `members` list: -->
@@ -327,7 +327,7 @@ Hello, world! 10 plus one is 11!
 <!-- This runs the code in *adder/src/main.rs*, which depends on the `add-one` crate. -->
 <p>これにより、<em>adder/src/main.rs</em>のコードが実行され、これは<code>add_one</code>クレートに依存しています。</p>
 <!-- #### Depending on an External Crate in a Workspace -->
-<a class="header" href="ch14-03-cargo-workspaces.html#aワークスペースの外部クレートに依存する" id="aワークスペースの外部クレートに依存する"><h4>ワークスペースの外部クレートに依存する</h4></a>
+<a class="header" href="#aワークスペースの外部クレートに依存する" id="aワークスペースの外部クレートに依存する"><h4>ワークスペースの外部クレートに依存する</h4></a>
 <!-- Notice that the workspace has only one *Cargo.lock* file at the top level of -->
 <!-- the workspace rather than having a *Cargo.lock* in each crate’s directory. This -->
 <!-- ensures that all crates are using the same version of all dependencies. If we -->
@@ -402,7 +402,7 @@ issue #27703)
 同じバージョンを使っていることを確かめてくれるのです。ワークスペース全体で<code>rand</code>の同じバージョンを使用することにより、
 複数のコピーが存在しないのでスペースを節約し、ワークスペースのクレートが相互に互換性を維持することを確かめます。</p>
 <!-- #### Adding a Test to a Workspace -->
-<a class="header" href="ch14-03-cargo-workspaces.html#aワークスペースにテストを追加する" id="aワークスペースにテストを追加する"><h4>ワークスペースにテストを追加する</h4></a>
+<a class="header" href="#aワークスペースにテストを追加する" id="aワークスペースにテストを追加する"><h4>ワークスペースにテストを追加する</h4></a>
 <!-- For another enhancement, let’s add a test of the `add_one::add_one` function -->
 <!-- within the `add_one` crate: -->
 <p>さらなる改善として、<code>add_one</code>クレート内に<code>add_one::add_one</code>関数のテストを追加しましょう:</p>

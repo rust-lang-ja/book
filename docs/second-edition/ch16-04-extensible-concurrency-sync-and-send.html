@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Extensible Concurrency with the `Sync` and `Send` Traits -->
-<a class="header" href="ch16-04-extensible-concurrency-sync-and-send.html#syncとsendトレイトで拡張可能な並行性" id="syncとsendトレイトで拡張可能な並行性"><h2><code>Sync</code>と<code>Send</code>トレイトで拡張可能な並行性</h2></a>
+<a class="header" href="#syncとsendトレイトで拡張可能な並行性" id="syncとsendトレイトで拡張可能な並行性"><h2><code>Sync</code>と<code>Send</code>トレイトで拡張可能な並行性</h2></a>
 <!-- Interestingly, the Rust language has *very* few concurrency features. Almost -->
 <!-- every concurrency feature we’ve talked about so far in this chapter has been -->
 <!-- part of the standard library, not the language. Your options for handling -->
@@ -155,7 +155,7 @@
 <!-- `std::marker` traits `Sync` and `Send`. -->
 <p>ですが、2つの並行性概念が言語に埋め込まれています: <code>std::marker</code>トレイトの<code>Sync</code>と<code>Send</code>です。</p>
 <!-- ### Allowing Transference of Ownership Between Threads with `Send` -->
-<a class="header" href="ch16-04-extensible-concurrency-sync-and-send.html#sendでスレッド間の所有権の転送を許可する" id="sendでスレッド間の所有権の転送を許可する"><h3><code>Send</code>でスレッド間の所有権の転送を許可する</h3></a>
+<a class="header" href="#sendでスレッド間の所有権の転送を許可する" id="sendでスレッド間の所有権の転送を許可する"><h3><code>Send</code>でスレッド間の所有権の転送を許可する</h3></a>
 <!-- 最後から2行目、single-threaded situationsのsituationsを環境と訳すのが自然なのでそうしている -->
 <!-- The `Send` marker trait indicates that ownership of the type implementing -->
 <!-- `Send` can be transferred between threads. Almost every Rust type is `Send`, -->
@@ -183,7 +183,7 @@ Rustのほとんどの型は<code>Send</code>ですが、<code>Rc&lt;T&gt;</code
 <p>完全に<code>Send</code>の型からなる型も全て自動的に<code>Send</code>と印付けされます。生ポインタを除くほとんどの基本型も<code>Send</code>で、
 生ポインタについては第19章で議論します。</p>
 <!-- ### Allowing Access from Multiple Threads with `Sync` -->
-<a class="header" href="ch16-04-extensible-concurrency-sync-and-send.html#syncで複数のスレッドからのアクセスを許可する" id="syncで複数のスレッドからのアクセスを許可する"><h3><code>Sync</code>で複数のスレッドからのアクセスを許可する</h3></a>
+<a class="header" href="#syncで複数のスレッドからのアクセスを許可する" id="syncで複数のスレッドからのアクセスを許可する"><h3><code>Sync</code>で複数のスレッドからのアクセスを許可する</h3></a>
 <!-- The `Sync` marker trait indicates that it is safe for the type implementing -->
 <!-- `Sync` to be referenced from multiple threads. In other words, any type `T` is -->
 <!-- `Sync` if `&T` (a reference to `T`) is `Send`, meaning the reference can be -->
@@ -205,7 +205,7 @@ Rustのほとんどの型は<code>Send</code>ですが、<code>Rc&lt;T&gt;</code
 スマートポインタの<code>Mutex&lt;T&gt;</code>は<code>Sync</code>で、「複数のスレッド間で<code>Mutex&lt;T&gt;</code>を共有する」節で見たように、
 複数のスレッドでアクセスを共有するのに使用することができます。</p>
 <!-- ### Implementing `Send` and `Sync` Manually Is Unsafe -->
-<a class="header" href="ch16-04-extensible-concurrency-sync-and-send.html#sendとsyncを手動で実装するのは非安全である" id="sendとsyncを手動で実装するのは非安全である"><h3><code>Send</code>と<code>Sync</code>を手動で実装するのは非安全である</h3></a>
+<a class="header" href="#sendとsyncを手動で実装するのは非安全である" id="sendとsyncを手動で実装するのは非安全である"><h3><code>Send</code>と<code>Sync</code>を手動で実装するのは非安全である</h3></a>
 <!-- Because types that are made up of `Send` and `Sync` traits are automatically -->
 <!-- also `Send` and `Sync`, we don’t have to implement those traits manually. As -->
 <!-- marker traits, they don’t even have any methods to implement. They’re just -->
@@ -228,7 +228,7 @@ unsafeなRustコードを使用することについては第19章で語りま�
 <p>訳注: 日本語版のThe Rustonomiconは<a href="https://doc.rust-jp.rs/rust-nomicon-ja/index.html">こちら</a>です。</p>
 </blockquote>
 <!-- ## Summary -->
-<a class="header" href="ch16-04-extensible-concurrency-sync-and-send.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
+<a class="header" href="#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- This isn’t the last you’ll see of concurrency in this book: the project in -->
 <!-- Chapter 20 will use the concepts in this chapter in a more realistic situation -->
 <!-- than the smaller examples discussed here. -->

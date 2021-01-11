@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Storing Keys Associated with Values in Hash Maps -->
-<a class="header" href="ch08-03-hash-maps.html#aハッシュマップに値に紐づいたキーを格納する" id="aハッシュマップに値に紐づいたキーを格納する"><h2>ハッシュマップに値に紐づいたキーを格納する</h2></a>
+<a class="header" href="#aハッシュマップに値に紐づいたキーを格納する" id="aハッシュマップに値に紐づいたキーを格納する"><h2>ハッシュマップに値に紐づいたキーを格納する</h2></a>
 <!-- The last of our common collections is the *hash map*. The type `HashMap<K, V>` -->
 <!-- stores a mapping of keys of type `K` to values of type `V`. It does this via a -->
 <!-- *hashing function*, which determines how it places these keys and values into -->
@@ -168,7 +168,7 @@
 <code>HashMap&lt;K, V&gt;</code>上に定義された関数に隠されています。いつものように、
 もっと情報が欲しければ、標準ライブラリのドキュメントをチェックしてください。</p>
 <!-- ### Creating a New Hash Map -->
-<a class="header" href="ch08-03-hash-maps.html#a新規ハッシュマップを生成する" id="a新規ハッシュマップを生成する"><h3>新規ハッシュマップを生成する</h3></a>
+<a class="header" href="#a新規ハッシュマップを生成する" id="a新規ハッシュマップを生成する"><h3>新規ハッシュマップを生成する</h3></a>
 <!-- You can create an empty hash map with `new` and add elements with `insert`. In -->
 <!-- Listing 8-20, we’re keeping track of the scores of two teams whose names are -->
 <!-- Blue and Yellow. The Blue team starts with 10 points, and the Yellow team -->
@@ -237,7 +237,7 @@ let scores: HashMap&lt;_, _&gt; = teams.iter().zip(initial_scores.iter()).collec
 コンパイラは指定しない限り、どれを所望なのかわからないからです。ところが、キーと値の型引数については、
 アンダースコアを使用しており、コンパイラはベクタのデータ型に基づいてハッシュマップが含む型を推論することができるのです。</p>
 <!-- ### Hash Maps and Ownership -->
-<a class="header" href="ch08-03-hash-maps.html#aハッシュマップと所有権" id="aハッシュマップと所有権"><h3>ハッシュマップと所有権</h3></a>
+<a class="header" href="#aハッシュマップと所有権" id="aハッシュマップと所有権"><h3>ハッシュマップと所有権</h3></a>
 <!-- For types that implement the `Copy` trait, like `i32`, the values are copied -->
 <!-- into the hash map. For owned values like `String`, the values will be moved and -->
 <!-- the hash map will be the owner of those values, as demonstrated in Listing 8-22. -->
@@ -274,7 +274,7 @@ map.insert(field_name, field_value);
 最低でもハッシュマップが有効な間は、有効でなければなりません。これらの問題について詳細には、
 第10章の「ライフタイムで参照を有効化する」節で語ります。</p>
 <!-- ### Accessing Values in a Hash Map -->
-<a class="header" href="ch08-03-hash-maps.html#aハッシュマップの値にアクセスする" id="aハッシュマップの値にアクセスする"><h3>ハッシュマップの値にアクセスする</h3></a>
+<a class="header" href="#aハッシュマップの値にアクセスする" id="aハッシュマップの値にアクセスする"><h3>ハッシュマップの値にアクセスする</h3></a>
 <!-- We can get a value out of the hash map by providing its key to the `get` -->
 <!-- method, as shown in Listing 8-23. -->
 <p>リスト8-23に示したように、キーを<code>get</code>メソッドに提供することで、ハッシュマップから値を取り出すことができます。</p>
@@ -325,7 +325,7 @@ for (key, value) in &amp;scores {
 Blue: 10
 </code></pre>
 <!-- ### Updating a Hash Map -->
-<a class="header" href="ch08-03-hash-maps.html#aハッシュマップを更新する" id="aハッシュマップを更新する"><h3>ハッシュマップを更新する</h3></a>
+<a class="header" href="#aハッシュマップを更新する" id="aハッシュマップを更新する"><h3>ハッシュマップを更新する</h3></a>
 <!-- Although the number of keys and values is growable, each key can only have one -->
 <!-- value associated with it at a time. When we want to change the data in a hash -->
 <!-- map, we have to decide how to handle the case when a key already has a value -->
@@ -340,7 +340,7 @@ Blue: 10
 新しい値を無視し、キーにまだ値が<em>ない</em>場合に新しい値を追加するだけにすることもできます。
 あるいは、古い値と新しい値を組み合わせることもできます。各方法について見ていきましょう！</p>
 <!-- #### Overwriting a Value -->
-<a class="header" href="ch08-03-hash-maps.html#a値を上書きする" id="a値を上書きする"><h4>値を上書きする</h4></a>
+<a class="header" href="#a値を上書きする" id="a値を上書きする"><h4>値を上書きする</h4></a>
 <!-- If we insert a key and a value into a hash map and then insert that same key -->
 <!-- with a different value, the value associated with that key will be replaced. -->
 <!-- Even though the code in Listing 8-24 calls `insert` twice, the hash map will -->
@@ -368,7 +368,7 @@ println!(&quot;{:?}&quot;, scores);
 <!-- overwritten. -->
 <p>このコードは、<code>{&quot;Blue&quot;: 25}</code>と出力するでしょう。<code>10</code>という元の値は上書きされたのです。</p>
 <!-- #### Only Inserting a Value If the Key Has No Value -->
-<a class="header" href="ch08-03-hash-maps.html#aキーに値がなかった時のみ値を挿入する" id="aキーに値がなかった時のみ値を挿入する"><h4>キーに値がなかった時のみ値を挿入する</h4></a>
+<a class="header" href="#aキーに値がなかった時のみ値を挿入する" id="aキーに値がなかった時のみ値を挿入する"><h4>キーに値がなかった時のみ値を挿入する</h4></a>
 <!-- It’s common to check whether a particular key has a value and if it doesn’t, -->
 <!-- insert a value for it. Hash maps have a special API for this called `entry` -->
 <!-- that takes the key we want to check as a parameter. The return value of the -->
@@ -415,7 +415,7 @@ println!(&quot;{:?}&quot;, scores);
 最初の<code>entry</code>呼び出しは、まだイエローチームに対する値がないので、値50でイエローチームのキーを挿入します。
 <code>entry</code>の2回目の呼び出しはハッシュマップを変更しません。なぜなら、ブルーチームには既に10という値があるからです。</p>
 <!-- #### Updating a Value Based on the Old Value -->
-<a class="header" href="ch08-03-hash-maps.html#a古い値に基づいて値を更新する" id="a古い値に基づいて値を更新する"><h4>古い値に基づいて値を更新する</h4></a>
+<a class="header" href="#a古い値に基づいて値を更新する" id="a古い値に基づいて値を更新する"><h4>古い値に基づいて値を更新する</h4></a>
 <!-- Another common use case for hash maps is to look up a key’s value and then -->
 <!-- update it based on the old value. For instance, Listing 8-26 shows code that -->
 <!-- counts how many times each word appears in some text. We use a hash map with -->
@@ -457,7 +457,7 @@ println!(&quot;{:?}&quot;, map);
 まずアスタリスク(<code>*</code>)で<code>count</code>を参照外ししなければならないのです。この可変参照は、
 <code>for</code>ループの終端でスコープを抜けるので、これらの変更は全て安全であり、借用規則により許可されるのです。</p>
 <!-- ### Hashing Function -->
-<a class="header" href="ch08-03-hash-maps.html#aハッシュ関数" id="aハッシュ関数"><h3>ハッシュ関数</h3></a>
+<a class="header" href="#aハッシュ関数" id="aハッシュ関数"><h3>ハッシュ関数</h3></a>
 <!-- By default, `HashMap` uses a cryptographically secure hashing function that can -->
 <!-- provide resistance to Denial of Service (DoS) attacks. This is not the fastest -->
 <!-- hashing algorithm available, but the trade-off for better security that comes -->
@@ -477,7 +477,7 @@ println!(&quot;{:?}&quot;, map);
 必ずしも独自のhasherを1から作り上げる必要はありません; <a href="https://crates.io">crates.io</a>には、
 他のRustユーザによって共有された多くの一般的なハッシュアルゴリズムを実装したhasherを提供するライブラリがあります。</p>
 <!-- ## Summary -->
-<a class="header" href="ch08-03-hash-maps.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
+<a class="header" href="#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- Vectors, strings, and hash maps will provide a large amount of functionality -->
 <!-- necessary in programs when you need to store, access, and modify data. Here are-->
 <!-- some exercises you should now be equipped to solve: -->

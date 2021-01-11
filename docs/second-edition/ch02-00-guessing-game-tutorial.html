@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- # Programming a Guessing Game -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#a数当てゲームをプログラムする" id="a数当てゲームをプログラムする"><h1>数当てゲームをプログラムする</h1></a>
+<a class="header" href="#a数当てゲームをプログラムする" id="a数当てゲームをプログラムする"><h1>数当てゲームをプログラムする</h1></a>
 <!-- Let’s jump into Rust by working through a hands-on project together! This -->
 <!-- chapter introduces you to a few common Rust concepts by showing you how to use -->
 <!-- them in a real program. You’ll learn about `let`, `match`, methods, associated -->
@@ -163,7 +163,7 @@
 その予想が小さすぎたか大きすぎたかを出力します。予想が当たっていれば、ゲームは祝福メッセージを表示し、
 終了します。</p>
 <!-- ## Setting Up a New Project -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#a新規プロジェクトの立ち上げ" id="a新規プロジェクトの立ち上げ"><h2>新規プロジェクトの立ち上げ</h2></a>
+<a class="header" href="#a新規プロジェクトの立ち上げ" id="a新規プロジェクトの立ち上げ"><h2>新規プロジェクトの立ち上げ</h2></a>
 <!-- To set up a new project, go to the *projects* directory that you created in -->
 <!-- Chapter 1 and make a new project using Cargo, like so: -->
 <p>新規プロジェクトを立ち上げるには、第1章で作成した<em>projects</em>ディレクトリに行き、
@@ -221,7 +221,7 @@ Hello, world!
 <!-- Reopen the *src/main.rs* file. You’ll be writing all the code in this file. -->
 <p>再度<em>src/main.rs</em>ファイルを開きましょう。ここにすべてのコードを書いていきます。</p>
 <!-- ## Processing a Guess -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#a予想を処理する" id="a予想を処理する"><h2>予想を処理する</h2></a>
+<a class="header" href="#a予想を処理する" id="a予想を処理する"><h2>予想を処理する</h2></a>
 <!-- The first part of the guessing game program will ask for user input, process -->
 <!-- that input, and check that the input is in the expected form. To start, we’ll -->
 <!-- allow the player to input a guess. Enter the code in Listing 2-1 into -->
@@ -290,7 +290,7 @@ println!(&quot;Please input your guess.&quot;);
 <!-- input from the user. -->
 <p>このコードは、このゲームが何かを出力し、ユーザに入力を求めています。</p>
 <!-- ### Storing Values with Variables -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#a値を変数に保持する" id="a値を変数に保持する"><h3>値を変数に保持する</h3></a>
+<a class="header" href="#a値を変数に保持する" id="a値を変数に保持する"><h3>値を変数に保持する</h3></a>
 <!-- Next, we’ll create a place to store the user input, like this: -->
 <p>次に、ユーザ入力を保持する場所を作りましょう。こんな感じに:</p>
 <pre><code class="language-rust ignore">let mut guess = String::new();
@@ -395,7 +395,7 @@ let mut bar = 5; // mutable
 故に、<code>&amp;guess</code>と書くのではなく、<code>&amp;mut guess</code>と書いて、可変にする必要があるのです。
 (第4章で参照についてより詳細に説明します)</p>
 <!-- ### Handling Potential Failure with the `Result` Type -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#result型で失敗の可能性を扱う" id="result型で失敗の可能性を扱う"><h3><code>Result</code>型で失敗の可能性を扱う</h3></a>
+<a class="header" href="#result型で失敗の可能性を扱う" id="result型で失敗の可能性を扱う"><h3><code>Result</code>型で失敗の可能性を扱う</h3></a>
 <!-- We’re not quite done with this line of code. Although what we've discussed so -->
 <!-- far is a single line of text, it’s only the first part of the single logical -->
 <!-- line of code. The second part is this method: -->
@@ -480,7 +480,7 @@ warning: unused `std::result::Result` which must be used
 問題が起きた時にプロラグムをクラッシュさせたいので、<code>expect</code>を使用できるわけです。
 エラーから復旧する方法については、第9章で学ぶでしょう。</p>
 <!-- ### Printing Values with `println!` Placeholders -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#printlnマクロのプレースホルダーで値を出力する" id="printlnマクロのプレースホルダーで値を出力する"><h3><code>println!</code>マクロのプレースホルダーで値を出力する</h3></a>
+<a class="header" href="#printlnマクロのプレースホルダーで値を出力する" id="printlnマクロのプレースホルダーで値を出力する"><h3><code>println!</code>マクロのプレースホルダーで値を出力する</h3></a>
 <!-- Aside from the closing curly brackets, there’s only one more line to discuss in -->
 <!-- the code added so far, which is the following: -->
 <p>閉じ波かっこを除けば、ここまでに追加されたコードのうち議論すべきものは、残り1行であり、それは以下の通りです:</p>
@@ -508,7 +508,7 @@ println!(&quot;x = {} and y = {}&quot;, x, y);
 <!-- This code would print `x = 5 and y = 10`. -->
 <p>このコードは、<code>x = 5 and y = 10</code>と出力するでしょう.</p>
 <!-- ### Testing the First Part -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#a最初の部分をテストする" id="a最初の部分をテストする"><h3>最初の部分をテストする</h3></a>
+<a class="header" href="#a最初の部分をテストする" id="a最初の部分をテストする"><h3>最初の部分をテストする</h3></a>
 <!-- Let’s test the first part of the guessing game. Run it using `cargo run`: -->
 <p>数当てゲームの最初の部分をテストしてみましょう。<code>cargo run</code>でプログラムを走らせてください:</p>
 <pre><code class="language-text">$ cargo run
@@ -524,7 +524,7 @@ You guessed: 6
 <!-- keyboard and then printing it. -->
 <p>ここまでで、ゲームの最初の部分は完成になります: キーボードからの入力を受け付け、出力できています。</p>
 <!-- ## Generating a Secret Number -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#a秘密の数字を生成する" id="a秘密の数字を生成する"><h2>秘密の数字を生成する</h2></a>
+<a class="header" href="#a秘密の数字を生成する" id="a秘密の数字を生成する"><h2>秘密の数字を生成する</h2></a>
 <!-- Next, we need to generate a secret number that the user will try to guess. The -->
 <!-- secret number should be different every time so the game is fun to play more -->
 <!-- than once. Let’s use a random number between 1 and 100 so the game isn’t too -->
@@ -535,7 +535,7 @@ You guessed: 6
 Rustの標準ライブラリには、乱数機能はまだ含まれていません。ですが、実は、
 Rustの開発チームが<a href="https://crates.io/crates/rand"><code>rand</code>クレート</a>を用意してくれています。</p>
 <!-- ### Using a Crate to Get More Functionality -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#aクレートを使用して機能を追加する" id="aクレートを使用して機能を追加する"><h3>クレートを使用して機能を追加する</h3></a>
+<a class="header" href="#aクレートを使用して機能を追加する" id="aクレートを使用して機能を追加する"><h3>クレートを使用して機能を追加する</h3></a>
 <!-- Remember that a crate is a package of Rust code. The project we’ve been -->
 <!-- building is a *binary crate*, which is an executable. The `rand` crate is a -->
 <!-- *library crate*, which contains code intended to be used in other programs. -->
@@ -630,7 +630,7 @@ Cargoは、既に全ての依存をダウンロードしてコンパイル済み
 依存は変更していないので、Cargoは、既にダウンロードしてコンパイルまで済ませてある依存を使用できると検知します。
 自分で書いたコードのみ再ビルドをかけるわけです。</p>
 <!-- #### Ensuring Reproducible Builds with the *Cargo.lock* File -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#cargolockファイルで再現可能なビルドを保証する" id="cargolockファイルで再現可能なビルドを保証する"><h4><em>Cargo.lock</em>ファイルで再現可能なビルドを保証する</h4></a>
+<a class="header" href="#cargolockファイルで再現可能なビルドを保証する" id="cargolockファイルで再現可能なビルドを保証する"><h4><em>Cargo.lock</em>ファイルで再現可能なビルドを保証する</h4></a>
 <!-- Cargo has a mechanism that ensures you can rebuild the same artifact every time -->
 <!-- you or anyone else builds your code: Cargo will use only the versions of the -->
 <!-- dependencies you specified until you indicate otherwise. For example, what -->
@@ -657,7 +657,7 @@ Cargoは判断基準(criteria)に合致するよう全ての依存のバージ�
 このことにより、自動的に再現可能なビルドを構成できるのです。つまり、明示的にアップグレードしない限り、
 プロジェクトが使用するバージョンは<code>0.3.14</code>に保たれるのです。<em>Cargo.lock</em>ファイルのおかげでね。</p>
 <!-- #### Updating a Crate to Get a New Version -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#aクレートを更新して新バージョンを取得する" id="aクレートを更新して新バージョンを取得する"><h4>クレートを更新して新バージョンを取得する</h4></a>
+<a class="header" href="#aクレートを更新して新バージョンを取得する" id="aクレートを更新して新バージョンを取得する"><h4>クレートを更新して新バージョンを取得する</h4></a>
 <!-- When you *do* want to update a crate, Cargo provides another command, `update`, -->
 <!-- which will ignore the *Cargo.lock* file and figure out all the latest versions -->
 <!-- that fit your specifications in *Cargo.toml*. If that works, Cargo will write -->
@@ -705,7 +705,7 @@ rand = &quot;0.4.0&quot;
 Cargoのおかげでライブラリはとても簡単に再利用ができるので、
 Rustaceanは数多くのパッケージから構成された小規模のプロジェクトを書くことができるのです。</p>
 <!-- ### Generating a Random Number -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#a乱数を生成する" id="a乱数を生成する"><h3>乱数を生成する</h3></a>
+<a class="header" href="#a乱数を生成する" id="a乱数を生成する"><h3>乱数を生成する</h3></a>
 <!-- Now that you've added the `rand` crate to *Cargo.toml*, let's start using -->
 <!-- `rand`. The next step is to update *src/main.rs*, as shown in Listing 2-3. -->
 <p><em>Cargo.toml</em>に<code>rand</code>クレートを追加したので、<code>rand</code>クレートを使用開始しましょう。
@@ -804,7 +804,7 @@ You guessed: 5
 <!-- 1 and 100. Great job! -->
 <p>毎回異なる乱数が出て、その数字はすべて1から100の範囲になるはずです。よくやりました！</p>
 <!-- ## Comparing the Guess to the Secret Number -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#a予想と秘密の数字を比較する" id="a予想と秘密の数字を比較する"><h2>予想と秘密の数字を比較する</h2></a>
+<a class="header" href="#a予想と秘密の数字を比較する" id="a予想と秘密の数字を比較する"><h2>予想と秘密の数字を比較する</h2></a>
 <!-- Now that we have user input and a random number, we can compare them. That step-->
 <!-- is shown in Listing 2-4. Note that this code won't compile quite yet, as we -->
 <!-- will explain. -->
@@ -1053,7 +1053,7 @@ Too big!
 <p>ここまでで大方ゲームはうまく動くようになりましたが、まだユーザは1回しか予想できません。
 ループを追加して、その部分を変更しましょう！</p>
 <!-- ## Allowing Multiple Guesses with Looping -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#aループで複数回の予想を可能にする" id="aループで複数回の予想を可能にする"><h2>ループで複数回の予想を可能にする</h2></a>
+<a class="header" href="#aループで複数回の予想を可能にする" id="aループで複数回の予想を可能にする"><h2>ループで複数回の予想を可能にする</h2></a>
 <!-- The `loop` keyword creates an infinite loop. We'll add that now to give users -->
 <!-- more chances at guessing the number: -->
 <p><code>loop</code>キーワードは、無限ループを作り出します。これを追加して、ユーザが何回も予想できるようにしましょう:</p>
@@ -1128,7 +1128,7 @@ error: Process didn't exit successfully: `target/debug/guess` (exit code: 101)
 <p><code>quit</code>と入力すれば、実際にゲームを終了できるわけですが、別に他の数字以外の入力でもそうなります。
 しかしながら、これは最低限度と言えるでしょう。正しい数字が予想されたら、自動的にゲームが停止してほしいわけです。</p>
 <!-- ### Quitting After a Correct Guess -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#a正しい予想をした後に終了する" id="a正しい予想をした後に終了する"><h3>正しい予想をした後に終了する</h3></a>
+<a class="header" href="#a正しい予想をした後に終了する" id="a正しい予想をした後に終了する"><h3>正しい予想をした後に終了する</h3></a>
 <!-- Let’s program the game to quit when the user wins by adding a `break` statement: -->
 <p><code>break</code>文を追加して、ユーザが勝った時にゲームが終了するようにプログラムしましょう:</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
@@ -1153,7 +1153,7 @@ error: Process didn't exit successfully: `target/debug/guess` (exit code: 101)
 プログラムはループを抜けるようになりました。ついでに、ループを抜けることは、プログラムを終了することを意味します。
 ループが<code>main</code>関数の最後の部分だからですね。</p>
 <!-- ### Handling Invalid Input -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#a不正な入力を処理する" id="a不正な入力を処理する"><h3>不正な入力を処理する</h3></a>
+<a class="header" href="#a不正な入力を処理する" id="a不正な入力を処理する"><h3>不正な入力を処理する</h3></a>
 <!-- To further refine the game’s behavior, rather than crashing the program when -->
 <!-- the user inputs a non-number, let’s make the game ignore a non-number so the -->
 <!-- user can continue guessing. We can do that by altering the line where `guess` -->
@@ -1286,7 +1286,7 @@ fn main() {
 <!-- <span class="caption">Listing 2-6: Complete guessing game code</span> -->
 <p><span class="caption">リスト2-6: 数当てゲームの完全なコード</span></p>
 <!-- ## Summary -->
-<a class="header" href="ch02-00-guessing-game-tutorial.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
+<a class="header" href="#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- At this point, you’ve successfully built the guessing game. Congratulations! -->
 <p>ここまでで、数当てゲームの構築に成功しました。おめでとうございます！</p>
 <!-- This project was a hands-on way to introduce you to many new Rust concepts: -->

@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Processing a Series of Items with Iterators -->
-<a class="header" href="ch13-02-iterators.html#a一連の要素をイテレータで処理する" id="a一連の要素をイテレータで処理する"><h2>一連の要素をイテレータで処理する</h2></a>
+<a class="header" href="#a一連の要素をイテレータで処理する" id="a一連の要素をイテレータで処理する"><h2>一連の要素をイテレータで処理する</h2></a>
 <!-- The iterator pattern allows you to perform some task on a sequence of items in -->
 <!-- turn. An iterator is responsible for the logic of iterating over each item and -->
 <!-- determining when the sequence has finished. When you use iterators, you don’t -->
@@ -211,7 +211,7 @@ for val in v1_iter {
 イテレータにより、添え字を使えるデータ構造、ベクタなどだけではなく、多くの異なるシーケンスに対して同じロジックを使う柔軟性も得られます。
 イテレータがそれをする方法を調査しましょう。</p>
 <!-- ### The `Iterator` Trait and the `next` Method -->
-<a class="header" href="ch13-02-iterators.html#iteratorトレイトとnextメソッド" id="iteratorトレイトとnextメソッド"><h3><code>Iterator</code>トレイトと<code>next</code>メソッド</h3></a>
+<a class="header" href="#iteratorトレイトとnextメソッド" id="iteratorトレイトとnextメソッド"><h3><code>Iterator</code>トレイトと<code>next</code>メソッド</h3></a>
 <!-- All iterators implement a trait named `Iterator` that is defined in the -->
 <!-- standard library. The definition of the trait looks like this: -->
 <p>全てのイテレータは、標準ライブラリで定義されている<code>Iterator</code>というトレイトを実装しています。
@@ -293,7 +293,7 @@ fn iterator_demonstration() {
 <code>iter</code>ではなく<code>into_iter</code>を呼び出すことができます。同様に、可変参照を繰り返したいなら、
 <code>iter</code>ではなく<code>iter_mut</code>を呼び出せます。</p>
 <!-- ### Methods that Consume the Iterator -->
-<a class="header" href="ch13-02-iterators.html#aイテレータを消費するメソッド" id="aイテレータを消費するメソッド"><h3>イテレータを消費するメソッド</h3></a>
+<a class="header" href="#aイテレータを消費するメソッド" id="aイテレータを消費するメソッド"><h3>イテレータを消費するメソッド</h3></a>
 <!-- The `Iterator` trait has a number of different methods with default -->
 <!-- implementations provided by the standard library; you can find out about these -->
 <!-- methods by looking in the standard library API documentation for the `Iterator` -->
@@ -337,7 +337,7 @@ fn iterator_sum() {
 <!-- ownership of the iterator we call it on. -->
 <p><code>sum</code>は呼び出し対象のイテレータの所有権を奪うので、<code>sum</code>呼び出し後に<code>v1_iter</code>を使用することはできません。</p>
 <!-- ### Methods that Produce Other Iterators -->
-<a class="header" href="ch13-02-iterators.html#a他のイテレータを生成するメソッド" id="a他のイテレータを生成するメソッド"><h2>他のイテレータを生成するメソッド</h2></a>
+<a class="header" href="#a他のイテレータを生成するメソッド" id="a他のイテレータを生成するメソッド"><h2>他のイテレータを生成するメソッド</h2></a>
 <!-- Other methods defined on the `Iterator` trait, known as *iterator adaptors*, -->
 <!-- allow us to change iterators into different kind of iterators. You can chain -->
 <!-- multiple calls to iterator adaptors to perform complex actions in a readable -->
@@ -418,7 +418,7 @@ assert_eq!(v2, vec![2, 3, 4]);
 これは、<code>Iterator</code>トレイトが提供する繰り返し動作を再利用しつつ、
 クロージャにより一部の動作をカスタマイズできる好例になっています。</p>
 <!-- ### Using Closures that Capture Their Environment -->
-<a class="header" href="ch13-02-iterators.html#a環境をキャプチャするクロージャを使用する" id="a環境をキャプチャするクロージャを使用する"><h3>環境をキャプチャするクロージャを使用する</h3></a>
+<a class="header" href="#a環境をキャプチャするクロージャを使用する" id="a環境をキャプチャするクロージャを使用する"><h3>環境をキャプチャするクロージャを使用する</h3></a>
 <!-- Now that we’ve introduced iterators, we can demonstrate a common use of -->
 <!-- closures that capture their environment by using the `filter` iterator adaptor. -->
 <!-- The `filter` method on an iterator takes a closure that takes each item from -->
@@ -494,7 +494,7 @@ fn filters_by_size() {
 <!-- that have the same size as the value we specified. -->
 <p><code>shoes_in_my_size</code>を呼び出した時に、指定した値と同じサイズの靴だけが得られることをテストは示しています。</p>
 <!-- ### Creating Our Own Iterators with `Iterator` Trait -->
-<a class="header" href="ch13-02-iterators.html#iteratorトレイトで独自のイテレータを作成する" id="iteratorトレイトで独自のイテレータを作成する"><h3><code>Iterator</code>トレイトで独自のイテレータを作成する</h3></a>
+<a class="header" href="#iteratorトレイトで独自のイテレータを作成する" id="iteratorトレイトで独自のイテレータを作成する"><h3><code>Iterator</code>トレイトで独自のイテレータを作成する</h3></a>
 <!-- We’ve shown that you can create an iterator by calling `iter`, `into_iter`, or -->
 <!-- `iter_mut` on a vector. You can create iterators from the other collection -->
 <!-- types in the standard library, such as hash map. You can also create iterators -->
@@ -588,7 +588,7 @@ impl Iterator for Counter {
 <code>count</code>の値が5以下なら、<code>next</code>は<code>Some</code>に包まれた現在の値を返しますが、
 <code>count</code>が6以上なら、イテレータは<code>None</code>を返します。</p>
 <!-- #### Using Our `Counter` Iterator’s `next` Method -->
-<a class="header" href="ch13-02-iterators.html#counterイテレータのnextメソッドを使用する" id="counterイテレータのnextメソッドを使用する"><h4><code>Counter</code>イテレータの<code>next</code>メソッドを使用する</h4></a>
+<a class="header" href="#counterイテレータのnextメソッドを使用する" id="counterイテレータのnextメソッドを使用する"><h4><code>Counter</code>イテレータの<code>next</code>メソッドを使用する</h4></a>
 <!-- Once we’ve implemented the `Iterator` trait, we have an iterator! Listing 13-22 -->
 <!-- shows a test demonstrating that we can use the iterator functionality of our -->
 <!-- `Counter` struct by calling the `next` method on it directly, just as we did -->
@@ -641,7 +641,7 @@ fn calling_next_directly() {
 それからイテレータにほしい動作が実装し終わっていることを実証しながら、<code>next</code>を繰り返し呼び出しています:
 1から5の値を返すことです。</p>
 <!-- #### Using Other `Iterator` Trait Methods -->
-<a class="header" href="ch13-02-iterators.html#a他のiteratorトレイトメソッドを使用する" id="a他のiteratorトレイトメソッドを使用する"><h4>他の<code>Iterator</code>トレイトメソッドを使用する</h4></a>
+<a class="header" href="#a他のiteratorトレイトメソッドを使用する" id="a他のiteratorトレイトメソッドを使用する"><h4>他の<code>Iterator</code>トレイトメソッドを使用する</h4></a>
 <!-- We implemented the `Iterator` trait by defining the `next` method, so we -->
 <!-- can now use any `Iterator` trait method’s default implementations as defined in -->
 <!-- the standard library, because they all use the `next` method’s functionality. -->

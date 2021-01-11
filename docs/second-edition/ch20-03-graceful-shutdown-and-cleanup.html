@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Graceful Shutdown and Cleanup -->
-<a class="header" href="ch20-03-graceful-shutdown-and-cleanup.html#a正常なシャットダウンと片付け" id="a正常なシャットダウンと片付け"><h2>正常なシャットダウンと片付け</h2></a>
+<a class="header" href="#a正常なシャットダウンと片付け" id="a正常なシャットダウンと片付け"><h2>正常なシャットダウンと片付け</h2></a>
 <!-- The code in Listing 20-21 is responding to requests asynchronously through the -->
 <!-- use of a thread pool, as we intended. We get some warnings about the `workers`, -->
 <!-- `id`, and `thread` fields that we’re not using in a direct way that reminds us -->
@@ -163,7 +163,7 @@
 そして、スレッドに新しいリクエストの受付を停止し、終了するように教える方法を実装します。
 このコードが動いているのを確かめるために、サーバを変更して正常にスレッドプールを終了する前に2つしかリクエストを受け付けないようにします。</p>
 <!-- ### Implementing the `Drop` Trait on `ThreadPool` -->
-<a class="header" href="ch20-03-graceful-shutdown-and-cleanup.html#threadpoolにdropトレイトを実装する" id="threadpoolにdropトレイトを実装する"><h3><code>ThreadPool</code>に<code>Drop</code>トレイトを実装する</h3></a>
+<a class="header" href="#threadpoolにdropトレイトを実装する" id="threadpoolにdropトレイトを実装する"><h3><code>ThreadPool</code>に<code>Drop</code>トレイトを実装する</h3></a>
 <!-- Let’s start with implementing `Drop` on our thread pool. When the pool is -->
 <!-- dropped, our threads should all join to make sure they finish their work. -->
 <!-- Listing 20-23 shows a first attempt at a `Drop` implementation; this code won’t -->
@@ -305,7 +305,7 @@ error[E0308]: mismatched types
 ワーカーのスレッドが既に<code>None</code>なら、ワーカーはスレッドを既に片付け済みであることがわかるので、
 その場合には何も起きません。</p>
 <!-- ### Signaling to the Threads to Stop Listening for Jobs -->
-<a class="header" href="ch20-03-graceful-shutdown-and-cleanup.html#aスレッドに仕事をリッスンするのを止めるよう通知する" id="aスレッドに仕事をリッスンするのを止めるよう通知する"><h3>スレッドに仕事をリッスンするのを止めるよう通知する</h3></a>
+<a class="header" href="#aスレッドに仕事をリッスンするのを止めるよう通知する" id="aスレッドに仕事をリッスンするのを止めるよう通知する"><h3>スレッドに仕事をリッスンするのを止めるよう通知する</h3></a>
 <!-- With all the changes we’ve made, our code compiles without any warnings. But -->
 <!-- the bad news is this code doesn’t function the way we want it to yet. The key -->
 <!-- is the logic in the closures run by the threads of the `Worker` instances: at -->
@@ -762,7 +762,7 @@ impl Worker {
 そして、APIと頑健性を我々が実装したものと比較する。</li>
 </ul>
 <!-- ## Summary -->
-<a class="header" href="ch20-03-graceful-shutdown-and-cleanup.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
+<a class="header" href="#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- Well done! You’ve made it to the end of the book! We want to thank you for -->
 <!-- joining us on this tour of Rust. You’re now ready to implement your own Rust -->
 <!-- projects and help with other peoples’ projects. Keep in mind that there is a -->

@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Publishing a Crate to Crates.io -->
-<a class="header" href="ch14-02-publishing-to-crates-io.html#cratesioにクレートを公開する" id="cratesioにクレートを公開する"><h2>Crates.ioにクレートを公開する</h2></a>
+<a class="header" href="#cratesioにクレートを公開する" id="cratesioにクレートを公開する"><h2>Crates.ioにクレートを公開する</h2></a>
 <!-- We’ve used packages from [crates.io](https://crates.io) as -->
 <!-- dependencies of our project, but you can also share your code with other people -->
 <!-- by publishing your own packages. The crate registry at -->
@@ -158,7 +158,7 @@
 <p>RustとCargoは、公開したパッケージを人が使用し、そもそも見つけやすくしてくれる機能を有しています。
 これらの機能の一部を次に語り、そして、パッケージの公開方法を説明します。</p>
 <!-- ### Making Useful Documentation Comments -->
-<a class="header" href="ch14-02-publishing-to-crates-io.html#a役に立つドキュメンテーションコメントを行う" id="a役に立つドキュメンテーションコメントを行う"><h3>役に立つドキュメンテーションコメントを行う</h3></a>
+<a class="header" href="#a役に立つドキュメンテーションコメントを行う" id="a役に立つドキュメンテーションコメントを行う"><h3>役に立つドキュメンテーションコメントを行う</h3></a>
 <!-- Accurately documenting your packages will help other users know how and when to -->
 <!-- use them, so it’s worth investing the time to write documentation. In Chapter -->
 <!-- 3, we discussed how to comment Rust code using two slashes, `//`. Rust also has -->
@@ -222,7 +222,7 @@ HTMLドキュメントを生成することができます。このコマンド�
 <!-- function</span> -->
 <p><span class="caption">図14-1: <code>add_one</code>関数のHTMLドキュメント</span></p>
 <!-- #### Commonly Used Sections -->
-<a class="header" href="ch14-02-publishing-to-crates-io.html#aよく使われるセクション" id="aよく使われるセクション"><h4>よく使われるセクション</h4></a>
+<a class="header" href="#aよく使われるセクション" id="aよく使われるセクション"><h4>よく使われるセクション</h4></a>
 <!-- We used the `# Examples` Markdown heading in Listing 14-1 to create a section -->
 <!-- in the HTML with the title “Examples.” Here are some other sections that crate -->
 <!-- authors commonly use in their documentation: -->
@@ -252,7 +252,7 @@ HTMLドキュメントを生成することができます。このコマンド�
 <p>多くのドキュメンテーションコメントでは、これら全てのセクションが必要になることはありませんが、
 これは自分のコードを呼び出している人が知りたいと思うコードの方向性を思い出させてくれるいいチェックリストになります。</p>
 <!-- #### Documentation Comments as Tests -->
-<a class="header" href="ch14-02-publishing-to-crates-io.html#aテストとしてのドキュメンテーションコメント" id="aテストとしてのドキュメンテーションコメント"><h4>テストとしてのドキュメンテーションコメント</h4></a>
+<a class="header" href="#aテストとしてのドキュメンテーションコメント" id="aテストとしてのドキュメンテーションコメント"><h4>テストとしてのドキュメンテーションコメント</h4></a>
 <!-- Adding example code blocks in your documentation comments can help demonstrate -->
 <!-- how to use your library, and doing so has an additional bonus: running `cargo -->
 <!-- test` will run the code examples in your documentation as tests! Nothing is -->
@@ -279,7 +279,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 <p>さて、例の<code>assert_eq!</code>がパニックするように、関数か例を変更し、再度<code>cargo test</code>を実行したら、
 docテストが、例とコードがお互いに同期されていないことを捕捉するところを目撃するでしょう！</p>
 <!-- #### Commenting Contained Items -->
-<a class="header" href="ch14-02-publishing-to-crates-io.html#a含まれている要素にコメントする" id="a含まれている要素にコメントする"><h4>含まれている要素にコメントする</h4></a>
+<a class="header" href="#a含まれている要素にコメントする" id="a含まれている要素にコメントする"><h4>含まれている要素にコメントする</h4></a>
 <!-- Another style of doc comment, `//!`, adds documentation to the item that -->
 <!-- contains the comments rather than adding documentation to the items following -->
 <!-- the comments. We typically use these doc comments inside the crate root file -->
@@ -337,7 +337,7 @@ docテストが、例とコードがお互いに同期されていないこと�
 <p>要素内のドキュメンテーションコメントは、特にクレートやモジュールを解説するのに有用です。
 コンテナの全体の目的を説明し、クレートの使用者がクレートの体系を理解する手助けをするのに使用してください。</p>
 <!-- ### Exporting a Convenient Public API with `pub use` -->
-<a class="header" href="ch14-02-publishing-to-crates-io.html#pub-useで便利な公開apiをエクスポートする" id="pub-useで便利な公開apiをエクスポートする"><h3><code>pub use</code>で便利な公開APIをエクスポートする</h3></a>
+<a class="header" href="#pub-useで便利な公開apiをエクスポートする" id="pub-useで便利な公開apiをエクスポートする"><h3><code>pub use</code>で便利な公開APIをエクスポートする</h3></a>
 <!-- In Chapter 7, we covered how to organize our code into modules using the `mod` -->
 <!-- keyword, how to make items public using the `pub` keyword, and how to bring -->
 <!-- items into a scope with the `use` keyword. However, the structure that makes -->
@@ -541,7 +541,7 @@ fn main() {
 その内部構造をユーザに提示する構造から切り離してくれます。インストールしてある他のクレートを見て、
 内部構造が公開APIと異なっているか確認してみてください。</p>
 <!-- ### Setting Up a Crates.io Account -->
-<a class="header" href="ch14-02-publishing-to-crates-io.html#cratesioのアカウントをセットアップする" id="cratesioのアカウントをセットアップする"><h3>Crates.ioのアカウントをセットアップする</h3></a>
+<a class="header" href="#cratesioのアカウントをセットアップする" id="cratesioのアカウントをセットアップする"><h3>Crates.ioのアカウントをセットアップする</h3></a>
 <!-- Before you can publish any crates, you need to create an account on -->
 <!-- [crates.io](https://crates.io) and get an API token. To do so, -->
 <!-- visit the home page at [crates.io](https://crates.io) and log in -->
@@ -567,7 +567,7 @@ APIキーを取り扱ってください。そして、<code>cargo login</code>�
 このトークンは、<em>秘密</em>です: 他人とは共有しないでください。なんらかの理由で他人と実際に共有してしまったら、
 古いものを破棄して<a href="https://crates.io">crates.io</a>で新しいトークンを生成するべきです。</p>
 <!-- ### Adding Metadata to a New Crate -->
-<a class="header" href="ch14-02-publishing-to-crates-io.html#a新しいクレートにメタデータを追加する" id="a新しいクレートにメタデータを追加する"><h3>新しいクレートにメタデータを追加する</h3></a>
+<a class="header" href="#a新しいクレートにメタデータを追加する" id="a新しいクレートにメタデータを追加する"><h3>新しいクレートにメタデータを追加する</h3></a>
 <!-- Now that you have an account, let’s say you have a crate you want to publish. -->
 <!-- Before publishing, you’ll need to add some metadata to your crate by adding it -->
 <!-- to the `[package]` section of the crate’s *Cargo.toml* file. -->
@@ -667,7 +667,7 @@ license = &quot;MIT OR Apache-2.0&quot;
 <p><a href="https://doc.rust-lang.org/cargo">Cargoのドキュメンテーション</a>には、
 指定して他人が発見し、より容易くクレートを使用できることを保証する他のメタデータが解説されています。</p>
 <!-- ### Publishing to Crates.io -->
-<a class="header" href="ch14-02-publishing-to-crates-io.html#cratesioに公開する" id="cratesioに公開する"><h3>Crates.ioに公開する</h3></a>
+<a class="header" href="#cratesioに公開する" id="cratesioに公開する"><h3>Crates.ioに公開する</h3></a>
 <!-- Now that you’ve created an account, saved your API token, chosen a name for -->
 <!-- your crate, and specified the required metadata, you’re ready to publish! -->
 <!-- Publishing a crate uploads a specific version to -->
@@ -702,7 +702,7 @@ Uploading guessing_game v0.1.0 (file:///projects/guessing_game)
 <!-- anyone can easily add your crate as a dependency of their project. -->
 <p>おめでとうございます！Rustコミュニティとコードを共有し、誰でもあなたのクレートを依存として簡単に追加できます。</p>
 <!-- ### Publishing a New Version of an Existing Crate -->
-<a class="header" href="ch14-02-publishing-to-crates-io.html#a既存のクレートの新バージョンを公開する" id="a既存のクレートの新バージョンを公開する"><h3>既存のクレートの新バージョンを公開する</h3></a>
+<a class="header" href="#a既存のクレートの新バージョンを公開する" id="a既存のクレートの新バージョンを公開する"><h3>既存のクレートの新バージョンを公開する</h3></a>
 <!-- When you’ve made changes to your crate and are ready to release a new version, -->
 <!-- you change the `version` value specified in your *Cargo.toml* file and -->
 <!-- republish. Use the [Semantic Versioning rules][semver] to decide what an -->
@@ -713,7 +713,7 @@ Uploading guessing_game v0.1.0 (file:///projects/guessing_game)
 <a href="http://semver.org/">セマンティックバージョンルール</a>を使用して加えた変更の種類に基づいて次の適切なバージョン番号を決定してください。
 そして、<code>cargo publish</code>を実行し、新バージョンをアップロードします。</p>
 <!-- ### Removing Versions from Crates.io with `cargo yank` -->
-<a class="header" href="ch14-02-publishing-to-crates-io.html#cargo-yankでcratesioからバージョンを削除する" id="cargo-yankでcratesioからバージョンを削除する"><h3><code>cargo yank</code>でCrates.ioからバージョンを削除する</h3></a>
+<a class="header" href="#cargo-yankでcratesioからバージョンを削除する" id="cargo-yankでcratesioからバージョンを削除する"><h3><code>cargo yank</code>でCrates.ioからバージョンを削除する</h3></a>
 <!-- 最後の行。辞書には、yankingはグイっと引っ張ることとしかないが、ここでは取り下げと意訳しておく -->
 <!-- Although you can’t remove previous versions of a crate, you can prevent any -->
 <!-- future projects from adding them as a new dependency. This is useful when a -->

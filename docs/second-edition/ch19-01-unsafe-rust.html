@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Unsafe Rust -->
-<a class="header" href="ch19-01-unsafe-rust.html#unsafe-rust" id="unsafe-rust"><h2>Unsafe Rust</h2></a>
+<a class="header" href="#unsafe-rust" id="unsafe-rust"><h2>Unsafe Rust</h2></a>
 <!-- All the code we’ve discussed so far has had Rust’s memory safety guarantees -->
 <!-- enforced at compile time. However, Rust has a second language hidden inside it -->
 <!-- that doesn’t enforce these memory safety guarantees: it’s called *unsafe Rust* -->
@@ -175,7 +175,7 @@ Rustがunsafeな処理を行わせてくれなかったら、特定の仕事を�
 直接OSと相互作用したり、独自のOSを書くことさえもそうです。低レベルなシステムプログラミングに取り組むことは、
 言語の目標の1つなのです。unsafe Rustでできることとその方法を探究しましょう。</p>
 <!-- ### Unsafe Superpowers -->
-<a class="header" href="ch19-01-unsafe-rust.html#unsafeの強大な力superpower" id="unsafeの強大な力superpower"><h3>unsafeの強大な力(superpower)</h3></a>
+<a class="header" href="#unsafeの強大な力superpower" id="unsafeの強大な力superpower"><h3>unsafeの強大な力(superpower)</h3></a>
 <!-- To switch to unsafe Rust, use the `unsafe` keyword and then start a new block -->
 <!-- that holds the unsafe code. You can take four actions in unsafe Rust, called -->
 <!-- *unsafe superpowers*, that you can’t in safe Rust. Those superpowers include -->
@@ -232,7 +232,7 @@ unsafeコードで参照を使用しても、チェックはされます。<code
 <!-- some abstractions that provide a safe interface to unsafe code. -->
 <p>4つのunsafeなsuperpowerを順に見ていきましょう。unsafeなコードへの安全なインターフェイスを提供する一部の抽象化にも目を向けます。</p>
 <!-- ### Dereferencing a Raw Pointer -->
-<a class="header" href="ch19-01-unsafe-rust.html#a生ポインタを参照外しする" id="a生ポインタを参照外しする"><h3>生ポインタを参照外しする</h3></a>
+<a class="header" href="#a生ポインタを参照外しする" id="a生ポインタを参照外しする"><h3>生ポインタを参照外しする</h3></a>
 <!-- In Chapter 4, in the “Dangling References” section, we mentioned that the -->
 <!-- compiler ensures references are always valid. Unsafe Rust has two new types -->
 <!-- called *raw pointers* that are similar to references. As with references, raw -->
@@ -355,7 +355,7 @@ Rustの所有権規則により、不変参照と可変参照を同時に存在�
 Cコードとのインターフェイスです。別のユースケースは、借用チェッカーには理解できない安全な抽象を構成する時です。
 unsafeな関数を導入し、それからunsafeコードを使用する安全な抽象の例に目を向けます。</p>
 <!-- ### Calling an Unsafe Function or Method -->
-<a class="header" href="ch19-01-unsafe-rust.html#unsafeな関数やメソッドを呼ぶ" id="unsafeな関数やメソッドを呼ぶ"><h3>unsafeな関数やメソッドを呼ぶ</h3></a>
+<a class="header" href="#unsafeな関数やメソッドを呼ぶ" id="unsafeな関数やメソッドを呼ぶ"><h3>unsafeな関数やメソッドを呼ぶ</h3></a>
 <!-- The second type of operation that requires an unsafe block is calls to unsafe -->
 <!-- functions. Unsafe functions and methods look exactly like regular functions and -->
 <!-- methods, but they have an extra `unsafe` before the rest of the definition. The -->
@@ -404,7 +404,7 @@ unsafe {
 <p>unsafe関数の本体は、実効的に<code>unsafe</code>ブロックになるので、unsafe関数内でunsafeな別の処理を行うのに、
 別の<code>unsafe</code>ブロックは必要ないのです。</p>
 <!-- #### Creating a Safe Abstraction over Unsafe Code -->
-<a class="header" href="ch19-01-unsafe-rust.html#unsafeコードに安全な抽象を行う" id="unsafeコードに安全な抽象を行う"><h4>unsafeコードに安全な抽象を行う</h4></a>
+<a class="header" href="#unsafeコードに安全な抽象を行う" id="unsafeコードに安全な抽象を行う"><h4>unsafeコードに安全な抽象を行う</h4></a>
 <!-- Just because a function contains unsafe code doesn’t mean we need to mark the -->
 <!-- entire function as unsafe. In fact, wrapping unsafe code in a safe function is -->
 <!-- a common abstraction. As an example, let’s study a function from the standard -->
@@ -576,7 +576,7 @@ let slice = unsafe {
 <p>この任意の場所のメモリは所有していなく、このコードが生成するスライスに有効な<code>i32</code>値が含まれる保証もありません。
 <code>slice</code>を有効なスライスであるかのように使用しようとすると、未定義動作に陥ります。</p>
 <!-- #### Using `extern` Functions to Call External Code -->
-<a class="header" href="ch19-01-unsafe-rust.html#extern関数を使用して外部のコードを呼び出す" id="extern関数を使用して外部のコードを呼び出す"><h4><code>extern</code>関数を使用して、外部のコードを呼び出す</h4></a>
+<a class="header" href="#extern関数を使用して外部のコードを呼び出す" id="extern関数を使用して外部のコードを呼び出す"><h4><code>extern</code>関数を使用して、外部のコードを呼び出す</h4></a>
 <!-- Sometimes, your Rust code might need to interact with code written in another -->
 <!-- language. For this, Rust has a keyword, `extern`, that facilitates the creation -->
 <!-- and use of a *Foreign Function Interface (FFI)*. An FFI is a way for a -->
@@ -644,7 +644,7 @@ ABIは関数の呼び出し方法をアセンブリレベルで定義します�
 <!-- > -->
 <!-- > This usage of `extern` does not require `unsafe`. -->
 <blockquote>
-<a class="header" href="ch19-01-unsafe-rust.html#a他の言語からrustの関数を呼び出す" id="a他の言語からrustの関数を呼び出す"><h4>他の言語からRustの関数を呼び出す</h4></a>
+<a class="header" href="#a他の言語からrustの関数を呼び出す" id="a他の言語からrustの関数を呼び出す"><h4>他の言語からRustの関数を呼び出す</h4></a>
 <p>また、<code>extern</code>を使用して他の言語にRustの関数を呼ばせるインターフェイスを生成することもできます。
 <code>extern</code>ブロックの代わりに、<code>extern</code>キーワードを追加し、<code>fn</code>キーワードの直前に使用するABIを指定します。
 さらに、<code>#[no_mangle]</code>注釈を追加してRustコンパイラに関数名をマングルしないように指示する必要もあります。
@@ -664,7 +664,7 @@ pub extern &quot;C&quot; fn call_from_c() {
 <p>この<code>extern</code>の使用法では、<code>unsafe</code>は必要ありません。</p>
 </blockquote>
 <!-- ### Accessing or Modifying a Mutable Static Variable -->
-<a class="header" href="ch19-01-unsafe-rust.html#a可変で静的な変数にアクセスしたり変更する" id="a可変で静的な変数にアクセスしたり変更する"><h3>可変で静的な変数にアクセスしたり、変更する</h3></a>
+<a class="header" href="#a可変で静的な変数にアクセスしたり変更する" id="a可変で静的な変数にアクセスしたり変更する"><h3>可変で静的な変数にアクセスしたり、変更する</h3></a>
 <!-- Until now, we’ve not talked about *global variables*, which Rust does support -->
 <!-- but can be problematic with Rust’s ownership rules. If two threads are -->
 <!-- accessing the same mutable global variable, it can cause a data race. -->
@@ -751,7 +751,7 @@ fn main() {
 Rustは可変で静的な変数をunsafeと考えるのです。可能なら、コンパイラが、データが異なるスレッドからアクセスされることが安全に行われているかを確認するように、
 第16章で議論した並行性テクニックとスレッド安全なスマートポインタを使用するのが望ましいです。</p>
 <!-- ### Implementing an Unsafe Trait -->
-<a class="header" href="ch19-01-unsafe-rust.html#unsafeなトレイトを実装する" id="unsafeなトレイトを実装する"><h3>unsafeなトレイトを実装する</h3></a>
+<a class="header" href="#unsafeなトレイトを実装する" id="unsafeなトレイトを実装する"><h3>unsafeなトレイトを実装する</h3></a>
 <!-- The final action that works only with `unsafe` is implementing an unsafe trait. -->
 <!-- A trait is unsafe when at least one of its methods has some invariant that the -->
 <!-- compiler can’t verify. We can declare that a trait is `unsafe` by adding the -->
@@ -795,7 +795,7 @@ unsafe impl Foo for i32 {
 複数のスレッドから安全にアクセスできるという保証を保持しているか確かめられません; 故に、そのチェックを手動で行い、
 <code>unsafe</code>でそのように示唆する必要があります。</p>
 <!-- ### When to Use Unsafe Code -->
-<a class="header" href="ch19-01-unsafe-rust.html#aいつunsafeコードを使用するべきか" id="aいつunsafeコードを使用するべきか"><h3>いつunsafeコードを使用するべきか</h3></a>
+<a class="header" href="#aいつunsafeコードを使用するべきか" id="aいつunsafeコードを使用するべきか"><h3>いつunsafeコードを使用するべきか</h3></a>
 <!-- Using `unsafe` to take one of the four actions (superpowers) just discussed -->
 <!-- isn’t wrong or even frowned upon. But it is trickier to get `unsafe` code -->
 <!-- correct because the compiler can’t help uphold memory safety. When you have a -->

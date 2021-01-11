@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Accepting Command Line Arguments -->
-<a class="header" href="ch12-01-accepting-command-line-arguments.html#aコマンドライン引数を受け付ける" id="aコマンドライン引数を受け付ける"><h2>コマンドライン引数を受け付ける</h2></a>
+<a class="header" href="#aコマンドライン引数を受け付ける" id="aコマンドライン引数を受け付ける"><h2>コマンドライン引数を受け付ける</h2></a>
 <!-- Let’s create a new project with, as always, `cargo new`. We’ll call our project -->
 <!-- `minigrep` to distinguish it from the `grep` tool that you might already have -->
 <!-- on your system. -->
@@ -166,7 +166,7 @@
 コマンドライン引数を受け付けるプログラムを書く手助けをしてくれるものもありますが、ちょうどこの概念を学んでいる最中なので、
 この能力を自分で実装しましょう。</p>
 <!-- ### Reading the Argument Values -->
-<a class="header" href="ch12-01-accepting-command-line-arguments.html#a引数の値を読み取る" id="a引数の値を読み取る"><h3>引数の値を読み取る</h3></a>
+<a class="header" href="#a引数の値を読み取る" id="a引数の値を読み取る"><h3>引数の値を読み取る</h3></a>
 <!-- To enable `minigrep` to read the values of command line arguments we pass to -->
 <!-- it, we’ll need a function provided in Rust’s standard library, which is -->
 <!-- `std::env::args`. This function returns an *iterator* of the command line -->
@@ -221,7 +221,7 @@ fn main() {
 <!-- > use `std::env::args` here for simplicity because `OsString` values differ -->
 <!-- > per platform and are more complex to work with than `String` values. -->
 <blockquote>
-<a class="header" href="ch12-01-accepting-command-line-arguments.html#args関数と不正なユニコード" id="args関数と不正なユニコード"><h3><code>args</code>関数と不正なユニコード</h3></a>
+<a class="header" href="#args関数と不正なユニコード" id="args関数と不正なユニコード"><h3><code>args</code>関数と不正なユニコード</h3></a>
 <p>引数のどれかが不正なユニコードを含んでいたら、<code>std::env::args</code>はパニックすることに注意してください。
 プログラムが不正なユニコードを含む引数を受け付ける必要があるなら、代わりに<code>std::env::args_os</code>を使用してください。
 この関数は、<code>String</code>値ではなく、<code>OsString</code>値を生成するイテレータを返します。ここでは、
@@ -265,7 +265,7 @@ $ cargo run needle haystack
 メッセージで出力したり、プログラムを起動するのに使用されたコマンドラインエイリアスによってプログラムの振る舞いを変えたい場合に、
 プログラム名にアクセスするのにしばしば便利です。ですが、この章の目的には、これを無視し、必要な二つの引数のみを保存します。</p>
 <!-- ### Saving the Argument Values in Variables -->
-<a class="header" href="ch12-01-accepting-command-line-arguments.html#a引数の値を変数に保存する" id="a引数の値を変数に保存する"><h3>引数の値を変数に保存する</h3></a>
+<a class="header" href="#a引数の値を変数に保存する" id="a引数の値を変数に保存する"><h3>引数の値を変数に保存する</h3></a>
 <!-- Printing the value of the vector of arguments illustrated that the program is -->
 <!-- able to access the values specified as command line arguments. Now we need to -->
 <!-- save the values of the two arguments in variables so we can use the values -->

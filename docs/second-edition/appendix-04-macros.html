@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Appendix D: Macros -->
-<a class="header" href="appendix-04-macros.html#a付録d-マクロ" id="a付録d-マクロ"><h2>付録D: マクロ</h2></a>
+<a class="header" href="#a付録d-マクロ" id="a付録d-マクロ"><h2>付録D: マクロ</h2></a>
 <!-- We’ve used macros like `println!` throughout this book but haven’t fully -->
 <!-- explored what a macro is and how it works. This appendix explains macros as -->
 <!-- follows: -->
@@ -170,7 +170,7 @@
 ここで示したコードは、将来のバージョンでも動き続けますが、この本の出版時点では利用可能ではないマクロを書くための追加の能力や、
 より簡単な方法があるかもしれません。この付録から何かを実装しようとする場合には、そのことを肝に銘じておいてください。</p>
 <!-- ### The Difference Between Macros and Functions -->
-<a class="header" href="appendix-04-macros.html#aマクロと関数の違い" id="aマクロと関数の違い"><h3>マクロと関数の違い</h3></a>
+<a class="header" href="#aマクロと関数の違い" id="aマクロと関数の違い"><h3>マクロと関数の違い</h3></a>
 <!-- Fundamentally, macros are a way of writing code that writes other code, which -->
 <!-- is known as *metaprogramming*. In Appendix C, we discussed the `derive` -->
 <!-- attribute, which generates an implementation of various traits for you. We’ve -->
@@ -231,7 +231,7 @@ extern crate serde;
 <p>マクロと関数にはもう一つ、重要な違いがあります: ファイル内で呼び出す<em>前</em>にマクロはスコープに導入しなければなりませんが、
 一方で関数はどこにでも定義でき、どこでも呼び出せます。</p>
 <!-- ### Declarative Macros with `macro_rules!` for General Metaprogramming -->
-<a class="header" href="appendix-04-macros.html#a一般的なメタプログラミングのためにmacro_rulesで宣言的なマクロ" id="a一般的なメタプログラミングのためにmacro_rulesで宣言的なマクロ"><h3>一般的なメタプログラミングのために<code>macro_rules!</code>で宣言的なマクロ</h3></a>
+<a class="header" href="#a一般的なメタプログラミングのためにmacro_rulesで宣言的なマクロ" id="a一般的なメタプログラミングのためにmacro_rulesで宣言的なマクロ"><h3>一般的なメタプログラミングのために<code>macro_rules!</code>で宣言的なマクロ</h3></a>
 <!-- The most widely used form of macros in Rust are *declarative macros*. These are -->
 <!-- also sometimes referred to as *macros by example*, *`macro_rules!` macros*, or -->
 <!-- just plain *macros*. At their core, declarative macros allow you to write -->
@@ -370,7 +370,7 @@ temp_vec
 マクロの書き方をもっと学ぶには、オンラインドキュメンテーションか他のリソース、
 <a href="https://danielkeep.github.io/tlborm/book/index.html">“The Little Book of Rust Macros</a>(<code>訳注</code>: Rustのマクロの小さな本)などを調べてください。</p>
 <!-- ### Procedural Macros for Custom `derive` -->
-<a class="header" href="appendix-04-macros.html#a独自のderiveのためのプロシージャルマクロ" id="a独自のderiveのためのプロシージャルマクロ"><h3>独自の<code>derive</code>のためのプロシージャルマクロ</h3></a>
+<a class="header" href="#a独自のderiveのためのプロシージャルマクロ" id="a独自のderiveのためのプロシージャルマクロ"><h3>独自の<code>derive</code>のためのプロシージャルマクロ</h3></a>
 <!-- The second form of macros is called *procedural macros* because they’re more -->
 <!-- like functions (which are a type of procedure). Procedural macros accept some -->
 <!-- Rust code as an input, operate on that code, and produce some Rust code as an -->
@@ -728,7 +728,7 @@ hello_macro_derive = { path = &quot;../hello_macro/hello_macro_derive&quot; }
 プロシージャルマクロの<code>HelloMacro</code>トレイトの実装は、<code>pancakes</code>クレートが実装する必要なく、包含されました;
 <code>#[derive(HelloMacro)]</code>がトレイトの実装を追加したのです。</p>
 <!-- ### The Future of Macros -->
-<a class="header" href="appendix-04-macros.html#aマクロの未来" id="aマクロの未来"><h3>マクロの未来</h3></a>
+<a class="header" href="#aマクロの未来" id="aマクロの未来"><h3>マクロの未来</h3></a>
 <!-- In the future, Rust will expand declarative and procedural macros. Rust will -->
 <!-- use a better declarative macro system with the `macro` keyword and will add -->
 <!-- more types of procedural macros for more powerful tasks than just `derive`. -->

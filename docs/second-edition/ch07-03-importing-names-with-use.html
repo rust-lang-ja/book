@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Referring to Names in Different Modules -->
-<a class="header" href="ch07-03-importing-names-with-use.html#a異なるモジュールの名前を参照する" id="a異なるモジュールの名前を参照する"><h2>異なるモジュールの名前を参照する</h2></a>
+<a class="header" href="#a異なるモジュールの名前を参照する" id="a異なるモジュールの名前を参照する"><h2>異なるモジュールの名前を参照する</h2></a>
 <!-- We’ve covered how to call functions defined within a module using the module -->
 <!-- name as part of the call, as in the call to the `nested_modules` function shown -->
 <!-- here in Listing 7-7. -->
@@ -170,7 +170,7 @@ fn main() {
 <p>見てお分かりの通り、フルパス指定した名前を参照すると非常に長ったらしくなります。
 幸い、Rustには、これらの呼び出しをもっと簡潔にするキーワードが用意されています。</p>
 <!-- ### Bringing Names into Scope with the `use` keyword -->
-<a class="header" href="ch07-03-importing-names-with-use.html#useキーワードで名前をスコープに導入する" id="useキーワードで名前をスコープに導入する"><h3><code>use</code>キーワードで名前をスコープに導入する</h3></a>
+<a class="header" href="#useキーワードで名前をスコープに導入する" id="useキーワードで名前をスコープに導入する"><h3><code>use</code>キーワードで名前をスコープに導入する</h3></a>
 <!-- Rust’s `use` keyword shortens lengthy function calls by bringing the modules of -->
 <!-- the function you want to call into scope. Here’s an example of bringing the -->
 <!-- `a::series::of` module into a binary crate’s root scope: -->
@@ -247,7 +247,7 @@ fn main() {
 <!-- because we didn’t include `Green` in the `use` statement. -->
 <p><code>Green</code>を<code>use</code>文に含んでいないので、まだ<code>Green</code>バリアント用に<code>TrafficLight</code>名前空間を指定しています。</p>
 <!-- ### Bringing All Names into Scope with a Glob -->
-<a class="header" href="ch07-03-importing-names-with-use.html#globで全ての名前をスコープに導入する" id="globで全ての名前をスコープに導入する"><h3>Globで全ての名前をスコープに導入する</h3></a>
+<a class="header" href="#globで全ての名前をスコープに導入する" id="globで全ての名前をスコープに導入する"><h3>Globで全ての名前をスコープに導入する</h3></a>
 <!-- To bring all the items in a namespace into scope at once, we can use the `*` -->
 <!-- syntax, which is called the *glob operator*. This example brings all the -->
 <!-- variants of an enum into scope without having to list each specifically: -->
@@ -275,7 +275,7 @@ fn main() {
 あまりglobは使用するべきではありません: 便利ではありますが、globは予想以上の要素を引き込んで、
 名前衝突を引き起こす可能性があるのです。</p>
 <!-- ### Using `super` to Access a Parent Module -->
-<a class="header" href="ch07-03-importing-names-with-use.html#superを使用して親モジュールにアクセスする" id="superを使用して親モジュールにアクセスする"><h3><code>super</code>を使用して親モジュールにアクセスする</h3></a>
+<a class="header" href="#superを使用して親モジュールにアクセスする" id="superを使用して親モジュールにアクセスする"><h3><code>super</code>を使用して親モジュールにアクセスする</h3></a>
 <!-- As you saw at the beginning of this chapter, when you create a library crate, -->
 <!-- Cargo makes a `tests` module for you. Let’s go into more detail about that now. -->
 <!-- In your `communicator` project, open *src/lib.rs*: -->
@@ -415,7 +415,7 @@ test tests::it_works ... ok
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 </code></pre>
 <!-- ## Summary -->
-<a class="header" href="ch07-03-importing-names-with-use.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
+<a class="header" href="#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- Now you know some new techniques for organizing your code! Use these techniques -->
 <!-- to group related functionality together, keep files from becoming too long, and -->
 <!-- present a tidy public API to your library users. -->

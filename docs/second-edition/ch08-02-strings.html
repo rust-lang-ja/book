@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Storing UTF-8 Encoded Text with Strings -->
-<a class="header" href="ch08-02-strings.html#a文字列でutf-8でエンコードされたテキストを保持する" id="a文字列でutf-8でエンコードされたテキストを保持する"><h2>文字列でUTF-8でエンコードされたテキストを保持する</h2></a>
+<a class="header" href="#a文字列でutf-8でエンコードされたテキストを保持する" id="a文字列でutf-8でエンコードされたテキストを保持する"><h2>文字列でUTF-8でエンコードされたテキストを保持する</h2></a>
 <!-- We talked about strings in Chapter 4, but we’ll look at them in more depth now. -->
 <!-- New Rustaceans commonly get stuck on strings for a combination of three -->
 <!-- concepts: Rust’s propensity for exposing possible errors, strings being a more -->
@@ -166,7 +166,7 @@
 また、<code>String</code>が他のコレクションと異なる点についても議論します。具体的には、人間とコンピュータが<code>String</code>データを解釈する方法の差異により、
 <code>String</code>に添え字アクセスする方法がどう複雑なのかということです。</p>
 <!-- ### What Is a String? -->
-<a class="header" href="ch08-02-strings.html#a文字列とは" id="a文字列とは"><h3>文字列とは？</h3></a>
+<a class="header" href="#a文字列とは" id="a文字列とは"><h3>文字列とは？</h3></a>
 <!-- We’ll first define what we mean by the term *string*. Rust has only one string -->
 <!-- type in the core language, which is the string slice `str` that is usually seen -->
 <!-- in its borrowed form `&str`. In Chapter 4, we talked about *string slices*, -->
@@ -203,7 +203,7 @@
 メモリ上の表現が異なったりします。この章では、これらの他の種類の文字列については議論しません;
 使用方法やどれが最適かについては、APIドキュメントを参照してください。</p>
 <!-- ### Creating a New String -->
-<a class="header" href="ch08-02-strings.html#a新規文字列を生成する" id="a新規文字列を生成する"><h3>新規文字列を生成する</h3></a>
+<a class="header" href="#a新規文字列を生成する" id="a新規文字列を生成する"><h3>新規文字列を生成する</h3></a>
 <!-- Many of the same operations available with `Vec<T>` are available with `String` -->
 <!-- as well, starting with the `new` function to create a string, shown in Listing -->
 <!-- 8-11. -->
@@ -285,14 +285,14 @@ let hello = String::from(&quot;Hola&quot;);
 <!-- All of these are valid `String` values. -->
 <p>これらは全て、有効な<code>String</code>の値です。</p>
 <!-- ### Updating a String -->
-<a class="header" href="ch08-02-strings.html#a文字列を更新する" id="a文字列を更新する"><h3>文字列を更新する</h3></a>
+<a class="header" href="#a文字列を更新する" id="a文字列を更新する"><h3>文字列を更新する</h3></a>
 <!-- A `String` can grow in size and its contents can change, just like the contents -->
 <!-- of a `Vec<T>`, if you push more data into it. In addition, we can conveniently -->
 <!-- use the `+` operator or the `format!` macro to concatenate `String` values. -->
 <p><code>String</code>は、サイズを伸ばすことができ、<code>Vec&lt;T&gt;</code>の中身のように、追加のデータをプッシュすれば、中身も変化します。
 付け加えると、<code>String</code>値を連結する<code>+</code>演算子や、<code>format!</code>マクロを便利に使用することができます。</p>
 <!-- #### Appending to a String with `push_str` and `push` -->
-<a class="header" href="ch08-02-strings.html#push_strとpushで文字列に追加する" id="push_strとpushで文字列に追加する"><h4><code>push_str</code>と<code>push</code>で文字列に追加する</h4></a>
+<a class="header" href="#push_strとpushで文字列に追加する" id="push_strとpushで文字列に追加する"><h4><code>push_str</code>と<code>push</code>で文字列に追加する</h4></a>
 <!-- We can grow a `String` by using the `push_str` method to append a string slice, -->
 <!-- as shown in Listing 8-15. -->
 <p><code>push_str</code>メソッドで文字列スライスを追記することで、<code>String</code>を伸ばすことができます。
@@ -349,7 +349,7 @@ s.push('l');
 日本語の<code>www</code>みたいなものですね。</p>
 </blockquote>
 <!-- #### Concatenation with the `+` Operator or the `format!` Macro -->
-<a class="header" href="ch08-02-strings.html#a演算子またはformatマクロで連結" id="a演算子またはformatマクロで連結"><h4><code>+</code>演算子、または<code>format!</code>マクロで連結</h4></a>
+<a class="header" href="#a演算子またはformatマクロで連結" id="a演算子またはformatマクロで連結"><h4><code>+</code>演算子、または<code>format!</code>マクロで連結</h4></a>
 <!-- Often, you’ll want to combine two existing strings. One way is to use the `+` -->
 <!-- operator, as shown in Listing 8-18. -->
 <p>2つのすでにある文字列を組み合わせたくなることがよくあります。リスト8-18に示したように、
@@ -456,7 +456,7 @@ let s = format!(&quot;{}-{}-{}&quot;, s1, s2, s3);
 出力をスクリーンに行う代わりに、中身を<code>String</code>で返すのです。<code>format!</code>を使用したコードの方がはるかに読みやすく、
 引数の所有権を奪いません。</p>
 <!-- ### Indexing into Strings -->
-<a class="header" href="ch08-02-strings.html#a文字列に添え字アクセスする" id="a文字列に添え字アクセスする"><h3>文字列に添え字アクセスする</h3></a>
+<a class="header" href="#a文字列に添え字アクセスする" id="a文字列に添え字アクセスする"><h3>文字列に添え字アクセスする</h3></a>
 <!-- In many other programming languages, accessing individual characters in a -->
 <!-- string by referencing them by index is a valid and common operation. However, -->
 <!-- if you try to access parts of a `String` using indexing syntax in Rust, you’ll -->
@@ -487,7 +487,7 @@ let h = s1[0];
 <p>エラーと注釈が全てを物語っています: Rustの文字列は、添え字アクセスをサポートしていないのです。
 でも、なぜでしょうか？その疑問に答えるには、Rustがメモリにどのように文字列を保持しているかについて議論する必要があります。</p>
 <!-- #### Internal Representation -->
-<a class="header" href="ch08-02-strings.html#a内部表現" id="a内部表現"><h4>内部表現</h4></a>
+<a class="header" href="#a内部表現" id="a内部表現"><h4>内部表現</h4></a>
 <!-- A `String` is a wrapper over a `Vec<u8>`. Let’s look at some of our properly -->
 <!-- encoded UTF-8 example strings from Listing 8-14. First, this one: -->
 <p><code>String</code>は<code>Vec&lt;u8&gt;</code>のラッパです。リスト8-14から適切にUTF-8でエンコードされた文字列の例をご覧ください。
@@ -541,7 +541,7 @@ let answer = &amp;hello[0];
 予期しない値を返し、すぐには判明しないバグを引き起こさないために、Rustはこのコードを全くコンパイルせず、
 開発過程の早い段階で誤解を防いでくれるのです。</p>
 <!-- #### Bytes and Scalar Values and Grapheme Clusters! Oh My! -->
-<a class="header" href="ch08-02-strings.html#aバイトとスカラー値と書記素クラスタなんてこった" id="aバイトとスカラー値と書記素クラスタなんてこった"><h4>バイトとスカラー値と書記素クラスタ！なんてこった！</h4></a>
+<a class="header" href="#aバイトとスカラー値と書記素クラスタなんてこった" id="aバイトとスカラー値と書記素クラスタなんてこった"><h4>バイトとスカラー値と書記素クラスタ！なんてこった！</h4></a>
 <!-- Another point about UTF-8 is that there are actually three relevant ways to -->
 <!-- look at strings from Rust’s perspective: as bytes, scalar values, and grapheme -->
 <!-- clusters (the closest thing to what we would call *letters*). -->
@@ -584,7 +584,7 @@ let answer = &amp;hello[0];
 しかし、<code>String</code>でそのパフォーマンスを保証することはできません。というのも、
 合法な文字がいくつあるか決定するのに、最初から添え字まで中身を走査する必要があるからです。</p>
 <!-- ### Slicing Strings -->
-<a class="header" href="ch08-02-strings.html#a文字列をスライスする" id="a文字列をスライスする"><h3>文字列をスライスする</h3></a>
+<a class="header" href="#a文字列をスライスする" id="a文字列をスライスする"><h3>文字列をスライスする</h3></a>
 <!-- Indexing into a string is often a bad idea because it’s not clear what the -->
 <!-- return type of the string indexing operation should be: a byte value, a -->
 <!-- character, a grapheme cluster, or a string slice. Therefore, Rust asks you to -->
@@ -620,7 +620,7 @@ let s = &amp;hello[0..4];
 <!-- can crash your program. -->
 <p>範囲を使用して文字列スライスを作る際にはプログラムをクラッシュさせることがあるので、気をつけるべきです。</p>
 <!-- ### Methods for Iterating Over Strings -->
-<a class="header" href="ch08-02-strings.html#a文字列を走査するメソッド群" id="a文字列を走査するメソッド群"><h3>文字列を走査するメソッド群</h3></a>
+<a class="header" href="#a文字列を走査するメソッド群" id="a文字列を走査するメソッド群"><h3>文字列を走査するメソッド群</h3></a>
 <!-- Fortunately, you can access elements in a string in other ways. -->
 <p>幸いなことに、他の方法でも文字列の要素にアクセスすることができます。</p>
 <!-- If you need to perform operations on individual Unicode scalar values, the best -->
@@ -673,7 +673,7 @@ for b in &quot;नमस्ते&quot;.bytes() {
 <p>書記素クラスタを文字列から得る方法は複雑なので、この機能は標準ライブラリでは提供されていません。
 この機能が必要なら、<a href="https://crates.io">crates.io</a>でクレートを入手可能です。</p>
 <!-- ### Strings Are Not So Simple -->
-<a class="header" href="ch08-02-strings.html#a文字列はそう単純じゃない" id="a文字列はそう単純じゃない"><h3>文字列はそう単純じゃない</h3></a>
+<a class="header" href="#a文字列はそう単純じゃない" id="a文字列はそう単純じゃない"><h3>文字列はそう単純じゃない</h3></a>
 <!-- To summarize, strings are complicated. Different programming languages make -->
 <!-- different choices about how to present this complexity to the programmer. Rust -->
 <!-- has chosen to make the correct handling of `String` data the default behavior -->

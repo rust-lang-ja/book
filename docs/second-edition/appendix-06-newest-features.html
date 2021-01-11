@@ -142,12 +142,12 @@
                 <div id="content" class="content">
                     <main>
                         <!-- # Appendix F - Newest Features -->
-<a class="header" href="appendix-06-newest-features.html#a付録f-最新の機能" id="a付録f-最新の機能"><h1>付録F: 最新の機能</h1></a>
+<a class="header" href="#a付録f-最新の機能" id="a付録f-最新の機能"><h1>付録F: 最新の機能</h1></a>
 <!-- This appendix documents features that have been added to stable Rust since the -->
 <!-- main part of the book was completed. -->
 <p>この付録は、本の主な部分が完成してから安定版Rustに追加された機能をドキュメント化しています。</p>
 <!-- ## Field init shorthand -->
-<a class="header" href="appendix-06-newest-features.html#aフィールド初期化省略" id="aフィールド初期化省略"><h2>フィールド初期化省略</h2></a>
+<a class="header" href="#aフィールド初期化省略" id="aフィールド初期化省略"><h2>フィールド初期化省略</h2></a>
 <!-- We can initialize a data structure (struct, enum, union) with named -->
 <!-- fields, by writing `fieldname` as a shorthand for `fieldname: fieldname`. -->
 <!-- This allows a compact syntax for initialization, with less duplication: -->
@@ -180,7 +180,7 @@ fn main() {
 }
 </code></pre></pre>
 <!-- ## Returning from loops -->
-<a class="header" href="appendix-06-newest-features.html#aループから戻る" id="aループから戻る"><h2>ループから戻る</h2></a>
+<a class="header" href="#aループから戻る" id="aループから戻る"><h2>ループから戻る</h2></a>
 <!-- One of the uses of a `loop` is to retry an operation you know can fail, such as -->
 <!-- checking if a thread completed its job. However, you might need to pass the -->
 <!-- result of that operation to the rest of your code. If you add it to the `break` -->
@@ -203,7 +203,7 @@ breakしたループから返ってきます。</p>
 }
 </code></pre></pre>
 <!-- ## Nested groups in `use` declarations -->
-<a class="header" href="appendix-06-newest-features.html#use宣言のネストされたグループ" id="use宣言のネストされたグループ"><h2><code>use</code>宣言のネストされたグループ</h2></a>
+<a class="header" href="#use宣言のネストされたグループ" id="use宣言のネストされたグループ"><h2><code>use</code>宣言のネストされたグループ</h2></a>
 <!-- If you have a complex module tree with many different submodules and you need -->
 <!-- to import a few items from each one, it might be useful to group all the -->
 <!-- imports in the same declaration to keep your code clean and avoid repeating the -->
@@ -236,7 +236,7 @@ use foo::{
 # fn main() {}
 </code></pre></pre>
 <!-- ## Inclusive ranges -->
-<a class="header" href="appendix-06-newest-features.html#a境界を含む範囲" id="a境界を含む範囲"><h2>境界を含む範囲</h2></a>
+<a class="header" href="#a境界を含む範囲" id="a境界を含む範囲"><h2>境界を含む範囲</h2></a>
 <!-- Previously, when a range (`..` or `...`) was used as an expression, it had to be -->
 <!-- `..`, which is exclusive of the upper bound, while patterns had to use `...`, -->
 <!-- which is inclusive of the upper bound. Now, `..=` is accepted as syntax for -->
@@ -257,7 +257,7 @@ use foo::{
 <!-- expressions. `..=` should be preferred. -->
 <p><code>...</code>記法はそれでも、matchでは受け付けられますが、式では受け付けられません。<code>..=</code>を使用すべきです。</p>
 <!-- ## 128-bit integers -->
-<a class="header" href="appendix-06-newest-features.html#a128ビット整数" id="a128ビット整数"><h2>128ビット整数</h2></a>
+<a class="header" href="#a128ビット整数" id="a128ビット整数"><h2>128ビット整数</h2></a>
 <!-- Rust 1.26.0 added 128-bit integer primitives: -->
 <p>Rust1.26.0で128ビットの整数基本型が追加されました:</p>
 <!-- - `u128`: A 128-bit unsigned integer with range [0, 2^128 - 1] -->

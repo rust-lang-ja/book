@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Control Flow -->
-<a class="header" href="ch03-05-control-flow.html#aフロー制御" id="aフロー制御"><h2>フロー制御</h2></a>
+<a class="header" href="#aフロー制御" id="aフロー制御"><h2>フロー制御</h2></a>
 <!-- Deciding whether or not to run some code depending on if a condition is true -->
 <!-- and deciding to run some code repeatedly while a condition is true are basic -->
 <!-- building blocks in most programming languages. The most common constructs that -->
@@ -152,7 +152,7 @@
 条件が真の間繰り返しコードを走らせるか決定したりすることは、多くのプログラミング言語において、基本的な構成ブロックです。
 Rustコードの実行フローを制御する最も一般的な文法要素は、<code>if</code>式とループです。</p>
 <!-- ### `if` Expressions -->
-<a class="header" href="ch03-05-control-flow.html#if式" id="if式"><h3><code>if</code>式</h3></a>
+<a class="header" href="#if式" id="if式"><h3><code>if</code>式</h3></a>
 <!-- An `if` expression allows us to branch your code depending on conditions. We -->
 <!-- provide a condition and then state, “If this condition is met, run this block -->
 <!-- of code. If the condition is not met, do not run this block of code.” -->
@@ -269,7 +269,7 @@ RubyやJavaScriptなどの言語とは異なり、Rustでは、論理値以外�
 <!-- Running this code will print `number was something other than zero`. -->
 <p>このコードを実行したら、<code>number was something other than zero</code>と表示されるでしょう。</p>
 <!-- #### Handling Multiple Conditions with `else if` -->
-<a class="header" href="ch03-05-control-flow.html#else-ifで複数の条件を扱う" id="else-ifで複数の条件を扱う"><h4><code>else if</code>で複数の条件を扱う</h4></a>
+<a class="header" href="#else-ifで複数の条件を扱う" id="else-ifで複数の条件を扱う"><h4><code>else if</code>で複数の条件を扱う</h4></a>
 <!-- You can have multiple conditions by combining `if` and `else` in an `else if` -->
 <!-- expression. For example: -->
 <p><code>if</code>と<code>else</code>を組み合わせて<code>else if</code>式にすることで複数の条件を持たせることもできます。例です:</p>
@@ -320,7 +320,7 @@ number is divisible by 3
 コードをリファクタリングしたくなるかもしれません。これらのケースに有用な<code>match</code>と呼ばれる、
 強力なRustの枝分かれ文法要素については第6章で解説します。</p>
 <!-- #### Using `if` in a `let` Statement -->
-<a class="header" href="ch03-05-control-flow.html#let文内でif式を使う" id="let文内でif式を使う"><h4><code>let</code>文内で<code>if</code>式を使う</h4></a>
+<a class="header" href="#let文内でif式を使う" id="let文内でif式を使う"><h4><code>let</code>文内で<code>if</code>式を使う</h4></a>
 <!-- Because `if` is an expression, we can use it on the right side of a `let` -->
 <!-- statement, as in Listing 3-2. -->
 <p><code>if</code>は式なので、<code>let</code>文の右辺に持ってくることができます。リスト3-2のようにですね。</p>
@@ -412,7 +412,7 @@ The value of number is: 5
 どの変数に対しても、架空の複数の型があることを追いかけなければならないのであれば、コンパイラはより複雑になり、
 コードに対して行える保証が少なくなってしまうでしょう。</p>
 <!-- ### Repetition with Loops -->
-<a class="header" href="ch03-05-control-flow.html#aループでの繰り返し" id="aループでの繰り返し"><h3>ループでの繰り返し</h3></a>
+<a class="header" href="#aループでの繰り返し" id="aループでの繰り返し"><h3>ループでの繰り返し</h3></a>
 <!-- It’s often useful to execute a block of code more than once. For this task, -->
 <!-- Rust provides several *loops*. A loop runs through the code inside the loop -->
 <!-- body to the end and then starts immediately back at the beginning. To -->
@@ -424,7 +424,7 @@ Rustにはいくつかの<em>ループ</em>が用意されています。ルー�
 <!-- Rust has three kinds of loops: `loop`, `while`, and `for`. Let’s try each one. -->
 <p>Rustには3種類のループが存在します: <code>loop</code>と<code>while</code>と<code>for</code>です。それぞれ試してみましょう。</p>
 <!-- #### Repeating Code with `loop` -->
-<a class="header" href="ch03-05-control-flow.html#loopでコードを繰り返す" id="loopでコードを繰り返す"><h4><code>loop</code>でコードを繰り返す</h4></a>
+<a class="header" href="#loopでコードを繰り返す" id="loopでコードを繰り返す"><h4><code>loop</code>でコードを繰り返す</h4></a>
 <!-- The `loop` keyword tells Rust to execute a block of code over and over again -->
 <!-- forever or until you explicitly tell it to stop. -->
 <p><code>loop</code>キーワードを使用すると、同じコードを何回も何回も永遠に、明示的にやめさせるまで実行します。</p>
@@ -471,7 +471,7 @@ again!
 第2章の「正しい予想をした後に終了する」節の数当てゲーム内でこれをして、ユーザが予想を的中させ、
 ゲームに勝った時にプログラムを終了させたことを思い出してください。</p>
 <!-- #### Conditional Loops with `while` -->
-<a class="header" href="ch03-05-control-flow.html#whileで条件付きループ" id="whileで条件付きループ"><h4><code>while</code>で条件付きループ</h4></a>
+<a class="header" href="#whileで条件付きループ" id="whileで条件付きループ"><h4><code>while</code>で条件付きループ</h4></a>
 <!-- It’s often useful for a program to evaluate a condition within a loop. While -->
 <!-- the condition is true, the loop runs. When the condition ceases to be true, the -->
 <!-- program calls `break`, stopping the loop. This loop type could be implemented -->
@@ -512,7 +512,7 @@ again!
 <p>この文法要素により、<code>loop</code>、<code>if</code>、<code>else</code>、<code>break</code>を使った時に必要になるネストがなくなり、
 より明確になります。条件が真の間、コードは実行されます; そうでなければ、ループを抜けます.</p>
 <!-- #### Looping Through a Collection with `for` -->
-<a class="header" href="ch03-05-control-flow.html#forでコレクションを覗き見る" id="forでコレクションを覗き見る"><h4><code>for</code>でコレクションを覗き見る</h4></a>
+<a class="header" href="#forでコレクションを覗き見る" id="forでコレクションを覗き見る"><h4><code>for</code>でコレクションを覗き見る</h4></a>
 <!-- You could use the `while` construct to loop over the elements of a collection, -->
 <!-- such as an array. For example, let's look at Listing 3-4. -->
 <p><code>while</code>要素を使って配列などのコレクションの要素を覗き見ることができます。例えば、リスト3-4を見ましょう。</p>
@@ -621,7 +621,7 @@ the value is: 50
 <!-- This code is a bit nicer, isn’t it? -->
 <p>こちらのコードの方が少しいいでしょう？</p>
 <!-- ## Summary -->
-<a class="header" href="ch03-05-control-flow.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
+<a class="header" href="#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- You made it! That was a sizable chapter: you learned about variables, scalar -->
 <!-- and compound data types, functions, comments, `if` expressions, and loops! If -->
 <!-- you want to practice with the concepts discussed in this chapter, try building -->

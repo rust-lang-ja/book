@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Method Syntax -->
-<a class="header" href="ch05-03-method-syntax.html#aメソッド記法" id="aメソッド記法"><h2>メソッド記法</h2></a>
+<a class="header" href="#aメソッド記法" id="aメソッド記法"><h2>メソッド記法</h2></a>
 <!-- *Methods* are similar to functions: they’re declared with the `fn` keyword and -->
 <!-- their name, they can have parameters and a return value, and they contain some -->
 <!-- code that is run when they’re called from somewhere else. However, methods are -->
@@ -155,7 +155,7 @@
 メソッドは構造体の文脈(あるいはenumかトレイトオブジェクトの。これらについては各々第6章と17章で解説します)で定義されるという点で、
 関数とは異なり、最初の引数は必ず<code>self</code>になり、これはメソッドが呼び出されている構造体インスタンスを表します。</p>
 <!-- ### Defining Methods -->
-<a class="header" href="ch05-03-method-syntax.html#aメソッドを定義する" id="aメソッドを定義する"><h3>メソッドを定義する</h3></a>
+<a class="header" href="#aメソッドを定義する" id="aメソッドを定義する"><h3>メソッドを定義する</h3></a>
 <!-- Let’s change the `area` function that has a `Rectangle` instance as a parameter -->
 <!-- and instead make an `area` method defined on the `Rectangle` struct, as shown -->
 <!-- in Listing 5-13. -->
@@ -279,7 +279,7 @@ fn main() {
 <!--  that Rust makes borrowing implicit for method receivers is a big part of -->
 <!--  making ownership ergonomic in practice. -->
 <blockquote>
-<a class="header" href="ch05-03-method-syntax.html#a-演算子はどこに行ったの" id="a-演算子はどこに行ったの"><h3><code>-&gt;</code>演算子はどこに行ったの？</h3></a>
+<a class="header" href="#a-演算子はどこに行ったの" id="a-演算子はどこに行ったの"><h3><code>-&gt;</code>演算子はどこに行ったの？</h3></a>
 <p>CとC++では、メソッド呼び出しには2種類の異なる演算子が使用されます:
 オブジェクトに対して直接メソッドを呼び出すのなら、<code>.</code>を使用するし、オブジェクトのポインタに対してメソッドを呼び出し、
 先にポインタを参照外しする必要があるなら、<code>-&gt;</code>を使用するわけです。
@@ -318,7 +318,7 @@ p1.distance(&amp;p2);
 所有権を実際に使うのがRustにおいて簡単である大きな理由です。</p>
 </blockquote>
 <!-- ### Methods with More Parameters -->
-<a class="header" href="ch05-03-method-syntax.html#aより引数の多いメソッド" id="aより引数の多いメソッド"><h3>より引数の多いメソッド</h3></a>
+<a class="header" href="#aより引数の多いメソッド" id="aより引数の多いメソッド"><h3>より引数の多いメソッド</h3></a>
 <!-- Let’s practice using methods by implementing a second method on the `Rectangle` -->
 <!-- struct. This time, we want an instance of `Rectangle` to take another instance -->
 <!-- of `Rectangle` and return `true` if the second `Rectangle` can fit completely -->
@@ -407,7 +407,7 @@ impl Rectangle {
 メソッドは、<code>self</code>引数の後にシグニチャに追加した引数を複数取ることができ、
 その引数は、関数の引数と同様に動作するのです。</p>
 <!-- ### Associated Functions -->
-<a class="header" href="ch05-03-method-syntax.html#a関連関数" id="a関連関数"><h3>関連関数</h3></a>
+<a class="header" href="#a関連関数" id="a関連関数"><h3>関連関数</h3></a>
 <!-- Another useful feature of `impl` blocks is that we’re allowed to define -->
 <!-- functions within `impl` blocks that *don’t* take `self` as a parameter. These -->
 <!-- are called *associated functions* because they’re associated with the struct. -->
@@ -450,7 +450,7 @@ impl Rectangle {
 この関数は、構造体によって名前空間分けされています: <code>::</code>という記法は、関連関数とモジュールによって作り出される名前空間両方に使用されます。
 モジュールについては第7章で議論します。</p>
 <!-- ### Multiple `impl` Blocks -->
-<a class="header" href="ch05-03-method-syntax.html#a複数のimplブロック" id="a複数のimplブロック"><h3>複数の<code>impl</code>ブロック</h3></a>
+<a class="header" href="#a複数のimplブロック" id="a複数のimplブロック"><h3>複数の<code>impl</code>ブロック</h3></a>
 <!-- Each struct is allowed to have multiple `impl` blocks. For example, Listing -->
 <!-- 5-15 is equivalent to the code shown in Listing 5-16, which has each method -->
 <!-- in its own `impl` block. -->
@@ -486,7 +486,7 @@ impl Rectangle {
 <p>ここでこれらのメソッドを個々の<code>impl</code>ブロックに分ける理由はないのですが、合法な書き方です。
 複数の<code>impl</code>ブロックが有用になるケースは第10章で見ますが、そこではジェネリック型と、トレイトについて議論します。</p>
 <!-- ## Summary -->
-<a class="header" href="ch05-03-method-syntax.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
+<a class="header" href="#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- Structs let us create custom types that are meaningful for your domain. By -->
 <!-- using structs, we can keep associated pieces of data connected to each other -->
 <!-- and name each piece to make our code clear. Methods let us specify the -->

@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## An Example Program Using Structs -->
-<a class="header" href="ch05-02-example-structs.html#a構造体を使ったプログラム例" id="a構造体を使ったプログラム例"><h2>構造体を使ったプログラム例</h2></a>
+<a class="header" href="#a構造体を使ったプログラム例" id="a構造体を使ったプログラム例"><h2>構造体を使ったプログラム例</h2></a>
 <!-- To understand when we might want to use structs, let’s write a program that -->
 <!-- calculates the area of a rectangle. We’ll start with single variables, and then -->
 <!-- refactor the program until we’re using structs instead. -->
@@ -181,7 +181,7 @@ fn area(width: u32, height: u32) -&gt; u32 {
 (四角形の面積は、1500平方ピクセルです)
 </code></pre>
 <!-- ### Refactoring with Tuples -->
-<a class="header" href="ch05-02-example-structs.html#aタプルでリファクタリングする" id="aタプルでリファクタリングする"><h3>タプルでリファクタリングする</h3></a>
+<a class="header" href="#aタプルでリファクタリングする" id="aタプルでリファクタリングする"><h3>タプルでリファクタリングする</h3></a>
 <!-- Even though Listing 5-8 works and figures out the area of the rectangle by -->
 <!-- calling the `area` function with each dimension, we can do better. The width -->
 <!-- and the height are related to each other because together they describe one -->
@@ -202,7 +202,7 @@ fn area(width: u32, height: u32) -&gt; u32 {
 幅と高さを一緒にグループ化する方が、より読みやすく、扱いやすくなるでしょう。
 それをする一つの方法については、第3章の「タプル型」節ですでに議論しました: タプルを使うのです。</p>
 <!-- ### Refactoring with Tuples -->
-<a class="header" href="ch05-02-example-structs.html#aタプルでリファクタリングする-1" id="aタプルでリファクタリングする-1"><h3>タプルでリファクタリングする</h3></a>
+<a class="header" href="#aタプルでリファクタリングする-1" id="aタプルでリファクタリングする-1"><h3>タプルでリファクタリングする</h3></a>
 <!-- Listing 5-9 shows another version of our program that uses tuples. -->
 <p>リスト5-9は、タプルを使う別バージョンのプログラムを示しています。</p>
 <!-- <span class="filename">Filename: src/main.rs</span> -->
@@ -243,7 +243,7 @@ fn area(dimensions: (u32, u32)) -&gt; u32 {
 容易く、このことを忘れたり、これらの値を混ぜこぜにしたりしてエラーを発生させてしまうでしょう。
 データの意味をコードに載せていないからです。</p>
 <!-- ### Refactoring with Structs: Adding More Meaning -->
-<a class="header" href="ch05-02-example-structs.html#a構造体でリファクタリングする-より意味付けする" id="a構造体でリファクタリングする-より意味付けする"><h3>構造体でリファクタリングする: より意味付けする</h3></a>
+<a class="header" href="#a構造体でリファクタリングする-より意味付けする" id="a構造体でリファクタリングする-より意味付けする"><h3>構造体でリファクタリングする: より意味付けする</h3></a>
 <!-- We use structs to add meaning by labeling the data. We can transform the tuple -->
 <!-- we’re using into a data type with a name for the whole as well as names for the -->
 <!-- parts, as shown in Listing 5-10. -->
@@ -298,7 +298,7 @@ fn area(rectangle: &amp;Rectangle) -&gt; u32 {
 <code>Rectangle</code>の面積を計算します。これにより、幅と高さが相互に関係していることが伝わり、
 タプルの<code>0</code>や<code>1</code>という添え字を使うよりも、これらの値に説明的な名前を与えられるのです。プログラムの意図が明瞭になりました。</p>
 <!-- ### Adding Useful Functionality with Derived Traits -->
-<a class="header" href="ch05-02-example-structs.html#aトレイトの導出で有用な機能を追加する" id="aトレイトの導出で有用な機能を追加する"><h3>トレイトの導出で有用な機能を追加する</h3></a>
+<a class="header" href="#aトレイトの導出で有用な機能を追加する" id="aトレイトの導出で有用な機能を追加する"><h3>トレイトの導出で有用な機能を追加する</h3></a>
 <!-- It’d be nice to be able to print an instance of `Rectangle` while we’re -->
 <!-- debugging our program and see the values for all its fields. Listing 5-11 tries -->
 <!-- using the `println!` macro as we have used it in previous chapters. This won't -->

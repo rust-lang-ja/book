@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Validating References with Lifetimes -->
-<a class="header" href="ch10-03-lifetime-syntax.html#aライフタイムで参照を検証する" id="aライフタイムで参照を検証する"><h2>ライフタイムで参照を検証する</h2></a>
+<a class="header" href="#aライフタイムで参照を検証する" id="aライフタイムで参照を検証する"><h2>ライフタイムで参照を検証する</h2></a>
 <!-- One detail we didn’t discuss in the “References and Borrowing” section in -->
 <!-- Chapter 4 is that every reference in Rust has a *lifetime*, which is the scope -->
 <!-- for which that reference is valid. Most of the time, lifetimes are implicit and -->
@@ -168,7 +168,7 @@ Rustで一番際立った機能になっています。この章では、ライ�
 ライフタイム記法と遭遇する可能性のある一般的な手段を議論するので、その概念に馴染めます。
 もっと詳しく知るには、第19章の「高度なライフタイム」節を参照されたし。</p>
 <!-- ### Preventing Dangling References with Lifetimes -->
-<a class="header" href="ch10-03-lifetime-syntax.html#aライフタイムでダングリング参照を回避する" id="aライフタイムでダングリング参照を回避する"><h3>ライフタイムでダングリング参照を回避する</h3></a>
+<a class="header" href="#aライフタイムでダングリング参照を回避する" id="aライフタイムでダングリング参照を回避する"><h3>ライフタイムでダングリング参照を回避する</h3></a>
 <!-- The main aim of lifetimes is to prevent dangling references, which cause a -->
 <!-- program to reference data other than the data it’s intended to reference. -->
 <!-- Consider the program in Listing 10-17, which has an outer scope and an inner -->
@@ -240,7 +240,7 @@ Rustで、このコードが動くことを許可していたら、<code>r</code
 <code>r</code>で行おうとするいかなることもちゃんと動作しないでしょう。では、どうやってコンパイラはこのコードが無効であると決定しているのでしょうか？
 借用チェッカーを使用しています。</p>
 <!-- ### The Borrow Checker -->
-<a class="header" href="ch10-03-lifetime-syntax.html#a借用精査機" id="a借用精査機"><h3>借用精査機</h3></a>
+<a class="header" href="#a借用精査機" id="a借用精査機"><h3>借用精査機</h3></a>
 <!-- The Rust compiler has a *borrow checker* that compares scopes to determine -->
 <!-- whether all borrows are valid. Listing 10-18 shows the same code as Listing -->
 <!-- 10-17 but with annotations showing the lifetimes of the variables: -->
@@ -300,7 +300,7 @@ Rustで、このコードが動くことを許可していたら、<code>r</code
 <p>今や、参照のライフタイムがどれだけあり、コンパイラがライフタイムを解析して参照が常に有効であることを保証する仕組みがわかったので、
 関数の文脈でジェネリックな引数と戻り値のライフタイムを探究しましょう。</p>
 <!-- ### Generic Lifetimes in Functions -->
-<a class="header" href="ch10-03-lifetime-syntax.html#a関数のジェネリックなライフタイム" id="a関数のジェネリックなライフタイム"><h3>関数のジェネリックなライフタイム</h3></a>
+<a class="header" href="#a関数のジェネリックなライフタイム" id="a関数のジェネリックなライフタイム"><h3>関数のジェネリックなライフタイム</h3></a>
 <!-- Let’s write a function that returns the longer of two string slices. This -->
 <!-- function will take two string slices and return a string slice. After we’ve -->
 <!-- implemented the `longest` function, the code in Listing 10-20 should print `The -->
@@ -392,7 +392,7 @@ signature does not say whether it is borrowed from `x` or `y`
 借用チェッカーもこれを決定することはできません。<code>x</code>と<code>y</code>のライフタイムがどう戻り値のライフタイムと関係するかわからないからです。
 このエラーを修正するには、借用チェッカーが解析を実行できるように、参照間の関係を定義するジェネリックなライフタイム引数を追加します。</p>
 <!-- ### Lifetime Annotation Syntax -->
-<a class="header" href="ch10-03-lifetime-syntax.html#aライフタイム注釈記法" id="aライフタイム注釈記法"><h3>ライフタイム注釈記法</h3></a>
+<a class="header" href="#aライフタイム注釈記法" id="aライフタイム注釈記法"><h3>ライフタイム注釈記法</h3></a>
 <!-- Lifetime annotations don’t change how long any of the references live. Just -->
 <!-- as functions can accept any type when the signature specifies a generic type -->
 <!-- parameter, functions can accept references with any lifetime by specifying a -->
@@ -437,7 +437,7 @@ signature does not say whether it is borrowed from `x` or `y`
 この関数にはさらに、<code>'a</code>のライフタイム付きの<code>i32</code>への別の参照となる<code>second</code>という別の引数もあります。
 ライフタイム注釈は、<code>first</code>と<code>second</code>の参照がどちらもジェネリックなライフタイムと同じだけ生きることを示唆します。</p>
 <!-- ### Lifetime Annotations in Function Signatures -->
-<a class="header" href="ch10-03-lifetime-syntax.html#a関数シグニチャにおけるライフタイム注釈" id="a関数シグニチャにおけるライフタイム注釈"><h3>関数シグニチャにおけるライフタイム注釈</h3></a>
+<a class="header" href="#a関数シグニチャにおけるライフタイム注釈" id="a関数シグニチャにおけるライフタイム注釈"><h3>関数シグニチャにおけるライフタイム注釈</h3></a>
 <!-- Now let’s examine lifetime annotations in the context of the `longest` -->
 <!-- function. As with generic type parameters, we need to declare generic lifetime -->
 <!-- parameters inside angle brackets between the function name and the parameter -->
@@ -613,7 +613,7 @@ fn main() {
 <p>試しに値や、<code>longest</code>関数に渡される参照のライフタイムや、返される参照の使用法が異なる実験をもっとしてみてください。
 自分の実験がコンパイル前に借用チェッカーを通るかどうか仮説を立ててください; そして、正しいか確かめてください！</p>
 <!-- ### Thinking in Terms of Lifetimes -->
-<a class="header" href="ch10-03-lifetime-syntax.html#aライフタイムの観点で思考する" id="aライフタイムの観点で思考する"><h3>ライフタイムの観点で思考する</h3></a>
+<a class="header" href="#aライフタイムの観点で思考する" id="aライフタイムの観点で思考する"><h3>ライフタイムの観点で思考する</h3></a>
 <!-- The way in which you need to specify lifetime parameters depends on what your -->
 <!-- function is doing. For example, if we changed the implementation of the -->
 <!-- `longest` function to always return the first parameter rather than the longest -->
@@ -699,7 +699,7 @@ function body at 1:1...
 一旦、繋がりができたら、メモリ安全な処理を許可するのに十分な情報がコンパイラにはあり、
 ダングリングポインタを生成するであろう処理を不認可し、さもなくばメモリ安全性を侵害するのです。</p>
 <!-- ### Lifetime Annotations in Struct Definitions -->
-<a class="header" href="ch10-03-lifetime-syntax.html#a構造体定義のライフタイム注釈" id="a構造体定義のライフタイム注釈"><h3>構造体定義のライフタイム注釈</h3></a>
+<a class="header" href="#a構造体定義のライフタイム注釈" id="a構造体定義のライフタイム注釈"><h3>構造体定義のライフタイム注釈</h3></a>
 <!-- So far, we’ve only defined structs to hold owned types. It’s possible for -->
 <!-- structs to hold references, but in that case we would need to add a lifetime -->
 <!-- annotation on every reference in the struct’s definition. Listing 10-25 has a -->
@@ -746,7 +746,7 @@ fn main() {
 加えて、<code>ImportantExcerpt</code>がスコープを抜けるまで<code>novel</code>はスコープを抜けないので、
 <code>ImportantExcerpt</code>インスタンスの参照は有効なのです。</p>
 <!-- ### Lifetime Elision -->
-<a class="header" href="ch10-03-lifetime-syntax.html#aライフタイム省略" id="aライフタイム省略"><h3>ライフタイム省略</h3></a>
+<a class="header" href="#aライフタイム省略" id="aライフタイム省略"><h3>ライフタイム省略</h3></a>
 <!-- You’ve learned that every reference has a lifetime and that you need to specify -->
 <!-- lifetime parameters for functions or structs that use references. However, in -->
 <!-- Chapter 4 we had a function in Listing 4-9, which is shown again in Listing -->
@@ -906,7 +906,7 @@ fn first_word(s: &amp;str) -&gt; &amp;str {
 <p>3番目の規則は本当にメソッドシグニチャでしか適用されないので、次にその文脈でライフタイムを観察し、
 3番目の規則が、メソッドシグニチャであまり頻繁にライフタイムを注釈しなくても済むことを意味する理由を確認します。</p>
 <!-- ### Lifetime Annotations in Method Definitions -->
-<a class="header" href="ch10-03-lifetime-syntax.html#aメソッド定義におけるライフタイム注釈" id="aメソッド定義におけるライフタイム注釈"><h3>メソッド定義におけるライフタイム注釈</h3></a>
+<a class="header" href="#aメソッド定義におけるライフタイム注釈" id="aメソッド定義におけるライフタイム注釈"><h3>メソッド定義におけるライフタイム注釈</h3></a>
 <!-- When we implement methods on a struct with lifetimes, we use the same syntax as -->
 <!-- that of generic type parameters shown in Listing 10-11. Where we declare and -->
 <!-- use the lifetime parameters depends on whether they’re related to the struct -->
@@ -973,7 +973,7 @@ impl&lt;'a&gt; ImportantExcerpt&lt;'a&gt; {
 引数の1つが<code>&amp;self</code>なので、戻り値型は<code>&amp;self</code>のライフタイムを得て、
 全てのライフタイムが説明されました。</p>
 <!-- ### The Static Lifetime -->
-<a class="header" href="ch10-03-lifetime-syntax.html#a静的ライフタイム" id="a静的ライフタイム"><h3>静的ライフタイム</h3></a>
+<a class="header" href="#a静的ライフタイム" id="a静的ライフタイム"><h3>静的ライフタイム</h3></a>
 <!-- One special lifetime we need to discuss is `'static`, which denotes the entire -->
 <!-- duration of the program. All string literals have the `'static` lifetime, which -->
 <!-- we can annotate as follows: -->
@@ -1003,7 +1003,7 @@ let s: &amp;'static str = &quot;I have a static lifetime.&quot;;
 ほとんどの場合、問題は、ダングリング参照を生成しようとしているか、利用可能なライフタイムの不一致が原因です。
 そのような場合、解決策はその問題を修正することであり、<code>'static</code>ライフタイムを指定することではありません。</p>
 <!-- ## Generic Type Parameters, Trait Bounds, and Lifetimes Together -->
-<a class="header" href="ch10-03-lifetime-syntax.html#aジェネリックな型引数トレイト境界ライフタイムを一度に" id="aジェネリックな型引数トレイト境界ライフタイムを一度に"><h2>ジェネリックな型引数、トレイト境界、ライフタイムを一度に</h2></a>
+<a class="header" href="#aジェネリックな型引数トレイト境界ライフタイムを一度に" id="aジェネリックな型引数トレイト境界ライフタイムを一度に"><h2>ジェネリックな型引数、トレイト境界、ライフタイムを一度に</h2></a>
 <!-- Let’s briefly look at the syntax of specifying generic type parameters, trait -->
 <!-- bounds, and lifetimes all in one function! -->
 <p>ジェネリックな型引数、トレイト境界、ライフタイムを指定する記法を全て1関数でちょっと眺めましょう！</p>
@@ -1039,7 +1039,7 @@ fn longest_with_an_announcement&lt;'a, T&gt;(x: &amp;'a str, y: &amp;'a str, ann
 <code>Display</code>トレイト境界が必要なのです。ライフタイムは一種のジェネリックなので、
 ライフタイム引数<code>'a</code>とジェネリックな型引数<code>T</code>が関数名の後、山カッコ内の同じリストに収まっています。</p>
 <!-- ## Summary -->
-<a class="header" href="ch10-03-lifetime-syntax.html#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
+<a class="header" href="#aまとめ" id="aまとめ"><h2>まとめ</h2></a>
 <!-- We covered a lot in this chapter! Now that you know about generic type -->
 <!-- parameters, traits and trait bounds, and generic lifetime parameters, you’re -->
 <!-- ready to write code without repetition that works in many different situations. -->

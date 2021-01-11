@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## Controlling How Tests Are Run -->
-<a class="header" href="ch11-02-running-tests.html#aテストの実行され方を制御する" id="aテストの実行され方を制御する"><h2>テストの実行され方を制御する</h2></a>
+<a class="header" href="#aテストの実行され方を制御する" id="aテストの実行され方を制御する"><h2>テストの実行され方を制御する</h2></a>
 <!-- Just as `cargo run` compiles your code and then runs the resulting binary, -->
 <!-- `cargo test` compiles your code in test mode and runs the resulting test -->
 <!-- binary. You can specify command line options to change the default behavior of -->
@@ -167,7 +167,7 @@
 それからテストバイナリにかかる引数を列挙します。<code>cargo test --help</code>を走らせると、<code>cargo test</code>で使用できるオプションが表示され、
 <code>cargo test -- --help</code>を走らせると、<code>--</code>という区分記号の後に使えるオプションが表示されます。</p>
 <!-- ### Running Tests in Parallel or Consecutively -->
-<a class="header" href="ch11-02-running-tests.html#aテストを並行または連続して実行する" id="aテストを並行または連続して実行する"><h3>テストを並行または連続して実行する</h3></a>
+<a class="header" href="#aテストを並行または連続して実行する" id="aテストを並行または連続して実行する"><h3>テストを並行または連続して実行する</h3></a>
 <!-- When you run multiple tests, by default they run in parallel using threads. -->
 <!-- This means the tests will finish running faster so you can get feedback quicker -->
 <!-- on whether or not your code is working. Because the tests are running at the -->
@@ -212,7 +212,7 @@
 1スレッドのみを使用してテストを実行すると、並行に実行するより時間がかかりますが、
 状態を共有していても、お互いに邪魔をすることはありません。</p>
 <!-- ### Showing Function Output -->
-<a class="header" href="ch11-02-running-tests.html#a関数の出力を表示する" id="a関数の出力を表示する"><h3>関数の出力を表示する</h3></a>
+<a class="header" href="#a関数の出力を表示する" id="a関数の出力を表示する"><h3>関数の出力を表示する</h3></a>
 <!-- By default, if a test passes, Rust’s test library captures anything printed to -->
 <!-- standard output. For example, if we call `println!` in a test and the test -->
 <!-- passes, we won’t see the `println!` output in the terminal; we’ll only see the -->
@@ -318,7 +318,7 @@ test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 <code>-test-threads=1</code>オプションと<code>--nocapture</code>フラグを使ってみて、
 その時、出力がどうなるか確かめてください！</p>
 <!-- ### Running a Subset of Tests by Name -->
-<a class="header" href="ch11-02-running-tests.html#a名前でテストの一部を実行する" id="a名前でテストの一部を実行する"><h3>名前でテストの一部を実行する</h3></a>
+<a class="header" href="#a名前でテストの一部を実行する" id="a名前でテストの一部を実行する"><h3>名前でテストの一部を実行する</h3></a>
 <!-- Sometimes, running a full test suite can take a long time. If you’re working on -->
 <!-- code in a particular area, you might want to run only the tests pertaining to -->
 <!-- that code. You can choose which tests to run by passing `cargo test` the name -->
@@ -373,7 +373,7 @@ test tests::one_hundred ... ok
 test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 </code></pre>
 <!-- #### Running Single Tests -->
-<a class="header" href="ch11-02-running-tests.html#a単独のテストを走らせる" id="a単独のテストを走らせる"><h4>単独のテストを走らせる</h4></a>
+<a class="header" href="#a単独のテストを走らせる" id="a単独のテストを走らせる"><h4>単独のテストを走らせる</h4></a>
 <!-- We can pass the name of any test function to `cargo test` to run only that test: -->
 <p>あらゆるテスト関数の名前を<code>cargo test</code>に渡して、そのテストのみを実行することができます:</p>
 <pre><code class="language-text">$ cargo test one_hundred
@@ -395,7 +395,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
 <p>この方法では、複数のテストの名前を指定することはできません; <code>cargo test</code>に与えられた最初の値のみが使われるのです。
 ですが、複数のテストを走らせる方法もあります。</p>
 <!-- #### Filtering to Run Multiple Tests -->
-<a class="header" href="ch11-02-running-tests.html#a複数のテストを実行するようフィルターをかける" id="a複数のテストを実行するようフィルターをかける"><h4>複数のテストを実行するようフィルターをかける</h4></a>
+<a class="header" href="#a複数のテストを実行するようフィルターをかける" id="a複数のテストを実行するようフィルターをかける"><h4>複数のテストを実行するようフィルターをかける</h4></a>
 <!-- We can specify part of a test name, and any test whose name matches that value -->
 <!-- will be run. For example, because two of our tests’ names contain `add`, we can -->
 <!-- run those two by running `cargo test add`: -->
@@ -419,7 +419,7 @@ test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out
 また、テストが出現するモジュールがテスト名の一部になっていて、
 モジュール名でフィルターをかけることで、あるモジュール内のテスト全てを実行できることに注目してください。</p>
 <!-- ### Ignoring Some Tests Unless Specifically Requested -->
-<a class="header" href="ch11-02-running-tests.html#a特に要望のない限りテストを無視する" id="a特に要望のない限りテストを無視する"><h3>特に要望のない限りテストを無視する</h3></a>
+<a class="header" href="#a特に要望のない限りテストを無視する" id="a特に要望のない限りテストを無視する"><h3>特に要望のない限りテストを無視する</h3></a>
 <!-- Sometimes a few specific tests can be very time-consuming to execute, so you -->
 <!-- might want to exclude them during most runs of `cargo test`. Rather than -->
 <!-- listing as arguments all tests you do want to run, you can instead annotate the -->

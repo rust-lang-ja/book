@@ -142,7 +142,7 @@
                 <div id="content" class="content">
                     <main>
                         <!-- ## What Is Ownership? -->
-<a class="header" href="ch04-01-what-is-ownership.html#a所有権とは" id="a所有権とは"><h2>所有権とは？</h2></a>
+<a class="header" href="#a所有権とは" id="a所有権とは"><h2>所有権とは？</h2></a>
 <!-- Rust’s central feature is *ownership*. Although the feature is straightforward -->
 <!-- to explain, it has deep implications for the rest of the language. -->
 <p>Rustの中心的な機能は、<em>所有権</em>です。この機能は、説明するのは簡単なのですが、言語の残りの機能全てにかかるほど
@@ -227,7 +227,7 @@
 <!-- > stack and the heap very often, but knowing that managing heap data is why -->
 <!-- > ownership exists can help explain why it works the way it does. -->
 <blockquote>
-<a class="header" href="ch04-01-what-is-ownership.html#aスタックとヒープ" id="aスタックとヒープ"><h3>スタックとヒープ</h3></a>
+<a class="header" href="#aスタックとヒープ" id="aスタックとヒープ"><h3>スタックとヒープ</h3></a>
 <p>多くのプログラミング言語において、スタックとヒープについて考える機会はそう多くないでしょう。
 しかし、Rustのようなシステムプログラミング言語においては、値がスタックに積まれるかヒープに置かれるかは、
 言語の振る舞い方や、特定の決断を下す理由などに影響以上のものを与えるのです。
@@ -270,7 +270,7 @@ OSはヒープ上に十分な大きさの空の領域を見つけ、使用中に
 </blockquote>
 <!-- PROD: END BOX -->
 <!-- ### Ownership Rules -->
-<a class="header" href="ch04-01-what-is-ownership.html#a所有権規則" id="a所有権規則"><h3>所有権規則</h3></a>
+<a class="header" href="#a所有権規則" id="a所有権規則"><h3>所有権規則</h3></a>
 <!-- First, let’s take a look at the ownership rules. Keep these rules in mind as we -->
 <!-- work through the examples that illustrate them: -->
 <p>まず、所有権のルールについて見ていきましょう。
@@ -284,7 +284,7 @@ OSはヒープ上に十分な大きさの空の領域を見つけ、使用中に
 <li>所有者がスコープから外れたら、値は破棄される。</li>
 </ul>
 <!-- ### Variable Scope -->
-<a class="header" href="ch04-01-what-is-ownership.html#a変数スコープ" id="a変数スコープ"><h3>変数スコープ</h3></a>
+<a class="header" href="#a変数スコープ" id="a変数スコープ"><h3>変数スコープ</h3></a>
 <!-- We’ve walked through an example of a Rust program already in Chapter 2. Now -->
 <!-- that we’re past basic syntax, we won’t include all the `fn main() {` code in -->
 <!-- examples, so if you’re following along, you’ll have to put the following -->
@@ -344,7 +344,7 @@ valid</span> -->
 <p>ここで、スコープと変数が有効になる期間の関係は、他の言語に類似しています。さて、この理解のもとに、
 <code>String</code>型を導入して構築していきましょう。</p>
 <!-- ### The `String` Type -->
-<a class="header" href="ch04-01-what-is-ownership.html#string型" id="string型"><h3><code>String</code>型</h3></a>
+<a class="header" href="#string型" id="string型"><h3><code>String</code>型</h3></a>
 <!-- To illustrate the rules of ownership, we need a data type that is more complex -->
 <!-- than the ones we covered in the "Data Types" section of Chapter 3. The types -->
 <!-- covered previously are all stored on the stack and popped off the stack when -->
@@ -411,7 +411,7 @@ println!(&quot;{}&quot;, s); // これは`hello, world!`と出力する
 <p>では、ここでの違いは何でしょうか？なぜ、<code>String</code>型は可変化できるのに、リテラルはできないのでしょうか？
 違いは、これら二つの型がメモリを扱う方法にあります。</p>
 <!-- ### Memory and Allocation -->
-<a class="header" href="ch04-01-what-is-ownership.html#aメモリと確保" id="aメモリと確保"><h3>メモリと確保</h3></a>
+<a class="header" href="#aメモリと確保" id="aメモリと確保"><h3>メモリと確保</h3></a>
 <!-- In the case of a string literal, we know the contents at compile time, so the -->
 <!-- text is hardcoded directly into the final executable. This is why string -->
 <!-- literals are fast and efficient. But these properties only come from the string -->
@@ -503,7 +503,7 @@ Rustの<code>drop</code>関数は、あなたがRAIIパターンを使ったこ�
 ヒープ上に確保されたデータを複数の変数に使用させるようなもっと複雑な場面では、コードの振る舞いは、
 予期しないものになる可能性もあります。これから、そのような場面を掘り下げてみましょう。</p>
 <!-- #### Ways Variables and Data Interact: Move -->
-<a class="header" href="ch04-01-what-is-ownership.html#a変数とデータの相互作用法-ムーブ" id="a変数とデータの相互作用法-ムーブ"><h4>変数とデータの相互作用法: ムーブ</h4></a>
+<a class="header" href="#a変数とデータの相互作用法-ムーブ" id="a変数とデータの相互作用法-ムーブ"><h4>変数とデータの相互作用法: ムーブ</h4></a>
 <!-- Multiple variables can interact with the same data in different ways in Rust. -->
 <!-- Let’s look at an example using an integer in Listing 4-2. -->
 <p>Rustにおいては、複数の変数が同じデータに対して異なる手段で相互作用することができます。
@@ -660,7 +660,7 @@ invalidated</span> -->
 自動的にデータの&quot;deep copy&quot;が行われることは絶対にないわけです。それ故に、あらゆる<em>自動</em>コピーは、実行時性能の観点で言うと、
 悪くないと考えてよいことになります。</p>
 <!-- #### Ways Variables and Data Interact: Clone -->
-<a class="header" href="ch04-01-what-is-ownership.html#a変数とデータの相互作用法-クローン" id="a変数とデータの相互作用法-クローン"><h4>変数とデータの相互作用法: クローン</h4></a>
+<a class="header" href="#a変数とデータの相互作用法-クローン" id="a変数とデータの相互作用法-クローン"><h4>変数とデータの相互作用法: クローン</h4></a>
 <!-- If we *do* want to deeply copy the heap data of the `String`, not just the -->
 <!-- stack data, we can use a common method called `clone`. We’ll discuss method -->
 <!-- syntax in Chapter 5, but because methods are a common feature in many -->
@@ -688,7 +688,7 @@ println!(&quot;s1 = {}, s2 = {}&quot;, s1, s2);
 <p><code>clone</code>メソッドの呼び出しを見かけたら、何らかの任意のコードが実行され、その実行コストは高いと把握できます。
 何か違うことが起こっているなと見た目でわかるわけです。</p>
 <!-- #### Stack-Only Data: Copy -->
-<a class="header" href="ch04-01-what-is-ownership.html#aスタックのみのデータ-コピー" id="aスタックのみのデータ-コピー"><h4>スタックのみのデータ: コピー</h4></a>
+<a class="header" href="#aスタックのみのデータ-コピー" id="aスタックのみのデータ-コピー"><h4>スタックのみのデータ: コピー</h4></a>
 <!-- There’s another wrinkle we haven’t talked about yet. This code using integers, -->
 <!-- part of which was shown in Listing 4-2, works and is valid: -->
 <p>まだ話題にしていない別の問題があります。
@@ -753,7 +753,7 @@ println!(&quot;x = {}, y = {}&quot;, x, y);
 <code>(i32, String)</code>は違う。</li>
 </ul>
 <!-- ### Ownership and Functions -->
-<a class="header" href="ch04-01-what-is-ownership.html#a所有権と関数" id="a所有権と関数"><h3>所有権と関数</h3></a>
+<a class="header" href="#a所有権と関数" id="a所有権と関数"><h3>所有権と関数</h3></a>
 <!-- The semantics for passing a value to a function are similar to those for -->
 <!-- assigning a value to a variable. Passing a variable to a function will move or -->
 <!-- copy, just as assignment does. Listing 4-3 has an example with some annotations -->
@@ -817,7 +817,7 @@ annotated</span> -->
 これらの静的チェックにより、ミスを犯さないでいられます。<code>s</code>や<code>x</code>を使用するコードを<code>main</code>に追加してみて、
 どこで使えて、そして、所有権規則により、どこで使えないかを確認してください。</p>
 <!-- ### Return Values and Scope -->
-<a class="header" href="ch04-01-what-is-ownership.html#a戻り値とスコープ" id="a戻り値とスコープ"><h3>戻り値とスコープ</h3></a>
+<a class="header" href="#a戻り値とスコープ" id="a戻り値とスコープ"><h3>戻り値とスコープ</h3></a>
 <!-- Returning values can also transfer ownership. Listing 4-4 is an example with -->
 <!-- similar annotations to those in Listing 4-3. -->
 <p>値を返すことでも、所有権は移動します。リスト4-4は、リスト4-3と似た注釈のついた例です。</p>
